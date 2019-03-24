@@ -51,7 +51,6 @@
 <body>
 
 <div class="mainwrapper">
-    
     <!-- header binge -->
     <include file="Public/head" />
     
@@ -62,25 +61,25 @@
                     <div class="messageright" style="min-height:800px;">
                         <div class="messageview">
                             <div class="btn-group pull-right">
-                                <if condition="$data.limits eq 3 and $data.case eq 'dai'">
+                                <if condition="$data.limits eq 3 and $data.case eq '1'">
                                         <a href="{:U('Client/forms?type=xiu&forms='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="javascript:void();" onclick="del('messages-{$main.w_id}');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a>
                                 </if>
                                 
-                                <if condition="$data.limits eq 2 and $data.case eq 'dai'">
+                                <if condition="$data.limits eq 2 and $data.case eq '1'">
                                     <a href="{:U('Client/messages?type=chu&wc_sataus='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a>
                                 </if>
 
-                                <if condition="$data.limits eq 2 and $data.case eq 'zhong'">
+                                <if condition="$data.limits eq 2 and $data.case eq '2'">
                                     <a href="{:U('Client/messages?type=ping&wc_sataus='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a>
                                 </if>
                                 
-                                <if condition="$data.limits eq 3 and $data.case eq 'zhong' or $data.case eq 'ping'">
+                                <if condition="$data.limits eq 3 and $data.case eq '2' or $data.case eq '4'">
                                     <!-- <a href="{:U('Client/messages?type=wang&wc_sataus='.$main['w_id'])}" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
                                     <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button>
                                 </if>
-                                <if condition="$data.limits eq 3 and $data.case eq 'cao'">
+                                <if condition="$data.limits eq 3 and $data.case eq '-1'">
                                     <a href="{:U('Client/forms?type=xiu&forms='.$main['w_id'])}" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a>
                                 </if>
                             </div>

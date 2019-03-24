@@ -381,7 +381,11 @@ class ClientController extends CommonController {
 		$limits = I("session.limits");		//权限    2-售后	3-会员
 		$id = I("session.uid");				//当前用户id
 		$aid = I("get.id");			//工单id
-		// $status = I("get.case");			//工单状态
+
+		$work_detail = $this->sel_sql_single("work", "id='$aid'");
+		if($work_detail) {
+			$status = $work_detail['wc_sataus'];			//工单状态
+		}
 
 		//列表显示数据	-- 分页
 		if($limits == 3){
