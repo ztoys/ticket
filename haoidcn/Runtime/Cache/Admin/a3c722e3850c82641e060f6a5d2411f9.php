@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>售后人员管理</title>
+<title>工作时间</title>
 
 <!-- header binge -->
 
@@ -39,24 +39,12 @@
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
 
-<script type="text/javascript">
-jQuery(document).ready(function(){
-
-	
-	jQuery('.taglist .close').click(function(){
-		jQuery(this).parent().remove();
-		return false;
-	});
-	
-});
-</script>
-
 </head>
 
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 </head>
-<body>
+<body >
 
 <!-- header binge -->
 
@@ -152,118 +140,35 @@ jQuery(document).ready(function(){
 <!-- header end -->
     
     <div class="rightpanel">
-        <!-- head binge -->
         
-			
-        <ul class="breadcrumbs">
-            <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
-            <li>售后人员管理</li>
-        </ul>
-		
-		<!-- head end -->
-        <div class="pageheader">
-            <div class="pageicon"><span class="iconfa-pencil"></span></div>
-            <div class="pagetitle">
-				<h5 style="height:10px;"></h5>
-                <h1>售后人员管理</h1>
-            </div>
-        </div><!--pageheader-->
         
         <div class="maincontent">
             <div class="maincontentinner">
                 <div class="row-fluid">
-                   <div>
-                        <div class="widgetbox personal-information">
-                            <h4 class="widgettitle">售后人员管理</h4>
-                            <div class="widgetcontent">
-                            	<table class="table table-bordered">
-                            		<tr>
-                            			<th width="250px;">账号</th>
-                            			<th width="300px;">姓名</th>
-                            			<th width="300px;">手机</th>
-                            			<th width="400px;">email</th>
-                            			<th width="200px;">操作</th>
-                            		</tr>
-                            		<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr id="s_manage<?php echo ($vo["id"]); ?>">
-                            				<td><?php echo ($vo["userid"]); ?></td>
-                            				<td><?php echo ($vo["uname"]); ?></td>
-                            				<td><?php echo ($vo["phone"]); ?></td>
-                            				<td><?php echo ($vo["email"]); ?></td>
-                            				<td>
-                            					&nbsp;&nbsp;&nbsp;<a href="javascript:void();" onclick="block('s_manage-<?php echo ($vo["id"]); ?>');"  class="icon-pencil"></a>
-                            				</td>
-                            			</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                            	</table> 
-		                    <?php echo ($page); ?>
-                            </div>
-                                      
-                        </div>
-                        <div id="update" style="display:none;">
-                           	<form class="editprofileform" method="post">
-                               <input type="hidden" name="f_submit" value="f_submit">
-                               <input type="hidden" name="id" id="id" value="">
-                               
-                                <div class="widgetbox personal-information">
-                                    <h4 class="widgettitle">修改售后人员</h4>
-                                    <div class="widgetcontent">
-                                    	
-                                     <div id="update01">
-	                                    	<p>
-	                                            <label>账号：</label>
-	                                            <input type="text" name="userid" id="userid" class="input-xlarge" value="" />
-	                                        </p>
-	                                    	<p>
-	                                            <label>姓名：</label>
-	                                            <input type="text" name="uname" id="uname" class="input-xlarge" value="" />
-	                                        </p>
-	                                       	<p>
-	                                            <label>密码：</label>
-		                                        <a href="javascript:void();" onclick="xiu('s_manage');">修改密码？</a>
-	                                         </p>
-	                                       
-	                                        <p>
-	                                            <label>手机：</label>
-	                                            <input type="text" name="phone" id="phone" class="input-xlarge" value="" />
-	                                        </p>
-	                                        <p>
-	                                            <label>email：</label>
-	                                            <input type="text" name="email" id="email" class="input-xlarge" value="" />
-	                                        </p>
-		                                
-	                                    </div>
-	                                    
-		                                 <div id="update02" style="display:none;">
-		                                 	
-		                                 	<input type="hidden" name="pwd_status" id="pwd_status" value="">
-                                        	<p>
-	                                            <label>旧密码：</label>
-	                                            <input type="password" name="pwd" id="pwd" class="input-xlarge" value="" />
-	                                        </p>
-	                                        <p>
-	                                            <label>新密码：</label>
-	                                            <input type="password" name="pwd01" id="pwd01" class="input-xlarge" value="" />
-	                                        </p>
-	                                        
-	                                        <p>
-	                                            <label>确认密码：</label>
-	                                            <input type="password" name="pwd02" id="pwd02" class="input-xlarge" value="" />
-	                                        </p>
-	                                        
-                                        </div>
-                                        
-                                        <p>
-		                                	<a href="javascript:void();" class="btn btn-primary" onclick="update_t('s_manage');"><small>提交信息</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<a href="javascript:void();" class="btn btn-primary" onclick="none('update');"><small>取消</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		                                	<span id="caozuo"></span>
-		                                </p>
-                                    </div>
-                                </div>
-                            </form>
-                                       
+                	<div class="widgetbox personal-information">
+                        <h4 class="widgettitle">未通知售后人员列表</h4>
+                        <div class="widgetcontent">
+                        	<table class="table table-bordered">
+                        		<tr>
+                        			<th width="50px;">序号</th>
+                        			<th width="150px;">客户账号</th>
+                        			<th width="200px;">标题</th>
+                        			<th width="400px;">描述</th>
+                        			<th width="400px;">追加</th>
+                        			<th width="200px;">负责人</th>
+                        		</tr>
+                        		<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                        				<td><?php echo ($i); ?></td>
+                        				<td><?php echo ($vo["u_uname"]); ?></td>
+	                        			<td><?php echo ($vo["w_title"]); ?></td>
+	                        			<td><?php echo (strip_tags(msubstr($vo["w_issue"],0,32))); ?></td>
+	                        			<td><?php echo (strip_tags(msubstr($vo["a_g_reply"],0,32))); ?></td>
+	                        			<td><?php echo ($vo["s_uname"]); ?></td>
+                        			</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                        	</table> 
                         </div>
                     </div><!--row-fluid-->
-                  
+                   <div style="height:292px;"></div>
                   
         		 <!-- footer binge -->
 								<div class="footer">

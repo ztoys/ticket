@@ -7,14 +7,12 @@ class ClientController extends CommonController {
 	
 	//新工单
 	public function forms(){
-		
 		$office_date = D('time')->find();		//工作 时间
 		$begin_time = str_replace(":","",$office_date['begin_time']);		//上班时间
 		$end_time = str_replace(":","",$office_date['end_time']);			//下班时间
 		$dan_time = str_replace(":","",date("H:i",time()));					//当前时间
 		$begin_beputtime = $office_date['begin_beputtime'];					//开始放假时间
 		$end_beputtime = $office_date['end_beputtime'];						//结束放假时间
-		
 		
 		$userid = strtolower(I("session.userid"));
 		$data = array(
@@ -155,9 +153,6 @@ class ClientController extends CommonController {
 		$this->display();
 	}
 	
-	
-	
-	
 	//工单 处理
 	public function messages(){
 		$office_date = D('time')->find();		//工作 时间
@@ -189,31 +184,30 @@ class ClientController extends CommonController {
 		//搜索操作
 		if(I("get.sou")){
 			$title = I("get.sou");
-			$where = " and title like '%$title%'";
+			$where = $where + " and w.title like '%$title%'";
 		}
 		
 		//列表显示数据	-- 分页
 		if($limits == 3){
 			if (isset($my_ticket)) {
-				$list = $this->sel_sql("work","wc_sataus<>'3' and uid='$id'", "puddate asc");
+				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+				// $list = $this->sel_sql("work","wc_sataus<>'3' and uid='$id' $where", "puddate desc");
 			} else {
-				$list = $this->sel_sql("work","wc_sataus='$sta_nb' and uid='$id' $where","puddate asc");
+				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
+				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and uid='$id' $where","puddate desc");
 			}
 			$this->assign('list',$list);
 			
 		}else if($limits == 2){
-		
 			//获取当前的售后人员所负责 的 客户id
-			$result_arr = D("user")->field("id")->where("sid='$id'")->select();
-				
-			$wid = "";
-			foreach ($result_arr as $val){
-				$wid .= $val['id'].',';
-			}
-			$wid = rtrim($wid,",");
-			
+			// $result_arr = D("user")->field("id")->where("sid='$id'")->select();
+			// $wid = "";
+			// foreach ($result_arr as $val){
+			// 	$wid .= $val['id'].',';
+			// }
+			// $wid = rtrim($wid,",");
 			//显示当前售后人员所负责 的 客户工单
-			$list = $this->sel_sql("work","wc_sataus='$sta_nb' and uid in($wid) $where","puddate asc");
+			$list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
 			$this->assign('list',$list);
 			
 		}else if($limits == 1){
@@ -253,7 +247,7 @@ class ClientController extends CommonController {
 
 		//处理对话操作
 		if(IS_POST){
-			$url = __ROOT__."/index.php/Client/messages/case/zhong/messages/".I('post.pid');
+			$url = __ROOT__."/index.php/Client/detail/id/".I('post.pid');
 			if(I("post.insert") != "" && I('post.editorValue') != ""){
 				$data = array(
 						'g_reply'		=>	htmlspecialchars_decode(I('post.editorValue')),
@@ -382,6 +376,114 @@ class ClientController extends CommonController {
 		$this->display();
 	}
 
+	//工单 详细
+	public function detail(){
+		$limits = I("session.limits");		//权限    2-售后	3-会员
+		$id = I("session.uid");				//当前用户id
+		$aid = I("get.id");			//工单id
+		// $status = I("get.case");			//工单状态
+
+		//列表显示数据	-- 分页
+		if($limits == 3){
+			if (isset($my_ticket)) {
+				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+				// $list = $this->sel_sql("work","wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+			} else {
+				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
+				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and uid='$id' $where","puddate desc");
+			}
+			$this->assign('list',$list);
+			
+		}else if($limits == 2){
+			//获取当前的售后人员所负责 的 客户id
+			// $result_arr = D("user")->field("id")->where("sid='$id'")->select();
+			// $wid = "";
+			// foreach ($result_arr as $val){
+			// 	$wid .= $val['id'].',';
+			// }
+			// $wid = rtrim($wid,",");
+			//显示当前售后人员所负责 的 客户工单
+			$list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
+			$this->assign('list',$list);
+			
+		}else if($limits == 1){
+			$list = $this->sel_sql("work","wc_sataus='$sta_nb' $where","puddate asc");
+			$this->assign('list',$list);
+		}
+
+		//列表选中显示样式
+		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
+		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,
+		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
+		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
+		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
+		$this->assign('main',$main);
+		
+		//对话内容显示
+		$record = D("addwork as a")->field("u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid")->join("LEFT JOIN ".C('DB_PREFIX')."user as u ON a.uid=u.id")->where("a.pid='$aid'")->order("repdate asc")->select();
+		$this->assign('record',$record);
+
+		//显示评价
+		if($status == "yi") {
+			$comment = $this->sel_sql_single("evaluation", "work_id='$aid'");
+			$this->assign('comment',$comment);
+		}
+
+		//处理对话操作
+		if(IS_POST){
+			$url = __ROOT__."/index.php/Client/messages/case/zhong/messages/".I('post.pid');
+			if(I("post.insert") != "" && I('post.editorValue') != ""){
+				$data = array(
+						'g_reply'		=>	htmlspecialchars_decode(I('post.editorValue')),
+						'repdate'		=>	time(),
+						'uid'			=>	$id,
+						'pid'			=>	I('post.pid'),
+				);
+				$result = $this->inser_sql("addwork",$data);
+				if($result){
+					if(time() < $begin_beputtime or time() > $end_beputtime){			//放假时间
+						if($dan_time >= $begin_time && $dan_time <= $end_time and (date("w") != "0" or date("w") != '6')){		//判断上班时间以级周六日
+							
+							if($limits == "2"){
+								// $E = Email($main["u_email"],"最新消息回复通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."” 已有最新回复，请注意查看。");
+								// $M = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”已有最新回复，请注意查看。');
+								echo "<script>alert('发送成功，并且已通知客户。'); location.href='$url';</script>";
+							}else if($limits == "3"){
+								// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
+								// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
+								echo "<script>alert('发送成功，并且已通知售后人员。'); location.href='$url';</script>";
+							}
+							exit;
+							
+						}
+					}
+					echo "<script>alert('发送成功，但由现在不是上班时间，我们将会在上班时间短息通知售后人员，请耐心等候'); location.href='$url';</script>";
+					
+				}
+				exit;
+			}else{
+				echo "<script>alert('回复内容不能为空'); location.href='$url';</script>";
+			}
+		
+		}
+		
+		$data = array(
+				'unread'		=>	"unread",
+				"selected"		=>	"selected",
+				'unread'		=>	"unread",
+				'aid'			=>	$aid,
+				'limits'		=>	$limits,
+				'class'			=>	'class="active"',
+				'case'			=>	$status,
+				"active02"		=>	"class='active'",
+				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
+				'sou'			=>	'&sou='.I("get.sou"),
+		);
+		$this->assign('data',$data);
+		
+		$this->display();
+	}
+
 	//工单 关闭
 	public function close_ticket(){
 		$limits = I("session.limits");	//权限    2-售后	3-会员
@@ -455,10 +557,14 @@ class ClientController extends CommonController {
 	
 	//联合查询
 	public function lianhe_sql($model,$table,$field,$where){
-		
 		return  D($model)->table($table)->field($field)->where($where)->find();
-		
 	}
+
+	//左连接查询
+	public function left_join_sql($model, $alias, $field, $join, $where, $orders){
+		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->select();
+	}
+
 	//更新操作	
 	public function update_sql($model,$where,$data){
 

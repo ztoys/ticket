@@ -65,6 +65,21 @@ textarea,button { outline: none; font-size: 13px; font-family: 'RobotoRegular', 
 strong { font-weight: normal; }
 label, input, textarea, select, button { font-size: 13px; }
 h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
+::-webkit-scrollbar-track {
+	background-color: transparent; 
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px; 
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-color: #D8D6D6; 
+}
 
 .left{
 	float: left;
@@ -73,6 +88,10 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 	position: relative;
 	display: table-cell;
 	width: 9999px;
+}
+.note2{
+	font-size: 13px;
+	color: #666;
 }
 
 /*** LOGIN PAGE ***/
@@ -1428,6 +1447,18 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,
 .table.table-bordered { border-top: 0; border-right: 0; }
 .table.table-bordered th { border-color: #444; }
 .table.table-bordered td:last-child { border-right: 1px solid #ddd; }
+.table.table-fixed {table-layout: fixed;}
+.table.table-fixed td{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.table.table-tr-click tbody tr{
+	cursor: pointer;
+}
+.table.table-tr-click tbody tr:hover{
+	background: #DADADA;
+}
 
 .table .con0 { background: #fff; }
 .table .con1 { background: #f7f7f7; }

@@ -37,7 +37,7 @@ if($status){
 								  pid int(10) NOT NULL,
 								  uid int(10) NOT NULL,
 								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;",
+								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."config;",
 					"CREATE TABLE ".$_POST['db_prefix']."config (
 								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -50,7 +50,7 @@ if($status){
 								  phone_user varchar(250) NOT NULL,
 								  phone_pass varchar(250) NOT NULL,
 								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;",
+								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."ecomment;",
 								"CREATE TABLE ".$_POST['db_prefix']."ecomment (
 								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -69,7 +69,7 @@ if($status){
 								  email varchar(250) NOT NULL,
 								  time varchar(250) NOT NULL,
 								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;",
+								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."status;",
 								"CREATE TABLE ".$_POST['db_prefix']."status (
 								  id tinyint(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -86,7 +86,7 @@ if($status){
 								  end_beputtime varchar(250) NOT NULL,
 								  pubtime varchar(250) NOT NULL,
 								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;",
+								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."user;",
 								"CREATE TABLE ".$_POST['db_prefix']."user (
 								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -103,7 +103,7 @@ if($status){
 								  limits enum('1','2','3') NOT NULL,
 								  sid varchar(250),
 								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;",
+								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."work;",
 								"CREATE TABLE ".$_POST['db_prefix']."work (
 								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -116,8 +116,9 @@ if($status){
 								  wc_sataus enum('2','1','-1','3','4') NOT NULL,
 								  ea_status enum('-1','1'),
 								  uid int(250) NOT NULL,
+								  did int(250) NOT NULL,
 								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;",
+								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."evaluation;",
 								"CREATE TABLE ".$_POST['db_prefix']."evaluation (
 									work_id int(10) unsigned NOT NULL AUTO_INCREMENT,

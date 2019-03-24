@@ -43,11 +43,24 @@
 <script type="text/javascript" charset="utf-8" src="<?php echo (C("URL")); ?>baidubianjiqi/umeditor.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/lang/zh-cn/zh-cn.js"></script>
 
-
 <style type="text/css">
+    body {
+        background: #F5F5F5;
+    }
 	a:hover{
 		text-decoration:none;
-	}
+    }
+    .leftpanel{
+        display: none;
+    }
+    .rightpanel{
+        margin: 0;
+    }
+    .messageright{
+        margin: 0;
+        border-top: 1px solid #0866c6;
+        border-left: 1px solid #0866c6;
+    }
     .comments li:last-child .comment p{margin-top:15px;}
     .modal-comment form input[type='radio']{
         vertical-align: -2px;
@@ -67,7 +80,7 @@
 <div class="mainwrapper">
     
     <!-- header binge -->
-	
+    
 
 <div class="mainwrapper">
     <div class="header">
@@ -156,75 +169,122 @@
             </ul>
         </div><!--leftmenu-->
     </div><!-- leftpanel -->
-
-	<!-- header end -->
     
-    <div class="rightpanel">
-        
-         <!-- head binge -->
-        
-			
-        <ul class="breadcrumbs">
-            <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
-            <li>处理工单</li>
-        </ul>
-		
-		<!-- head end -->
-		
-        <div class="maincontent">
-            <div class="maincontentinner">
-                <div class="messagepanel">
-                    <div class="messagemenu" style="border-top: 1px solid #0866c6;">
-                        <!-- <ul>
-                            <li class="back"><a><span class="iconfa-chevron-left"></span > Back</a></li>
-                            <li <?php if($data["case"] == 'dai'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=dai');?>" ><span></span> 待处理的工单</a></li>
-                            <li <?php if($data["case"] == 'zhong'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-inbox"></span> 处理中的工单</a></li>
-                            <li <?php if($data["case"] == 'yi'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-edit"></span> 已关闭的工单</a></li>
-                            <?php if($data["limits"] == '3'): ?><li <?php if($data["case"] == 'cao'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-edit"></span> 草稿箱</a></li><?php endif; ?>
-                        </ul> -->
-                    </div>
-                    <div class="messagecontent">
-                        <table class="table table-bordered table-fixed table-tr-click">
-                                <tr>
-                                    <th width="10%">编号</th>
-                                    <th width="50%">标题</th>
-                                    <th width="10%">状态</th>
-                                    <th width="10%">负责人</th>
-                                    <th width="20%">提交时间</th>
-                                </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?id='.$vo['id']);?>'">
-                                        <td><?php echo ($vo["id"]); ?></td>
-                                        <td><?php echo ($vo["title"]); ?></td>
-                                        <td>
-                                            <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
-                                                <?php case "2": ?>受理中<?php break;?>
-                                                <?php case "4": ?>受理中<?php break;?>
-                                                <?php case "3": ?>已关闭<?php break;?>
-                                                <?php case "-1": ?>草稿箱<?php break; endswitch;?>
-                                        </td>
-                                        <td>
-                                            <?php echo ((isset($vo["dname"]) && ($vo["dname"] !== ""))?($vo["dname"]):" -- "); ?>
-                                        </td>
-                                        <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
-                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </table> 
+    <div class="maincontent">
+        <div class="maincontentinner">
+            <div class="messagepanel">
+                <div class="messagecontent">
+                    <div class="messageright" style="min-height:800px;">
+                        <div class="messageview">
+                            <div class="btn-group pull-right">
+                                <?php if($data["limits"] == 3 and $data["case"] == 'dai'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <a href="javascript:void();" onclick="del('messages-<?php echo ($main["w_id"]); ?>');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a><?php endif; ?>
+                                
+                                <?php if($data["limits"] == 2 and $data["case"] == 'dai'): ?><a href="<?php echo U('Client/messages?type=chu&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a><?php endif; ?>
+
+                                <?php if($data["limits"] == 2 and $data["case"] == 'zhong'): ?><a href="<?php echo U('Client/messages?type=ping&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a><?php endif; ?>
+                                
+                                <?php if($data["limits"] == 3 and $data["case"] == 'zhong' or $data["case"] == 'ping'): ?><!-- <a href="<?php echo U('Client/messages?type=wang&wc_sataus='.$main['w_id']);?>" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
+                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button><?php endif; ?>
+                                <?php if($data["limits"] == 3 and $data["case"] == 'cao'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a><?php endif; ?>
+                            </div>
+                            <h1 class="subject" style="border-bottom: 1px solid #ddd;">
+                                <div>
+                                    <b><?php echo ($main["w_title"]); ?></b>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <span class="note2"><?php echo ($main["u_uname"]); ?></span>
+                                    <span class="note2" style="margin-left: 10px;"><?php echo (date("Y-m-d",$main["w_puddate"])); ?></span>
+                                </div>
+
+                            </h1>
+                            
+                            <!-- comment -->
+                            <?php if($data["case"] == 'yi'): ?><div class="comment-wrap">
+                                    <p>评价</p>
+                                    <p>
+                                        <span>问题是否已经解决</span>
+                                        <?php switch($comment["resolve"]): case "1": ?><span>是</span><?php break;?>
+                                            <?php case "0": ?><span>否</span><?php break; endswitch;?>
+                                    </p>
+                                    <p>
+                                        <span>服务评价</span>
+                                        <?php switch($comment["assess"]): case "3": ?><span>非常满意</span><?php break;?>
+                                            <?php case "2": ?><span>满意</span><?php break;?>
+                                            <?php case "1": ?><span>一般</span><?php break;?>
+                                            <?php case "0": ?><span>不满意</span><?php break; endswitch;?>
+                                    </p>
+                                </div><?php endif; ?>
+                            <!-- comment end -->
+
+                            <div class="msgbody"  style="background:#fcfcfc;">
+                                <div>
+                                    <?php echo ($main["w_issue"]); ?>
+                                </div>
+                                <?php if(!empty($file_arr[0])): ?><div style="margin-left:220px;overflow:hidden;zoom:1;">
+                                        <?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?><div id="picture<?php echo ($k); ?>">
+                                                <div style="float:left;margin:5px; padding:5px;border:1px solid #ccc;" >
+                                                    <div style="width:150px;height:125px;">
+                                                        <img src="/ticket/Uploads/<?php echo ($vo); ?>" style="width:150px;height:100px;" />
+                                                        <input type="hidden" name="photo01[]" value="<?php echo ($vo); ?>">
+                                                        <div style="text-align:center;"><a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a></div>
+                                                    </div>
+                                                </div>
+                                            </div><?php endforeach; endif; ?>
+                                    </div><?php endif; ?>	
+                                <?php if($data["limits"] == 3 and $data["case"] == 'zhong'): ?><p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p><?php endif; ?>
+                            </div><!--msgbody-->
+                            
+                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div style="">
+                                    <div class="msgauthor"  style="padding:0 0;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;width:50%;<?php if($vo['limits'] == 2): ?>margin-left:49.85%;<?php endif; ?>">
+                                    
+                                        <?php if($vo['limits'] == 2): ?><h3 class="widgettitle" style="background:#FF8888;">回复<span class="date pull-right"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span></h3><?php endif; ?>
+                                        
+                                        <?php if($vo['limits'] == 3): ?><h3 class="widgettitle" style="background:#666;">评论<span class="date pull-right"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span></h3><?php endif; ?>
+                                        
+                                        <div >
+                                            <div class="authorinfo"  style="margin:15px 0px 0px 15px;">
+                                                <?php echo ($vo["uname"]); ?>
+                                            </div><!--authorinfo-->
+                                            
+                                            <div class="msgbody"  style="margin-left:25px;">
+                                                <?php echo ($vo["g_reply"]); ?>
+                                            </div>
+                                        </div>
+                                    </div><!--msgauthor-->
+                                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                            <div name="one"></div>
+                            <br/>
+                            <br/>
+                        </div><!--messageview-->
+                        <?php if($data["case"] == 'zhong' or $data["case"] == 'zhong' or $data["limits"] == '2' or $data["limits"] == '3'): ?><div class="msgreply" >
+                                <form id="form01" action="<?php echo U('Client/messages');?>" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="insert" value="insert" />
+                                    <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
+                                    <p>
+                                        <script type="text/plain" id="myEditor" style="width:100%;height:200px;"></script>
+                                    </p>
+                                    <p style="margin-top:10px;" align="right">
+                                        <input type="submit"  class="btn btn-primary" value="  发送  ">
+                                    </p>
+                                </form>
+                            </div><!--messagereply--><?php endif; ?>
                         
-                    </div><!--messagecontent-->
-                </div><!--messagepanel-->
-                
-               <!-- footer binge -->
-								<div class="footer">
+                    </div><!--messageright-->
+                </div><!--messagecontent-->
+            </div><!--messagepanel-->
+            
+            <!-- footer binge -->
+            				<div class="footer">
                     
                 </div><!--footer-->
-				
-				<!-- footer end -->
-                
-                
-            </div><!--maincontentinner-->
-        </div><!--maincontent-->
-        
-    </div><!--rightpanel-->
+            
+            <!-- footer end -->
+            
+            
+        </div><!--maincontentinner-->
+    </div><!--maincontent-->
     
 </div><!--mainwrapper-->
 
