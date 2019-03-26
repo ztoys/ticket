@@ -148,21 +148,20 @@
                 <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li>
                 <li <?php echo ($data03["sh_two01"]); ?>><a href="<?php echo U('Admin/config');?>"><span class="iconfa-comments"></span> 基本配置</a></li><?php endif; ?>
             
-            <?php if($limits == '2' or $limits == '1' ): ?><!-- 售后人员 -->
-            	<?php if($limits == '2'): ?><li class="nav-header">售后后台管理</li>
-            		<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> --><?php endif; ?>
-            	<?php if($limits == '1'): ?><li class="nav-header">工单管理</li><?php endif; ?>
-            	
-                <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li>
-                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-refresh"></span> 处理中的工单</a></li>
+            <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
+                <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单</a></li>
+                <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的</a></li>
+                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-pencil"></span>等待回复</a></li>
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价</a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li><?php endif; ?>
             <?php if($limits == '3'): ?><li class="nav-header">工单管理</li>
             	<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
                 <li <?php echo ($data["active01"]); ?>><a href="<?php echo U('Client/forms');?>"><span class="iconfa-pencil"></span>创建工单</a></li>
-                <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-pencil"></span> 我创建的工单</a></li>
+                <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-bookmark"></span> 我创建的工单</a></li>
+                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-table"></span> 待我回复</a></li>
                 <!-- <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li> -->
                 <!-- <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span> 处理中的工单</a></li> -->
-                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-pencil"></span> 待我评价</a></li>
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-table"></span> 待我评价</a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li>
                 <!-- <li <?php if($data["case"] == 'cao'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-th-list"></span> 草稿箱</a></li> --><?php endif; ?>
             </ul>
@@ -174,17 +173,17 @@
             <div class="messagepanel">
                 <div class="messagecontent">
                     <div class="messageright" style="min-height:800px;">
-                        <div class="messageview">
+                        <div class="messageview" style="<?php if($data["status"] == 3): ?>height:100%<?php endif; ?>">
                             <div class="btn-group pull-right">
-                                <?php if($data["limits"] == 3 and $data["case"] == '1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
+                                <!-- <?php if($data["limits"] == 3 and $data["case"] == '1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
                                         &nbsp;&nbsp;&nbsp;
-                                        <a href="javascript:void();" onclick="del('messages-<?php echo ($main["w_id"]); ?>');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a><?php endif; ?>
+                                        <a href="javascript:void();" onclick="del('messages-<?php echo ($main["w_id"]); ?>');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a><?php endif; ?> -->
                                 
                                 <?php if($data["limits"] == 2 and $data["case"] == '1'): ?><a href="<?php echo U('Client/messages?type=chu&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a><?php endif; ?>
 
                                 <?php if($data["limits"] == 2 and $data["case"] == '2'): ?><a href="<?php echo U('Client/messages?type=ping&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a><?php endif; ?>
                                 
-                                <?php if($data["limits"] == 3 and $data["case"] == '2' or $data["case"] == '4'): ?><!-- <a href="<?php echo U('Client/messages?type=wang&wc_sataus='.$main['w_id']);?>" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
+                                <?php if($data["limits"] == 3 and $data["status"] != '3'): ?><!-- <a href="<?php echo U('Client/messages?type=wang&wc_sataus='.$main['w_id']);?>" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
                                     <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button><?php endif; ?>
                                 <?php if($data["limits"] == 3 and $data["case"] == '-1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a><?php endif; ?>
                             </div>
@@ -257,7 +256,7 @@
                             <br/>
                             <br/>
                         </div><!--messageview-->
-                        <?php if($data["case"] == 'zhong' or $data["case"] == 'zhong' or $data["limits"] == '2' or $data["limits"] == '3'): ?><div class="msgreply" >
+                        <?php if($data["status"] != '3'): ?><div class="msgreply" >
                                 <form id="form01" action="<?php echo U('Client/messages');?>" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="insert" value="insert" />
                                     <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">

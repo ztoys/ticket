@@ -221,13 +221,8 @@
                    <div style="height:292px;"></div>
                   
         		 <!-- footer binge -->
-								<div class="footer">
-                    <div class="footer-left">
-                        <span>&copy; 2016. <a href="http://www.gope.cn" target="_blank">www.gope.cn.</a> All Rights Reserved.</span>
-                    </div>
-                    <div class="footer-right">
-                        <span>Designed by: <a href="http://www.gope.cn/" target="_blank">狗扑源码社区</a></span>
-                    </div>
+                <div class="footer">
+                    
                 </div><!--footer-->
 				
 				<!-- footer end -->

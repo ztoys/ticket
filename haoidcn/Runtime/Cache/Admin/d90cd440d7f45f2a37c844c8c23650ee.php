@@ -291,13 +291,8 @@ jQuery(document).ready(function(){
                   
                   
         		 <!-- footer binge -->
-								<div class="footer">
-                    <div class="footer-left">
-                        <span>&copy; 2016. <a href="http://www.haoid.cn" target="_blank">www.haoid.cn.</a> All Rights Reserved.</span>
-                    </div>
-                    <div class="footer-right">
-                        <span>Designed by: <a href="http://www.haoid.cn/" target="_blank">好站长源码社区</a></span>
-                    </div>
+				<div class="footer">
+                    
                 </div><!--footer-->
 				
 				<!-- footer end -->

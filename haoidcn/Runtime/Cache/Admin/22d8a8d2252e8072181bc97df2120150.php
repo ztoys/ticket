@@ -62,7 +62,6 @@
 </div><!--loginpanel-->
 
 <div class="loginfooter">
-    <p>&copy; 2016 好站长源码社区 www.haoid.cn All Rights Reserved.</p>
 </div>	
 
 </body>

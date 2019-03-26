@@ -5,7 +5,7 @@ use Think\Controller;
 class IndexController extends Controller {
     public function index(){
 		
-    	timer();	//定时执行任务
+    	// timer();	//定时执行任务
     	
     	Session_start();
     	
@@ -26,6 +26,8 @@ class IndexController extends Controller {
 				$_SESSION['limits'] = $user_arr['limits'];
 				if($user_arr['limits'] == '3') {
 					$this->redirect('Client/messages/case/create');	
+				} elseif($user_arr['limits'] == '2') {
+					$this->redirect('Client/messages/case/all');	
 				} else {
 					$this->redirect('Console/dashboard');
 				}

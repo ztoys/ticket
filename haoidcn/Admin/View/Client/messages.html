@@ -67,7 +67,8 @@
                         </ul> -->
                     </div>
                     <div class="messagecontent">
-                        <table class="table table-bordered table-fixed table-tr-click">
+                        <if condition="$limits eq '3'">
+                            <table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="10%">编号</th>
                                     <th width="50%">标题</th>
@@ -95,8 +96,43 @@
                                     </tr>
                                 </volist>
                             </table> 
-                        
+                        </if>
+
+                        <if condition="$limits eq '2'">
+                            <table class="table table-bordered table-fixed table-tr-click">
+                                <tr>
+                                    <th width="10%">编号</th>
+                                    <th width="40%">标题</th>
+                                    <th width="10%">状态</th>
+                                    <th width="10%">工单发起人</th>
+                                    <th width="15%">创建日期</th>
+                                    <th width="15%">受理时间</th>
+                                </tr>
+                                <volist name="list" id="vo">
+                                    <tr onclick="javascript:window.location.href='{:U(\'Client/detail?id=\'.$vo[\'id\'])}'">
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.title}</td>
+                                        <td>
+                                            <switch name="vo['wc_sataus']">
+                                                <case value="1">待处理</case>
+                                                <case value="2">受理中</case>
+                                                <case value="4">受理中</case>
+                                                <case value="3">已关闭</case>
+                                                <case value="-1">草稿箱</case>
+                                            </switch>
+                                        </td>
+                                        <td>
+                                            {$vo.uname|default=" -- "}
+                                        </td>
+                                        <td>{$vo.puddate|date="Y-m-d H:i:s",###}</td>
+                                        <td>{$vo.accdate|default=" -- "|date="Y-m-d H:i:s",###}</td>
+                                    </tr>
+                                </volist>
+                            </table> 
+                        </if>
+
                     </div><!--messagecontent-->
+
                 </div><!--messagepanel-->
                 
                <!-- footer binge -->

@@ -70,9 +70,9 @@ class ClientController extends CommonController {
 				$id = $this->update_sql("work","id=".I("post.x_wid"),$data);
 				$id = I("post.x_wid");
 				if(I('post.cc_status') == "-1"){
-					$url = __ROOT__."/index.php/Client/messages/case/cao/messages/".$id;
+					$url = __ROOT__."/index.php/Client/messages/detail/id/".$id;
 				}elseif (I('post.cc_status') == "1"){
-					$url = __ROOT__."/index.php/Client/messages/case/dai/messages/".$id;
+					$url = __ROOT__."/index.php/Client/messages/detail/id/".$id;
 				}
 				
 				$type = "update";
@@ -86,43 +86,21 @@ class ClientController extends CommonController {
 				
 			if($id){
 				if(I('post.cc_status') == 1){
-					if(time() < $begin_beputtime or time() > $end_beputtime){			//放假时间
-						if($dan_time >= $begin_time && $dan_time <= $end_time and (date("w") != "0" or date("w") != '6')){		//判断上班时间以级周六日
-							
-							//查询 客户，售后人员的邮箱以及手机，发送通知
-							$result_arr = $this->lianhe_sql("user",C('DB_PREFIX')."user u, ".C('DB_PREFIX')."service s","u.uname u_name,u.phone u_phone,u.email u_email,s.uname s_name,s.phone s_phone,s.email s_email,s.id s_id","u.sid=s.id and u.id=".I('post.uid'));
-							
-							if(!empty($result_arr['s_phone']) && !empty($result_arr["s_email"]) && I('post.cc_status') == 1){
-								if($type == "insert" ){
-									// $E = Email($result_arr["s_email"],"新工单通知","亲爱的同事：".$result_arr["s_name"]."，".$result_arr["u_name"]."这位客户已提交新工单，工单标题为：“".$data['title']."”。请及时查看，并且处理。");
-									// $M = Mobile($result_arr["s_phone"],'亲爱的：'.$result_arr["s_name"].'同事。'.$result_arr["u_name"].'这位客户已提交新工单，工单标题为：“'.$data['title'].'”。请及时查看，并且处理。');
-									
-									$data = array(
-											'tz_status'		=>	'1',
-									);
-									$this->update_sql("work","id=".$id,$data);
-								}
-								echo "<script>alert('工单提交成功，并且已通知售后人员，请耐心等候。'); location.href='$url';</script>";
-								exit;
-							}
-						}else{
-							echo "<script>alert('工单提交成功，由于现在不是上班时间，我们将会在上班时间通知售后人员，请耐心等候。'); location.href='$url';</script>";
-							exit;
-						}
-					}else{
-
-						echo "<script>alert('工单提交成功，由于现在不是上班时间，我们将会在上班时间通知售后人员，请耐心等候。'); location.href='$url';</script>";
-						exit;
+					if($type == "insert" ){
+						// $E = Email($result_arr["s_email"],"新工单通知","亲爱的同事：".$result_arr["s_name"]."，".$result_arr["u_name"]."这位客户已提交新工单，工单标题为：“".$data['title']."”。请及时查看，并且处理。");
+						// $M = Mobile($result_arr["s_phone"],'亲爱的：'.$result_arr["s_name"].'同事。'.$result_arr["u_name"].'这位客户已提交新工单，工单标题为：“'.$data['title'].'”。请及时查看，并且处理。');
+						$data = array(
+							'tz_status'	=>	'-1',
+						);
+						$this->update_sql("work","id=".$id,$data);
 					}
-					
+					echo "<script>alert('工单提交成功，并且已通知售后人员，请耐心等候。'); location.href='$url';</script>";
+					exit;
 				}else if(I('post.cc_status') == -1){
-
 					echo "<script>alert('工单已保存到草稿箱，可到草稿箱修改该工单。'); location.href='$url';</script>";
 					exit;
 				}
-				
 			}else{
-		
 				if(I('post.cc_status') == 1){
 					echo "<script>alert('工单提交失败'); history.go(-1);</script>";
 					exit();
@@ -130,10 +108,7 @@ class ClientController extends CommonController {
 					echo "<script>alert('工单保存失败'); history.go(-1);</script>";
 					exit();
 				}
-		
 			}
-
-			echo 5555;
 		}
 		
 		//修改操作
@@ -179,6 +154,8 @@ class ClientController extends CommonController {
 			$sta_nb = '4';					//工单状态-待评价
 		}elseif($status == "create"){
 			$my_ticket = '1';                //工单装填-我创建的工单
+		}elseif($status == "reply"){
+			$sel_reply = '1';				 //查询待回复
 		}
 		
 		//搜索操作
@@ -189,27 +166,28 @@ class ClientController extends CommonController {
 		
 		//列表显示数据	-- 分页
 		if($limits == 3){
-			if (isset($my_ticket)) {
-				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
-				// $list = $this->sel_sql("work","wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+			if (isset($sel_reply)) {
+				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
 			} else {
-				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
-				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and uid='$id' $where","puddate desc");
+				if (isset($my_ticket)) {
+					$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+					// $list = $this->sel_sql("work","wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+				} else {
+					$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
+					// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and uid='$id' $where","puddate desc");
+				}
 			}
+			
 			$this->assign('list',$list);
 			
 		}else if($limits == 2){
-			//获取当前的售后人员所负责 的 客户id
-			// $result_arr = D("user")->field("id")->where("sid='$id'")->select();
-			// $wid = "";
-			// foreach ($result_arr as $val){
-			// 	$wid .= $val['id'].',';
-			// }
-			// $wid = rtrim($wid,",");
-			//显示当前售后人员所负责 的 客户工单
-			$list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
+			if (isset($sel_reply)) {
+				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id", "w.wc_sataus<>'3' and tz_status='1' and did='$id' $where", "puddate desc");
+			} else {
+				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname","left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id", "wc_sataus='$sta_nb' and did='$id' $where", "puddate desc");
+				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
+			}			
 			$this->assign('list',$list);
-			
 		}else if($limits == 1){
 			$list = $this->sel_sql("work","wc_sataus='$sta_nb' $where","puddate asc");
 			$this->assign('list',$list);
@@ -247,34 +225,46 @@ class ClientController extends CommonController {
 
 		//处理对话操作
 		if(IS_POST){
-			$url = __ROOT__."/index.php/Client/detail/id/".I('post.pid');
+			$pid = I('post.pid');
+			$url = __ROOT__."/index.php/Client/detail/id/".$pid;
 			if(I("post.insert") != "" && I('post.editorValue') != ""){
 				$data = array(
 						'g_reply'		=>	htmlspecialchars_decode(I('post.editorValue')),
 						'repdate'		=>	time(),
 						'uid'			=>	$id,
-						'pid'			=>	I('post.pid'),
+						'pid'			=>	$pid,
 				);
 				$result = $this->inser_sql("addwork",$data);
 				if($result){
-					if(time() < $begin_beputtime or time() > $end_beputtime){			//放假时间
-						if($dan_time >= $begin_time && $dan_time <= $end_time and (date("w") != "0" or date("w") != '6')){		//判断上班时间以级周六日
-							
-							if($limits == "2"){
-								// $E = Email($main["u_email"],"最新消息回复通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."” 已有最新回复，请注意查看。");
-								// $M = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”已有最新回复，请注意查看。');
-								echo "<script>alert('发送成功，并且已通知客户。'); location.href='$url';</script>";
-							}else if($limits == "3"){
-								// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
-								// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
-								echo "<script>alert('发送成功，并且已通知售后人员。'); location.href='$url';</script>";
-							}
-							exit;
-							
+					if($limits == "2"){
+						// $E = Email($main["u_email"],"最新消息回复通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."” 已有最新回复，请注意查看。");
+						// $M = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”已有最新回复，请注意查看。');
+						$replay_data = array(
+							'tz_status' => '1',
+						);
+						$reply_sql = $this->update_sql("work","id=".$pid, $replay_data);
+						if ($reply_sql) {
+							echo "<script>alert('发送成功，并且已通知客客服。'); location.href='$url';</script>";
+						} else {
+							echo "<script>alert('发送成功。'); location.href='$url';</script>";
 						}
+						exit;
+					}else if($limits == "3"){
+						// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
+						// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
+						$replay_data = array(
+							'tz_status' => '-1',
+						);
+						$reply_sql = $this->update_sql("work","id=".$pid, $replay_data);
+						if ($reply_sql) {
+							echo "<script>alert('发送成功，并且已通知运维人员。'); location.href='$url';</script>";
+						} else {
+							echo "<script>alert('发送成功。'); location.href='$url';</script>";
+						}
+						exit;
 					}
-					echo "<script>alert('发送成功，但由现在不是上班时间，我们将会在上班时间短息通知售后人员，请耐心等候'); location.href='$url';</script>";
-					
+					echo "<script>alert('发送成功。'); location.href='$url';</script>";
+					exit;
 				}
 				exit;
 			}else{
@@ -289,7 +279,7 @@ class ClientController extends CommonController {
 			$url = __ROOT__."/index.php/Client/messages/case/dai";
 			$data	=	array(
 					"wc_sataus"		=>	2,
-					"tz_status"		=>	1,
+					// "tz_status"		=>	1,
 			);
 			$result = $this->update_sql("work","id=".I('get.wc_sataus'),$data);
 			
@@ -479,6 +469,7 @@ class ClientController extends CommonController {
 				'limits'		=>	$limits,
 				'class'			=>	'class="active"',
 				'case'			=>	$status,
+				'status'		=>  $status,
 				"active02"		=>	"class='active'",
 				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
 				'sou'			=>	'&sou='.I("get.sou"),

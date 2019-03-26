@@ -136,21 +136,20 @@
                 <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li>
                 <li <?php echo ($data03["sh_two01"]); ?>><a href="<?php echo U('Admin/config');?>"><span class="iconfa-comments"></span> 基本配置</a></li><?php endif; ?>
             
-            <?php if($limits == '2' or $limits == '1' ): ?><!-- 售后人员 -->
-            	<?php if($limits == '2'): ?><li class="nav-header">售后后台管理</li>
-            		<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> --><?php endif; ?>
-            	<?php if($limits == '1'): ?><li class="nav-header">工单管理</li><?php endif; ?>
-            	
-                <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li>
-                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-refresh"></span> 处理中的工单</a></li>
+            <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
+                <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单</a></li>
+                <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的</a></li>
+                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-pencil"></span>等待回复</a></li>
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价</a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li><?php endif; ?>
             <?php if($limits == '3'): ?><li class="nav-header">工单管理</li>
             	<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
                 <li <?php echo ($data["active01"]); ?>><a href="<?php echo U('Client/forms');?>"><span class="iconfa-pencil"></span>创建工单</a></li>
-                <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-pencil"></span> 我创建的工单</a></li>
+                <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-bookmark"></span> 我创建的工单</a></li>
+                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-table"></span> 待我回复</a></li>
                 <!-- <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li> -->
                 <!-- <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span> 处理中的工单</a></li> -->
-                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-pencil"></span> 待我评价</a></li>
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-table"></span> 待我评价</a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li>
                 <!-- <li <?php if($data["case"] == 'cao'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-th-list"></span> 草稿箱</a></li> --><?php endif; ?>
             </ul>
@@ -185,7 +184,7 @@
                         </ul> -->
                     </div>
                     <div class="messagecontent">
-                        <table class="table table-bordered table-fixed table-tr-click">
+                        <?php if($limits == '3'): ?><table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="10%">编号</th>
                                     <th width="50%">标题</th>
@@ -208,9 +207,37 @@
                                         </td>
                                         <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
                                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </table> 
-                        
+                            </table><?php endif; ?>
+
+                        <?php if($limits == '2'): ?><table class="table table-bordered table-fixed table-tr-click">
+                                <tr>
+                                    <th width="10%">编号</th>
+                                    <th width="40%">标题</th>
+                                    <th width="10%">状态</th>
+                                    <th width="10%">工单发起人</th>
+                                    <th width="15%">创建日期</th>
+                                    <th width="15%">受理时间</th>
+                                </tr>
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?id='.$vo['id']);?>'">
+                                        <td><?php echo ($vo["id"]); ?></td>
+                                        <td><?php echo ($vo["title"]); ?></td>
+                                        <td>
+                                            <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
+                                                <?php case "2": ?>受理中<?php break;?>
+                                                <?php case "4": ?>受理中<?php break;?>
+                                                <?php case "3": ?>已关闭<?php break;?>
+                                                <?php case "-1": ?>草稿箱<?php break; endswitch;?>
+                                        </td>
+                                        <td>
+                                            <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
+                                        </td>
+                                        <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
+                                        <td><?php echo (date("Y-m-d H:i:s",(isset($vo["accdate"]) && ($vo["accdate"] !== ""))?($vo["accdate"]):" -- ")); ?></td>
+                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </table><?php endif; ?>
+
                     </div><!--messagecontent-->
+
                 </div><!--messagepanel-->
                 
                <!-- footer binge -->
