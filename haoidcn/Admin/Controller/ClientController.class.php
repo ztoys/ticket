@@ -181,10 +181,18 @@ class ClientController extends CommonController {
 			$this->assign('list',$list);
 			
 		}else if($limits == 2){
-			if (isset($sel_reply)) {
-				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id", "w.wc_sataus<>'3' and tz_status='1' and did='$id' $where", "puddate desc");
+			$db_work = "work";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname";
+			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
+			$db_order = "puddate desc";
+
+			if ($status == "all") {
+				// 未指派工单
+				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.did is null and w.wc_sataus<>'3' $where", $db_order);
+			} elseif ($status == "manned") {
+				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
 			} else {
-				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname","left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id", "wc_sataus='$sta_nb' and did='$id' $where", "puddate desc");
+				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order);
 				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
 			}			
 			$this->assign('list',$list);
@@ -275,13 +283,14 @@ class ClientController extends CommonController {
 		
 		//工单处理操作
 		if(I("get.type") == "chu" && $limits == "2"){
-		
 			$url = __ROOT__."/index.php/Client/messages/case/dai";
 			$data	=	array(
 					"wc_sataus"		=>	2,
+					"did"           =>  $id,
+					"accdate"       =>  time(),
 					// "tz_status"		=>	1,
 			);
-			$result = $this->update_sql("work","id=".I('get.wc_sataus'),$data);
+			$result = $this->update_sql("work","id=".I('get.wc_sataus'), $data);
 			
 			if($result){
 				// $E = Email($main["u_email"],"工单处理中通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."”。正在处理中，请耐心等候。");

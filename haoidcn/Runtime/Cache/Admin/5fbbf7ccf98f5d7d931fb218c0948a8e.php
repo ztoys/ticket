@@ -14,19 +14,24 @@
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/responsive-tables.css">
 
 
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-migrate-1.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-fileupload.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.uniform.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.resize.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
@@ -65,30 +70,34 @@ jQuery(document).ready(function(){
         <div class="headerinner">
             <ul class="headmenu">
                 <li class="odd">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="count"></span>
                         <span class="head-icon head-message"></span>
                         <span class="headmenu-label">工单管理</span>
-                    </a>
+                    </a> -->
                     <ul class="dropdown-menu">
                         <li class="nav-header">工单管理</li>
-                        <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/forms');?>"><span class="icon-tasks"></span> 新工单</a></li><?php endif; ?>
+                        <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/forms');?>"><span class="icon-tasks"></span>创建工单</a></li><?php endif; ?>
                         <li><a href="<?php echo U('Client/messages?case=dai');?>"><span class="icon-tasks"></span> 待处理的工单 </a></li>
                         <li><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="icon-tasks"></span> 处理中的工单 </a></li>
                         <li><a href="<?php echo U('Client/messages?case=yi');?>"><span class="icon-tasks"></span> 已处理的工单</a></li>
-                        <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/messages?case=cao');?>"><span class="icon-tasks"></span> 草稿箱 </a></li><?php endif; ?>
+                        <!-- <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/messages?case=cao');?>"><span class="icon-tasks"></span> 草稿箱 </a></li><?php endif; ?> -->
                     </ul>
                 </li>
                 <li class="right">
                     <div class="userloggedinfo">
-                    	<div style="height:20px;"></div>
                         <div class="userinfo">
-                            <h5><?php echo (session('userid')); ?><small><?php echo (session('email')); ?></small></h5>
-                            <ul>
+                            <h5>
+                                <?php echo (session('userid')); ?>
+                                <small><?php echo (session('email')); ?></small>
+                                <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a>
+                                <a style="color: #FFF;" href="<?php echo U('Index/exit_t');?>">退出</a>
+                            </h5>
+                            <!-- <ul>
                                 <li><a href="<?php echo U('Index/editprofile');?>">修改资料</a></li>
-<!--                                 <li><a href="">帐户设置</a></li> -->
+                                <li><a href="">帐户设置</a></li>
                                 <li><a href="<?php echo U('Index/exit_t');?>">退出</a></li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </li>
@@ -103,7 +112,14 @@ jQuery(document).ready(function(){
 <!--             	<li class="active"><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-question-sign"></span> 工单</a></li> -->
 				
 				
-            	<li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li>
+                <!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
+                
+                <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a>
+                    <ul <?php echo ($data["user_block"]); ?>>
+                        <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>">群组管理</a></li>
+                        <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>">成员管理</a></li>
+                    </ul>
+                </li>
 
                 <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
@@ -123,21 +139,22 @@ jQuery(document).ready(function(){
                 <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li>
                 <li <?php echo ($data03["sh_two01"]); ?>><a href="<?php echo U('Admin/config');?>"><span class="iconfa-comments"></span> 基本配置</a></li><?php endif; ?>
             
-            <?php if($limits == '2' or $limits == '1' ): ?><!-- 售后人员 -->
-            	<?php if($limits == '2'): ?><li class="nav-header">售后后台管理</li>
-            		<li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li><?php endif; ?>
-            	<?php if($limits == '1'): ?><li class="nav-header">工单管理</li><?php endif; ?>
-            	
-                <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li>
-                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-refresh"></span> 处理中的工单</a></li>
-                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已处理的工单</a></li><?php endif; ?>
+            <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
+                <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单</a></li>
+                <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的</a></li>
+                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>受理中</a></li>
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价</a></li>
+                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li><?php endif; ?>
             <?php if($limits == '3'): ?><li class="nav-header">工单管理</li>
-            	<li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li>
-                <li <?php echo ($data["active01"]); ?>><a href="<?php echo U('Client/forms');?>"><span class="iconfa-pencil"></span> 新工单</a></li>
-                <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li>
-                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-refresh"></span> 处理中的工单</a></li>
-                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已处理的工单</a></li>
-                <li <?php if($data["case"] == 'cao'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-th-list"></span> 草稿箱</a></li><?php endif; ?>
+            	<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
+                <li <?php echo ($data["active01"]); ?>><a href="<?php echo U('Client/forms');?>"><span class="iconfa-pencil"></span>创建工单</a></li>
+                <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-bookmark"></span> 我创建的工单</a></li>
+                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-table"></span> 待我回复</a></li>
+                <!-- <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li> -->
+                <!-- <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span> 处理中的工单</a></li> -->
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-table"></span> 待我评价</a></li>
+                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li>
+                <!-- <li <?php if($data["case"] == 'cao'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-th-list"></span> 草稿箱</a></li> --><?php endif; ?>
             </ul>
         </div><!--leftmenu-->
     </div><!-- leftpanel -->

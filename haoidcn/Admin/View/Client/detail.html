@@ -76,8 +76,8 @@
                                 </if>
                                 
                                 <if condition="$data.limits eq 3 and $data.status neq '3'">
-                                    <!-- <a href="{:U('Client/messages?type=wang&wc_sataus='.$main['w_id'])}" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
-                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success alertsuccess" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button>
+                                    <!-- <a href="{:U('Client/messages?type=wang&wc_sataus='.$main['w_id'])}" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
+                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button>
                                 </if>
                                 <if condition="$data.limits eq 3 and $data.case eq '-1'">
                                     <a href="{:U('Client/forms?type=xiu&forms='.$main['w_id'])}" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a>

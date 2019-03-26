@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>添加客户</title>
+<title>群组管理</title>
 
 <!-- header binge -->
 
@@ -46,15 +46,13 @@
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
-
-	
 	jQuery('.taglist .close').click(function(){
 		jQuery(this).parent().remove();
 		return false;
 	});
-	
 });
 </script>
+
 </head>
 
 
@@ -162,64 +160,118 @@ jQuery(document).ready(function(){
 <!-- header end -->
     
     <div class="rightpanel">
+        <!-- head binge -->
         
+			
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
-            <li>添加客户</li>
+            <li>群组管理</li>
         </ul>
-        
+		
+		<!-- head end -->
         <div class="pageheader">
-            <div class="pageicon"><span class="iconfa-plus"></span></div>
+            <div class="pageicon"><span class="iconfa-pencil"></span></div>
             <div class="pagetitle">
 				<h5 style="height:10px;"></h5>
-                <h1>添加客户</h1>
+                <h1>群组管理</h1>
             </div>
         </div><!--pageheader-->
         
         <div class="maincontent">
-           	 <div class="maincontentinner">
-               		 <div class="row-fluid">
-                        <div>
-                            <form action="client.html" id='form01' class="editprofileform" method="post">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                   <div>
+                        <div class="widgetbox personal-information">
+                            <h4 class="widgettitle">
+                                <span>群组管理</span>
+                            </h4>
+                            <div class="widgetcontent">
+                                <div>
+                                    <button type="button" data-toggle="modal" data-target="#modal_add_group" class="btn btn-success">添加群组</button>
+                                </div>
+                            	<table class="table table-bordered table-middle">
+                            		<tr>
+                                        <th width="250px;">群组ID</th>
+                                        <th width="250px;">群组名称</th>
+                            			<th width="200px;">操作</th>
+                            		</tr>
+                            		<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                            				<td><?php echo ($vo["id"]); ?></td>
+                            				<td><?php echo ($vo["status"]); ?></td>
+                            				<td>
+                                                <button type="button" class="btn btn-sm btn-primary" onclick="setGroupName('<?php echo ($vo["id"]); ?>', '<?php echo ($vo["status"]); ?>')">修改名称</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="delGroup('<?php echo ($vo["id"]); ?>', '<?php echo ($vo["status"]); ?>')" style="margin-left: 10px;">删除</button>
+                                            </td>
+                            			</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                            	</table> 
+		                    <?php echo ($page); ?>
+                            </div>
+                        </div>
+
+                        <div id="update" style="display:none;">
+                           	<form class="editprofileform" method="post">
                                <input type="hidden" name="f_submit" value="f_submit">
+                               <input type="hidden" name="id" id="id" value="">
+                               
                                 <div class="widgetbox personal-information">
-                                    <h4 class="widgettitle">添加客户</h4>
+                                    <h4 class="widgettitle">修改售后人员</h4>
                                     <div class="widgetcontent">
+                                    	
+                                     <div id="update01">
+	                                    	<p>
+	                                            <label>账号：</label>
+	                                            <input type="text" name="userid" id="userid" class="input-xlarge" value="" />
+	                                        </p>
+	                                    	<p>
+	                                            <label>姓名：</label>
+	                                            <input type="text" name="uname" id="uname" class="input-xlarge" value="" />
+	                                        </p>
+	                                       	<p>
+	                                            <label>密码：</label>
+		                                        <a href="javascript:void();" onclick="xiu('s_manage');">修改密码？</a>
+	                                         </p>
+	                                       
+	                                        <p>
+	                                            <label>手机：</label>
+	                                            <input type="text" name="phone" id="phone" class="input-xlarge" value="" />
+	                                        </p>
+	                                        <p>
+	                                            <label>email：</label>
+	                                            <input type="text" name="email" id="email" class="input-xlarge" value="" />
+	                                        </p>
+		                                
+	                                    </div>
+	                                    
+		                                 <div id="update02" style="display:none;">
+		                                 	
+		                                 	<input type="hidden" name="pwd_status" id="pwd_status" value="">
+                                        	<p>
+	                                            <label>旧密码：</label>
+	                                            <input type="password" name="pwd" id="pwd" class="input-xlarge" value="" />
+	                                        </p>
+	                                        <p>
+	                                            <label>新密码：</label>
+	                                            <input type="password" name="pwd01" id="pwd01" class="input-xlarge" value="" />
+	                                        </p>
+	                                        
+	                                        <p>
+	                                            <label>确认密码：</label>
+	                                            <input type="password" name="pwd02" id="pwd02" class="input-xlarge" value="" />
+	                                        </p>
+	                                        
+                                        </div>
+                                        
                                         <p>
-                                            <label>账号：</label>
-                                            <input type="text" name="userid" id="userid" class="input-xlarge" value="" />
-                                        </p>
-                                        <p>
-                                            <label>密码：</label>
-                                            <input type="password" name="pwd" id="pwd" class="input-xlarge" value="" />
-                                        </p>
-                                        <p>
-                                            <label>确认密码：</label>
-                                            <input type="password" name="pwd01" id="pwd01" class="input-xlarge" value="" />
-                                        </p>
-                                        <p>
-                                            <label>负责人：</label>
-                                            <select name="sid" id="sid">
-                                            	<option value="">请选择</option>
-                                            	<?php if(is_array($data02)): $i = 0; $__LIST__ = $data02;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </select>
-                                        </p>
-                                        <p>
-                                            <label>客户类型：</label>
-                                            <select name="u_status" id="u_status">
-                                            	<option value="">请选择</option>
-                                            	<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["status"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </select>
-                                        </p>
-		                                <p>
-		                                	<a href="javascript:void();" class="btn btn-primary" onclick="update_t('client');"><small>提交信息</small></a>
+		                                	<a href="javascript:void();" class="btn btn-primary" onclick="update_t('s_manage');"><small>提交信息</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<a href="javascript:void();" class="btn btn-primary" onclick="none('update');"><small>取消</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<span id="caozuo"></span>
 		                                </p>
                                     </div>
                                 </div>
                             </form>
-                            <input type="hidden" name="result" id="result" value="<?php echo ($ok); ?>">
-                        </div><!--span8-->
+                                       
+                        </div>
                     </div><!--row-fluid-->
                   
                   
@@ -239,5 +291,120 @@ jQuery(document).ready(function(){
     
 </div><!--mainwrapper-->
 
+<!-- 评价模态框 START -->
+
+<!-- 添加新群组 -->
+<div class="modal fade modal-add-group" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/group_add');?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加新群组
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-top: 20px;">
+                        <label class="left label-title" style="margin-top:4px;width:50px;">名称：</label>
+                        <div class="cell">
+                            <input type="text" name="name" placeholder="请输入新群组名称">
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        提交
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 修改群组名称 -->
+<div class="modal fade modal-set-group" id="modal_set_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/group_set');?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改群组名称
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-top: 20px;">
+                        <input type="hidden" name="id" id="set_group_id" value="">
+                        <label class="left label-title" style="margin-top:4px;width:50px;">名称：</label>
+                        <div class="cell">
+                            <input type="text" name="name" id="set_group_name" placeholder="请输入群组名称">
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+<!-- 修改群组名称 -->
+<div class="modal fade modal-del-group" id="modal_del_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/group_del');?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        删除群组
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="del_group_id">
+                   确认删除<span id="group_del_name"></span>吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 评价模态框 END -->
 </body>
+
+<script>
+    function setGroupName(id, oriName) {
+        jQuery("#set_group_id").val(id);
+        jQuery("#set_group_name").val(oriName);
+        jQuery('#modal_set_group').modal('show');
+    }
+
+    function delGroup(id, name) {
+        jQuery("#del_group_id").val(id);
+        jQuery("#group_del_name").text(name);
+        jQuery('#modal_del_group').modal('show');
+    }
+</script>
 </html>

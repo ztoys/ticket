@@ -5,6 +5,123 @@ use Think\Controller;
 
 class AdminController extends CommonController {
 	
+	//用户管理 - 群组管理
+	public function group_manage() {
+		$data = array(
+			'user_one' => "active",
+			'user_block' => "style='display:block'",
+			'user_block01' => "class='active'",
+		);
+		$this->assign("data", $data);
+		
+		$list = $this->sel_sql("status", "type='2'", "time desc");
+		$this->assign("list", $list);
+    	$this->display();
+	}
+
+	//用户管理 - 群组管理 -- 添加新群组
+	public function group_add() {
+		$name = I("post.name");
+		$data = array(
+			'status' => $name,
+			'time' => time(),
+			'type'	=>	'2',
+		);
+		$result = $this->inser_sql("status", $data);
+		if ($result) {
+			echo "<meta charset='utf-8' /><script>alert('添加新群组 $name 成功'); location.href='group_manage.html';</script>";
+		} else {
+			echo "<meta charset='utf-8' /><script>alert('添加新群组 $name 失败');</script>";
+		}
+	}
+
+	//用户管理 - 群组管理 -- 修改群组
+	public function group_set() {
+		$id = I("post.id");
+		$name = I("post.name");
+		$data = array(
+			'status' => $name,			
+		);
+		$result = $this->update_sql("status", "id='$id'",$data);
+		if ($result) {
+			echo "<meta charset='utf-8' /><script>alert('修改群组成功'); location.href='group_manage.html';</script>";
+		} else {
+			echo "<meta charset='utf-8' /><script>alert('修改群组失败');</script>";
+		}
+	}
+
+	//用户管理 - 群组管理 -- 删除群组
+	public function group_del() {
+		$id = I("post.id");
+		$result = $this->del_sql("status", "id='$id'");
+		if ($result) {
+			echo "<meta charset='utf-8' /><script>alert('删除群组成功'); location.href='group_manage.html';</script>";
+		} else {
+			echo "<meta charset='utf-8' /><script>alert('删除群组失败');</script>";
+		}
+	}
+
+
+	//用户管理 - 成员管理
+	public function user_manage() {
+		$data = array(
+			'user_one' => "active",
+			'user_block' => "style='display:block'",
+			'user_block02' => "class='active'",
+		);
+
+		$this->assign("data", $data);
+
+		$list_group = $this->sel_sql("status", "type='2'");
+		$this->assign("list_group", $list_group);
+
+		//查询用户
+		$group_id =  $list_group[0]['id'];
+		$list_user = $this->sel_sql("user", "u_status='$group_id'");
+		$this->assign("list_user", $list_user);
+
+    	$this->display();
+	}
+
+	//用户管理 - 成员管理 - 添加用户
+	public function user_add() {
+		$acc = I("post.acc");
+		$name = I("post.name");
+		$pwd = I("post.pwd");
+		$status = I("post.status");
+		
+		$data = array(
+			'userid'   => $acc,
+			'pwd'      => $pwd,
+			'uname'    => $name,
+			'u_status' => $status,
+		);
+		$result = $this->inser_sql("user", $data);
+		if ($result) {
+			echo "<meta charset='utf-8' /><script>alert('添加成员 $name 成功'); location.href='user_manage.html';</script>";
+		} else {
+			echo "<meta charset='utf-8' /><script>alert('添加成员 $name 失败');</script>";
+		}
+	}
+
+	//用户管理 - 群组管理 -- 删除成员
+	public function user_del() {
+		$id = I("post.id");
+		$result = $this->del_sql("user", "userid='$id'");
+		if ($result) {
+			echo "<meta charset='utf-8' /><script>alert('删除成员 $id 成功'); location.href='user_manage.html';</script>";
+		} else {
+			echo "<meta charset='utf-8' /><script>alert('删除成员 $id 失败');</script>";
+		}
+	}
+
+	//查询群组成员
+	public function sel_group_user() {
+		$group_id = I("post.id");
+		$list_user = $this->sel_sql("user", "u_status='$group_id'");
+		$this->ajaxReturn($list_user,'JSON');
+	}
+
  	//添加客户
     public function client(){
     	$data01 = array(
@@ -44,7 +161,6 @@ class AdminController extends CommonController {
     	$this->display();
     }
     
-    
     //管理客户
     public function c_manage(){
     	if(IS_AJAX){
@@ -56,8 +172,6 @@ class AdminController extends CommonController {
     					'id'		=>	I("get.id"),
     					'limits'	=>	'3'
     			);
-    			 
-    			
     			
     			$result = D("user")->field("id,userid,uname,qq,email,phone,url,u_status,sid,pwd")->where($data)->find();
     			//显示
@@ -411,6 +525,26 @@ class AdminController extends CommonController {
     	$data02 = D("service")->order("time desc")->select();
     	$this->assign("data02",$data02);
   	}
-  	
-  
+	
+	//添加数据
+	public function inser_sql($model,$data){
+		return D($model)->add($data);
+	}
+	  
+	//更新操作	
+	public function update_sql($model,$where,$data){
+		$result = D($model)->where($where)->setField($data);
+		return $result;
+	}
+
+	//删除操作	
+	public function del_sql($model,$where){
+		return D($model)->where($where)->delete();
+	}
+
+	//简单查询	多条
+	public function sel_sql($model,$where,$orders){
+		$result_arr = D($model)->where($where)->order($orders)->select();
+		return $result_arr;
+	}
 }

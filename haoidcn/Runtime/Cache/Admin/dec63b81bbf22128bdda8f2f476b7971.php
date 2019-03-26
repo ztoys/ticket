@@ -15,19 +15,24 @@
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/responsive-tables.css">
 
 
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-migrate-1.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-fileupload.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.uniform.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.resize.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
@@ -116,7 +121,14 @@
 <!--             	<li class="active"><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-question-sign"></span> 工单</a></li> -->
 				
 				
-            	<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
+                <!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
+                
+                <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a>
+                    <ul <?php echo ($data["user_block"]); ?>>
+                        <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>">群组管理</a></li>
+                        <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>">成员管理</a></li>
+                    </ul>
+                </li>
 
                 <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
@@ -139,7 +151,7 @@
             <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
                 <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单</a></li>
                 <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的</a></li>
-                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-pencil"></span>等待回复</a></li>
+                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>受理中</a></li>
                 <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价</a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li><?php endif; ?>
             <?php if($limits == '3'): ?><li class="nav-header">工单管理</li>
@@ -198,7 +210,7 @@
                                         <td>
                                             <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
                                                 <?php case "2": ?>受理中<?php break;?>
-                                                <?php case "4": ?>受理中<?php break;?>
+                                                <?php case "4": ?>待评价<?php break;?>
                                                 <?php case "3": ?>已关闭<?php break;?>
                                                 <?php case "-1": ?>草稿箱<?php break; endswitch;?>
                                         </td>
@@ -216,7 +228,7 @@
                                     <th width="10%">状态</th>
                                     <th width="10%">工单发起人</th>
                                     <th width="15%">创建日期</th>
-                                    <th width="15%">受理时间</th>
+                                    <?php if($data["case"] != 'all'): ?><th width="15%">受理时间</th><?php endif; ?>
                                 </tr>
                                 <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?id='.$vo['id']);?>'">
                                         <td><?php echo ($vo["id"]); ?></td>
@@ -224,7 +236,7 @@
                                         <td>
                                             <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
                                                 <?php case "2": ?>受理中<?php break;?>
-                                                <?php case "4": ?>受理中<?php break;?>
+                                                <?php case "4": ?>待评价<?php break;?>
                                                 <?php case "3": ?>已关闭<?php break;?>
                                                 <?php case "-1": ?>草稿箱<?php break; endswitch;?>
                                         </td>
@@ -232,7 +244,9 @@
                                             <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
                                         </td>
                                         <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
-                                        <td><?php echo (date("Y-m-d H:i:s",(isset($vo["accdate"]) && ($vo["accdate"] !== ""))?($vo["accdate"]):" -- ")); ?></td>
+                                        <?php if($data["case"] != 'all'): if($vo['accdate'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["accdate"])); ?></td>
+                                            <?php else: ?>
+                                                <td>--</td><?php endif; endif; ?>
                                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                             </table><?php endif; ?>
 

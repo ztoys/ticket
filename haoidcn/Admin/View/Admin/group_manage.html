@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>群组管理</title>
+
+<!-- header binge -->
+<include file="Public/header" />
+
+<!-- header end -->
+
+<script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('.taglist .close').click(function(){
+		jQuery(this).parent().remove();
+		return false;
+	});
+});
+</script>
+
+</head>
+
+
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+</head>
+<body>
+
+<!-- header binge -->
+<include file="Public/head" />
+
+<!-- header end -->
+    
+    <div class="rightpanel">
+        <!-- head binge -->
+        
+			<include file="Public/nav" name='群组管理'/>
+		
+		<!-- head end -->
+        <div class="pageheader">
+            <div class="pageicon"><span class="iconfa-pencil"></span></div>
+            <div class="pagetitle">
+				<h5 style="height:10px;"></h5>
+                <h1>群组管理</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                   <div>
+                        <div class="widgetbox personal-information">
+                            <h4 class="widgettitle">
+                                <span>群组管理</span>
+                            </h4>
+                            <div class="widgetcontent">
+                                <div>
+                                    <button type="button" data-toggle="modal" data-target="#modal_add_group" class="btn btn-success">添加群组</button>
+                                </div>
+                            	<table class="table table-bordered table-middle">
+                            		<tr>
+                                        <th width="250px;">群组ID</th>
+                                        <th width="250px;">群组名称</th>
+                            			<th width="200px;">操作</th>
+                            		</tr>
+                            		<volist name="list" id="vo">
+                            			<tr>
+                            				<td>{$vo.id}</td>
+                            				<td>{$vo.status}</td>
+                            				<td>
+                                                <button type="button" class="btn btn-sm btn-primary" onclick="setGroupName('{$vo.id}', '{$vo.status}')">修改名称</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="delGroup('{$vo.id}', '{$vo.status}')" style="margin-left: 10px;">删除</button>
+                                            </td>
+                            			</tr>
+                            		</volist>
+                            	</table> 
+		                    {$page}
+                            </div>
+                        </div>
+
+                        <div id="update" style="display:none;">
+                           	<form class="editprofileform" method="post">
+                               <input type="hidden" name="f_submit" value="f_submit">
+                               <input type="hidden" name="id" id="id" value="">
+                               
+                                <div class="widgetbox personal-information">
+                                    <h4 class="widgettitle">修改售后人员</h4>
+                                    <div class="widgetcontent">
+                                    	
+                                     <div id="update01">
+	                                    	<p>
+	                                            <label>账号：</label>
+	                                            <input type="text" name="userid" id="userid" class="input-xlarge" value="" />
+	                                        </p>
+	                                    	<p>
+	                                            <label>姓名：</label>
+	                                            <input type="text" name="uname" id="uname" class="input-xlarge" value="" />
+	                                        </p>
+	                                       	<p>
+	                                            <label>密码：</label>
+		                                        <a href="javascript:void();" onclick="xiu('s_manage');">修改密码？</a>
+	                                         </p>
+	                                       
+	                                        <p>
+	                                            <label>手机：</label>
+	                                            <input type="text" name="phone" id="phone" class="input-xlarge" value="" />
+	                                        </p>
+	                                        <p>
+	                                            <label>email：</label>
+	                                            <input type="text" name="email" id="email" class="input-xlarge" value="" />
+	                                        </p>
+		                                
+	                                    </div>
+	                                    
+		                                 <div id="update02" style="display:none;">
+		                                 	
+		                                 	<input type="hidden" name="pwd_status" id="pwd_status" value="">
+                                        	<p>
+	                                            <label>旧密码：</label>
+	                                            <input type="password" name="pwd" id="pwd" class="input-xlarge" value="" />
+	                                        </p>
+	                                        <p>
+	                                            <label>新密码：</label>
+	                                            <input type="password" name="pwd01" id="pwd01" class="input-xlarge" value="" />
+	                                        </p>
+	                                        
+	                                        <p>
+	                                            <label>确认密码：</label>
+	                                            <input type="password" name="pwd02" id="pwd02" class="input-xlarge" value="" />
+	                                        </p>
+	                                        
+                                        </div>
+                                        
+                                        <p>
+		                                	<a href="javascript:void();" class="btn btn-primary" onclick="update_t('s_manage');"><small>提交信息</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<a href="javascript:void();" class="btn btn-primary" onclick="none('update');"><small>取消</small></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                	<span id="caozuo"></span>
+		                                </p>
+                                    </div>
+                                </div>
+                            </form>
+                                       
+                        </div>
+                    </div><!--row-fluid-->
+                  
+                  
+        		 <!-- footer binge -->
+				<include file="Public/footer" />
+				
+				<!-- footer end -->
+                
+                
+                
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+
+<!-- 模态框 START -->
+
+<!-- 添加新群组 -->
+<div class="modal fade modal-add-group" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{:U('Admin/group_add')}" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加新群组
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-top: 20px;">
+                        <label class="left label-title" style="margin-top:4px;width:50px;">名称：</label>
+                        <div class="cell">
+                            <input type="text" name="name" placeholder="请输入新群组名称">
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        提交
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 修改群组名称 -->
+<div class="modal fade modal-set-group" id="modal_set_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{:U('Admin/group_set')}" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改群组名称
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-top: 20px;">
+                        <input type="hidden" name="id" id="set_group_id" value="">
+                        <label class="left label-title" style="margin-top:4px;width:50px;">名称：</label>
+                        <div class="cell">
+                            <input type="text" name="name" id="set_group_name" placeholder="请输入群组名称">
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+<!-- 删除群组 -->
+<div class="modal fade modal-del-group" id="modal_del_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{:U('Admin/group_del')}" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        删除群组
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="del_group_id">
+                   确认删除<span id="group_del_name"></span>吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 模态框 END -->
+</body>
+
+<script>
+    function setGroupName(id, oriName) {
+        jQuery("#set_group_id").val(id);
+        jQuery("#set_group_name").val(oriName);
+        jQuery('#modal_set_group').modal('show');
+    }
+
+    function delGroup(id, name) {
+        jQuery("#del_group_id").val(id);
+        jQuery("#group_del_name").text(name);
+        jQuery('#modal_del_group').modal('show');
+    }
+</script>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>售后人员管理</title>
+<title>成员管理</title>
 
 <!-- header binge -->
 
@@ -14,19 +14,24 @@
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/responsive-tables.css">
 
 
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-migrate-1.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-fileupload.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.uniform.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.resize.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
@@ -164,7 +169,7 @@ jQuery(document).ready(function(){
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
-            <li>售后人员管理</li>
+            <li>成员管理</li>
         </ul>
 		
 		<!-- head end -->
@@ -172,7 +177,7 @@ jQuery(document).ready(function(){
             <div class="pageicon"><span class="iconfa-pencil"></span></div>
             <div class="pagetitle">
 				<h5 style="height:10px;"></h5>
-                <h1>售后人员管理</h1>
+                <h1>成员管理</h1>
             </div>
         </div><!--pageheader-->
         
@@ -181,25 +186,37 @@ jQuery(document).ready(function(){
                 <div class="row-fluid">
                    <div>
                         <div class="widgetbox personal-information">
-                            <h4 class="widgettitle">售后人员管理</h4>
+                            <h4 class="widgettitle">
+                                成员管理
+                            </h4>
                             <div class="widgetcontent">
-                            	<table class="table table-bordered">
+                                <div style="margin-bottom: 20px;">
+                                    <label class="inline-block">群组：</label>
+                                    <select class="form-control" id="group_select">
+                                		<?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+
+                                    <button type="button" data-toggle="modal" data-target="#modal_add_user" class="btn btn-success right">添加成员</button>
+                                </div>
+                            	<table class="table table-bordered table-middle">
                             		<tr>
                             			<th width="250px;">账号</th>
                             			<th width="300px;">姓名</th>
                             			<th width="300px;">手机</th>
-                            			<th width="400px;">email</th>
+                            			<th width="400px;">邮箱</th>
                             			<th width="200px;">操作</th>
-                            		</tr>
-                            		<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr id="s_manage<?php echo ($vo["id"]); ?>">
-                            				<td><?php echo ($vo["userid"]); ?></td>
-                            				<td><?php echo ($vo["uname"]); ?></td>
-                            				<td><?php echo ($vo["phone"]); ?></td>
-                            				<td><?php echo ($vo["email"]); ?></td>
-                            				<td>
-                            					&nbsp;&nbsp;&nbsp;<a href="javascript:void();" onclick="block('s_manage-<?php echo ($vo["id"]); ?>');"  class="icon-pencil"></a>
-                            				</td>
-                            			</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </tr>
+                                    <tbody id="table_user">
+                                        <?php if(is_array($list_user)): $i = 0; $__LIST__ = $list_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr >
+                                                <td><?php echo ($vo["userid"]); ?></td>
+                                                <td><?php echo ($vo["uname"]); ?></td>
+                                                <td><?php echo ((isset($vo["phone"]) && ($vo["phone"] !== ""))?($vo["phone"]):" -- "); ?></td>
+                                                <td><?php echo ((isset($vo["email"]) && ($vo["email"] !== ""))?($vo["email"]):" -- "); ?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="delUser('<?php echo ($vo["userid"]); ?>')" style="margin-left: 10px;">删除</button>
+                                                </td>
+                                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </tbody>
                             	</table> 
 		                    <?php echo ($page); ?>
                             </div>
@@ -287,5 +304,160 @@ jQuery(document).ready(function(){
     
 </div><!--mainwrapper-->
 
+
+<!-- 模态框 START -->
+
+<!-- 添加新成员 -->
+<div class="modal fade modal-add-user" id="modal_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/user_add');?>" method="post" enctype="multipart/form-data" id="form_user_add">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加新成员
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-top: 20px;">
+                        <label class="left label-title" style="margin-top:4px;width:100px;">帐号：</label>
+                        <div class="cell">
+                            <input type="text" name="acc" placeholder="" id="add_user_acc">
+                        </div>
+                    </p>
+                    <p style="margin-top: 20px;">
+                        <label class="left label-title" style="margin-top:4px;width:100px;">名称：</label>
+                        <div class="cell">
+                            <input type="text" name="name" placeholder="" id="add_user_name">
+                        </div>
+                    </p>
+                    <p style="margin-top: 10px;">
+                        <label class="left label-title" style="margin-top:4px;width:100px;">密码：</label>
+                        <div class="cell">
+                            <input type="password" name="pwd" placeholder="" id="add_user_pwd">
+                        </div>
+                    </p>
+                    <p style="margin-top: 10px;">
+                        <label class="left label-title" style="margin-top:4px;width:100px;">确认密码：</label>
+                        <div class="cell">
+                            <input type="password" placeholder="" id="add_user_repwd">
+                        </div>
+                    </p>
+                    <input type="hidden" name="status" id="user_status">
+                    <p style="margin-top: 10px;">
+                        <label class="left label-title" style="margin-top:4px;width:100px;">群组：</label>
+                        <div class="cell">
+                            <select class="form-control" id="add_user_type">
+                                <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </select>
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="addUser()">
+                        提交
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+<!-- 删除用户 -->
+<div class="modal fade modal-del-user" id="modal_del_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/user_del');?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        删除成员
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="user_del_id">
+                    <h5>确认删除  <span id="user_del_name"></span>  吗？</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 模态框 END -->
+
 </body>
+<script>
+    function addUser() {
+        var acc = jQuery("#add_user_acc").val();
+        var name = jQuery("#add_user_name").val();
+        var pwd = jQuery("#add_user_pwd").val();
+        var repwd = jQuery("#add_user_repwd").val();
+        var type = jQuery("#add_user_type").val();
+
+        if (!acc) {
+            alert("请输入帐号！");
+            return false;
+        }
+        if (!name) {
+            alert("请输入名称！");
+            return false;
+        }
+        if (!pwd || !repwd) {
+            alert("请输入密码！");
+            return false;
+        }
+        if (pwd != repwd) {
+            alert("密码不一致！");
+            return false;
+        }
+
+        jQuery("#user_status").val(type);
+        jQuery("#form_user_add").submit();
+    }
+
+    function delUser(uid) {
+        jQuery("#user_del_name").text(uid);
+        jQuery("#user_del_id").val(uid);
+        jQuery("#modal_del_user").modal('show');
+    }
+
+    jQuery("#group_select").change(function(){
+        var groupId = jQuery(this).val();
+        jQuery.ajax({
+            type: "post",
+            url: "sel_group_user",
+            data: {
+                id: groupId
+            },
+            success: function (data) {
+                var tbody = jQuery("#table_user");
+                var html_tpl = '';
+                var dataLen = data.length;
+                if (dataLen) {
+                    for(var i = 0; i < dataLen; i++) {
+                        html_tpl += '<tr><td>' + data[i].userid + '</td><td>' + data[i].uname + '</td><td>' + data[i].phone + '</td><td>' + data[i].email + '</td><td><button type="button" class="btn btn-sm btn-danger" onclick="delUser(\'' + data[i].userid + '\')" style="margin-left: 10px;">删除</button></td></tr>'
+                    }
+                } else {
+                    html_tpl = '<tr><td colspan="5" style="text-align: center;">暂无数据</td></tr>';
+                }
+                tbody.html(html_tpl);
+            }
+        })
+    })
+
+</script>
 </html>

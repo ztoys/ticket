@@ -52,7 +52,14 @@
 <!--             	<li class="active"><a href="{:U('Console/dashboard')}"><span class="iconfa-question-sign"></span> 工单</a></li> -->
 				
 				
-            	<!-- <li {$set.active}><a href="{:U('Console/dashboard')}"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
+                <!-- <li {$set.active}><a href="{:U('Console/dashboard')}"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
+                
+                <li class="dropdown {$data.user_one}"><a href=""><span class="iconfa-user"></span> 用户管理</a>
+                    <ul {$data.user_block}>
+                        <li {$data.user_block01}><a href="{:U('Admin/group_manage')}">群组管理</a></li>
+                        <li {$data.user_block02}><a href="{:U('Admin/user_manage')}">成员管理</a></li>
+                    </ul>
+                </li>
 
                 <li class="dropdown {$data01.kh_one}"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul {$data01.kh_block}>
@@ -78,7 +85,7 @@
             	<li class="nav-header">工单管理</li>
                 <li <if condition="$data.case eq 'all'">{$data.active02}</if>><a href="{:U('Client/messages?case=all')}"><span class="iconfa-pencil"></span> 未指派工单</a></li>
                 <li <if condition="$data.case eq 'manned'">{$data.active02}</if>><a href="{:U('Client/messages?case=manned')}"><span class="iconfa-pencil"></span> 分配给我的</a></li>
-                <li <if condition="$data.case eq 'reply'">{$data.active02}</if>><a href="{:U('Client/messages?case=reply')}"><span class="iconfa-pencil"></span>等待回复</a></li>
+                <li <if condition="$data.case eq 'zhong'">{$data.active02}</if>><a href="{:U('Client/messages?case=zhong')}"><span class="iconfa-pencil"></span>受理中</a></li>
                 <li <if condition="$data.case eq 'ping'">{$data.active02}</if>><a href="{:U('Client/messages?case=ping')}"><span class="iconfa-refresh"></span>待评价</a></li>
                 <li <if condition="$data.case eq 'yi'">{$data.active02}</if>><a href="{:U('Client/messages?case=yi')}"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li>
             

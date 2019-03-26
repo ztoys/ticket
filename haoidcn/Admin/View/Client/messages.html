@@ -84,7 +84,7 @@
                                             <switch name="vo['wc_sataus']">
                                                 <case value="1">待处理</case>
                                                 <case value="2">受理中</case>
-                                                <case value="4">受理中</case>
+                                                <case value="4">待评价</case>
                                                 <case value="3">已关闭</case>
                                                 <case value="-1">草稿箱</case>
                                             </switch>
@@ -106,7 +106,9 @@
                                     <th width="10%">状态</th>
                                     <th width="10%">工单发起人</th>
                                     <th width="15%">创建日期</th>
-                                    <th width="15%">受理时间</th>
+                                    <if condition="$data.case neq 'all'">
+                                        <th width="15%">受理时间</th>
+                                    </if>
                                 </tr>
                                 <volist name="list" id="vo">
                                     <tr onclick="javascript:window.location.href='{:U(\'Client/detail?id=\'.$vo[\'id\'])}'">
@@ -116,7 +118,7 @@
                                             <switch name="vo['wc_sataus']">
                                                 <case value="1">待处理</case>
                                                 <case value="2">受理中</case>
-                                                <case value="4">受理中</case>
+                                                <case value="4">待评价</case>
                                                 <case value="3">已关闭</case>
                                                 <case value="-1">草稿箱</case>
                                             </switch>
@@ -125,7 +127,13 @@
                                             {$vo.uname|default=" -- "}
                                         </td>
                                         <td>{$vo.puddate|date="Y-m-d H:i:s",###}</td>
-                                        <td>{$vo.accdate|default=" -- "|date="Y-m-d H:i:s",###}</td>
+                                        <if condition="$data.case neq 'all'">
+                                            <if condition="$vo['accdate'] neq ''">
+                                                <td>{$vo.accdate|date="Y-m-d H:i:s",###}</td>
+                                            <else/>
+                                                <td>--</td>
+                                            </if>
+                                        </if>
                                     </tr>
                                 </volist>
                             </table> 
