@@ -76,7 +76,34 @@
     }    
     .modal-comment form input[type='radio']{
         margin-left: 10px;
-    }    
+    }   
+    
+    .ticket-initiator{
+        padding: 10px 20px;
+        background: #FFF;
+        border: 1px solid #0866c6;
+        border-bottom: none;
+        font-size: 14px;
+    }
+    .title-tip{
+        margin-right: 10px;
+        border-left: 5px solid #0866c6;
+    }
+    .messageleft{
+        background: #FFF;
+        border-top: 1px solid #0866c6;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    .messageview{
+        height: auto;
+    }
+    .msgreply{
+        border-top: none;
+    }
+    .form-ticket-status select{
+        width: 100%;
+    }
 </style>
 </head>
 
@@ -184,34 +211,69 @@
         <div class="maincontentinner">
             <div class="messagepanel">
                 <div class="messagecontent">
-                    <div class="messageright" style="min-height:800px;">
+                    <div class="ticket-initiator">
+                        <span class="title-tip"></span>工单发起人：<?php echo ($main["u_uname"]); ?>
+                    </div>
+
+                    <?php if($main["wc_sataus"] != '3'): ?><div class="messageleft">
+                            <form class="form-ticket-status" action="<?php echo U('Client/messages');?>" method="post" enctype="multipart/form-data">
+                                <!-- <div>
+                                    <label>受理用户组</label>
+                                    <select name="" id="">
+                                        <option value="">请选择</option>
+                                        <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </div> -->
+                                <div>
+                                    <label>受理人</label>
+                                    <select id="select_ticket_agent">
+                                        <option value="-1"> -- </option>
+                                        <?php if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>" <?php if($vo[id] == $main[w_did]): ?>selected<?php endif; ?> ><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </div>
+                                <div style="margin-top: 20px;">
+                                    <label>工单状态</label>
+                                    <select id="select_ticket_status">
+                                        <option value="1" <?php if($main["wc_sataus"] == '1'): ?>selected<?php endif; ?> >待处理</option>
+                                        <option value="2" <?php if($main["wc_sataus"] == '2'): ?>selected<?php endif; ?> >受理中</option>
+                                        <option value="4" <?php if($main["wc_sataus"] == '4'): ?>selected<?php endif; ?> >待评价</option>
+                                    </select>
+                                </div>
+
+                                <!-- <hr>
+
+                                <div style="margin-top: 20px;">
+                                    <button type="submit" class="btn btn-success" style="width: 100%;">确认</button>
+                                </div> -->
+                            </form>
+                        </div><?php endif; ?>
+
+                    <div class="messageright cell">
                         <div class="messageview" style="<?php if($data["status"] == 3): ?>height:100%<?php endif; ?>">
                             <div class="btn-group pull-right">
                                 <!-- <?php if($data["limits"] == 3 and $data["case"] == '1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
                                         &nbsp;&nbsp;&nbsp;
                                         <a href="javascript:void();" onclick="del('messages-<?php echo ($main["w_id"]); ?>');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a><?php endif; ?> -->
                                 
-                                <?php if($data["limits"] == 2 and $data["case"] == '1'): ?><a href="<?php echo U('Client/messages?type=chu&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a><?php endif; ?>
+                                <!-- <?php if($data["limits"] == 2 and $data["case"] == '1'): ?><a href="<?php echo U('Client/messages?type=chu&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a><?php endif; ?>
 
                                 <?php if($data["limits"] == 2 and $data["case"] == '2'): ?><a href="<?php echo U('Client/messages?type=ping&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a><?php endif; ?>
                                 
-                                <?php if($data["limits"] == 3 and $data["status"] != '3'): ?><!-- <a href="<?php echo U('Client/messages?type=wang&wc_sataus='.$main['w_id']);?>" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
+                                <?php if($data["limits"] == 3 and $data["status"] != '3'): ?><a href="<?php echo U('Client/messages?type=wang&wc_sataus='.$main['w_id']);?>" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a>
                                     <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button><?php endif; ?>
-                                <?php if($data["limits"] == 3 and $data["case"] == '-1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a><?php endif; ?>
+                                <?php if($data["limits"] == 3 and $data["case"] == '-1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a><?php endif; ?> -->
                             </div>
                             <h1 class="subject" style="border-bottom: 1px solid #ddd;">
                                 <div>
                                     <b><?php echo ($main["w_title"]); ?></b>
                                 </div>
                                 <div style="margin-top: 10px;">
-                                    <span class="note2"><?php echo ($main["u_uname"]); ?></span>
-                                    <span class="note2" style="margin-left: 10px;"><?php echo (date("Y-m-d",$main["w_puddate"])); ?></span>
+                                    <span class="note2">创建于：<?php echo (date("Y-m-d",$main["w_puddate"])); ?></span>
                                 </div>
-
                             </h1>
                             
                             <!-- comment -->
-                            <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
+                            <?php if($main["sataus"] == '3'): ?><div class="comment-wrap">
                                     <p>评价</p>
                                     <p>
                                         <span>问题是否已经解决</span>
@@ -267,20 +329,25 @@
                             <div name="one"></div>
                             <br/>
                             <br/>
+
+                            <?php if($data["status"] != '3'): ?><div class="msgreply" >
+                                    <hr>
+                                    <form id="form_ticket" action="<?php echo U('Client/submit_ticket_agent');?>" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="ticket_agent" id="form_agent">
+                                        <input type="hidden" name="ticket_status" id="form_ticket_status">
+                                        <input type="hidden" name="insert" value="insert" />
+                                        <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
+                                        <p>
+                                            <script type="text/plain" id="myEditor" style="width:100%;height:200px;"></script>
+                                        </p>
+                                        <hr>
+                                        <p style="margin-top:10px;" align="right">
+                                            <button type="button"  class="btn btn-primary" onclick="submitTicket()"> 提交 </button>
+                                        </p>
+                                    </form>
+                                </div><!--messagereply--><?php endif; ?>
                         </div><!--messageview-->
-                        <?php if($data["status"] != '3'): ?><div class="msgreply" >
-                                <form id="form01" action="<?php echo U('Client/messages');?>" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="insert" value="insert" />
-                                    <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
-                                    <p>
-                                        <script type="text/plain" id="myEditor" style="width:100%;height:200px;"></script>
-                                    </p>
-                                    <p style="margin-top:10px;" align="right">
-                                        <input type="submit"  class="btn btn-primary" value="  发送  ">
-                                    </p>
-                                </form>
-                            </div><!--messagereply--><?php endif; ?>
-                        
+                      
                     </div><!--messageright-->
                 </div><!--messagecontent-->
             </div><!--messagepanel-->
@@ -292,60 +359,24 @@
             
             <!-- footer end -->
             
-            
         </div><!--maincontentinner-->
     </div><!--maincontent-->
     
 </div><!--mainwrapper-->
 
-<!-- 评价模态框 -->
-<div class="modal fade modal-comment" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-        <form action="<?php echo U('Client/close_ticket');?>" method="post" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        工单评价
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
-                    <div style="zoom:1;">
-                        <span>请进行服务评价</span><span style="float:right">评价后将自动关闭</span>
-                    </div>
-                    <p style="margin-top: 20px;">
-                        <label class="left label-title">问题是否已经解决</label>
-                        <div class="cell">
-                            <input type="radio" name="resolve" value="1"> 是
-                            <input type="radio" name="resolve" value="0"> 否
-                        </div>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <label class="left label-title">服务评价</label>
-                        <div class="cell">
-                            <input type="radio" name="assess" value="3"> 非常满意
-                            <input type="radio" name="assess" value="2"> 满意
-                            <input type="radio" name="assess" value="1"> 一般
-                            <input type="radio" name="assess" value="0"> 不满意
-                        </div>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        提交
-                    </button>
-                </div>
-            </div><!-- /.modal-content -->
-        </form>
-	</div><!-- /.modal -->
-</div>
-
 <script type="text/javascript">
+
+    function submitTicket() {
+        var ticket_agent = jQuery("#select_ticket_agent").val();
+        var ticket_status = jQuery("#select_ticket_status").val();
+        if (ticket_status == "2" && ticket_agent == "-1") {
+            alert("请选择受理人");
+            return false;
+        }
+        jQuery("#form_agent").val(ticket_agent);
+        jQuery("#form_ticket_status").val(ticket_status);
+        jQuery("#form_ticket").submit();
+    }
 
     //实例化编辑器
     var um = UM.getEditor('myEditor');

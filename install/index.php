@@ -30,106 +30,117 @@ if($status){
 			$sql_arr = array(
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."addwork;",
 					"CREATE TABLE ".$_POST['db_prefix']."addwork (
-								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
-								  tz_status enum('1','-1') NOT NULL DEFAULT '-1',
-								  g_reply text NOT NULL,
-								  repdate varchar(250) NOT NULL,
-								  pid int(10) NOT NULL,
-								  uid int(10) NOT NULL,
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						tz_status enum('1','-1') NOT NULL DEFAULT '-1',
+						g_reply text NOT NULL,
+						repdate varchar(250) NOT NULL,
+						pid int(10) NOT NULL,
+						uid int(10) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."config;",
 					"CREATE TABLE ".$_POST['db_prefix']."config (
-								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
-								  mail_address varchar(250) NOT NULL,
-								  mail_smtp varchar(250) NOT NULL,
-								  mail_loginname varchar(250) NOT NULL,
-								  mail_password varchar(250) NOT NULL,
-								  mail_formname varchar(250) NOT NULL,
-								  phone_target varchar(250) NOT NULL,
-								  phone_user varchar(250) NOT NULL,
-								  phone_pass varchar(250) NOT NULL,
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
-								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."ecomment;",
-								"CREATE TABLE ".$_POST['db_prefix']."ecomment (
-								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
-								  remark varchar(250) NOT NULL,
-								  s_grade enum('2','1') NOT NULL,
-								  f_grade enum('2','1') NOT NULL,
-								  pj_date varchar(250) NOT NULL,
-								  uid int(10) NOT NULL,
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM DEFAULT CHARSET=utf8;",
-								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."service;",
-								"CREATE TABLE ".$_POST['db_prefix']."service (
-								  id tinyint(10) unsigned NOT NULL,
-								  uname varchar(250) NOT NULL,
-								  phone varchar(250) NOT NULL,
-								  email varchar(250) NOT NULL,
-								  time varchar(250) NOT NULL,
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
-								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."status;",
-								"CREATE TABLE ".$_POST['db_prefix']."status (
-								  id tinyint(10) unsigned NOT NULL AUTO_INCREMENT,
-								  type enum('1', '2') NOT NULL，
-								  status varchar(250) NOT NULL,
-								  time varchar(250) NOT NULL,
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;",
-								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."time;",
-								"CREATE TABLE ".$_POST['db_prefix']."time (
-								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
-								  begin_time varchar(250) NOT NULL,
-								  end_time varchar(250) NOT NULL,
-								  begin_beputtime varchar(250) NOT NULL,
-								  end_beputtime varchar(250) NOT NULL,
-								  pubtime varchar(250) NOT NULL,
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
-								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."user;",
-								"CREATE TABLE ".$_POST['db_prefix']."user (
-								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
-								  userid varchar(250) NOT NULL,
-								  pwd varchar(250) NOT NULL,
-								  uname varchar(250),
-								  qq varchar(250),
-								  email varchar(250),
-								  phone varchar(250),
-								  url varchar(250),
-								  f_date varchar(250),
-								  zl_status enum('1','-1') DEFAULT '-1',
-								  u_status varchar(250),
-								  limits enum('1','2','3') NOT NULL,
-								  sid varchar(250),
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
-								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."work;",
-								"CREATE TABLE ".$_POST['db_prefix']."work (
-								  id int(10) unsigned NOT NULL AUTO_INCREMENT,
-								  title varchar(250) NOT NULL,
-								  issue text NOT NULL,
-								  sc_file varchar(255) NOT NULL,
-								  puddate varchar(250) NOT NULL,
-								  accdate varchar(250) ,
-								  cc_status enum('-1','1') NOT NULL,
-								  tz_status enum('-1','1') NOT NULL,
-								  wc_sataus enum('2','1','-1','3','4') NOT NULL,
-								  ea_status enum('-1','1'),
-								  uid int(250) NOT NULL,
-								  did int(250) NOT NULL,
-								  PRIMARY KEY (id)
-								) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
-								"DROP TABLE IF EXISTS ".$_POST['db_prefix']."evaluation;",
-								"CREATE TABLE ".$_POST['db_prefix']."evaluation (
-									work_id int(10) unsigned NOT NULL AUTO_INCREMENT,
-									resolve varchar(255) NOT NULL,
-									assess varchar(255) NOT NULL,
-									remark varchar(255),
-									create_time bigint(20) NOT NULL,
-									PRIMARY KEY (work_id)
-								  ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						mail_address varchar(250) NOT NULL,
+						mail_smtp varchar(250) NOT NULL,
+						mail_loginname varchar(250) NOT NULL,
+						mail_password varchar(250) NOT NULL,
+						mail_formname varchar(250) NOT NULL,
+						phone_target varchar(250) NOT NULL,
+						phone_user varchar(250) NOT NULL,
+						phone_pass varchar(250) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."ecomment;",
+					"CREATE TABLE ".$_POST['db_prefix']."ecomment (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						remark varchar(250) NOT NULL,
+						s_grade enum('2','1') NOT NULL,
+						f_grade enum('2','1') NOT NULL,
+						pj_date varchar(250) NOT NULL,
+						uid int(10) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."service;",
+					"CREATE TABLE ".$_POST['db_prefix']."service (
+						id tinyint(10) unsigned NOT NULL,
+						uname varchar(250) NOT NULL,
+						phone varchar(250) NOT NULL,
+						email varchar(250) NOT NULL,
+						time varchar(250) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."status;",
+					"CREATE TABLE ".$_POST['db_prefix']."status (
+						id tinyint(10) unsigned NOT NULL AUTO_INCREMENT,
+						type enum('1', '2') NOT NULL，
+						status varchar(250) NOT NULL,
+						time varchar(250) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."time;",
+					"CREATE TABLE ".$_POST['db_prefix']."time (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						begin_time varchar(250) NOT NULL,
+						end_time varchar(250) NOT NULL,
+						begin_beputtime varchar(250) NOT NULL,
+						end_beputtime varchar(250) NOT NULL,
+						pubtime varchar(250) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."user;",
+					"CREATE TABLE ".$_POST['db_prefix']."user (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						userid varchar(250) NOT NULL,
+						pwd varchar(250) NOT NULL,
+						uname varchar(250),
+						qq varchar(250),
+						email varchar(250),
+						phone varchar(250),
+						url varchar(250),
+						f_date varchar(250),
+						zl_status enum('1','-1') DEFAULT '-1',
+						u_status varchar(250),
+						limits enum('1','2','3') NOT NULL,
+						sid varchar(250),
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."work;",
+					"CREATE TABLE ".$_POST['db_prefix']."work (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						title varchar(250) NOT NULL,
+						issue text NOT NULL,
+						sc_file varchar(255) NOT NULL,
+						puddate varchar(250) NOT NULL,
+						accdate varchar(250) ,
+						cc_status enum('-1','1') NOT NULL,
+						tz_status enum('-1','1') NOT NULL,
+						wc_sataus enum('2','1','-1','3','4') NOT NULL,
+						ea_status enum('-1','1'),
+						uid int(250) NOT NULL,
+						did int(250) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."evaluation;",
+					"CREATE TABLE ".$_POST['db_prefix']."evaluation (
+						work_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						resolve varchar(255) NOT NULL,
+						assess varchar(255) NOT NULL,
+						remark varchar(255),
+						create_time bigint(20) NOT NULL,
+						PRIMARY KEY (work_id)
+						) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."wrecord;",
+					"CREATE TABLE ".$_POST['db_prefix']."wrecord (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						wid int(10) NOT NULL,
+						uid int(10) NOT NULL,
+						time bigint(20) NOT NULL,
+						event varchar(255),
+						point_word varchar(255),
+						PRIMARY KEY (id),
+						KEY wid (wid)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 
 			);
 			$i = 0;
@@ -140,7 +151,7 @@ if($status){
 				}
 			}
 
-			if($i == 16){
+			if($i == 20){
 				$result = mysqli_query($mysql, "insert into ".$_POST['db_prefix']."user(userid,pwd,email,limits) values('".$_POST['userid']."','".md5($_POST['pwd'])."','".$_POST['email']."','1')");
 				if($result){
 					//创建项目的配置文件

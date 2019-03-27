@@ -119,7 +119,7 @@ jQuery(document).ready(function(){
                     </ul>
                 </li>
 
-                <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
+                <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>
                         <li <?php echo ($data01["kh_two02"]); ?>><a href="<?php echo U('Admin/c_manage');?>">管理客户</a></li>
@@ -134,7 +134,7 @@ jQuery(document).ready(function(){
                     </ul>
                 </li>
                 
-                <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li>
+                <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li> -->
                 <li <?php echo ($data03["sh_two01"]); ?>><a href="<?php echo U('Admin/config');?>"><span class="iconfa-comments"></span> 基本配置</a></li><?php endif; ?>
             
             <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
@@ -291,7 +291,7 @@ jQuery(document).ready(function(){
     
 </div><!--mainwrapper-->
 
-<!-- 评价模态框 START -->
+<!-- 模态框 START -->
 
 <!-- 添加新群组 -->
 <div class="modal fade modal-add-group" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -361,7 +361,7 @@ jQuery(document).ready(function(){
     </div><!-- /.modal -->
 </div>
 
-<!-- 修改群组名称 -->
+<!-- 删除群组 -->
 <div class="modal fade modal-del-group" id="modal_del_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="<?php echo U('Admin/group_del');?>" method="post" enctype="multipart/form-data">
@@ -391,7 +391,7 @@ jQuery(document).ready(function(){
 </div>
 
 
-<!-- 评价模态框 END -->
+<!-- 模态框 END -->
 </body>
 
 <script>
