@@ -185,7 +185,7 @@
                         </div><!--messageview-->
                         <if condition="$data.status neq '3'">	
                             <div class="msgreply" >
-                                <form id="form01" action="{:U('Client/messages')}" method="post" enctype="multipart/form-data">
+                                <form id="form01" action="{:U('Client/detail')}" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="insert" value="insert" />
                                     <input type="hidden" name="pid" value="{$main.w_id}">
                                     <p>

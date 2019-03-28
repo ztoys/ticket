@@ -269,7 +269,7 @@
                             <br/>
                         </div><!--messageview-->
                         <?php if($data["status"] != '3'): ?><div class="msgreply" >
-                                <form id="form01" action="<?php echo U('Client/messages');?>" method="post" enctype="multipart/form-data">
+                                <form id="form01" action="<?php echo U('Client/detail');?>" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="insert" value="insert" />
                                     <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
                                     <p>

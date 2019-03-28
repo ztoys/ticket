@@ -1,6 +1,9 @@
 <?php
 namespace Admin\Controller;
 
+use Think\Controller;
+use Admin\Model\WrecordModel;
+
 class ClientController extends CommonController {
 	
 	//新工单
@@ -12,7 +15,7 @@ class ClientController extends CommonController {
 			'x_status'		=>	I('get.status'),
 		);
 		$this->assign('data',$data);
-
+		
 		if(IS_POST){
 			$string = I("post.title");
 			preg_match_all("/./us", $string, $match);		//限制 标题的个数
@@ -71,9 +74,14 @@ class ClientController extends CommonController {
 				$id = $this->inser_sql("work",$data);	//添加到工单表
 				$url = __ROOT__."/index.php/Client/forms";
 				$type = "insert";
+
 			}
-				
+			
 			if($id){
+				//增加操作记录
+				$wrecord = new WrecordModel();
+				$wrecord->addWorkRecord($id, $data['uid'], $data['puddate'], '创建工单【'.$data['title'].'】');
+
 				if(I('post.cc_status') == 1){
 					if($type == "insert" ){
 						// $E = Email($result_arr["s_email"],"新工单通知","亲爱的同事：".$result_arr["s_name"]."，".$result_arr["u_name"]."这位客户已提交新工单，工单标题为：“".$data['title']."”。请及时查看，并且处理。");
@@ -83,7 +91,6 @@ class ClientController extends CommonController {
 						);
 						$this->update_sql("work","id=".$id,$data);
 					}
-
 					echo "<script>alert('工单提交成功，并且已通知售后人员，请耐心等候。'); location.href='$url';</script>";
 					exit;
 				}else if(I('post.cc_status') == -1){
@@ -389,24 +396,29 @@ class ClientController extends CommonController {
 
 		//处理对话操作
 		if(IS_POST){
-			$url = __ROOT__."/index.php/Client/messages/case/zhong/messages/".I('post.pid');
+			$url = __ROOT__."/index.php/Client/detail/id/".I('post.pid');
 			if(I("post.insert") != "" && I('post.editorValue') != ""){
 				$data = array(
-						'g_reply'		=>	htmlspecialchars_decode(I('post.editorValue')),
-						'repdate'		=>	time(),
-						'uid'			=>	$id,
-						'pid'			=>	I('post.pid'),
+					'g_reply'		=>	htmlspecialchars_decode(I('post.editorValue')),
+					'repdate'		=>	time(),
+					'uid'			=>	$id,
+					'pid'			=>	I('post.pid'),
 				);
 				$result = $this->inser_sql("addwork",$data);
 				if($result){
 					if($limits == "2"){
 						// $E = Email($main["u_email"],"最新消息回复通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."” 已有最新回复，请注意查看。");
 						// $M = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”已有最新回复，请注意查看。');
-						echo "<script>alert('发送成功，并且已通知客户。'); location.href='$url';</script>";
+						echo "<script>alert('发送成功！'); location.href='$url';</script>";
 					}else if($limits == "3"){
 						// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
 						// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
-						echo "<script>alert('发送成功，并且已通知售后人员。'); location.href='$url';</script>";
+
+						//增加操作记录 -- 工单评论
+						$wrecord = new WrecordModel();
+						$wrecord->addWorkRecord($data['pid'], $id, time(), '评论了工单：'.htmlspecialchars_decode(I('post.editorValue')));
+
+						echo "<script>alert('发送成功！'); location.href='$url';</script>";
 					}
 					exit;
 				}
@@ -492,6 +504,8 @@ class ClientController extends CommonController {
 	public function submit_ticket_agent() {
 		$id = I("session.uid");				//当前用户id
 		$wid = I('post.pid');
+		$ticket_agent_name = I("post.ticket_agent_name");
+		$ticket_status_name = I("post.ticket_status_name");
 		$url = __ROOT__."/index.php/Client/detail_agent/id/".$wid;
 
 		$ticket_agent = I('post.ticket_agent');
@@ -499,11 +513,19 @@ class ClientController extends CommonController {
 		if($ticket_agent == '-1') {
 			$ticket_agent = null;
 		}
-		$ticket_data = array(
-			'did' => $ticket_agent,
-			'wc_sataus' => $ticket_status,
-		);
-		$this->update_sql('work', "id='$wid'", $ticket_data);
+
+		$ticket_info = $this->sel_sql_single('work', "id='$wid'");
+		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status)) {
+			$ticket_data = array(
+				'did' => $ticket_agent,
+				'wc_sataus' => $ticket_status,
+			);
+			$this->update_sql('work', "id='$wid'", $ticket_data);
+	
+			//增加操作记录 -- 工单状态修改
+			$wrecord = new WrecordModel();
+			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态【受理人：'.$ticket_agent_name.'】【工单状态：'.$ticket_status_name.'】');
+		}
 		
 		if(I('post.editorValue') != ""){
 			$data = array(
@@ -514,6 +536,10 @@ class ClientController extends CommonController {
 			);
 			$result = $this->inser_sql("addwork",$data);
 			if($result){
+
+				//增加操作记录 -- 工单评论
+				$wrecord = new WrecordModel();
+				$wrecord->addWorkRecord($wid, $id, time(), '评论了工单：'.htmlspecialchars_decode(I('post.editorValue')));
 				// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
 				// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
 				echo "<script>alert('发送成功！'); location.href='$url';</script>";

@@ -14,19 +14,24 @@
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/responsive-tables.css">
 
 
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-migrate-1.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-fileupload.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.uniform.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.resize.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
@@ -102,7 +107,7 @@
                     </ul>
                 </li>
 
-                <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
+                <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>
                         <li <?php echo ($data01["kh_two02"]); ?>><a href="<?php echo U('Admin/c_manage');?>">管理客户</a></li>
@@ -117,7 +122,7 @@
                     </ul>
                 </li>
                 
-                <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li>
+                <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li> -->
                 <li <?php echo ($data03["sh_two01"]); ?>><a href="<?php echo U('Admin/config');?>"><span class="iconfa-comments"></span> 基本配置</a></li><?php endif; ?>
             
             <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
