@@ -216,7 +216,7 @@
 <!-- 评价模态框 -->
 <div class="modal fade modal-comment" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-        <form action="{:U('Client/close_ticket')}" method="post" enctype="multipart/form-data">
+        <form action="{:U('Client/close_ticket')}" method="post" enctype="multipart/form-data" id="form_close_ticket">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -228,30 +228,32 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="pid" value="{$main.w_id}">
+                    <input type="hidden" name="resolve_text" id="resolve_text">
+                    <input type="hidden" name="assess_text" id="assess_text">
                     <div style="zoom:1;">
                         <span>请进行服务评价</span><span style="float:right">评价后将自动关闭</span>
                     </div>
                     <p style="margin-top: 20px;">
                         <label class="left label-title">问题是否已经解决</label>
                         <div class="cell">
-                            <input type="radio" name="resolve" value="1"> 是
-                            <input type="radio" name="resolve" value="0"> 否
+                            <input type="radio" name="resolve" value="1" data-text="是"> 是
+                            <input type="radio" name="resolve" value="0" data-text="否"> 否
                         </div>
                     </p>
                     <p style="margin-top: 10px;">
                         <label class="left label-title">服务评价</label>
                         <div class="cell">
-                            <input type="radio" name="assess" value="3"> 非常满意
-                            <input type="radio" name="assess" value="2"> 满意
-                            <input type="radio" name="assess" value="1"> 一般
-                            <input type="radio" name="assess" value="0"> 不满意
+                            <input type="radio" name="assess" value="3" data-text="非常满意"> 非常满意
+                            <input type="radio" name="assess" value="2" data-text="满意"> 满意
+                            <input type="radio" name="assess" value="1" data-text="一般"> 一般
+                            <input type="radio" name="assess" value="0" data-text="不满意"> 不满意
                         </div>
                     </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" onclick="closeTicket()" class="btn btn-primary">
                         提交
                     </button>
                 </div>
@@ -261,6 +263,15 @@
 </div>
 
 <script type="text/javascript">
+
+    function closeTicket () {
+        var resolveText = jQuery("#form_close_ticket input[name='resolve']:checked").data('text');
+        var assessText = jQuery("#form_close_ticket input[name='assess']:checked").data('text');
+        jQuery("#resolve_text").val(resolveText);
+        jQuery("#assess_text").val(assessText);
+        
+        jQuery("#form_close_ticket").submit();
+    }
 
     //实例化编辑器
     var um = UM.getEditor('myEditor');

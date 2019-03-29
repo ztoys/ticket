@@ -11,15 +11,23 @@ class WrecordModel extends Model {
         $data["event"] = $event;
         $data["point_word"] = $point_word;
         $record->add($data);
+        if ($record) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
-    public function test(){
+    public function getWorkRecord($wid) {
         $record = M("wrecord");
-        $data['wid'] = 10;
-        $data['uid'] = 5;
-        $sql = $record->fetchSql(true)->add($data);
-        return $sql;
+        $db_field = "r.id id, r.wid wid, r.uid uid, r.time time, r.event event, r.point_word point_word, u.uname uname";
+        $db_join = "left join ".C('DB_PREFIX')."user AS u ON r.uid=u.id";
+        $list = $record->alias("r")->field($db_field)->join($db_join)->where("wid=$wid")->order('time desc')->select();
+        return $list;
     }
+
+    
+
 }
 
 ?>

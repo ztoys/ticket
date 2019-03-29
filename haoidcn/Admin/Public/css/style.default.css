@@ -102,6 +102,9 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 label.inline-block{
 	vertical-align: text-bottom;
 }
+.modal{
+	display: none;
+}
 
 /*** LOGIN PAGE ***/
 

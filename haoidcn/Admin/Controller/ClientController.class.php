@@ -80,7 +80,7 @@ class ClientController extends CommonController {
 			if($id){
 				//增加操作记录
 				$wrecord = new WrecordModel();
-				$wrecord->addWorkRecord($id, $data['uid'], $data['puddate'], '创建工单【'.$data['title'].'】');
+				$wrecord->addWorkRecord($id, $data['uid'], $data['puddate'], '创建工单【'.$data['title'].'】。');
 
 				if(I('post.cc_status') == 1){
 					if($type == "insert" ){
@@ -476,6 +476,10 @@ class ClientController extends CommonController {
 			$this->assign('comment',$comment);
 		}
 
+		//工单事件
+		$wrecord = new WrecordModel();
+		$record_list = $wrecord->getWorkRecord($aid);
+
 		//受理人列表
 		$user_info = $this->sel_sql_single("user", "id='$id'");
 		$group_id = $user_info['u_status'];
@@ -494,6 +498,7 @@ class ClientController extends CommonController {
 				"active02"		=>	"class='active'",
 				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
 				'sou'			=>	'&sou='.I("get.sou"),
+				'record'		=>  $record_list,
 		);
 		$this->assign('data',$data);
 		
@@ -524,7 +529,7 @@ class ClientController extends CommonController {
 	
 			//增加操作记录 -- 工单状态修改
 			$wrecord = new WrecordModel();
-			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态【受理人：'.$ticket_agent_name.'】【工单状态：'.$ticket_status_name.'】');
+			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态【受理人：'.$ticket_agent_name.'】【工单状态：'.$ticket_status_name.'】。');
 		}
 		
 		if(I('post.editorValue') != ""){
@@ -552,14 +557,18 @@ class ClientController extends CommonController {
 		}
 	}
 
-	//工单 关闭
+	//工单 关闭(评价)
 	public function close_ticket(){
 		$limits = I("session.limits");	//权限    2-售后	3-会员
 		$resolve_v = I('post.resolve');
+		$resolve_text = I('post.resolve_text');
 		$assess_v = I('post.assess');
+		$assess_text = I('post.assess_text');
+		
+		$id = I("session.uid");				//当前用户id
 		$w_id = I('post.pid');
 		if($limits == "3"){
-			$url = __ROOT__."/index.php/Client/messages/case/zhong";
+			$url = __ROOT__."/index.php/Client/detail/id/$w_id";
 			$data = array(
 				'work_id'		=>	$w_id,
 				'resolve'		=>	$resolve_v,
@@ -568,6 +577,10 @@ class ClientController extends CommonController {
 			);
 			$insert = $this->inser_sql("evaluation", $data);
 			if($insert){
+				//增加操作记录 -- 工单评价
+				$wrecord = new WrecordModel();
+				$wrecord->addWorkRecord($w_id, $id, time(), '评价了工单：【问题是否已经解决:'.$resolve_text.'；服务评价：'.$assess_text.'】。');
+
 				$update_data = array(
 					'wc_sataus'	=> 3,
 				);
@@ -578,6 +591,11 @@ class ClientController extends CommonController {
 					
 					// $E = Email($main["u_email"],"工单结束通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."”已结束，若不是本人操作，请联系售后人员。");
 					// $M1 = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”已结束，若不是本人操作，请联系售后人员。');
+
+					//增加操作记录 -- 工单评价
+					$wrecord = new WrecordModel();
+					$wrecord->addWorkRecord($w_id, $id, time()+1, '已关闭工单。');
+
 					echo "<script>alert('操作成功'); location.href='$url';</script>";
 					exit;
 				} else {

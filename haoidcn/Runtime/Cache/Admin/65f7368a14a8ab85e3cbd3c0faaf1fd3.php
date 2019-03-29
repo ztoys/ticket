@@ -104,6 +104,25 @@
     .form-ticket-status select{
         width: 100%;
     }
+    .record-list{
+        padding: 0 15px;
+    }
+    .record-list li{
+        position: relative;
+        list-style: none;
+        margin-bottom: 20px;
+        padding-top: 10px;
+        border-top: 1px solid #EEE;
+    }
+    .record-list li::before{
+        content: '';
+        width: 3px;
+        height: 15px;
+        background: #0866c6;
+        position: absolute;
+        left: -10px;
+        top: 12px;
+    }    
 </style>
 </head>
 
@@ -269,6 +288,7 @@
                                 </div>
                                 <div style="margin-top: 10px;">
                                     <span class="note2">创建于：<?php echo (date("Y-m-d",$main["w_puddate"])); ?></span>
+                                    <button type="button" data-toggle="modal" data-target="#modal_ticket_event" class="btn btn-success btn-sm" style="margin-left: 10px;">查看工单事件</button>
                                 </div>
                             </h1>
                             
@@ -365,6 +385,38 @@
     </div><!--maincontent-->
     
 </div><!--mainwrapper-->
+
+<!-- 模态框START -->
+<!-- 工单事件 -->
+<div class="modal fade modal-comment" id="modal_ticket_event" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        工单事件
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="record-list">
+                        <?php if(is_array($data["record"])): $i = 0; $__LIST__ = $data["record"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li>
+                               <p class="note2"><?php echo (date("Y-m-d H:i:s",$vo["time"])); ?></p>
+                                <?php echo ($vo["uname"]); echo ($vo["event"]); ?>
+                            </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 模态框END -->
+
 
 <script type="text/javascript">
 
