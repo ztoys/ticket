@@ -92,7 +92,7 @@ class AdminController extends CommonController {
 		
 		$data = array(
 			'userid'   => $acc,
-			'pwd'      => $pwd,
+			'pwd'      => md5($pwd),
 			'uname'    => $name,
 			'u_status' => $status,
 		);

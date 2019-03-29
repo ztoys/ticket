@@ -82,7 +82,7 @@ class ClientController extends CommonController {
 				$wrecord = new WrecordModel();
 				$wrecord->addWorkRecord($id, $data['uid'], $data['puddate'], '创建工单【'.$data['title'].'】。');
 
-				if(I('post.cc_status') == 1){
+				if (I('post.cc_status') == 1) {
 					if($type == "insert" ){
 						// $E = Email($result_arr["s_email"],"新工单通知","亲爱的同事：".$result_arr["s_name"]."，".$result_arr["u_name"]."这位客户已提交新工单，工单标题为：“".$data['title']."”。请及时查看，并且处理。");
 						// $M = Mobile($result_arr["s_phone"],'亲爱的：'.$result_arr["s_name"].'同事。'.$result_arr["u_name"].'这位客户已提交新工单，工单标题为：“'.$data['title'].'”。请及时查看，并且处理。');
@@ -414,6 +414,12 @@ class ClientController extends CommonController {
 						// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
 						// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
 
+						//修改回复状态
+						$replay_data = array(
+							'tz_status' => '-1',
+						);
+						$reply_sql = $this->update_sql("work","id=".I('post.pid'), $replay_data);
+
 						//增加操作记录 -- 工单评论
 						$wrecord = new WrecordModel();
 						$wrecord->addWorkRecord($data['pid'], $id, time(), '评论了工单：'.htmlspecialchars_decode(I('post.editorValue')));
@@ -547,6 +553,13 @@ class ClientController extends CommonController {
 				$wrecord->addWorkRecord($wid, $id, time(), '评论了工单：'.htmlspecialchars_decode(I('post.editorValue')));
 				// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
 				// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
+
+				//修改回复状态
+				$replay_data = array(
+					'tz_status' => '1',
+				);
+				$reply_sql = $this->update_sql("work","id=".$wid, $replay_data);
+
 				echo "<script>alert('发送成功！'); location.href='$url';</script>";
 				exit;
 			}

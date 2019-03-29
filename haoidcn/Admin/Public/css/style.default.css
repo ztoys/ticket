@@ -56,7 +56,9 @@ body {
 	background: url(../images/leftpanelbg.png) repeat-y 0 0; font-size: 12px;
 	font-family: 'RobotoRegular', 'Helvetica Neue', Helvetica, sans-serif; }
 body.errorpage { background: #fff url(../images/bg1.png);  }
-body.loginpage { background: #0866c6; }
+body.loginpage { 
+	background: url(../images/bg.png) no-repeat; 
+}
 
 a,a:hover,a:link,a:active,a:focus { outline: none; color: #0866c6; text-decoration: none; }
 a:hover { text-decoration: underline; }

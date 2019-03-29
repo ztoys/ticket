@@ -27,34 +27,61 @@
         });
     });
 </script>
-
+<style type="text/css">
+    input.readonly {
+        background: #DDD;
+    }
+</style>
 </head>
 
 <body class="loginpage">
 <div class="loginpanel">
     <div class="loginpanelinner">
-        <form id="login" action="?" method="post">
-        	<input type="hidden" name='root' id='root' value="<?php echo (C("ROOT")); ?>">
-        	<input type='hidden' name='login' id='login' value="login">
-        	
-            <div class="inputwrapper login-alert">
-                <div class="alert alert-error">无效的用户名或密码</div>
-            </div>
-            
-            <?php if($ok == '-1'): ?><div class="inputwrapper login-alert" style="display:block">
-	                <div class="alert alert-error">用户名或密码输入错误</div>
-	            </div><?php endif; ?>
-            <div class="inputwrapper animate1 bounceIn">
-                <input type="text" name="username" id="username" value="" placeholder="账号/手机/邮箱" />
-            </div>
-            <div class="inputwrapper animate2 bounceIn">
-                <input type="password" name="password" id="password" value="" placeholder="输入密码" />
-            </div>
-            <div class="inputwrapper animate3 bounceIn">
-                <button name="submit">登录</button>
-            </div>
-            
-        </form>
+        <?php if($user_not_exist == false): ?><form id="login" action="?" method="post">
+                <input type="hidden" name='root' id='root' value="<?php echo (C("ROOT")); ?>">
+                <input type='hidden' name='login' id='login' value="login">
+                
+                <div class="inputwrapper login-alert">
+                    <div class="alert alert-error">无效的用户名或密码</div>
+                </div>
+                
+                <?php if($ok == '-1'): ?><div class="inputwrapper login-alert" style="display:block">
+                        <div class="alert alert-error">用户名或密码输入错误</div>
+                    </div><?php endif; ?>
+                <div class="inputwrapper animate1 bounceIn">
+                    <input type="text" name="username" id="username" value="" placeholder="账号/手机/邮箱" />
+                </div>
+                <div class="inputwrapper animate2 bounceIn">
+                    <input type="password" name="password" id="password" value="" placeholder="输入密码" />
+                </div>
+                <div class="inputwrapper animate3 bounceIn">
+                    <button name="submit">登录</button>
+                </div>
+            </form><?php endif; ?>
+
+        <?php if($user_not_exist): ?><form action="<?php echo U('Index/user_add');?>" method="post" enctype="multipart/form-data" id="form_user_add">
+                <input type="hidden" name="status" id="user_group">
+                <div class="inputwrapper animate1 bounceIn">
+                    <input type="text" name="acc" placeholder="帐号：" value="<?php echo ($user_info["account"]); ?>" class="readonly" readonly="readonly" >
+                </div>
+                <div class="inputwrapper animate1 bounceIn">
+                    <input type="text" name="name" placeholder="名称：" value="<?php echo ($user_info["user_name"]); ?>" class="readonly" readonly="readonly" >
+                </div>
+                <div class="inputwrapper animate1 bounceIn">
+                    <select class="form-control" id="add_user_type" style="width:270px;height:40px;">
+                        <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
+                </div>
+                <div class="inputwrapper animate1 bounceIn">
+                    <input type="password" name="pwd" placeholder="密码：" id="add_user_pwd">
+                </div>
+                <div class="inputwrapper animate1 bounceIn">
+                    <input type="password" placeholder="确认密码：" id="add_user_repwd">
+                </div>
+                <div class="inputwrapper animate3 bounceIn">
+                    <button name="button" onclick="registerAcc()">注册</button>
+                </div>
+            </form><?php endif; ?>
         
     </div><!--loginpanelinner-->
 </div><!--loginpanel-->
@@ -62,6 +89,25 @@
 
 </body>
 <script>
+
+    function registerAcc () {
+        var p = jQuery("#add_user_pwd").val();
+        var r = jQuery("#add_user_repwd").val();
+
+        if ( p == "" || r == "") {
+            alert("请输入密码！");
+            return false;
+        }
+
+        if (p != r) {
+            alert("密码不一致！");
+            return false;
+        }
+
+        jQuery("#user_group").val(jQuery("#add_user_type").val());
+        jQuery("#form_user_add").submit();
+    }
+
 	/* function ajax_login(){
 		 onsubmit=" return ajax_login();"
 	    var root = jQuery('#ROOT').val();

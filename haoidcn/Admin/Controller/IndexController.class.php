@@ -1,6 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
+use Admin\Model\UserModel;
 
 class IndexController extends Controller {
     public function index(){
@@ -9,7 +10,73 @@ class IndexController extends Controller {
     	
     	Session_start();
     	
-    	$login = I('post.login');
+		$login = I('post.login');
+		$token = I('get.token');
+		
+		if ($token) {
+			$user_model = new UserModel();
+			$userInfo = $user_model->loginTokenDecode($token);
+
+			$userInfo_code = $userInfo['status']['code'];
+			if ($userInfo_code == 0) {
+				$account = $userInfo['userInfo']['account'];
+				$user_name = $userInfo['userInfo']['chsName'];
+				$user_mobile = $userInfo['userInfo']['mobile'];
+				$user_email = $userInfo['userInfo']['email'];
+				
+				//查询是否存在这个帐号
+				$user_exist = $user_model->checkAccountExist($account);
+				if ($user_exist) {
+					$this->assign("user_exist", true);
+
+					$User = D("User"); // 实例化User对象
+					$user_arr = $User->where("userid='$account'")->find();
+					$ok = empty($user_arr) ? "-1" : "1";
+					if($ok == "1"){
+						$_SESSION['userid'] = $user_arr['userid'];
+						$_SESSION['pass'] = $user_arr['pwd'];
+						$_SESSION['uid'] = $user_arr['id'];
+						$_SESSION['email'] = $user_arr['email'];
+						$_SESSION['limits'] = $user_arr['limits'];
+						if($user_arr['limits'] == '3') {
+							$this->redirect('Client/messages/case/create');	
+						} elseif($user_arr['limits'] == '2') {
+							$this->redirect('Client/messages/case/all');	
+						} else {
+							$this->redirect('Admin/group_manage');
+						}
+						exit;
+					}else{
+						$this->redirect('index','ok=-1');
+						exit;
+					}
+
+				} else {
+					$this->assign("user_not_exist", true);
+					$userinfoArr = array(
+						'account' => $account,
+						'user_name' => $user_name,
+					);
+					$this->assign("user_info", $userinfoArr);
+
+					$list_group = $this->sel_sql("status", "type='2'");
+					$this->assign("list_group", $list_group);
+				}
+
+			} else {
+				switch ($result_code) {
+					case 2: 
+						echo "<script>alert('错误的请求！')</script>";
+						break;
+					case 10: 
+						echo "<script>alert('token无效！')</script>";
+						break;
+					default:
+						echo "<script>alert('token验证失败！')</script>";
+				}
+			}
+		}
+		
     	
 		if($login){
 			$userid = strtolower(I("post.username"));
@@ -29,7 +96,7 @@ class IndexController extends Controller {
 				} elseif($user_arr['limits'] == '2') {
 					$this->redirect('Client/messages/case/all');	
 				} else {
-					$this->redirect('Console/dashboard');
+					$this->redirect('Admin/group_manage');
 				}
     			exit;
     			
@@ -57,7 +124,43 @@ class IndexController extends Controller {
 		
     	$this->display();
     	
-    }
+	}
+	
+	//用户注册
+	public function user_add() {
+		$acc = I("post.acc");
+		$name = I("post.name");
+		$pwd = I("post.pwd");
+		$status = I("post.status");
+
+		$db_status = D("status"); // 实例化User对象
+		$group_arr = $db_status->where("id='$status'")->find();
+		$user_limits = $group_arr['type'];
+		
+		$data = array(
+			'userid'   => $acc,
+			'pwd'      => md5($pwd),
+			'uname'    => $name,
+			'u_status' => $status,
+			'limits'   => $user_limits,
+			'f_date'   => time(),
+		);
+		$result = $this->inser_sql("user", $data);
+		if ($result) {
+			$_SESSION['userid'] = $acc;
+			$_SESSION['pass'] = $pass;
+			$_SESSION['uid'] = $result;
+			$_SESSION['email'] = "";
+			$_SESSION['limits'] = $user_limits;
+			if($user_limits == '3') {
+				$this->redirect('Client/messages/case/create');	
+			} elseif($user_limits == '2') {
+				$this->redirect('Client/messages/case/all');	
+			}
+		} else {
+			echo "<meta charset='utf-8' /><script>alert('注册 $name 失败');</script>";
+		}
+	}
     
     //退出登录
     public function exit_t(){
@@ -238,5 +341,16 @@ class IndexController extends Controller {
 
     	$this->ajaxReturn($msg);
     	$this->display();
-    }
+	}
+	
+	//简单查询	多条
+	public function sel_sql($model,$where,$orders){
+		$result_arr = D($model)->where($where)->order($orders)->select();
+		return $result_arr;
+	}
+
+	//添加数据
+	public function inser_sql($model,$data){
+		return D($model)->add($data);
+	}
 }
