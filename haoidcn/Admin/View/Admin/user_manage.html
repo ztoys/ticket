@@ -78,7 +78,7 @@ jQuery(document).ready(function(){
                             			<th width="200px;">操作</th>
                                     </tr>
                                     <tbody id="table_user">
-                                        <volist name="list_user" id="vo">
+                                        <volist name="list_user" id="vo" empty="$list_user_empty">
                                             <tr >
                                                 <td>{$vo.userid}</td>
                                                 <td>{$vo.uname}</td>

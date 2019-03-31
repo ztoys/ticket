@@ -14,7 +14,7 @@ class AdminController extends CommonController {
 		);
 		$this->assign("data", $data);
 		
-		$list = $this->sel_sql("status", "type='2'", "time desc");
+		$list = $this->sel_sql("status", "", "time desc");
 		$this->assign("list", $list);
     	$this->display();
 	}
@@ -22,10 +22,11 @@ class AdminController extends CommonController {
 	//用户管理 - 群组管理 -- 添加新群组
 	public function group_add() {
 		$name = I("post.name");
+		$type = I("post.type");
 		$data = array(
 			'status' => $name,
 			'time' => time(),
-			'type'	=>	'2',
+			'type'	=>	$type,
 		);
 		$result = $this->inser_sql("status", $data);
 		if ($result) {
@@ -72,13 +73,14 @@ class AdminController extends CommonController {
 
 		$this->assign("data", $data);
 
-		$list_group = $this->sel_sql("status", "type='2'");
+		$list_group = $this->sel_sql("status", "");
 		$this->assign("list_group", $list_group);
 
 		//查询用户
 		$group_id =  $list_group[0]['id'];
 		$list_user = $this->sel_sql("user", "u_status='$group_id'");
 		$this->assign("list_user", $list_user);
+		$this->assign("list_user_empty", '<tr><td colspan="5" style="text-align: center;">暂无数据</td></tr>');
 
     	$this->display();
 	}
@@ -89,12 +91,17 @@ class AdminController extends CommonController {
 		$name = I("post.name");
 		$pwd = I("post.pwd");
 		$status = I("post.status");
+
+		$group_info = $this->sel_sql_single("status", "id='$status'");
+		$limits = $group_info['type'];
 		
 		$data = array(
 			'userid'   => $acc,
 			'pwd'      => md5($pwd),
 			'uname'    => $name,
 			'u_status' => $status,
+			'limits'  => $limits,
+			'f_date'   => time(),
 		);
 		$result = $this->inser_sql("user", $data);
 		if ($result) {
@@ -546,5 +553,11 @@ class AdminController extends CommonController {
 	public function sel_sql($model,$where,$orders){
 		$result_arr = D($model)->where($where)->order($orders)->select();
 		return $result_arr;
+	}
+
+	//简单查询 单条
+	public function sel_sql_single($model, $where) {
+		$result = D($model)->where($where)->find();
+		return $result;
 	}
 }

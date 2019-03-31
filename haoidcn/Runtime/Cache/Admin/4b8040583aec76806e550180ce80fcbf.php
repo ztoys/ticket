@@ -207,7 +207,7 @@ jQuery(document).ready(function(){
                             			<th width="200px;">操作</th>
                                     </tr>
                                     <tbody id="table_user">
-                                        <?php if(is_array($list_user)): $i = 0; $__LIST__ = $list_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr >
+                                        <?php if(is_array($list_user)): $i = 0; $__LIST__ = $list_user;if( count($__LIST__)==0 ) : echo "$list_user_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr >
                                                 <td><?php echo ($vo["userid"]); ?></td>
                                                 <td><?php echo ($vo["uname"]); ?></td>
                                                 <td><?php echo ((isset($vo["phone"]) && ($vo["phone"] !== ""))?($vo["phone"]):" -- "); ?></td>
@@ -215,7 +215,7 @@ jQuery(document).ready(function(){
                                                 <td>
                                                     <button type="button" class="btn btn-sm btn-danger" onclick="delUser('<?php echo ($vo["userid"]); ?>')" style="margin-left: 10px;">删除</button>
                                                 </td>
-                                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </tr><?php endforeach; endif; else: echo "$list_user_empty" ;endif; ?>
                                     </tbody>
                             	</table> 
 		                    <?php echo ($page); ?>

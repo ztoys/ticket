@@ -38,6 +38,7 @@ class IndexController extends Controller {
 						$_SESSION['uid'] = $user_arr['id'];
 						$_SESSION['email'] = $user_arr['email'];
 						$_SESSION['limits'] = $user_arr['limits'];
+						$_SESSION['zl_status'] = $user_arr['zl_status'];	
 						if($user_arr['limits'] == '3') {
 							$this->redirect('Client/messages/case/create');	
 						} elseif($user_arr['limits'] == '2') {
@@ -59,7 +60,7 @@ class IndexController extends Controller {
 					);
 					$this->assign("user_info", $userinfoArr);
 
-					$list_group = $this->sel_sql("status", "type='2'");
+					$list_group = $this->sel_sql("status", "");
 					$this->assign("list_group", $list_group);
 				}
 
@@ -99,14 +100,10 @@ class IndexController extends Controller {
 					$this->redirect('Admin/group_manage');
 				}
     			exit;
-    			
     		}else{
-
     			$this->redirect('index','ok=-1');
-    			
     			exit;
     		}
-    		
 		}
 		
 		$userid = strtolower(I("session.userid"));
@@ -144,6 +141,7 @@ class IndexController extends Controller {
 			'u_status' => $status,
 			'limits'   => $user_limits,
 			'f_date'   => time(),
+			'zl_status'=> '1',
 		);
 		$result = $this->inser_sql("user", $data);
 		if ($result) {
@@ -152,6 +150,7 @@ class IndexController extends Controller {
 			$_SESSION['uid'] = $result;
 			$_SESSION['email'] = "";
 			$_SESSION['limits'] = $user_limits;
+			$_SESSION['zl_status'] = 1 ;	//已完善资料
 			if($user_limits == '3') {
 				$this->redirect('Client/messages/case/create');	
 			} elseif($user_limits == '2') {

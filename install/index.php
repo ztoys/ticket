@@ -73,7 +73,7 @@ if($status){
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."status;",
 					"CREATE TABLE ".$_POST['db_prefix']."status (
 						id tinyint(10) unsigned NOT NULL AUTO_INCREMENT,
-						type enum('1', '2') NOT NULL，
+						type enum('1', '2', '3') NOT NULL，
 						status varchar(250) NOT NULL,
 						time varchar(250) NOT NULL,
 						PRIMARY KEY (id)

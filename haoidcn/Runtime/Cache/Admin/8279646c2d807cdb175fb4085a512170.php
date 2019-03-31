@@ -296,7 +296,7 @@ jQuery(document).ready(function(){
 <!-- 添加新群组 -->
 <div class="modal fade modal-add-group" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="<?php echo U('Admin/group_add');?>" method="post" enctype="multipart/form-data">
+        <form action="<?php echo U('Admin/group_add');?>" method="post" enctype="multipart/form-data" id="form_group_add">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -313,11 +313,21 @@ jQuery(document).ready(function(){
                             <input type="text" name="name" placeholder="请输入新群组名称">
                         </div>
                     </p>
+                    <p style="margin-top: 20px;">
+                        <label class="left label-title" style="margin-top:4px;width:50px;">类型：</label>
+                        <input type="hidden" name="type" id="group_type">
+                        <div class="cell">
+                            <select id="select_group_type">
+                                <option value="3">创建工单</option>
+                                <option value="2">解决工单</option>
+                            </select>
+                        </div>
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" onclick="addGroup()">
                         提交
                     </button>
                 </div>
@@ -400,7 +410,11 @@ jQuery(document).ready(function(){
         jQuery("#set_group_name").val(oriName);
         jQuery('#modal_set_group').modal('show');
     }
-
+    function addGroup() {
+        var groupTypeVal = jQuery("#select_group_type").val();
+        jQuery("#group_type").val(groupTypeVal);
+        jQuery("#form_group_add").submit();
+    }
     function delGroup(id, name) {
         jQuery("#del_group_id").val(id);
         jQuery("#group_del_name").text(name);

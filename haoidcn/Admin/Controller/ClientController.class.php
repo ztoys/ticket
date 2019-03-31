@@ -91,7 +91,7 @@ class ClientController extends CommonController {
 						);
 						$this->update_sql("work","id=".$id,$data);
 					}
-					echo "<script>alert('工单提交成功，并且已通知售后人员，请耐心等候。'); location.href='$url';</script>";
+					echo "<script>alert('工单提交成功。'); location.href='$url';</script>";
 					exit;
 				}else if(I('post.cc_status') == -1){
 					echo "<script>alert('工单已保存到草稿箱，可到草稿箱修改该工单。'); location.href='$url';</script>";
@@ -242,7 +242,7 @@ class ClientController extends CommonController {
 						);
 						$reply_sql = $this->update_sql("work","id=".$pid, $replay_data);
 						if ($reply_sql) {
-							echo "<script>alert('发送成功，并且已通知客客服。'); location.href='$url';</script>";
+							echo "<script>alert('发送成功。'); location.href='$url';</script>";
 						} else {
 							echo "<script>alert('发送成功。'); location.href='$url';</script>";
 						}
@@ -255,7 +255,7 @@ class ClientController extends CommonController {
 						);
 						$reply_sql = $this->update_sql("work","id=".$pid, $replay_data);
 						if ($reply_sql) {
-							echo "<script>alert('发送成功，并且已通知运维人员。'); location.href='$url';</script>";
+							echo "<script>alert('发送成功。'); location.href='$url';</script>";
 						} else {
 							echo "<script>alert('发送成功。'); location.href='$url';</script>";
 						}
@@ -285,7 +285,7 @@ class ClientController extends CommonController {
 			if($result){
 				// $E = Email($main["u_email"],"工单处理中通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."”。正在处理中，请耐心等候。");
 				// $M = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”。正在处理中，请耐心等候。');
-				echo "<script>alert('操作成功，请尽快处理完毕'); location.href='$url';</script>";
+				echo "<script>alert('操作成功。'); location.href='$url';</script>";
 			}
 
 			exit;
@@ -302,7 +302,7 @@ class ClientController extends CommonController {
 			if($result){
 				// $E = Email($main["u_email"],"工单处理中通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."”。正在处理中，请耐心等候。");
 				// $M = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”。正在处理中，请耐心等候。');
-				echo "<script>alert('操作成功，等待评价'); location.href='$url';</script>";
+				echo "<script>alert('操作成功。'); location.href='$url';</script>";
 			}
 			exit;			
 		}
@@ -324,7 +324,7 @@ class ClientController extends CommonController {
 				// $E = Email($main["u_email"],"工单结束通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."”已结束，若不是本人操作，请联系售后人员。");
 				// $M1 = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”已结束，若不是本人操作，请联系售后人员。');
 				
-				echo "<script>alert('操作成功'); location.href='$url';</script>";
+				echo "<script>alert('操作成功。'); location.href='$url';</script>";
 				exit;
 			
 			}
@@ -342,7 +342,7 @@ class ClientController extends CommonController {
 
 				// $E = Email($main["u_email"],"工单取消通知","尊敬的客户：".$main["u_uname"]."。您好！您的工单标题为：“".$main['w_title']."”已取消。若不是本人操作，请联系售后人员。");
 				// $M1 = Mobile($main["u_phone"],'尊敬的客户：'.$main['u_uname'].'。您好！您的工单标题为：“'.$main['w_title'].'”已取消。若不是本人操作，请联系售后人员。');
-				echo "<script>alert('工单取消成功'); location.href='$url';</script>";
+				echo "<script>alert('工单取消成功。'); location.href='$url';</script>";
 				exit;
 			}
 		}
@@ -609,7 +609,7 @@ class ClientController extends CommonController {
 					$wrecord = new WrecordModel();
 					$wrecord->addWorkRecord($w_id, $id, time()+1, '已关闭工单。');
 
-					echo "<script>alert('操作成功'); location.href='$url';</script>";
+					echo "<script>alert('操作成功。'); location.href='$url';</script>";
 					exit;
 				} else {
 					echo "<script>alert('关闭工单失败');</script>";
