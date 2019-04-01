@@ -92,7 +92,7 @@
         <div class="maincontentinner">
             <div class="messagepanel">
                 <div class="messagecontent">
-                    <div class="messageright" style="min-height:800px;">
+                    <div class="messageright">
                         <div class="messageview" style="<if condition="$data.status eq 3">height:100%</if>">
                             <div class="btn-group pull-right">
                                 <!-- <if condition="$data.limits eq 3 and $data.case eq '1'">
@@ -187,35 +187,31 @@
                                     <p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p>
                                 </if>
                             </div><!--msgbody-->
-                            
-                            <volist name='record' id="vo">
-                                <div style="">
-                                    <div class="msgauthor"  style="padding:0 0;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;width:50%;<if condition="$vo['limits'] eq 2">margin-left:49.85%;</if>">
-                                    
+
+                            <div class="msg-reply-wrap">
+                                <volist name='record' id="vo">
+                                    <div class="msgauthor"  style="padding:0 0 10px;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;">
                                         <if condition="$vo['limits'] eq 2">
-                                            <h3 class="widgettitle" style="background:#FF8888;">回复<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
+                                            <h3 class="widgettitle" style="background:#27b34b;">{$vo.uname}  回复<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
                                         </if>
                                         
                                         <if condition="$vo['limits'] eq 3">
-                                            <h3 class="widgettitle" style="background:#666;">评论<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
+                                            <h3 class="widgettitle" style="background:#666;">{$vo.uname}  评论<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
                                         </if>
                                         
                                         <div >
-                                            <div class="authorinfo"  style="margin:15px 0px 0px 15px;">
-                                                {$vo.uname}
-                                            </div><!--authorinfo-->
-                                            
-                                            <div class="msgbody"  style="margin-left:25px;">
+                                            <div class="msgbody">
                                                 {$vo.g_reply}
                                             </div>
                                         </div>
                                     </div><!--msgauthor-->
-                                </div>
-                                
-                            </volist>
+                                </volist>
+                            </div>
+                            
+                            </div>
+
                             <div name="one"></div>
-                            <br/>
-                            <br/>
+
                             <if condition="$main.wc_sataus eq '4'">
                                 <div class="tip-comment-btn" data-toggle="modal" data-target="#modal_comment">
                                     请评价工单
@@ -416,16 +412,6 @@
             domUtils.removeAttributes(btn, ["disabled"]);
         }
     }
-    
-
-    function keyevent(){
-        if(event.keyCode==13){
-        	if($("#sou").val() != ""){
-        		location.href=$("#url").val()+"/sou/"+$("#sou").val();
-        	}
-        }
-    }
-    document.onkeydown = keyevent;
 
 </script>
 </body>

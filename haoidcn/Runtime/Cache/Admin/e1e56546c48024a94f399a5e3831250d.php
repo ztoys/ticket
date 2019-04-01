@@ -175,7 +175,7 @@
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
-            <li>处理工单</li>
+            <li>未指派工单</li>
         </ul>
 		
 		<!-- head end -->
@@ -193,60 +193,34 @@
                         </ul> -->
                     </div>
                     <div class="messagecontent">
-                        <?php if($limits == '3'): ?><table class="table table-bordered table-fixed table-tr-click">
-                                <tr>
-                                    <th width="10%">编号</th>
-                                    <th width="50%">标题</th>
-                                    <th width="10%">状态</th>
-                                    <th width="10%">负责人</th>
-                                    <th width="20%">提交时间</th>
-                                </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?id='.$vo['id']);?>'">
-                                        <td><?php echo ($vo["id"]); ?></td>
-                                        <td><?php echo ($vo["title"]); ?></td>
-                                        <td>
-                                            <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
-                                                <?php case "2": ?>受理中<?php break;?>
-                                                <?php case "4": ?>待评价<?php break;?>
-                                                <?php case "3": ?>已关闭<?php break;?>
-                                                <?php case "-1": ?>草稿箱<?php break; endswitch;?>
-                                        </td>
-                                        <td>
-                                            <?php echo ((isset($vo["dname"]) && ($vo["dname"] !== ""))?($vo["dname"]):" -- "); ?>
-                                        </td>
-                                        <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
-                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </table><?php endif; ?>
-
-                        <?php if($limits == '2'): ?><table class="table table-bordered table-fixed table-tr-click">
-                                <tr>
-                                    <th width="10%">编号</th>
-                                    <th width="40%">标题</th>
-                                    <th width="10%">状态</th>
-                                    <th width="10%">工单发起人</th>
-                                    <th width="15%">创建日期</th>
-                                    <?php if($data["case"] != 'all'): ?><th width="15%">受理时间</th><?php endif; ?>
-                                </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?id='.$vo['id']);?>'">
-                                        <td><?php echo ($vo["id"]); ?></td>
-                                        <td><?php echo ($vo["title"]); ?></td>
-                                        <td>
-                                            <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
-                                                <?php case "2": ?>受理中<?php break;?>
-                                                <?php case "4": ?>待评价<?php break;?>
-                                                <?php case "3": ?>已关闭<?php break;?>
-                                                <?php case "-1": ?>草稿箱<?php break; endswitch;?>
-                                        </td>
-                                        <td>
-                                            <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
-                                        </td>
-                                        <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
-                                        <?php if($data["case"] != 'all'): if($vo['accdate'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["accdate"])); ?></td>
-                                            <?php else: ?>
-                                                <td>--</td><?php endif; endif; ?>
-                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                            </table><?php endif; ?>
-
+                        <table class="table table-bordered table-fixed table-tr-click">
+                            <tr>
+                                <th width="10%">编号</th>
+                                <th width="40%">标题</th>
+                                <th width="10%">状态</th>
+                                <th width="10%">工单发起人</th>
+                                <th width="15%">创建日期</th>
+                                <?php if($data["case"] != 'all'): ?><th width="15%">受理时间</th><?php endif; ?>
+                            </tr>
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.open('<?php echo U('Admin/ticket_detail?id='.$vo['id']);?>', '_blank')">
+                                    <td><?php echo ($vo["id"]); ?></td>
+                                    <td><?php echo ($vo["title"]); ?></td>
+                                    <td>
+                                        <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
+                                            <?php case "2": ?>受理中<?php break;?>
+                                            <?php case "4": ?>待评价<?php break;?>
+                                            <?php case "3": ?>已关闭<?php break;?>
+                                            <?php case "-1": ?>草稿箱<?php break; endswitch;?>
+                                    </td>
+                                    <td>
+                                        <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
+                                    </td>
+                                    <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
+                                    <?php if($data["case"] != 'all'): if($vo['accdate'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["accdate"])); ?></td>
+                                        <?php else: ?>
+                                            <td>--</td><?php endif; endif; ?>
+                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                        </table> 
                     </div><!--messagecontent-->
 
                 </div><!--messagepanel-->
@@ -266,160 +240,5 @@
     
 </div><!--mainwrapper-->
 
-<!-- 评价模态框 -->
-<div class="modal fade modal-comment" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-        <form action="<?php echo U('Client/close_ticket');?>" method="post" enctype="multipart/form-data">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        工单评价
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
-                    <div style="zoom:1;">
-                        <span>请进行服务评价</span><span style="float:right">评价后将自动关闭工单</span>
-                    </div>
-                    <p style="margin-top: 20px;">
-                        <label class="left label-title">问题是否已经解决</label>
-                        <div class="cell">
-                            <input type="radio" name="resolve" value="1"> 是
-                            <input type="radio" name="resolve" value="0"> 否
-                        </div>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <label class="left label-title">服务评价</label>
-                        <div class="cell">
-                            <input type="radio" name="assess" value="3"> 非常满意
-                            <input type="radio" name="assess" value="2"> 满意
-                            <input type="radio" name="assess" value="1"> 一般
-                            <input type="radio" name="assess" value="0"> 不满意
-                        </div>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" class="btn btn-primary">
-                        提交
-                    </button>
-                </div>
-            </div><!-- /.modal-content -->
-        </form>
-	</div><!-- /.modal -->
-</div>
-
-<script type="text/javascript">
-
-    //实例化编辑器
-    var um = UM.getEditor('myEditor');
-    um.addListener('blur',function(){
-        $('#focush2').html('编辑器失去焦点了')
-    });
-    um.addListener('focus',function(){
-        $('#focush2').html('')
-    });
-    //按钮的操作
-    function insertHtml() {
-        var value = prompt('插入html代码', '');
-        um.execCommand('insertHtml', value)
-    }
-    function isFocus(){
-        alert(um.isFocus())
-    }
-    function doBlur(){
-        um.blur()
-    }
-    function createEditor() {
-        enableBtn();
-        um = UM.getEditor('myEditor');
-    }
-    function getAllHtml() {
-        alert(UM.getEditor('myEditor').getAllHtml())
-    }
-    function getContent() {
-        var arr = [];
-        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-        arr.push("内容为：");
-        arr.push(UM.getEditor('myEditor').getContent());
-        alert(arr.join("\n"));
-    }
-    function getPlainTxt() {
-        var arr = [];
-        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
-        arr.push("内容为：");
-        arr.push(UM.getEditor('myEditor').getPlainTxt());
-        alert(arr.join('\n'))
-    }
-    function setContent(isAppendTo) {
-        var arr = [];
-        arr.push("使用editor.setContent('欢迎使用umeditor')方法可以设置编辑器的内容");
-        UM.getEditor('myEditor').setContent('欢迎使用umeditor', isAppendTo);
-        alert(arr.join("\n"));
-    }
-    function setDisabled() {
-        UM.getEditor('myEditor').setDisabled('fullscreen');
-        disableBtn("enable");
-    }
-
-    function setEnabled() {
-        UM.getEditor('myEditor').setEnabled();
-        enableBtn();
-    }
-
-    function getText() {
-        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
-        var range = UM.getEditor('myEditor').selection.getRange();
-        range.select();
-        var txt = UM.getEditor('myEditor').selection.getText();
-        alert(txt)
-    }
-
-    function getContentTxt() {
-        var arr = [];
-        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
-        arr.push("编辑器的纯文本内容为：");
-        arr.push(UM.getEditor('myEditor').getContentTxt());
-        alert(arr.join("\n"));
-    }
-    function hasContent() {
-        var arr = [];
-        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-        arr.push("判断结果为：");
-        arr.push(UM.getEditor('myEditor').hasContents());
-        alert(arr.join("\n"));
-    }
-    function setFocus() {
-        UM.getEditor('myEditor').focus();
-    }
-    function deleteEditor() {
-        disableBtn();
-        UM.getEditor('myEditor').destroy();
-    }
-    function disableBtn(str) {
-        var div = document.getElementById('btns');
-        var btns = domUtils.getElementsByTagName(div, "button");
-        for (var i = 0, btn; btn = btns[i++];) {
-            if (btn.id == str) {
-                domUtils.removeAttributes(btn, ["disabled"]);
-            } else {
-                btn.setAttribute("disabled", "true");
-            }
-        }
-    }
-    function enableBtn() {
-        var div = document.getElementById('btns');
-        var btns = domUtils.getElementsByTagName(div, "button");
-        for (var i = 0, btn; btn = btns[i++];) {
-            domUtils.removeAttributes(btn, ["disabled"]);
-        }
-    }
-
-
-</script>
 </body>
 </html>

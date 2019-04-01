@@ -89,8 +89,8 @@ jQuery(document).ready(function(){
                     <div class="userloggedinfo">
                         <div class="userinfo">
                             <h5>
-                                <?php echo (session('userid')); ?>
-                                <small><?php echo (session('email')); ?></small>
+                                <span><?php echo (session('userid')); ?></span>
+                                <!-- <small><?php echo (session('email')); ?></small> -->
                                 <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a>
                                 <a style="color: #FFF;" href="<?php echo U('Index/exit_t');?>">退出</a>
                             </h5>
@@ -115,13 +115,10 @@ jQuery(document).ready(function(){
 				
                 <!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
                 
-                <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a>
-                    <ul <?php echo ($data["user_block"]); ?>>
-                        <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>">群组管理</a></li>
-                        <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>">成员管理</a></li>
-                    </ul>
-                </li>
-
+                <!-- <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a></li> -->
+                <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li>
+                <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>"><span class="iconfa-user"></span>成员管理</a></li>
+                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span> 未指派工单</a></li>
                 <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>

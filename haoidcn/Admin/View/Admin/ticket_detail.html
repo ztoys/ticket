@@ -262,11 +262,12 @@
                             <div class="msg-reply-wrap">
                                 <volist name='record' id="vo">
                                     <div class="msgauthor"  style="padding:0 0 10px;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;">
+                                    
                                         <if condition="$vo['limits'] eq 2">
                                             <h3 class="widgettitle" style="background:#27b34b;">{$vo.uname}  回复<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
                                         </if>
                                         
-                                        <if condition="$vo['limits'] eq 3">
+                                        <if condition="$vo['limits'] eq 3 or $vo['limits'] eq 1">
                                             <h3 class="widgettitle" style="background:#666;">{$vo.uname}  评论<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
                                         </if>
                                         
@@ -280,11 +281,11 @@
                             </div>
 
                             <div name="one"></div>
-                        
+
                             <if condition="$data.status neq '3'">	
                                 <div class="msgreply" >
                                     <hr>
-                                    <form id="form_ticket" action="{:U('Client/submit_ticket_agent')}" method="post" enctype="multipart/form-data">
+                                    <form id="form_ticket" action="{:U('Admin/submit_ticket_agent')}" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="ticket_agent" id="form_agent">
                                         <input type="hidden" name="ticket_agent_name" id="form_agent_name">
                                         <input type="hidden" name="ticket_status" id="form_ticket_status">
@@ -470,7 +471,6 @@
             domUtils.removeAttributes(btn, ["disabled"]);
         }
     }
-
 
 </script>
 </body>

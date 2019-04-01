@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 
 use Think\Controller;
+use Admin\Model\WrecordModel;
 
 class AdminController extends CommonController {
 	
@@ -119,6 +120,174 @@ class AdminController extends CommonController {
 			echo "<meta charset='utf-8' /><script>alert('删除成员 $id 成功'); location.href='user_manage.html';</script>";
 		} else {
 			echo "<meta charset='utf-8' /><script>alert('删除成员 $id 失败');</script>";
+		}
+	}
+
+	//用户管理 - 未指派工单
+	public function ticket(){
+		$limits = I("session.limits");		//权限    2-售后	3-会员
+		$id = I("session.uid");				//当前用户id
+		$status = I("get.case");			//工单状态
+		
+		//搜索操作
+		if(I("get.sou")){
+			$title = I("get.sou");
+			$where = $where + " and w.title like '%$title%'";
+		}
+		
+		//列表显示数据	-- 分页
+		if($limits == 1 && $status == 'all'){
+			$db_work = "work";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname";
+			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
+			$db_order = "puddate desc";
+
+			$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+			$this->assign('list',$list);
+		}
+		
+		
+		//列表选中显示样式
+		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
+		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,
+		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
+		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
+		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
+		$this->assign('main',$main);
+
+		$data = array(
+				'user_one' => "active",
+				'user_block' => "style='display:block'",
+				'user_block03' => "class='active'",
+				'unread'		=>	"unread",
+				"selected"		=>	"selected",
+				'unread'		=>	"unread",
+				'limits'		=>	$limits,
+				'class'			=>	'class="active"',
+				'case'			=>	$status,
+				"active02"		=>	"class='active'",
+				'url'			=>	__ROOT__."/index.php/Admin/ticket/case/".$status,
+				'sou'			=>	'&sou='.I("get.sou"),
+		);
+		$this->assign('data',$data);
+		
+		$this->display();
+	}
+
+	//用户管理 - 未指派工单 -- 详细
+	public function ticket_detail(){
+		$limits = I("session.limits");		//权限    2-售后	3-会员
+		$id = I("session.uid");				//当前用户id
+		$aid = I("get.id");			//工单id
+
+		$work_detail = $this->sel_sql_single("work", "id='$aid'");
+		if($work_detail) {
+			$status = $work_detail['wc_sataus'];			//工单状态
+		}
+
+		//列表选中显示样式
+		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
+		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus, w.did w_did,
+		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
+		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
+		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
+		$this->assign('main',$main);
+		
+		//对话内容显示
+		$record = D("addwork as a")->field("u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid")->join("LEFT JOIN ".C('DB_PREFIX')."user as u ON a.uid=u.id")->where("a.pid='$aid'")->order("repdate asc")->select();
+		$this->assign('record',$record);
+
+		//显示评价
+		if($status == "3") {
+			$comment = $this->sel_sql_single("evaluation", "work_id='$aid'");
+			$this->assign('comment',$comment);
+		}
+
+		//工单事件
+		$wrecord = new WrecordModel();
+		$record_list = $wrecord->getWorkRecord($aid);
+
+		//受理人列表
+		$user_info = $this->sel_sql_single("user", "id='$id'");
+		$group_id = $user_info['u_status'];
+		$list_group_user = $this->sel_sql("user", "limits='2'");
+		$this->assign('list_group_user', $list_group_user);
+		
+		$data = array(
+			'unread'		=>	"unread",
+			"selected"		=>	"selected",
+			'unread'		=>	"unread",
+			'aid'			=>	$aid,
+			'limits'		=>	$limits,
+			'class'			=>	'class="active"',
+			'case'			=>	$status,
+			'status'		=>  $status,
+			"active02"		=>	"class='active'",
+			'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
+			'sou'			=>	'&sou='.I("get.sou"),
+			'record'		=>  $record_list,
+		);
+		$this->assign('data',$data);
+		
+		$this->display();
+	}
+
+	//用户管理 -未指派工单 -- 详细 -- 提交
+	public function submit_ticket_agent() {
+		$id = I("session.uid");				//当前用户id
+		$wid = I('post.pid');
+		$ticket_agent_name = I("post.ticket_agent_name");
+		$ticket_status_name = I("post.ticket_status_name");
+		$url = __ROOT__."/index.php/Admin/ticket_detail/id/".$wid;
+
+		$ticket_agent = I('post.ticket_agent');
+		$ticket_status = I('post.ticket_status');
+		if($ticket_agent == '-1') {
+			$ticket_agent = null;
+		}
+
+		$ticket_info = $this->sel_sql_single('work', "id='$wid'");
+		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status)) {
+			$ticket_data = array(
+				'did' => $ticket_agent,
+				'wc_sataus' => $ticket_status,
+			);
+			$this->update_sql('work', "id='$wid'", $ticket_data);
+	
+			//增加操作记录 -- 工单状态修改
+			$wrecord = new WrecordModel();
+			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态【受理人：'.$ticket_agent_name.'】【工单状态：'.$ticket_status_name.'】。');
+		}
+		
+		if(I('post.editorValue') != ""){
+			$data = array(
+					'g_reply'		=>	htmlspecialchars_decode(I('post.editorValue')),
+					'repdate'		=>	time(),
+					'uid'			=>	$id,
+					'pid'			=>	$wid,
+			);
+			$result = $this->inser_sql("addwork",$data);
+			if($result){
+
+				//增加操作记录 -- 工单评论
+				$wrecord = new WrecordModel();
+				$wrecord->addWorkRecord($wid, $id, time(), '评论了工单：'.htmlspecialchars_decode(I('post.editorValue')));
+				// $E = Email($main["s_email"],"工单追加通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已有最新追加，请及时查看，并且处理。");
+				// $M = Mobile($main["s_phone"],'亲爱的：'.$main['s_uname'].'同事。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已有最新追加。请及时查看，并且处理。');
+
+				//修改回复状态
+				$replay_data = array(
+					'tz_status' => '1',
+				);
+				$reply_sql = $this->update_sql("work","id=".$wid, $replay_data);
+
+				echo "<script>alert('发送成功！'); location.href='$url';</script>";
+				exit;
+			}
+			exit;
+		} else {
+			echo "<script>alert('修改成功！'); location.href='$url';</script>";
+			exit;
 		}
 	}
 
@@ -560,4 +729,10 @@ class AdminController extends CommonController {
 		$result = D($model)->where($where)->find();
 		return $result;
 	}
+
+	//左连接查询
+	public function left_join_sql($model, $alias, $field, $join, $where, $orders){
+		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->select();
+	}
+
 }

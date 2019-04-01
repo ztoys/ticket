@@ -143,8 +143,8 @@
                     <div class="userloggedinfo">
                         <div class="userinfo">
                             <h5>
-                                <?php echo (session('userid')); ?>
-                                <small><?php echo (session('email')); ?></small>
+                                <span><?php echo (session('userid')); ?></span>
+                                <!-- <small><?php echo (session('email')); ?></small> -->
                                 <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a>
                                 <a style="color: #FFF;" href="<?php echo U('Index/exit_t');?>">退出</a>
                             </h5>
@@ -169,13 +169,10 @@
 				
                 <!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
                 
-                <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a>
-                    <ul <?php echo ($data["user_block"]); ?>>
-                        <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>">群组管理</a></li>
-                        <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>">成员管理</a></li>
-                    </ul>
-                </li>
-
+                <!-- <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a></li> -->
+                <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li>
+                <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>"><span class="iconfa-user"></span>成员管理</a></li>
+                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span> 未指派工单</a></li>
                 <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>
@@ -218,7 +215,7 @@
         <div class="maincontentinner">
             <div class="messagepanel">
                 <div class="messagecontent">
-                    <div class="messageright" style="min-height:800px;">
+                    <div class="messageright">
                         <div class="messageview" style="<?php if($data["status"] == 3): ?>height:100%<?php endif; ?>">
                             <div class="btn-group pull-right">
                                 <!-- <?php if($data["limits"] == 3 and $data["case"] == '1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
@@ -279,28 +276,25 @@
                                     </div><?php endif; ?>	
                                 <?php if($data["limits"] == 3 and $data["case"] == 'zhong'): ?><p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p><?php endif; ?>
                             </div><!--msgbody-->
-                            
-                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div style="">
-                                    <div class="msgauthor"  style="padding:0 0;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;width:50%;<?php if($vo['limits'] == 2): ?>margin-left:49.85%;<?php endif; ?>">
-                                    
-                                        <?php if($vo['limits'] == 2): ?><h3 class="widgettitle" style="background:#FF8888;">回复<span class="date pull-right"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span></h3><?php endif; ?>
+
+                            <div class="msg-reply-wrap">
+                                <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor"  style="padding:0 0 10px;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;">
+                                        <?php if($vo['limits'] == 2): ?><h3 class="widgettitle" style="background:#27b34b;"><?php echo ($vo["uname"]); ?>  回复<span class="date pull-right"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span></h3><?php endif; ?>
                                         
-                                        <?php if($vo['limits'] == 3): ?><h3 class="widgettitle" style="background:#666;">评论<span class="date pull-right"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span></h3><?php endif; ?>
+                                        <?php if($vo['limits'] == 3): ?><h3 class="widgettitle" style="background:#666;"><?php echo ($vo["uname"]); ?>  评论<span class="date pull-right"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span></h3><?php endif; ?>
                                         
                                         <div >
-                                            <div class="authorinfo"  style="margin:15px 0px 0px 15px;">
-                                                <?php echo ($vo["uname"]); ?>
-                                            </div><!--authorinfo-->
-                                            
-                                            <div class="msgbody"  style="margin-left:25px;">
+                                            <div class="msgbody">
                                                 <?php echo ($vo["g_reply"]); ?>
                                             </div>
                                         </div>
-                                    </div><!--msgauthor-->
-                                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </div><!--msgauthor--><?php endforeach; endif; else: echo "" ;endif; ?>
+                            </div>
+                            
+                            </div>
+
                             <div name="one"></div>
-                            <br/>
-                            <br/>
+
                             <?php if($main["wc_sataus"] == '4'): ?><div class="tip-comment-btn" data-toggle="modal" data-target="#modal_comment">
                                     请评价工单
                                 </div><?php endif; ?>
@@ -499,16 +493,6 @@
             domUtils.removeAttributes(btn, ["disabled"]);
         }
     }
-    
-
-    function keyevent(){
-        if(event.keyCode==13){
-        	if($("#sou").val() != ""){
-        		location.href=$("#url").val()+"/sou/"+$("#sou").val();
-        	}
-        }
-    }
-    document.onkeydown = keyevent;
 
 </script>
 </body>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{$main.w_title}</title>
+<!-- header binge -->
+<link href="{$Think.config.URL}baidubianjiqi/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+
+<include file="Public/header" />
+
+<script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
+
+<script type="text/javascript" src="{$Think.config.URL}baidubianjiqi/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="{$Think.config.URL}baidubianjiqi/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="{$Think.config.URL}baidubianjiqi/umeditor.min.js"></script>
+<script type="text/javascript" src="{$Think.config.URL}baidubianjiqi/lang/zh-cn/zh-cn.js"></script>
+
+
+<style type="text/css">
+	a:hover{
+		text-decoration:none;
+	}
+    .comments li:last-child .comment p{margin-top:15px;}
+    .modal-comment form input[type='radio']{
+        vertical-align: -2px;
+    }
+    .modal-comment form .label-title{
+        display: inline-block;
+        width: 150px;
+    }    
+    .modal-comment form input[type='radio']{
+        margin-left: 10px;
+    }    
+</style>
+</head>
+
+<body>
+
+<div class="mainwrapper">
+    
+    <!-- header binge -->
+	<include file="Public/head" />
+
+	<!-- header end -->
+    
+    <div class="rightpanel">
+        
+         <!-- head binge -->
+        
+			<include file="Public/nav" name='未指派工单'/>
+		
+		<!-- head end -->
+		
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="messagepanel">
+                    <div class="messagemenu" style="border-top: 1px solid #0866c6;">
+                        <!-- <ul>
+                            <li class="back"><a><span class="iconfa-chevron-left"></span > Back</a></li>
+                            <li <if condition="$data.case eq 'dai'">{$data.class}</if>><a href="{:U('Client/messages?case=dai')}" ><span></span> 待处理的工单</a></li>
+                            <li <if condition="$data.case eq 'zhong'">{$data.class}</if>><a href="{:U('Client/messages?case=zhong')}"><span class="iconfa-inbox"></span> 处理中的工单</a></li>
+                            <li <if condition="$data.case eq 'yi'">{$data.class}</if>><a href="{:U('Client/messages?case=yi')}"><span class="iconfa-edit"></span> 已关闭的工单</a></li>
+                            <if condition="$data.limits eq '3'">
+                            	<li <if condition="$data.case eq 'cao'">{$data.class}</if>><a href="{:U('Client/messages?case=cao')}"><span class="iconfa-edit"></span> 草稿箱</a></li>
+                            </if>
+                        </ul> -->
+                    </div>
+                    <div class="messagecontent">
+                        <table class="table table-bordered table-fixed table-tr-click">
+                            <tr>
+                                <th width="10%">编号</th>
+                                <th width="40%">标题</th>
+                                <th width="10%">状态</th>
+                                <th width="10%">工单发起人</th>
+                                <th width="15%">创建日期</th>
+                                <if condition="$data.case neq 'all'">
+                                    <th width="15%">受理时间</th>
+                                </if>
+                            </tr>
+                            <volist name="list" id="vo">
+                                <tr onclick="javascript:window.open('{:U(\'Admin/ticket_detail?id=\'.$vo[\'id\'])}', '_blank')">
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.title}</td>
+                                    <td>
+                                        <switch name="vo['wc_sataus']">
+                                            <case value="1">待处理</case>
+                                            <case value="2">受理中</case>
+                                            <case value="4">待评价</case>
+                                            <case value="3">已关闭</case>
+                                            <case value="-1">草稿箱</case>
+                                        </switch>
+                                    </td>
+                                    <td>
+                                        {$vo.uname|default=" -- "}
+                                    </td>
+                                    <td>{$vo.puddate|date="Y-m-d H:i:s",###}</td>
+                                    <if condition="$data.case neq 'all'">
+                                        <if condition="$vo['accdate'] neq ''">
+                                            <td>{$vo.accdate|date="Y-m-d H:i:s",###}</td>
+                                        <else/>
+                                            <td>--</td>
+                                        </if>
+                                    </if>
+                                </tr>
+                            </volist>
+                        </table> 
+                    </div><!--messagecontent-->
+
+                </div><!--messagepanel-->
+                
+               <!-- footer binge -->
+				<include file="Public/footer" />
+				
+				<!-- footer end -->
+                
+                
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+
+</body>
+</html>

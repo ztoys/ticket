@@ -123,7 +123,7 @@ a,a:hover,a:link,a:active,a:focus,
 .nav-list > li > a { color: #666; }
 .tabs-left > .nav-tabs > li,
 .tabs-right > .nav-tabs > li { border-color: rgba(255,255,255,0.2); }
-.leftmenu .nav-tabs.nav-stacked > li > a { border-color: #232323 !important; }
+.leftmenu .nav-tabs.nav-stacked > li > a { border-color: #282828 !important; }
 .leftmenu .nav-tabs.nav-stacked > li.active > a { border-color: rgba(0,0,0,0.1) !important; }
 
 /* ie fix */
