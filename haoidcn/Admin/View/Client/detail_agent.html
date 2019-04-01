@@ -90,7 +90,24 @@
         position: absolute;
         left: -10px;
         top: 12px;
+    } 
+    .comment-wrap {
+        padding: 10px 20px;
+        border-bottom: 1px solid #DDD;
+    }
+    .comment-wrap .comment-title{
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .comment-wrap .comment-item+.comment-item{
+        margin-top: 10px;
+    }
+    .comment-wrap .comment-item-label{
+        border-left: 2px solid #999;
+        padding-left: 10px;
+        margin-right: 10px;
     }    
+       
 </style>
 </head>
 
@@ -183,34 +200,34 @@
                             </h1>
                             
                             <!-- comment -->
-                            <if condition="$main.sataus eq '3'">
+                            <if condition="$main.wc_sataus eq '3'">
                                 <div class="comment-wrap">
-                                    <p>评价</p>
-                                    <p>
-                                        <span>问题是否已经解决</span>
+                                    <p class="comment-title">工单评价</p>
+                                    <p class="comment-item">
+                                        <span class="comment-item-label">问题是否已经解决</span>
                                         <switch name="comment.resolve">
                                             <case value="1">
-                                                <span>是</span>
+                                                <span class="label">是</span>
                                             </case>
                                             <case value="0">
-                                                <span>否</span>
+                                                <span class="label">否</span>
                                             </case>
                                         </switch>
                                     </p>
-                                    <p>
-                                        <span>服务评价</span>
+                                    <p class="comment-item">
+                                        <span class="comment-item-label">服务评价</span>
                                         <switch name="comment.assess">
                                             <case value="3">
-                                                <span>非常满意</span>
+                                                <span class="label">非常满意</span>
                                             </case>
                                             <case value="2">
-                                                <span>满意</span>
+                                                <span class="label">满意</span>
                                             </case>
                                             <case value="1">
-                                                <span>一般</span>
+                                                <span class="label">一般</span>
                                             </case>
                                             <case value="0">
-                                                <span>不满意</span>
+                                                <span class="label">不满意</span>
                                             </case>
                                         </switch>
                                     </p>

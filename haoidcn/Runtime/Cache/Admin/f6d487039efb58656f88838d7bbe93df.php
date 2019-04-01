@@ -67,6 +67,23 @@
         border-left: 1px solid #0866c6;
     }
     .comments li:last-child .comment p{margin-top:15px;}
+    .comment-wrap {
+        padding: 10px 20px;
+        border-bottom: 1px solid #DDD;
+    }
+    .comment-wrap .comment-title{
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .comment-wrap .comment-item+.comment-item{
+        margin-top: 10px;
+    }
+    .comment-wrap .comment-item-label{
+        border-left: 2px solid #999;
+        padding-left: 10px;
+        margin-right: 10px;
+    }    
+
     .modal-comment form input[type='radio']{
         vertical-align: -2px;
     }
@@ -212,18 +229,18 @@
                             
                             <!-- comment -->
                             <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
-                                    <p>评价</p>
-                                    <p>
-                                        <span>问题是否已经解决</span>
-                                        <?php switch($comment["resolve"]): case "1": ?><span>是</span><?php break;?>
-                                            <?php case "0": ?><span>否</span><?php break; endswitch;?>
+                                    <p class="comment-title">工单评价</p>
+                                    <p class="comment-item">
+                                        <span class="comment-item-label">问题是否已经解决</span>
+                                        <?php switch($comment["resolve"]): case "1": ?><span class="label">是</span><?php break;?>
+                                            <?php case "0": ?><span class="label">否</span><?php break; endswitch;?>
                                     </p>
-                                    <p>
-                                        <span>服务评价</span>
-                                        <?php switch($comment["assess"]): case "3": ?><span>非常满意</span><?php break;?>
-                                            <?php case "2": ?><span>满意</span><?php break;?>
-                                            <?php case "1": ?><span>一般</span><?php break;?>
-                                            <?php case "0": ?><span>不满意</span><?php break; endswitch;?>
+                                    <p class="comment-item">
+                                        <span class="comment-item-label">服务评价</span>
+                                        <?php switch($comment["assess"]): case "3": ?><span class="label">非常满意</span><?php break;?>
+                                            <?php case "2": ?><span class="label">满意</span><?php break;?>
+                                            <?php case "1": ?><span class="label">一般</span><?php break;?>
+                                            <?php case "0": ?><span class="label">不满意</span><?php break; endswitch;?>
                                     </p>
                                 </div><?php endif; ?>
                             <!-- comment end -->
