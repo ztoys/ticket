@@ -5,7 +5,7 @@ use Think\Model;
 class UserModel extends Model {
   
     public function loginTokenDecode($token) {
-        $url = "http://10.0.0.224:7080/cgi/identify?token=$token";
+        $url = "http://10.0.0.51:7080/cgi/identify?token=$token";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
