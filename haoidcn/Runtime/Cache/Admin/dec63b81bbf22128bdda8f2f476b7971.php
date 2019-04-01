@@ -285,7 +285,7 @@
                 <div class="modal-body">
                     <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
                     <div style="zoom:1;">
-                        <span>请进行服务评价</span><span style="float:right">评价后将自动关闭</span>
+                        <span>请进行服务评价</span><span style="float:right">评价后将自动关闭工单</span>
                     </div>
                     <p style="margin-top: 20px;">
                         <label class="left label-title">问题是否已经解决</label>

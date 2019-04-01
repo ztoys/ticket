@@ -83,6 +83,23 @@
         padding-left: 10px;
         margin-right: 10px;
     }    
+    .messageview{
+        position: relative;
+    }
+    .tip-comment-btn{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+        line-height: 30px;
+        color: #FFF;
+        text-align: center;
+        background: #0766c6;
+        cursor: pointer;
+        border-top: 1px solid #0d60b3;
+        box-shadow: 0 -2px 20px rgba(7, 102, 198, .3);
+    }
 
     .modal-comment form input[type='radio']{
         vertical-align: -2px;
@@ -284,6 +301,10 @@
                             <div name="one"></div>
                             <br/>
                             <br/>
+                            <?php if($main["wc_sataus"] == '4'): ?><div class="tip-comment-btn" data-toggle="modal" data-target="#modal_comment">
+                                    请评价工单
+                                </div><?php endif; ?>
+                            
                         </div><!--messageview-->
                         <?php if($data["status"] != '3'): ?><div class="msgreply" >
                                 <form id="form01" action="<?php echo U('Client/detail');?>" method="post" enctype="multipart/form-data">
@@ -333,7 +354,7 @@
                     <input type="hidden" name="resolve_text" id="resolve_text">
                     <input type="hidden" name="assess_text" id="assess_text">
                     <div style="zoom:1;">
-                        <span>请进行服务评价</span><span style="float:right">评价后将自动关闭</span>
+                        <span>请进行服务评价</span><span style="float:right">评价后将自动关闭工单</span>
                     </div>
                     <p style="margin-top: 20px;">
                         <label class="left label-title">问题是否已经解决</label>
