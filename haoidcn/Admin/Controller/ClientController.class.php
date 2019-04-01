@@ -178,7 +178,7 @@ class ClientController extends CommonController {
 
 			if ($status == "all") {
 				// 未指派工单
-				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.did is null and w.wc_sataus<>'3' $where", $db_order);
+				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
 			} elseif ($status == "manned") {
 				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
 			} else {
