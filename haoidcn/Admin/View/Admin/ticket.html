@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{$main.w_title}</title>
+<title>工单系统</title>
 <!-- header binge -->
 <link href="{$Think.config.URL}baidubianjiqi/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 
@@ -79,7 +79,7 @@
                                 </if>
                             </tr>
                             <volist name="list" id="vo">
-                                <tr onclick="javascript:window.open('{:U(\'Admin/ticket_detail?id=\'.$vo[\'id\'])}', '_blank')">
+                                <tr onclick="javascript:window.location.href='{:U(\'Admin/ticket_detail?id=\'.$vo[\'id\'])}'">
                                     <td>{$vo.id}</td>
                                     <td>{$vo.title}</td>
                                     <td>

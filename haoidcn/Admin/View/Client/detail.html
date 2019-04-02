@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{$main.w_title}</title>
+<title>工单系统</title>
 <!-- header binge -->
 <link href="{$Think.config.URL}baidubianjiqi/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 
@@ -101,21 +101,21 @@
                                         <a href="javascript:void();" onclick="del('messages-{$main.w_id}');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a>
                                 </if> -->
                                 
-                                <if condition="$data.limits eq 2 and $data.case eq '1'">
+                                <!-- <if condition="$data.limits eq 2 and $data.case eq '1'">
                                     <a href="{:U('Client/messages?type=chu&wc_sataus='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a>
-                                </if>
+                                </if> -->
 
-                                <if condition="$data.limits eq 2 and $data.case eq '2'">
+                                <!-- <if condition="$data.limits eq 2 and $data.case eq '2'">
                                     <a href="{:U('Client/messages?type=ping&wc_sataus='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a>
-                                </if>
+                                </if> -->
                                 
                                 <if condition="$data.limits eq 3 and $data.status neq '3'">
                                     <!-- <a href="{:U('Client/messages?type=wang&wc_sataus='.$main['w_id'])}" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
-                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button>
+                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-danger btn-sm" style="color:#fff;">关闭工单</button>
                                 </if>
-                                <if condition="$data.limits eq 3 and $data.case eq '-1'">
+                                <!-- <if condition="$data.limits eq 3 and $data.case eq '-1'">
                                     <a href="{:U('Client/forms?type=xiu&forms='.$main['w_id'])}" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a>
-                                </if>
+                                </if> -->
                             </div>
                             <h1 class="subject" style="border-bottom: 1px solid #ddd;">
                                 <div>

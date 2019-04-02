@@ -3,6 +3,7 @@ namespace Admin\Controller;
 
 use Think\Controller;
 use Admin\Model\WrecordModel;
+use Admin\Model\WorkModel;
 
 class ClientController extends CommonController {
 	
@@ -15,6 +16,9 @@ class ClientController extends CommonController {
 			'x_status'		=>	I('get.status'),
 		);
 		$this->assign('data',$data);
+
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
 		
 		if(IS_POST){
 			$string = I("post.title");
@@ -170,6 +174,9 @@ class ClientController extends CommonController {
 			
 			$this->assign('list',$list);
 			
+			$ticket_count = $this->getWorkCount();
+			$this->assign('ticket_count', $ticket_count);
+
 		}else if($limits == 2){
 			$db_work = "work";
 			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname";
@@ -186,6 +193,10 @@ class ClientController extends CommonController {
 				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
 			}			
 			$this->assign('list',$list);
+
+			$ticket_count = $this->getWorkCount();
+			$this->assign('ticket_count', $ticket_count);
+
 		}else if($limits == 1){
 			$list = $this->sel_sql("work","wc_sataus='$sta_nb' $where","puddate asc");
 			$this->assign('list',$list);
@@ -560,6 +571,23 @@ class ClientController extends CommonController {
 				);
 				$reply_sql = $this->update_sql("work","id=".$wid, $replay_data);
 
+				//如果没有受理人，自动成为该受理人
+				$ticket_did = $ticket_info['did'];
+				if ($ticket_did == 0 || !isset($ticket_did)) {
+					$ticket_data = array(
+						'did' => $id,
+						'wc_sataus' => '2',
+					);
+					$ticket_result = $this->update_sql('work', "id='$wid'", $ticket_data);
+					if ($ticket_result) {
+						//增加操作记录 -- 工单状态修改
+						$user_name_info = $this->sel_sql_single("user", "id=$id");
+						$user_name = $user_name_info['uname'];
+						$wrecord = new WrecordModel();
+						$wrecord->addWorkRecord($wid, $id, time()+1, "成为了受理人，工单受理中。");
+					}
+				}
+
 				echo "<script>alert('发送成功！'); location.href='$url';</script>";
 				exit;
 			}
@@ -634,7 +662,6 @@ class ClientController extends CommonController {
 		return $this ->assign('list',$list).$this ->assign('page',$show);
 	}
 	
-	
 	//添加数据
 	public function inser_sql($model,$data){
 
@@ -669,6 +696,13 @@ class ClientController extends CommonController {
 
 		$result = D($model)->where($where)->setField($data);
 		return $result;
+	}
+
+	//获取各个工单数量
+	public function getWorkCount() {
+		$work = new WorkModel();
+		$data = $work->getWorkCount();
+		return $data;
 	}
 	
 

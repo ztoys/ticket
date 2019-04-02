@@ -911,7 +911,8 @@ label.inline-block{
 .msgbody p:last-child { margin-bottom: 0; }
 
 
-.msgreply { padding: 10px; border-top: 1px solid #0866c6; }
+.msgreply { padding: 10px; border: 1px solid #0866c6; border-top: 0;}
+.messageview .msgreply {padding: 10px; border: none; border-top: 1px solid #0866c6;}
 .msgreply .thumb { width: 40px; height: 40px; float: left; }
 .msgreply .reply { margin-left: 50px; }
 .msgreply textarea {

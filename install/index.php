@@ -203,7 +203,7 @@ $step = isset($_GET['step']) ? $_GET['step'] : 1;
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>工单系统</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
 <link rel="stylesheet" href="css/install.css" type="text/css"/>
 
