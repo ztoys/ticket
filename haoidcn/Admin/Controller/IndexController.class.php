@@ -31,6 +31,14 @@ class IndexController extends Controller {
 
 					$User = D("User"); // 实例化User对象
 					$user_arr = $User->where("userid='$account'")->find();
+
+					//帐号是否已验证
+					$user_law = $user_arr['zl_status'];
+					if ($user_law == '-1'){
+						$this->redirect('index',"user_law=-1");
+						exit;
+					}
+
 					$ok = empty($user_arr) ? "-1" : "1";
 					if($ok == "1"){
 						$_SESSION['userid'] = $user_arr['userid'];
@@ -120,6 +128,8 @@ class IndexController extends Controller {
 		
 		$ok = I('get.ok');
 		$this->assign('ok',$ok);
+		$userlaw = I('get.user_law');
+		$this->assign('userlaw',$userlaw);
 		
     	$this->display();
     	
@@ -143,21 +153,22 @@ class IndexController extends Controller {
 			'u_status' => $status,
 			'limits'   => $user_limits,
 			'f_date'   => time(),
-			'zl_status'=> '1',
+			'zl_status'=> '-1',
 		);
 		$result = $this->inser_sql("user", $data);
 		if ($result) {
-			$_SESSION['userid'] = $acc;
-			$_SESSION['pass'] = $pass;
-			$_SESSION['uid'] = $result;
-			$_SESSION['email'] = "";
-			$_SESSION['limits'] = $user_limits;
-			$_SESSION['zl_status'] = 1 ;	//已完善资料
-			if($user_limits == '3') {
-				$this->redirect('Client/messages/case/create');	
-			} elseif($user_limits == '2') {
-				$this->redirect('Client/messages/case/all');	
-			}
+			// $_SESSION['userid'] = $acc;
+			// $_SESSION['pass'] = $pass;
+			// $_SESSION['uid'] = $result;
+			// $_SESSION['email'] = "";
+			// $_SESSION['limits'] = $user_limits;
+			// $_SESSION['zl_status'] = -1 ;	//未验证
+			// if($user_limits == '3') {
+			// 	$this->redirect('Client/messages/case/create');	
+			// } elseif($user_limits == '2') {
+			// 	$this->redirect('Client/messages/case/all');	
+			// }
+			$this->redirect('index',"user_law=-1");
 		} else {
 			echo "<meta charset='utf-8' /><script>alert('注册 $name 失败');</script>";
 		}
@@ -249,7 +260,7 @@ class IndexController extends Controller {
 					}
 				}
 			}
-			$_SESSION['zl_status'] = 1 ;	//已完善资料
+			$_SESSION['zl_status'] = 1 ;	//已验证
 				
 			$id = I("post.id");
 			$data = array(

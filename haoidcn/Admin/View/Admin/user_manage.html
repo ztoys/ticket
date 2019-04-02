@@ -85,7 +85,10 @@ jQuery(document).ready(function(){
                                                 <td>{$vo.phone|default=" -- "}</td>
                                                 <td>{$vo.email|default=" -- "}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-sm btn-danger" onclick="delUser('{$vo.userid}')" style="margin-left: 10px;">删除</button>
+                                                    <if condition="$vo.zl_status eq '-1'">
+                                                        <button type="button" class="btn btn-sm btn-primary" onclick="verUser('{$vo.userid}')" style="margin-right: 10px;">确认授权</button>
+                                                    </if>
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="delUser('{$vo.userid}')">删除</button>
                                                 </td>
                                             </tr>
                                         </volist>
@@ -240,6 +243,35 @@ jQuery(document).ready(function(){
     </div><!-- /.modal -->
 </div>
 
+<!-- 验证用户 -->
+<div class="modal fade modal-ver-user" id="modal_ver_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{:U('Admin/user_ver')}" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        授权成员
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="user_ver_id">
+                    <h5>确认授权  <span id="user_ver_name"></span>  吗？</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
 <!-- 删除用户 -->
 <div class="modal fade modal-del-user" id="modal_del_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -306,6 +338,12 @@ jQuery(document).ready(function(){
         jQuery("#user_del_name").text(uid);
         jQuery("#user_del_id").val(uid);
         jQuery("#modal_del_user").modal('show');
+    }
+
+    function verUser(uid) {
+        jQuery("#user_ver_name").text(uid);
+        jQuery("#user_ver_id").val(uid);
+        jQuery("#modal_ver_user").modal('show');
     }
 
     jQuery("#group_select").change(function(){

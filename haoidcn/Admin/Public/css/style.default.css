@@ -227,6 +227,13 @@ label.inline-block{
 	background: url(../images/dashboard/ticket-close.png) no-repeat;
 	background-size: cover;
 }
+.icon-verify{
+	display: inline-block;
+	width: 64px;
+	height: 64px;
+	background: url(../images/icon-verify.png) no-repeat;
+	background-size: cover;
+}
 
 
 

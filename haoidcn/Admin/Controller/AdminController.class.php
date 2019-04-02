@@ -119,6 +119,20 @@ class AdminController extends CommonController {
 		}
 	}
 
+	//用户管理 - 群组管理 -- 授权成员
+	public function user_ver() {
+		$id = I("post.id");
+		$data = array(
+			"zl_status" => '1',
+		);
+		$result = $this->update_sql("user", "userid='$id'", $data);
+		if ($result) {
+			echo "<meta charset='utf-8' /><script>alert('授权成员 $id 成功'); location.href='user_manage.html';</script>";
+		} else {
+			echo "<meta charset='utf-8' /><script>alert('授权成员 $id 失败');</script>";
+		}
+	}
+
 	//用户管理 - 群组管理 -- 删除成员
 	public function user_del() {
 		$id = I("post.id");

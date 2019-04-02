@@ -31,13 +31,39 @@
     input.readonly {
         background: #DDD;
     }
+    .wait-verify{
+        width: 300px;
+        height: 300px;
+        box-shadow: 0 2px 10px rgba(255, 255, 255,.3);
+        background: #FFF;
+        margin-top: -40px;
+        padding-top: 60px;
+        border-radius: 10px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .wait-verify i{
+        width: 128px;
+        height: 128px;
+    }    
+    .wait-verify .text{
+        margin-top: 20px;
+        font-size: 16px;
+    }    
 </style>
 </head>
 
 <body class="loginpage">
 <div class="loginpanel">
     <div class="loginpanelinner">
-        <?php if($user_not_exist == false): ?><form id="login" action="?" method="post">
+        <?php if($user_not_exist == false): if($userlaw == '-1'): ?><div class="wait-verify">
+                    <i class="icon-verify"></i>
+                    <p class="text">
+                        请等待管理员验证通过
+                    </p>
+                </div><?php endif; ?>
+            
+            <form id="login" action="?" method="post" style="<?php if($userlaw == '-1'): ?>display: none;<?php endif; ?>">
                 <input type="hidden" name='root' id='root' value="<?php echo (C("ROOT")); ?>">
                 <input type='hidden' name='login' id='login' value="login">
                 

@@ -99,7 +99,7 @@
                             <h5>
                                 <span><?php echo (session('userid')); ?></span>
                                 <!-- <small><?php echo (session('email')); ?></small> -->
-                                <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a>
+                                <!-- <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a> -->
                                 <a style="color: #FFF;" href="<?php echo U('Index/exit_t');?>">退出</a>
                             </h5>
                             <!-- <ul>
@@ -174,7 +174,7 @@
 			
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
+            <li><a href="<?php echo U('Console/dashboard');?>">面板</a> <span class="separator"></span></li>
             <li>未指派工单</li>
         </ul>
 		

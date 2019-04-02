@@ -20,10 +20,10 @@ class CommonController extends Controller {
 			 
 		}
 		 
-		//是否已完善资料
+		//是否已验证
 		if(I("session.zl_status") == "-1" and I("session.limtis") == "3"){
 		
-			$this->redirect('Index/editprofile');
+			$this->redirect('Index/index');
 			exit;
 		}
 		
@@ -34,11 +34,10 @@ class CommonController extends Controller {
 		$limits = $user_arr['limits'];
 		$this->assign("limits",$limits);
 		
-		//是否已经完善资料
+		//是否已验证
 		if($user_arr['zl_status'] == "-1" and $user_arr['limits'] == "3"){
 				
-			$this->redirect('Index/editprofile');
-				
+			$this->redirect('Index/index');
 			exit;
 		}
 		

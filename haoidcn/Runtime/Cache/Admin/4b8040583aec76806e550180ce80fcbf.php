@@ -91,7 +91,7 @@ jQuery(document).ready(function(){
                             <h5>
                                 <span><?php echo (session('userid')); ?></span>
                                 <!-- <small><?php echo (session('email')); ?></small> -->
-                                <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a>
+                                <!-- <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a> -->
                                 <a style="color: #FFF;" href="<?php echo U('Index/exit_t');?>">退出</a>
                             </h5>
                             <!-- <ul>
@@ -165,7 +165,7 @@ jQuery(document).ready(function(){
 			
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
+            <li><a href="<?php echo U('Console/dashboard');?>">面板</a> <span class="separator"></span></li>
             <li>成员管理</li>
         </ul>
 		
@@ -210,7 +210,8 @@ jQuery(document).ready(function(){
                                                 <td><?php echo ((isset($vo["phone"]) && ($vo["phone"] !== ""))?($vo["phone"]):" -- "); ?></td>
                                                 <td><?php echo ((isset($vo["email"]) && ($vo["email"] !== ""))?($vo["email"]):" -- "); ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-sm btn-danger" onclick="delUser('<?php echo ($vo["userid"]); ?>')" style="margin-left: 10px;">删除</button>
+                                                    <?php if($vo["zl_status"] == '-1'): ?><button type="button" class="btn btn-sm btn-primary" onclick="verUser('<?php echo ($vo["userid"]); ?>')" style="margin-right: 10px;">确认授权</button><?php endif; ?>
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="delUser('<?php echo ($vo["userid"]); ?>')">删除</button>
                                                 </td>
                                             </tr><?php endforeach; endif; else: echo "$list_user_empty" ;endif; ?>
                                     </tbody>
@@ -364,6 +365,35 @@ jQuery(document).ready(function(){
     </div><!-- /.modal -->
 </div>
 
+<!-- 验证用户 -->
+<div class="modal fade modal-ver-user" id="modal_ver_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/user_ver');?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        授权成员
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="user_ver_id">
+                    <h5>确认授权  <span id="user_ver_name"></span>  吗？</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
 <!-- 删除用户 -->
 <div class="modal fade modal-del-user" id="modal_del_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -430,6 +460,12 @@ jQuery(document).ready(function(){
         jQuery("#user_del_name").text(uid);
         jQuery("#user_del_id").val(uid);
         jQuery("#modal_del_user").modal('show');
+    }
+
+    function verUser(uid) {
+        jQuery("#user_ver_name").text(uid);
+        jQuery("#user_ver_id").val(uid);
+        jQuery("#modal_ver_user").modal('show');
     }
 
     jQuery("#group_select").change(function(){
