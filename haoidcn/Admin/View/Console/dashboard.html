@@ -8,9 +8,59 @@
 <!-- header binge -->
 <include file="Public/header" />
 
+<style type="text/css">
+	.rightpanel {
+		background: none;
+	}
+	.widget-group-wrap {
+		padding: 20px;
+		border: 1px solid #dbe9f7;
+		border-radius: 3px;
+	}
+	.widget-group-wrap::after{
+		content: '';
+		display: block;
+		clear: both;
+	}	
+	.widget-item{
+		float: left;
+		width: 25%;
+		text-align: center;
+		color: #000000;
+	}
+	.agent .widget-item{
+		width: 20%;
+	}
+	.widget-item .bottom{
+		padding-top: 15px;
+	}	
+	.widget-item i{
+		vertical-align: -15px;
+	}
+	.widget-item .num{
+		display: inline-block;
+		font-size: 40px;
+		font-weight: bold;
+		margin-left: 10px;
+	}	
+	.ticket-add-wrap{
+		display: block;
+		margin-top: 20px;
+		padding-top: 50px;
+		height: 140px;
+		border: 1px dashed #007FFF;
+		border-radius: 3px;
+		color: #007FFF;
+		font-size: 18px;
+		text-align: center;
+	}
+	.ticket-add-wrap:hover{
+		text-decoration: none;
+		color: #007FFF;
+	}	
+
+</style>
 <!-- header end -->
-
-
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 </head>
@@ -25,38 +75,114 @@
     <div class="rightpanel">
         <ul class="breadcrumbs">
             <li><a href="{:U('Console/dashboard')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li>后台面板</li>
+            <li>面板</li>
         </ul>
-        <div class="pageheader">
-            <div class="pageicon"><span class="iconfa-laptop"></span></div>
-            <div class="pagetitle">
-                <h5>控制台面板</h5>
-                <h1>控制台</h1>
-            </div>
-        </div><!--pageheader-->
         <div class="maincontent">
             <div class="maincontentinner">
-                <div class="row-fluid">
-                    
-                    <div id="dashboard-right" class="span4">
-                        
-                        <div class="divider15"></div>
-                        <div class="alert alert-block">
-                              <button data-dismiss="alert" class="close" type="button">&times;</button>
-                              <h4>注意事项:</h4>
-                              <p style="margin: 8px 0">13131313</p>
-                        </div><!--alert-->
-                        <div style="height:460px;"></div>
-                    </div><!--span4-->
-                </div><!--row-fluid-->
-                
-                
-				<!-- footer binge -->
-				<include file="Public/footer" />
-				
-				<!-- footer end -->
-                
-                
+				<if condition="$data.limits eq 3 ">
+					<div class="widget-group-wrap">
+						<a href="{:U('Client/messages?case=create')}">
+							<div class="widget-item">
+								<h3>我创建的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-my"></i>
+									<span class="num">{$ticket_count.c_mycreate}</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="{:U('Client/messages?case=create')}">
+							<div class="widget-item">
+								<h3>待我回复的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-reply"></i>
+									<span class="num">{$ticket_count.c_reply}</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="{:U('Client/messages?case=ping')}">
+							<div class="widget-item">
+								<h3>待我评价的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-comment"></i>
+									<span class="num">{$ticket_count.c_comment}</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="{:U('Client/messages?case=yi')}">
+							<div class="widget-item">
+								<h3>已关闭的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-close"></i>
+									<span class="num">{$ticket_count.c_close}</span>
+								</div>
+							</div>
+						</a>
+					</div>
+					<a href="{:U('Client/forms')}" class="ticket-add-wrap">
+						<i class="icon-ticket-add"></i>
+						<br>
+						创建工单
+					</a>
+				</if>
+
+				<if condition="$data.limits eq 2">
+					<div class="widget-group-wrap agent">
+
+						<a href="{:U('Client/messages?case=all')}">
+							<div class="widget-item">
+								<h3>未指派的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-my"></i>
+									<span class="num">{$ticket_count.c_unass}</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="{:U('Client/messages?case=manned')}">
+							<div class="widget-item">
+								<h3>分配给我的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-reply"></i>
+									<span class="num">{$ticket_count.c_myticket}</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="{:U('Client/messages?case=zhong')}">
+							<div class="widget-item">
+								<h3>受理中的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-comment"></i>
+									<span class="num">{$ticket_count.c_admissible}</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="{:U('Client/messages?case=ping')}">
+							<div class="widget-item">
+								<h3>待评价的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-close"></i>
+									<span class="num">{$ticket_count.c_comment}</span>
+								</div>
+							</div>
+						</a>
+
+						<a href="{:U('Client/messages?case=yi')}">
+							<div class="widget-item">
+								<h3>已关闭的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-close"></i>
+									<span class="num">{$ticket_count.c_close}</span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</if>
+
             </div><!--maincontentinner-->
         </div><!--maincontent-->
     </div><!--rightpanel-->

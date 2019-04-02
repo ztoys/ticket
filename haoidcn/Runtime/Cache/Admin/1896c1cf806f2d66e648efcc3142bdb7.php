@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>后台面板</title>
+<title>工单系统</title>
 
 <!-- header binge -->
 
@@ -40,9 +40,59 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.dataTables.min.js"></script>
 
 
+<style type="text/css">
+	.rightpanel {
+		background: none;
+	}
+	.widget-group-wrap {
+		padding: 20px;
+		border: 1px solid #dbe9f7;
+		border-radius: 3px;
+	}
+	.widget-group-wrap::after{
+		content: '';
+		display: block;
+		clear: both;
+	}	
+	.widget-item{
+		float: left;
+		width: 25%;
+		text-align: center;
+		color: #000000;
+	}
+	.agent .widget-item{
+		width: 20%;
+	}
+	.widget-item .bottom{
+		padding-top: 15px;
+	}	
+	.widget-item i{
+		vertical-align: -15px;
+	}
+	.widget-item .num{
+		display: inline-block;
+		font-size: 40px;
+		font-weight: bold;
+		margin-left: 10px;
+	}	
+	.ticket-add-wrap{
+		display: block;
+		margin-top: 20px;
+		padding-top: 50px;
+		height: 140px;
+		border: 1px dashed #007FFF;
+		border-radius: 3px;
+		color: #007FFF;
+		font-size: 18px;
+		text-align: center;
+	}
+	.ticket-add-wrap:hover{
+		text-decoration: none;
+		color: #007FFF;
+	}	
+
+</style>
 <!-- header end -->
-
-
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 </head>
@@ -103,7 +153,7 @@
                 <!-- <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a></li> -->
                 <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li>
                 <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>"><span class="iconfa-user"></span>成员管理</a></li>
-                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span> 未指派工单</a></li>
+                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span>未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
                 <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>
@@ -123,20 +173,20 @@
                 <!-- <li <?php echo ($data03["sh_two01"]); ?>><a href="<?php echo U('Admin/config');?>"><span class="iconfa-comments"></span> 基本配置</a></li> --><?php endif; ?>
             
             <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
-                <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单</a></li>
-                <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的</a></li>
-                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>受理中</a></li>
-                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价</a></li>
-                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li><?php endif; ?>
+                <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的<span class="right"><?php echo ($ticket_count["c_myticket"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>受理中<span class="right"><?php echo ($ticket_count["c_admissible"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价<span class="right"><?php echo ($ticket_count["c_comment"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right"><?php echo ($ticket_count["c_close"]); ?></span></a></li><?php endif; ?>
             <?php if($limits == '3'): ?><li class="nav-header">工单管理</li>
             	<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
                 <li <?php echo ($data["active01"]); ?>><a href="<?php echo U('Client/forms');?>"><span class="iconfa-pencil"></span>创建工单</a></li>
-                <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-bookmark"></span> 我创建的工单</a></li>
-                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-table"></span> 待我回复</a></li>
+                <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-bookmark"></span> 我创建的工单<span class="right"><?php echo ($ticket_count["c_mycreate"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'reply'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=reply');?>"><span class="iconfa-table"></span> 待我回复<span class="right"><?php echo ($ticket_count["c_reply"]); ?></span></a></li>
                 <!-- <li <?php if($data["case"] == 'dai'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=dai');?>"><span class="iconfa-pencil"></span> 待处理的工单</a></li> -->
                 <!-- <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span> 处理中的工单</a></li> -->
-                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-table"></span> 待我评价</a></li>
-                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单</a></li>
+                <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-table"></span> 待我评价<span class="right"><?php echo ($ticket_count["c_comment"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right"><?php echo ($ticket_count["c_close"]); ?></span></a></li>
                 <!-- <li <?php if($data["case"] == 'cao'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-th-list"></span> 草稿箱</a></li> --><?php endif; ?>
             </ul>
         </div><!--leftmenu-->
@@ -148,40 +198,110 @@
     <div class="rightpanel">
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li>后台面板</li>
+            <li>面板</li>
         </ul>
-        <div class="pageheader">
-            <div class="pageicon"><span class="iconfa-laptop"></span></div>
-            <div class="pagetitle">
-                <h5>控制台面板</h5>
-                <h1>控制台</h1>
-            </div>
-        </div><!--pageheader-->
         <div class="maincontent">
             <div class="maincontentinner">
-                <div class="row-fluid">
-                    
-                    <div id="dashboard-right" class="span4">
-                        
-                        <div class="divider15"></div>
-                        <div class="alert alert-block">
-                              <button data-dismiss="alert" class="close" type="button">&times;</button>
-                              <h4>注意事项:</h4>
-                              <p style="margin: 8px 0">13131313</p>
-                        </div><!--alert-->
-                        <div style="height:460px;"></div>
-                    </div><!--span4-->
-                </div><!--row-fluid-->
-                
-                
-				<!-- footer binge -->
-								<div class="footer">
-                    
-                </div><!--footer-->
-				
-				<!-- footer end -->
-                
-                
+				<?php if($data["limits"] == 3 ): ?><div class="widget-group-wrap">
+						<a href="<?php echo U('Client/messages?case=create');?>">
+							<div class="widget-item">
+								<h3>我创建的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-my"></i>
+									<span class="num"><?php echo ($ticket_count["c_mycreate"]); ?></span>
+								</div>
+							</div>
+						</a>
+
+						<a href="<?php echo U('Client/messages?case=create');?>">
+							<div class="widget-item">
+								<h3>待我回复的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-reply"></i>
+									<span class="num"><?php echo ($ticket_count["c_reply"]); ?></span>
+								</div>
+							</div>
+						</a>
+
+						<a href="<?php echo U('Client/messages?case=ping');?>">
+							<div class="widget-item">
+								<h3>待我评价的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-comment"></i>
+									<span class="num"><?php echo ($ticket_count["c_comment"]); ?></span>
+								</div>
+							</div>
+						</a>
+
+						<a href="<?php echo U('Client/messages?case=yi');?>">
+							<div class="widget-item">
+								<h3>已关闭的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-close"></i>
+									<span class="num"><?php echo ($ticket_count["c_close"]); ?></span>
+								</div>
+							</div>
+						</a>
+					</div>
+					<a href="<?php echo U('Client/forms');?>" class="ticket-add-wrap">
+						<i class="icon-ticket-add"></i>
+						<br>
+						创建工单
+					</a><?php endif; ?>
+
+				<?php if($data["limits"] == 2): ?><div class="widget-group-wrap agent">
+
+						<a href="<?php echo U('Client/messages?case=all');?>">
+							<div class="widget-item">
+								<h3>未指派的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-my"></i>
+									<span class="num"><?php echo ($ticket_count["c_unass"]); ?></span>
+								</div>
+							</div>
+						</a>
+
+						<a href="<?php echo U('Client/messages?case=manned');?>">
+							<div class="widget-item">
+								<h3>分配给我的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-reply"></i>
+									<span class="num"><?php echo ($ticket_count["c_myticket"]); ?></span>
+								</div>
+							</div>
+						</a>
+
+						<a href="<?php echo U('Client/messages?case=zhong');?>">
+							<div class="widget-item">
+								<h3>受理中的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-comment"></i>
+									<span class="num"><?php echo ($ticket_count["c_admissible"]); ?></span>
+								</div>
+							</div>
+						</a>
+
+						<a href="<?php echo U('Client/messages?case=ping');?>">
+							<div class="widget-item">
+								<h3>待评价的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-close"></i>
+									<span class="num"><?php echo ($ticket_count["c_comment"]); ?></span>
+								</div>
+							</div>
+						</a>
+
+						<a href="<?php echo U('Client/messages?case=yi');?>">
+							<div class="widget-item">
+								<h3>已关闭的工单</h3>
+								<div class="bottom">
+									<i class="icon-ticket-close"></i>
+									<span class="num"><?php echo ($ticket_count["c_close"]); ?></span>
+								</div>
+							</div>
+						</a>
+					</div><?php endif; ?>
+
             </div><!--maincontentinner-->
         </div><!--maincontent-->
     </div><!--rightpanel-->

@@ -174,7 +174,7 @@
 			
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li><a href="<?php echo U('Console/dashboard');?>">后台面板</a> <span class="separator"></span></li>
+            <li><a href="<?php echo U('Console/dashboard');?>">面板</a> <span class="separator"></span></li>
             <li>处理工单</li>
         </ul>
 		
@@ -201,7 +201,7 @@
                                     <th width="10%">负责人</th>
                                     <th width="20%">提交时间</th>
                                 </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?case='.$data['case'].'&id='.$vo['id']);?>'">
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?case='.$data['case'].'&id='.$vo['id']);?>'">
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>
@@ -215,7 +215,7 @@
                                             <?php echo ((isset($vo["dname"]) && ($vo["dname"] !== ""))?($vo["dname"]):" -- "); ?>
                                         </td>
                                         <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
-                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </tr><?php endforeach; endif; else: echo "$list_empty" ;endif; ?>
                             </table><?php endif; ?>
 
                         <?php if($limits == '2'): ?><table class="table table-bordered table-fixed table-tr-click">
@@ -227,7 +227,7 @@
                                     <th width="15%">创建日期</th>
                                     <?php if($data["case"] != 'all'): ?><th width="15%">受理时间</th><?php endif; ?>
                                 </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?case='.$data['case'].'&id='.$vo['id']);?>'">
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?case='.$data['case'].'&id='.$vo['id']);?>'">
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>
@@ -244,19 +244,12 @@
                                         <?php if($data["case"] != 'all'): if($vo['accdate'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["accdate"])); ?></td>
                                             <?php else: ?>
                                                 <td>--</td><?php endif; endif; ?>
-                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </tr><?php endforeach; endif; else: echo "$list_empty" ;endif; ?>
                             </table><?php endif; ?>
 
                     </div><!--messagecontent-->
 
                 </div><!--messagepanel-->
-                
-               <!-- footer binge -->
-								<div class="footer">
-                    
-                </div><!--footer-->
-				
-				<!-- footer end -->
                 
                 
             </div><!--maincontentinner-->

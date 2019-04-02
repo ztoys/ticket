@@ -102,7 +102,7 @@
         box-shadow: 0 -2px 20px rgba(7, 102, 198, .3);
     }
     .ticket-comment-wrap{
-        background: #e8f4ff;
+        background: #f7fcff;
         padding: 20px 0;
     }
     .ticket-comment{

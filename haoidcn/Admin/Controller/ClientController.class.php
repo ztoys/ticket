@@ -168,6 +168,7 @@ class ClientController extends CommonController {
 		
 		//列表显示数据	-- 分页
 		if($limits == 3){
+			// 客服
 			if (isset($sel_reply)) {
 				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
 			} else {
@@ -181,11 +182,13 @@ class ClientController extends CommonController {
 			}
 			
 			$this->assign('list',$list);
+			$this->assign('list_empty', '<tr><td colspan="5" style="text-align:center;">暂无数据</td></tr>');
 			
 			$ticket_count = $this->getWorkCount();
 			$this->assign('ticket_count', $ticket_count);
 
 		}else if($limits == 2){
+			//运维
 			$db_work = "work";
 			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname";
 			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
@@ -201,6 +204,11 @@ class ClientController extends CommonController {
 				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
 			}			
 			$this->assign('list',$list);
+			if ($status == "all") {
+				$this->assign('list_empty', '<tr><td colspan="5" style="text-align:center;">暂无数据</td></tr>');
+			} else {
+				$this->assign('list_empty', '<tr><td colspan="6" style="text-align:center;">暂无数据</td></tr>');
+			}
 
 			$ticket_count = $this->getWorkCount();
 			$this->assign('ticket_count', $ticket_count);
@@ -365,7 +373,6 @@ class ClientController extends CommonController {
 				exit;
 			}
 		}
-		
 		
 		$data = array(
 				'unread'		=>	"unread",
@@ -589,8 +596,7 @@ class ClientController extends CommonController {
 				$ticket_did = $ticket_info['did'];
 				if ($ticket_did == 0 || !isset($ticket_did)) {
 					$ticket_data = array(
-						'did' => $id,
-						'wc_sataus' => '2',
+						'did' => $id
 					);
 					$ticket_result = $this->update_sql('work', "id='$wid'", $ticket_data);
 					if ($ticket_result) {
@@ -623,7 +629,7 @@ class ClientController extends CommonController {
 		$id = I("session.uid");				//当前用户id
 		$w_id = I('post.pid');
 		if($limits == "3"){
-			$url = __ROOT__."/index.php/Client/detail/id/$w_id";
+			$url = __ROOT__."/index.php/Client/detail/case/yi/id/$w_id";
 			$data = array(
 				'work_id'		=>	$w_id,
 				'resolve'		=>	$resolve_v,

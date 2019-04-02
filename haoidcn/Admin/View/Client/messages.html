@@ -76,7 +76,7 @@
                                     <th width="10%">负责人</th>
                                     <th width="20%">提交时间</th>
                                 </tr>
-                                <volist name="list" id="vo">
+                                <volist name="list" id="vo" empty="$list_empty">
                                     <tr onclick="javascript:window.location.href='{:U(\'Client/detail?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'">
                                         <td>{$vo.id}</td>
                                         <td>{$vo.title}</td>
@@ -110,7 +110,7 @@
                                         <th width="15%">受理时间</th>
                                     </if>
                                 </tr>
-                                <volist name="list" id="vo">
+                                <volist name="list" id="vo" empty="$list_empty">
                                     <tr onclick="javascript:window.location.href='{:U(\'Client/detail_agent?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'">
                                         <td>{$vo.id}</td>
                                         <td>{$vo.title}</td>
@@ -142,11 +142,6 @@
                     </div><!--messagecontent-->
 
                 </div><!--messagepanel-->
-                
-               <!-- footer binge -->
-				<include file="Public/footer" />
-				
-				<!-- footer end -->
                 
                 
             </div><!--maincontentinner-->
