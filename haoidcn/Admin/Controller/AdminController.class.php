@@ -3,6 +3,7 @@ namespace Admin\Controller;
 
 use Think\Controller;
 use Admin\Model\WrecordModel;
+use Admin\Model\WorkModel;
 
 class AdminController extends CommonController {
 	
@@ -14,6 +15,9 @@ class AdminController extends CommonController {
 			'user_block01' => "class='active'",
 		);
 		$this->assign("data", $data);
+
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
 		
 		$list = $this->sel_sql("status", "", "time desc");
 		$this->assign("list", $list);
@@ -73,6 +77,9 @@ class AdminController extends CommonController {
 		);
 
 		$this->assign("data", $data);
+
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
 
 		$list_group = $this->sel_sql("status", "");
 		$this->assign("list_group", $list_group);
@@ -146,7 +153,6 @@ class AdminController extends CommonController {
 			$this->assign('list',$list);
 		}
 		
-		
 		//列表选中显示样式
 		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
 		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,
@@ -154,6 +160,9 @@ class AdminController extends CommonController {
 		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
+
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
 
 		$data = array(
 				'user_one' => "active",
@@ -738,4 +747,10 @@ class AdminController extends CommonController {
 		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->select();
 	}
 
+	//获取各个工单数量
+	public function getWorkCount() {
+		$work = new WorkModel();
+		$data = $work->getWorkCount();
+		return $data;
+	}
 }

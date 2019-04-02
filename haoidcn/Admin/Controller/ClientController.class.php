@@ -135,6 +135,14 @@ class ClientController extends CommonController {
 		$id = I("session.uid");				//当前用户id
 		$status = I("get.case");			//工单状态
 		$aid = I("get.messages");			//工单id
+
+		if (!isset($status)) {
+			if ($limits == 3) {
+				$status = "create";
+			} elseif ($limits == 2) {
+				$status = "manned";
+			}
+		}
 		
 		if($status == "dai"){
 			$sta_nb = '1';					//工单状态-待处理

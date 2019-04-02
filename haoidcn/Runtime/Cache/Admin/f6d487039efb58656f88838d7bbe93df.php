@@ -62,6 +62,7 @@
         margin: 0;
     }
     .messageright{
+        position: relative;
         margin: 0;
         border-top: 1px solid #0866c6;
         border-left: 1px solid #0866c6;
@@ -100,6 +101,41 @@
         border-top: 1px solid #0d60b3;
         box-shadow: 0 -2px 20px rgba(7, 102, 198, .3);
     }
+    .ticket-comment-wrap{
+        background: #e8f4ff;
+        padding: 20px 0;
+    }
+    .ticket-comment{
+        width: 500px;
+        margin: 0 auto;
+    }
+    .ticket-comment .title{
+        font-size: 18px;
+        font-weight: bold;
+        padding: 20px 0 10px;
+        text-align: center;
+    }
+    .ticket-comment .note2{
+        text-align: center;
+    }    
+    .ticket-comment .label-title{
+        margin-bottom: 8px;
+    }
+    .ticket-comment input[type='radio']{
+        margin-top: 0;
+    }    
+    .ticket-comment .radio-wrap label{
+        display: inline-block;
+    }
+    .ticket-comment .radio-wrap label+input{
+        margin-left: 20px;
+    }    
+    .ticket-comment .btn.submit{
+        display: block;
+        width: 200px;
+        margin: 50px auto 20px;
+    }
+    
 
     .modal-comment form input[type='radio']{
         vertical-align: -2px;
@@ -172,7 +208,7 @@
                 <!-- <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a></li> -->
                 <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li>
                 <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>"><span class="iconfa-user"></span>成员管理</a></li>
-                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span> 未指派工单</a></li>
+                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span>未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
                 <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>
@@ -295,8 +331,49 @@
 
                             <div name="one"></div>
 
-                            <?php if($main["wc_sataus"] == '4'): ?><div class="tip-comment-btn" data-toggle="modal" data-target="#modal_comment">
-                                    请评价工单
+                            <?php if($main["wc_sataus"] == '4' and $data["limits"] == 3 ): ?><div class="ticket-comment-wrap">
+                                    <form action="<?php echo U('Client/close_ticket');?>" method="post" enctype="multipart/form-data" id="form_close_ticket2">
+                                        <div class="ticket-comment">
+                                            <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
+                                            <input type="hidden" name="resolve_text" id="resolve_text2">
+                                            <input type="hidden" name="assess_text" id="assess_text2">
+                                            <div style="zoom:1;">
+                                                <h4 class="title">请进行服务评价</h4>
+                                                <p class="note2">评价后将自动关闭工单</p>
+                                            </div>
+                                            <div style="padding-left: 105px;margin-top: 50px;">
+                                                <p style="margin-top: 20px;">
+                                                    <label class="label-title">问题是否已经解决：</label>
+                                                    <div class="radio-wrap">
+                                                        <input type="radio" name="resolve" value="1" data-text="是" id="rs_1" checked>
+                                                        <label for="rs_1">是</label>
+                                                        <input type="radio" name="resolve" value="0" data-text="否" id="rs_0"> 
+                                                        <label for="rs_0">否</label>
+                                                    </div>
+                                                </p>
+                                                <p style="margin-top: 20px;">
+                                                    <label class="label-title">服务评价：</label>
+                                                    <div class="radio-wrap">
+                                                        <input type="radio" name="assess" value="3" data-text="非常满意" id="as_1">
+                                                        <label for="as_1">非常满意</label>
+                                                        
+                                                        <input type="radio" name="assess" value="2" data-text="满意" id="as_2" checked>
+                                                        <label for="as_2">满意</label>
+                                                        
+                                                        <input type="radio" name="assess" value="1" data-text="一般" id="as_3">
+                                                        <label for="as_3">一般</label>
+                                                        
+                                                        <input type="radio" name="assess" value="0" data-text="不满意" id="as_4">
+                                                        <label for="as_4">不满意</label>
+                                                    </div>
+                                                </p>
+                                            </div>
+                                            
+                                            <button type="button" onclick="closeTicket2()" class="btn btn-success submit">
+                                                提交
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div><?php endif; ?>
                             
                         </div><!--messageview-->
@@ -343,7 +420,7 @@
                         工单评价
                     </h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body ticket-comment">
                     <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
                     <input type="hidden" name="resolve_text" id="resolve_text">
                     <input type="hidden" name="assess_text" id="assess_text">
@@ -351,19 +428,25 @@
                         <span>请进行服务评价</span><span style="float:right">评价后将自动关闭工单</span>
                     </div>
                     <p style="margin-top: 20px;">
-                        <label class="left label-title">问题是否已经解决</label>
-                        <div class="cell">
-                            <input type="radio" name="resolve" value="1" data-text="是"> 是
-                            <input type="radio" name="resolve" value="0" data-text="否"> 否
+                        <label class="label-title">问题是否已经解决</label>
+                        <div class="radio-wrap">
+                            <input type="radio" name="resolve" value="1" data-text="是" id="ars_1" checked>
+                            <label for="ars_1">是</label>
+                            <input type="radio" name="resolve" value="0" data-text="否" id="ars_0"> 
+                            <label for="ars_0">否</label>
                         </div>
                     </p>
                     <p style="margin-top: 10px;">
-                        <label class="left label-title">服务评价</label>
-                        <div class="cell">
-                            <input type="radio" name="assess" value="3" data-text="非常满意"> 非常满意
-                            <input type="radio" name="assess" value="2" data-text="满意"> 满意
-                            <input type="radio" name="assess" value="1" data-text="一般"> 一般
-                            <input type="radio" name="assess" value="0" data-text="不满意"> 不满意
+                        <label class=" label-title">服务评价</label>
+                        <div class="radio-wrap">
+                            <input type="radio" name="assess" value="3" data-text="非常满意" id="aas_1"> 
+                            <label for="aas_1">非常满意</label>
+                            <input type="radio" name="assess" value="2" data-text="满意" id="aas_2" checked>
+                            <label for="aas_2">满意</label>
+                            <input type="radio" name="assess" value="1" data-text="一般" id="aas_3">
+                            <label for="aas_3">一般</label>
+                            <input type="radio" name="assess" value="0" data-text="不满意" id="aas_4"> 
+                            <label for="aas_4">不满意</label>
                         </div>
                     </p>
                 </div>
@@ -389,6 +472,17 @@
         
         jQuery("#form_close_ticket").submit();
     }
+
+    function closeTicket2 () {
+        var resolveText = jQuery("#form_close_ticket2 input[name='resolve']:checked").data('text');
+        var assessText = jQuery("#form_close_ticket2 input[name='assess']:checked").data('text');
+        jQuery("#resolve_text2").val(resolveText);
+        jQuery("#assess_text2").val(assessText);
+        
+        jQuery("#form_close_ticket2").submit();
+    }
+
+    
 
     //实例化编辑器
     var um = UM.getEditor('myEditor');

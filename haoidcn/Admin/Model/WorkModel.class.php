@@ -23,8 +23,8 @@ class WorkModel extends Model {
             );
         } elseif ($limits == '2') {
             //运维
-            $count_unass = $work->where("(did is null or did=0) and wc_sataus<>'3'")->count();  // 未指派
-            $count_myticket = $work->where("did=$uid and wc_sataus<>'3'")->count();                     // 分配给我的
+            $count_unass = $work->where("(did is null or did=0) and wc_sataus<>'3'")->count();         // 未指派
+            $count_myticket = $work->where("did=$uid and wc_sataus<>'3'")->count();                    // 分配给我的
             $count_admissible = $work->where("did=$uid and wc_sataus='2'")->count();                   // 受理中
             $count_comment = $work->where("did=$uid and wc_sataus='4'")->count();                      // 待评价
             $count_close = $work->where("did=$uid and wc_sataus='3'")->count();                        // 已关闭的工单
@@ -34,6 +34,12 @@ class WorkModel extends Model {
                 "c_admissible" => $count_admissible,
                 "c_comment" => $count_comment,
                 "c_close" => $count_close,
+            );
+        } elseif ($limits == '1') {
+            //管理员
+            $count_unass = $work->where("(did is null or did=0) and wc_sataus<>'3'")->count();         // 未指派
+            $data = array (
+                "c_unass" => $count_unass,
             );
         }
 
