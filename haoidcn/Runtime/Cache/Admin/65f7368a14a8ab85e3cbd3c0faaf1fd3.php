@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title><?php echo ($main["w_title"]); ?></title>
+<title>工单系统</title>
 <!-- header binge -->
 <link href="<?php echo (C("URL")); ?>baidubianjiqi/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 
@@ -246,6 +246,7 @@
                 <div class="messagecontent">
                     <div class="ticket-initiator">
                         <span class="title-tip"></span>工单发起人：<?php echo ($main["u_uname"]); ?>
+                        <a href="<?php echo ($data["url"]); ?>" class="btn btn-success btn-sm right" style="margin-top: -3px;color: #FFF;">返回</a>
                     </div>
 
                     <?php if($main["wc_sataus"] != '3'): ?><div class="messageleft">
@@ -360,7 +361,7 @@
                         
                             <?php if($data["status"] != '3'): ?><div class="msgreply" >
                                     <hr>
-                                    <form id="form_ticket" action="<?php echo U('Client/submit_ticket_agent');?>" method="post" enctype="multipart/form-data">
+                                    <form id="form_ticket" action="<?php echo U('Client/submit_ticket_agent?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="ticket_agent" id="form_agent">
                                         <input type="hidden" name="ticket_agent_name" id="form_agent_name">
                                         <input type="hidden" name="ticket_status" id="form_ticket_status">

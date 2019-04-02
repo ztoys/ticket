@@ -179,6 +179,7 @@ class AdminController extends CommonController {
 		$limits = I("session.limits");		//权限    2-售后	3-会员
 		$id = I("session.uid");				//当前用户id
 		$aid = I("get.id");			//工单id
+		$url_status = I("get.case");
 
 		$work_detail = $this->sel_sql_single("work", "id='$aid'");
 		if($work_detail) {
@@ -223,7 +224,8 @@ class AdminController extends CommonController {
 			'case'			=>	$status,
 			'status'		=>  $status,
 			"active02"		=>	"class='active'",
-			'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
+			'url'			=>	__ROOT__."/index.php/Admin/ticket/case/".$url_status,
+			'url_status'    =>  $url_status,
 			'sou'			=>	'&sou='.I("get.sou"),
 			'record'		=>  $record_list,
 		);
@@ -238,7 +240,8 @@ class AdminController extends CommonController {
 		$wid = I('post.pid');
 		$ticket_agent_name = I("post.ticket_agent_name");
 		$ticket_status_name = I("post.ticket_status_name");
-		$url = __ROOT__."/index.php/Admin/ticket_detail/id/".$wid;
+		$url_status = I("get.case");
+		$url = __ROOT__."/index.php/Admin/ticket_detail/case/$url_status/id/".$wid;
 
 		$ticket_agent = I('post.ticket_agent');
 		$ticket_status = I('post.ticket_status');

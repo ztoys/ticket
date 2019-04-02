@@ -108,7 +108,7 @@
                                 <!-- <if condition="$data.limits eq 2 and $data.case eq '2'">
                                     <a href="{:U('Client/messages?type=ping&wc_sataus='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a>
                                 </if> -->
-                                
+                                <button class="btn btn-primary btn-sm" onclick="javascript:window.location.href='{$data.url}'" style="margin-right:10px;">&nbsp;&nbsp;返回&nbsp;&nbsp;</button> 
                                 <if condition="$data.limits eq 3 and $data.status neq '3'">
                                     <!-- <a href="{:U('Client/messages?type=wang&wc_sataus='.$main['w_id'])}" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
                                     <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-danger btn-sm" style="color:#fff;">关闭工单</button>
@@ -221,7 +221,7 @@
                         </div><!--messageview-->
                         <if condition="$data.status neq '3'">	
                             <div class="msgreply" >
-                                <form id="form01" action="{:U('Client/detail')}" method="post" enctype="multipart/form-data">
+                                <form id="form01" action="{:U('Client/detail?case=\'.$data[\'url_status\'])}" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="insert" value="insert" />
                                     <input type="hidden" name="pid" value="{$main.w_id}">
                                     <p>

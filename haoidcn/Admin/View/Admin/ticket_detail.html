@@ -123,6 +123,7 @@
                 <div class="messagecontent">
                     <div class="ticket-initiator">
                         <span class="title-tip"></span>工单发起人：{$main.u_uname}
+                        <a href="{$data.url}" class="btn btn-success btn-sm right" style="margin-top: -3px;color: #FFF;">返回</a>
                     </div>
 
                     <if condition="$main.wc_sataus neq '3'">
@@ -285,7 +286,7 @@
                             <if condition="$data.status neq '3'">	
                                 <div class="msgreply" >
                                     <hr>
-                                    <form id="form_ticket" action="{:U('Admin/submit_ticket_agent')}" method="post" enctype="multipart/form-data">
+                                    <form id="form_ticket" action="{:U('Admin/submit_ticket_agent?case=\'.$data[\'url_status\'])}" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="ticket_agent" id="form_agent">
                                         <input type="hidden" name="ticket_agent_name" id="form_agent_name">
                                         <input type="hidden" name="ticket_status" id="form_ticket_status">

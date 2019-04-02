@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title><?php echo ($main["w_title"]); ?></title>
+<title>工单系统</title>
 <!-- header binge -->
 <link href="<?php echo (C("URL")); ?>baidubianjiqi/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 
@@ -201,7 +201,7 @@
                                     <th width="10%">负责人</th>
                                     <th width="20%">提交时间</th>
                                 </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?id='.$vo['id']);?>'">
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?case='.$data['case'].'&id='.$vo['id']);?>'">
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>
@@ -227,7 +227,7 @@
                                     <th width="15%">创建日期</th>
                                     <?php if($data["case"] != 'all'): ?><th width="15%">受理时间</th><?php endif; ?>
                                 </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?id='.$vo['id']);?>'">
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?case='.$data['case'].'&id='.$vo['id']);?>'">
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>

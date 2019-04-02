@@ -381,6 +381,7 @@ class ClientController extends CommonController {
 		$limits = I("session.limits");		//权限    2-售后	3-会员
 		$id = I("session.uid");				//当前用户id
 		$aid = I("get.id");			//工单id
+		$url_status = I("get.case");
 
 		$work_detail = $this->sel_sql_single("work", "id='$aid'");
 		if($work_detail) {
@@ -407,7 +408,7 @@ class ClientController extends CommonController {
 
 		//处理对话操作
 		if(IS_POST){
-			$url = __ROOT__."/index.php/Client/detail/id/".I('post.pid');
+			$url = __ROOT__."/index.php/Client/detail/case/$url_status/id/".I('post.pid');
 			if(I("post.insert") != "" && I('post.editorValue') != ""){
 				$data = array(
 					'g_reply'		=>	htmlspecialchars_decode(I('post.editorValue')),
@@ -456,7 +457,8 @@ class ClientController extends CommonController {
 				'case'			=>	$status,
 				'status'		=>  $status,
 				"active02"		=>	"class='active'",
-				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
+				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$url_status,
+				'url_status'     =>  $url_status,
 				'sou'			=>	'&sou='.I("get.sou"),
 		);
 		$this->assign('data',$data);
@@ -469,6 +471,7 @@ class ClientController extends CommonController {
 		$limits = I("session.limits");		//权限    2-售后	3-会员
 		$id = I("session.uid");				//当前用户id
 		$aid = I("get.id");			//工单id
+		$url_status = I("get.case");
 
 		$work_detail = $this->sel_sql_single("work", "id='$aid'");
 		if($work_detail) {
@@ -513,7 +516,8 @@ class ClientController extends CommonController {
 				'case'			=>	$status,
 				'status'		=>  $status,
 				"active02"		=>	"class='active'",
-				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
+				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$url_status,
+				'url_status'    =>  $url_status,
 				'sou'			=>	'&sou='.I("get.sou"),
 				'record'		=>  $record_list,
 		);
@@ -526,9 +530,11 @@ class ClientController extends CommonController {
 	public function submit_ticket_agent() {
 		$id = I("session.uid");				//当前用户id
 		$wid = I('post.pid');
+		$url_status = I('get.case');
+
 		$ticket_agent_name = I("post.ticket_agent_name");
 		$ticket_status_name = I("post.ticket_status_name");
-		$url = __ROOT__."/index.php/Client/detail_agent/id/".$wid;
+		$url = __ROOT__."/index.php/Client/detail_agent/case/$url_status/id/".$wid;
 
 		$ticket_agent = I('post.ticket_agent');
 		$ticket_status = I('post.ticket_status');
