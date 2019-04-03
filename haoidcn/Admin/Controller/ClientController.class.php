@@ -559,8 +559,14 @@ class ClientController extends CommonController {
 
 		$ticket_info = $this->sel_sql_single('work', "id='$wid'");
 		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status)) {
+			if ($ticket_status == '2' || $ticket_status == '4') {
+				$ticket_accdate = time();
+			} else {
+				$ticket_accdate = null;
+			}
 			$ticket_data = array(
 				'did' => $ticket_agent,
+				'accdate' => $ticket_accdate,
 				'wc_sataus' => $ticket_status,
 			);
 			$this->update_sql('work', "id='$wid'", $ticket_data);
@@ -596,7 +602,8 @@ class ClientController extends CommonController {
 				$ticket_did = $ticket_info['did'];
 				if ($ticket_did == 0 || !isset($ticket_did)) {
 					$ticket_data = array(
-						'did' => $id
+						'did' => $id,
+						'accdate' => time(),
 					);
 					$ticket_result = $this->update_sql('work', "id='$wid'", $ticket_data);
 					if ($ticket_result) {

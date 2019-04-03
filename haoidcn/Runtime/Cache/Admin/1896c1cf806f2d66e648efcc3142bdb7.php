@@ -255,7 +255,7 @@
 							<div class="widget-item">
 								<h3>未指派的工单</h3>
 								<div class="bottom">
-									<i class="icon-ticket-my"></i>
+									<i class="icon-ticket-all"></i>
 									<span class="num"><?php echo ($ticket_count["c_unass"]); ?></span>
 								</div>
 							</div>
@@ -265,7 +265,7 @@
 							<div class="widget-item">
 								<h3>分配给我的工单</h3>
 								<div class="bottom">
-									<i class="icon-ticket-reply"></i>
+									<i class="icon-ticket-my"></i>
 									<span class="num"><?php echo ($ticket_count["c_myticket"]); ?></span>
 								</div>
 							</div>
@@ -285,7 +285,7 @@
 							<div class="widget-item">
 								<h3>待评价的工单</h3>
 								<div class="bottom">
-									<i class="icon-ticket-close"></i>
+									<i class="icon-ticket-assess"></i>
 									<span class="num"><?php echo ($ticket_count["c_comment"]); ?></span>
 								</div>
 							</div>

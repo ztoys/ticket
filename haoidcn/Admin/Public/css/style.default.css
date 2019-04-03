@@ -220,6 +220,20 @@ label.inline-block{
 	background: url(../images/dashboard/ticket-comment.png) no-repeat;
 	background-size: cover;
 }
+.icon-ticket-assess{
+	display: inline-block;
+	width: 64px;
+	height: 64px;
+	background: url(../images/dashboard/ticket-assess.png) no-repeat;
+	background-size: cover;
+}
+.icon-ticket-all{
+	display: inline-block;
+	width: 64px;
+	height: 64px;
+	background: url(../images/dashboard/ticket-all.png) no-repeat;
+	background-size: cover;
+}
 .icon-ticket-close{
 	display: inline-block;
 	width: 64px;

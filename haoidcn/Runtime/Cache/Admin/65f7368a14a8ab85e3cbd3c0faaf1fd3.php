@@ -417,7 +417,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
                     </button>
                 </div>
             </div><!-- /.modal-content -->
