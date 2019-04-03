@@ -481,8 +481,13 @@ jQuery(document).ready(function(){
                 var html_tpl = '';
                 var dataLen = data.length;
                 if (dataLen) {
+
                     for(var i = 0; i < dataLen; i++) {
-                        html_tpl += '<tr><td>' + data[i].userid + '</td><td>' + data[i].uname + '</td><td>' + data[i].phone + '</td><td>' + data[i].email + '</td><td><button type="button" class="btn btn-sm btn-danger" onclick="delUser(\'' + data[i].userid + '\')" style="margin-left: 10px;">删除</button></td></tr>'
+                        var verUserBtn = "";
+                        if (data[i].zl_status == '-1'){
+                            verUserBtn = '<button type="button" class="btn btn-sm btn-primary" onclick="verUser(\'' + data[i].userid + '\')" style="margin-right: 10px;">确认授权</button>'
+                        }
+                        html_tpl += '<tr><td>' + data[i].userid + '</td><td>' + data[i].uname + '</td><td>' + data[i].phone + '</td><td>' + data[i].email + '</td><td>'+verUserBtn+'<button type="button" class="btn btn-sm btn-danger" onclick="delUser(\'' + data[i].userid + '\')">删除</button></td></tr>'
                     }
                 } else {
                     html_tpl = '<tr><td colspan="5" style="text-align: center;">暂无数据</td></tr>';

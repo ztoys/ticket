@@ -83,7 +83,7 @@
                             <h5>
                                 <span><?php echo (session('userid')); ?></span>
                                 <!-- <small><?php echo (session('email')); ?></small> -->
-                                <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a>
+                                <!-- <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a> -->
                                 <a style="color: #FFF;" href="<?php echo U('Index/exit_t');?>">退出</a>
                             </h5>
                             <!-- <ul>

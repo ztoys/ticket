@@ -604,7 +604,7 @@ class ClientController extends CommonController {
 						$user_name_info = $this->sel_sql_single("user", "id=$id");
 						$user_name = $user_name_info['uname'];
 						$wrecord = new WrecordModel();
-						$wrecord->addWorkRecord($wid, $id, time()+1, "成为了受理人，工单受理中。");
+						$wrecord->addWorkRecord($wid, $id, time()+1, "成为了受理人。");
 					}
 				}
 
