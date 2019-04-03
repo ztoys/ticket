@@ -81,7 +81,6 @@
     .ticket-initiator{
         padding: 10px 20px;
         background: #FFF;
-        border: 1px solid #0866c6;
         border-bottom: none;
         font-size: 14px;
     }
@@ -94,6 +93,8 @@
         border-top: 1px solid #0866c6;
         padding: 20px;
         box-sizing: border-box;
+        padding-bottom: 9999px;
+	    margin-bottom: -9999px;
     }
     .messageview{
         height: auto;
@@ -174,7 +175,7 @@
                             <h5>
                                 <span><?php echo (session('userid')); ?></span>
                                 <!-- <small><?php echo (session('email')); ?></small> -->
-                                <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a>
+                                <!-- <a style="color: #FFF;" href="<?php echo U('Index/editprofile');?>">修改资料</a> -->
                                 <a style="color: #FFF;" href="<?php echo U('Index/exit_t');?>">退出</a>
                             </h5>
                             <!-- <ul>
@@ -201,7 +202,7 @@
                 <!-- <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a></li> -->
                 <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li>
                 <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>"><span class="iconfa-user"></span>成员管理</a></li>
-                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span> 未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
+                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span>未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
                 <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>
@@ -243,7 +244,7 @@
     <div class="maincontent">
         <div class="maincontentinner">
             <div class="messagepanel">
-                <div class="messagecontent">
+                <div class="messagecontent main-content">
                     <div class="ticket-initiator">
                         <span class="title-tip"></span>工单发起人：<?php echo ($main["u_uname"]); ?>
                         <a href="<?php echo ($data["url"]); ?>" class="btn btn-success btn-sm right" style="margin-top: -3px;color: #FFF;">返回</a>
@@ -325,7 +326,7 @@
                                 </div><?php endif; ?>
                             <!-- comment end -->
 
-                            <div class="msgbody"  style="background:#fcfcfc;">
+                            <div class="msgbody"  style="background:#fcfcfc;border-bottom:1px solid #DDD;">
                                 <div>
                                     <?php echo ($main["w_issue"]); ?>
                                 </div>
@@ -342,6 +343,23 @@
                                     </div><?php endif; ?>	
                                 <?php if($data["limits"] == 3 and $data["case"] == 'zhong'): ?><p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p><?php endif; ?>
                             </div><!--msgbody-->
+
+                            <?php if($data["status"] != '3'): ?><div class="msgreply" >
+                                    <form id="form_ticket" action="<?php echo U('Admin/submit_ticket_agent?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="ticket_agent" id="form_agent">
+                                        <input type="hidden" name="ticket_agent_name" id="form_agent_name">
+                                        <input type="hidden" name="ticket_status" id="form_ticket_status">
+                                        <input type="hidden" name="ticket_status_name" id="form_ticket_status_name">
+                                        <input type="hidden" name="insert" value="insert" />
+                                        <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
+                                        <p>
+                                            <script type="text/plain" id="myEditor" style="width:100%;height:200px;"></script>
+                                        </p>
+                                        <p style="margin-top:20px;" align="right">
+                                            <button type="button"  class="btn btn-primary btn-lg" onclick="submitTicket()"> 提交 </button>
+                                        </p>
+                                    </form>
+                                </div><!--messagereply--><?php endif; ?>
                             
                             <div class="msg-reply-wrap">
                                 <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor"  style="padding:0 0 10px;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;">
@@ -360,24 +378,7 @@
 
                             <div name="one"></div>
 
-                            <?php if($data["status"] != '3'): ?><div class="msgreply" >
-                                    <hr>
-                                    <form id="form_ticket" action="<?php echo U('Admin/submit_ticket_agent?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="ticket_agent" id="form_agent">
-                                        <input type="hidden" name="ticket_agent_name" id="form_agent_name">
-                                        <input type="hidden" name="ticket_status" id="form_ticket_status">
-                                        <input type="hidden" name="ticket_status_name" id="form_ticket_status_name">
-                                        <input type="hidden" name="insert" value="insert" />
-                                        <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
-                                        <p>
-                                            <script type="text/plain" id="myEditor" style="width:100%;height:200px;"></script>
-                                        </p>
-                                        <hr>
-                                        <p style="margin-top:10px;" align="right">
-                                            <button type="button"  class="btn btn-primary" onclick="submitTicket()"> 提交 </button>
-                                        </p>
-                                    </form>
-                                </div><!--messagereply--><?php endif; ?>
+                            
                         </div><!--messageview-->
                       
                     </div><!--messageright-->
@@ -418,7 +419,7 @@
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
                     </button>
                 </div>
             </div><!-- /.modal-content -->

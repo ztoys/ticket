@@ -189,6 +189,13 @@ label.inline-block{
 .userloggedinfo ul li a:hover { text-decoration: none; background: rgba(255,255,255,0.2); }
 
 .no-borderradius .userloggedinfo .userinfo { float: none; margin-left: 92px; }
+.main-content {
+	width: 1100px;
+	margin: 0 auto;
+}
+.btn-line{
+	width: 100%;
+}
 
 
 /* ICON */
@@ -350,7 +357,7 @@ label.inline-block{
 	margin-left: 20px;
 }
 
-.widgetcontent { background: #fff; padding: 15px 30px; border: 2px solid #0866c6; border-top: 0; margin-bottom: 20px; }
+.widgetcontent { background: #fff; padding: 15px 30px; border: 1px solid #0866c6; border-top: 0; margin-bottom: 20px; }
 .widgetcontent p { margin: 15px 0; }
 .wt1 { background: #333; color: #fff; }
 .wc1 { border-color: #333; }
@@ -922,9 +929,20 @@ label.inline-block{
 .messagemenu ul li.back { display: none; border-right: 0; }
 .messagemenu ul li.back a { cursor: pointer; }
 
-.messagecontent { overflow: hidden; clear: both; }
-.messageleft { width: 325px; border: 1px solid #0866c6; border-top: 0; height: 600px; float: left; background: #f7f7f7; border-right: 0;}
-.messageright { background: #fff; margin-left: 325px; border: 1px solid #0866c6; border-top: 0; border-left: 0;}
+.messagecontent { 
+	overflow: hidden; 
+	clear: both; 
+	border: 1px solid #0866c6;
+}
+.messageleft { 
+	width: 325px; 
+	border-top: 0; 
+	height: 600px; 
+	float: left; 
+	background: #f7f7f7; 
+	border-right: 0;
+}
+.messageright { background: #fff; margin-left: 325px; border-top: 0; border-left: 0;}
 .messagesearch { padding: 10px; background: #fff; border-bottom: 1px solid #0866c6; }
 .messagesearch input {
 	margin: 0; padding: 8px 10px; height: auto; background: #fff url(../images/icons/search.png) no-repeat 275px 8px; }
@@ -974,7 +992,7 @@ label.inline-block{
 
 
 .msgreply { padding: 10px; border: 1px solid #0866c6; border-top: 0;}
-.messageview .msgreply {padding: 10px; border: none; border-top: 1px solid #0866c6;}
+.messageview .msgreply {padding: 10px; border: none; border-bottom: 1px solid #0866c6;}
 .msgreply .thumb { width: 40px; height: 40px; float: left; }
 .msgreply .reply { margin-left: 50px; }
 .msgreply textarea {
@@ -1639,6 +1657,9 @@ table td.center, table th.center { text-align: center; }
   font-size: 12px;
   line-height: 1.5;
 }
+.btn-lg {
+	padding: 5px 50px;
+}
 
 /*** MEDIA QUERIES ***/
 
@@ -1744,7 +1765,7 @@ table td.center, table th.center { text-align: center; }
 		  .mediamgr .mediamgr_right { top: 110px; }
 		  
 		  /* messages */
-		  .messageleft { width: 241px; }
+		  .messageleft { width: 241px;}
 		  .messageright { margin-left: 241px; }
 		  
 		  /* bootstrap */

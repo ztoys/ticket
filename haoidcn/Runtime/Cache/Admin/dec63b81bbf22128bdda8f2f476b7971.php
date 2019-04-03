@@ -192,7 +192,7 @@
                             <?php if($data["limits"] == '3'): ?><li <?php if($data["case"] == 'cao'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-edit"></span> 草稿箱</a></li><?php endif; ?>
                         </ul> -->
                     </div>
-                    <div class="messagecontent">
+                    <div class="messagecontent" style="border: none;">
                         <?php if($limits == '3'): ?><table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="10%">编号</th>

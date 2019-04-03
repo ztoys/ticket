@@ -80,15 +80,15 @@
 		margin-top: 20px;
 		padding-top: 50px;
 		height: 140px;
-		border: 1px dashed #007FFF;
+		border: 1px dashed #0866c6;
 		border-radius: 3px;
-		color: #007FFF;
+		color: #0866c6;
 		font-size: 18px;
 		text-align: center;
 	}
 	.ticket-add-wrap:hover{
 		text-decoration: none;
-		color: #007FFF;
+		color: #0866c6;
 	}	
 
 </style>

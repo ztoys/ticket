@@ -64,8 +64,6 @@
     .messageright{
         position: relative;
         margin: 0;
-        border-top: 1px solid #0866c6;
-        border-left: 1px solid #0866c6;
     }
     .comments li:last-child .comment p{margin-top:15px;}
     .comment-wrap {
@@ -246,11 +244,11 @@
             </ul>
         </div><!--leftmenu-->
     </div><!-- leftpanel -->
-    
+
     <div class="maincontent">
         <div class="maincontentinner">
             <div class="messagepanel">
-                <div class="messagecontent">
+                <div class="messagecontent main-content">
                     <div class="messageright">
                         <div class="messageview" style="<?php if($data["status"] == 3): ?>height:100%<?php endif; ?>">
                             <div class="btn-group pull-right">
@@ -295,7 +293,7 @@
                                 </div><?php endif; ?>
                             <!-- comment end -->
 
-                            <div class="msgbody"  style="background:#fcfcfc;">
+                            <div class="msgbody"  style="background:#fcfcfc;border-bottom:1px solid #DDD;">
                                 <div>
                                     <?php echo ($main["w_issue"]); ?>
                                 </div>
@@ -312,6 +310,19 @@
                                     </div><?php endif; ?>	
                                 <?php if($data["limits"] == 3 and $data["case"] == 'zhong'): ?><p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p><?php endif; ?>
                             </div><!--msgbody-->
+
+                            <?php if($data["status"] != '3'): ?><div class="msgreply" >
+                                    <form id="form01" action="<?php echo U('Client/detail?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="insert" value="insert" />
+                                        <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
+                                        <p>
+                                            <script type="text/plain" id="myEditor" style="width:100%;height:200px;"></script>
+                                        </p>
+                                        <p style="margin-top:20px;" align="right">
+                                            <input type="submit"  class="btn btn-primary btn-lg" value="  发送  ">
+                                        </p>
+                                    </form>
+                                </div><!--messagereply--><?php endif; ?>
 
                             <div class="msg-reply-wrap">
                                 <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor"  style="padding:0 0 10px;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;">
@@ -377,18 +388,7 @@
                                 </div><?php endif; ?>
                             
                         </div><!--messageview-->
-                        <?php if($data["status"] != '3'): ?><div class="msgreply" >
-                                <form id="form01" action="<?php echo U('Client/detail?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="insert" value="insert" />
-                                    <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
-                                    <p>
-                                        <script type="text/plain" id="myEditor" style="width:100%;height:200px;"></script>
-                                    </p>
-                                    <p style="margin-top:10px;" align="right">
-                                        <input type="submit"  class="btn btn-primary" value="  发送  ">
-                                    </p>
-                                </form>
-                            </div><!--messagereply--><?php endif; ?>
+                        
                         
                     </div><!--messageright-->
                 </div><!--messagecontent-->
