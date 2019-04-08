@@ -136,8 +136,8 @@ if($status){
 						wid int(10) NOT NULL,
 						uid int(10) NOT NULL,
 						time bigint(20) NOT NULL,
-						event varchar(255),
-						point_word varchar(255),
+						event text,
+						point_word text,
 						PRIMARY KEY (id),
 						KEY wid (wid)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",

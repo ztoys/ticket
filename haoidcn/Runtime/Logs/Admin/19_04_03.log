@@ -2530,3 +2530,1514 @@ SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0005s ]
 NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 749 行.
 SQL: SELECT * FROM `ticket_user` WHERE ( u_status='24' )  [ RunTime:0.0004s ]
 
+[ 2019-04-03T14:54:43+08:00 ] 10.0.0.224 /ticket/?token=WBMzIL7YPoNMV734P8f-1JW24SnCXrVm0MgiWtuHPKNc6ue2yr6L9GRgx7sthBGH9_xYvNK9xp_mJn4cxDuefg%3D%3D&devtype=pc
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000092s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001242s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001474s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001764s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2019-04-03T14:54:43+08:00 ] 10.0.0.224 /ticket/index.php/Console/dashboard.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000945s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001804s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002144s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000217s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000459s ]
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 183 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 184 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 185 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 186 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 187 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 188 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 189 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 190 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031868s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032060s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001201s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001372s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002003s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002298s ]
+
+[ 2019-04-03T14:54:44+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/create.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000723s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000646s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000809s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus<>'3' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000148s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000296s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031117s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031292s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001517s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001833s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001237s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001446s ]
+
+[ 2019-04-03T14:54:45+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail/case/create/id/83.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000872s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001100s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001356s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='83' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0012s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0010s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000187s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000312s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 235 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 236 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 237 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 238 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 241 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 242 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.048706s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.048862s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000776s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000877s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001316s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001478s ]
+
+[ 2019-04-03T14:54:48+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/create
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000860s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000813s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000981s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 176 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus<>'3' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0009s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000135s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000248s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.042847s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.042975s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000782s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000906s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000933s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001095s ]
+
+[ 2019-04-03T14:54:49+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/reply.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000786s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001004s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001205s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0011s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 173 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus<>'3' and tz_status='1' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000152s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000294s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044138s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.044321s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000808s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000956s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002166s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002458s ]
+
+[ 2019-04-03T14:54:50+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail/case/reply/id/83.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000646s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000960s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001130s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='83' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000313s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000521s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 235 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 236 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 237 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 238 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 241 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 242 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.039251s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039406s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001022s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001134s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001937s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002256s ]
+
+[ 2019-04-03T14:55:07+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail/case/reply.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000937s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001203s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001448s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: status D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 419 行.
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: INSERT INTO `ticket_addwork` (`g_reply`,`repdate`,`uid`,`pid`) VALUES ('<p>xxaxxxx</p>','1554274507','78','83') [ RunTime:0.0005s ]
+SQL: UPDATE `ticket_work` SET `tz_status`='-1' WHERE ( id=83 ) [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0009s ]
+SQL: INSERT INTO `ticket_wrecord` (`wid`,`uid`,`time`,`event`,`point_word`) VALUES ('83','78','1554274507','评论了工单：<p>xxaxxxx</p>','') [ RunTime:0.0005s ]
+
+[ 2019-04-03T14:55:08+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail/case/reply/id/83
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000571s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000722s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='83' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0005s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000198s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000324s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 235 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 236 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 237 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 238 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 241 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 242 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036215s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036426s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000872s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001045s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001013s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001165s ]
+
+[ 2019-04-03T14:55:12+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/reply
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000528s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000638s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000776s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 173 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus<>'3' and tz_status='1' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0006s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000137s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000276s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032943s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033082s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000763s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000864s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000933s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001079s ]
+
+[ 2019-04-03T14:55:13+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/ping.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000856s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001005s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001228s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 179 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus='4' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0013s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0010s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000449s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001318s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.098425s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.098650s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001428s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003769s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.023878s ]
+INFO: [ app_end ] --END-- [ RunTime:0.028516s ]
+
+[ 2019-04-03T14:55:14+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail/case/ping/id/83.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000642s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000651s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000775s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='83' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0005s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000201s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000379s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 235 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 236 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 237 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 238 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 241 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 242 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038876s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039085s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001115s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001408s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001280s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001503s ]
+
+[ 2019-04-03T14:55:16+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/ping
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000721s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000772s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000915s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 179 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus='4' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0010s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000137s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000262s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034655s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034808s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000831s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000973s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000968s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001123s ]
+
+[ 2019-04-03T14:55:17+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/reply.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001732s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 173 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0018s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus<>'3' and tz_status='1' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0009s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000139s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000271s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.050218s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.050414s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001218s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001448s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001261s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001536s ]
+
+[ 2019-04-03T14:55:18+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/reply.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001034s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001178s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001448s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 173 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus<>'3' and tz_status='1' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000137s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000260s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041417s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041573s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001164s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001460s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001388s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001641s ]
+
+[ 2019-04-03T14:55:20+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/ping.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001084s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001338s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001570s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 179 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus='4' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000139s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000265s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036748s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036944s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000778s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000891s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001402s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001624s ]
+
+[ 2019-04-03T14:55:24+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/yi.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000989s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000648s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000771s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy1' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 179 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( wc_sataus='3' and uid='78'  ) ORDER BY puddate desc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=78 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined offset: 0 D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 229 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0006s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='' ) ORDER BY repdate asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_evaluation` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_evaluation` WHERE ( work_id='' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000187s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000359s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 155 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 156 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030214s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030349s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000735s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000835s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002118s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002313s ]
+
+[ 2019-04-03T15:21:11+08:00 ] 10.0.0.224 /ticket/?token=mWB-oCaj9GSC3PK8ZRdBfCgFGtx-KNHUO-g1mBgjcDF5ti5N7Ky8s7U1L61BDNAsnxkm4OnjjbDrQ843m7MHMQ%3D%3D&devtype=pc
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000944s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001254s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001504s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0006s ]
+
+[ 2019-04-03T15:21:12+08:00 ] 10.0.0.224 /ticket/index.php/Console/dashboard.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000897s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001027s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001249s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0009s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000229s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000443s ]
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 176 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 177 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 178 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 179 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 180 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037422s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037623s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000743s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000888s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007798s ]
+INFO: [ app_end ] --END-- [ RunTime:0.008090s ]
+
+[ 2019-04-03T15:22:10+08:00 ] 10.0.0.224 /ticket/?token=tHBsXKbUXig9U4mC4KlUIK57eSfYd6l0cmZtH2k22a0DZSbP07yMgbgylUrG646_nHegNvEPYzhSkpYxZDzi3g%3D%3D&devtype=pc
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001431s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001790s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001831s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2019-04-03T15:22:10+08:00 ] 10.0.0.224 /ticket/index.php/Console/dashboard.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000055s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000215s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000254s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000057s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000081s ]
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 176 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 177 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 178 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 179 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 180 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033706s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033734s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000753s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000770s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001290s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001320s ]
+
+[ 2019-04-03T15:22:11+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/manned.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000079s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000540s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000594s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 201 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( w.wc_sataus<>'3' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0005s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000105s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000145s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009339s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009380s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000386s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000415s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000293s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000333s ]
+
+[ 2019-04-03T15:22:14+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/zhong.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000136s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000403s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000460s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='2' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0004s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0005s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000094s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000138s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006583s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006611s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000180s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000194s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000190s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000211s ]
+
+[ 2019-04-03T15:22:15+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/ping.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000007s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000053s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000175s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000201s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='4' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000107s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000152s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009953s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010014s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000246s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000274s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000249s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000289s ]
+
+[ 2019-04-03T15:22:15+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/yi.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000098s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000212s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000248s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0011s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='3' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined offset: 0 D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 229 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='' ) ORDER BY repdate asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_evaluation` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_evaluation` WHERE ( work_id='' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000109s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000152s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010541s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010583s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000245s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000269s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000221s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000252s ]
+
+[ 2019-04-03T15:22:17+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/all.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000163s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000266s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000300s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 199 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is null or w.did=0) and w.wc_sataus<>'3'  ) ORDER BY puddate desc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0004s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0004s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000084s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000114s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008035s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000236s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000253s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000194s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000217s ]
+
+[ 2019-04-03T15:22:19+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/manned.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000077s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000235s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 201 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( w.wc_sataus<>'3' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0020s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000138s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009521s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009563s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000274s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000296s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000469s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000544s ]
+
+[ 2019-04-03T15:24:26+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/ping.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000268s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000501s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000536s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='4' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000110s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000151s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013946s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013987s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000641s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000666s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000645s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000686s ]
+
+[ 2019-04-03T15:24:27+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/ping/id/83.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000055s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000303s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000377s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='83' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,w.did w_did,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0006s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0007s ]
+SQL: SELECT r.id id,r.wid wid,r.uid uid,r.time time,r.event event,r.point_word point_word,u.uname uname FROM ticket_wrecord r left join ticket_user AS u ON r.uid=u.id  WHERE ( wid=83 ) ORDER BY time desc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( id='89' ) LIMIT 1   [ RunTime:0.0007s ]
+ERR: Too few arguments to function Admin\Controller\ClientController::sel_sql(), 2 passed in D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php on line 521 and exactly 3 expected
+
+[ 2019-04-03T15:24:30+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/manned.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000148s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000575s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000697s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 201 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0012s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( w.wc_sataus<>'3' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0006s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000101s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000137s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009619s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009661s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000310s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000280s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000313s ]
+
+[ 2019-04-03T15:24:31+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/83.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000058s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000206s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000240s ]
+NOTIC: [8] session_start(): A session had already been started - ignoring D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='83' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,w.did w_did,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0004s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0007s ]
+SQL: SELECT r.id id,r.wid wid,r.uid uid,r.time time,r.event event,r.point_word point_word,u.uname uname FROM ticket_wrecord r left join ticket_user AS u ON r.uid=u.id  WHERE ( wid=83 ) ORDER BY time desc  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( id='89' ) LIMIT 1   [ RunTime:0.0003s ]
+ERR: Too few arguments to function Admin\Controller\ClientController::sel_sql(), 2 passed in D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php on line 521 and exactly 3 expected
+
+[ 2019-04-03T15:25:24+08:00 ] 10.0.0.224 /ticket/?token=qdWaonmqpaMuJ2MHJ3wAYnr9muq-ZKajN3f6f1HBLFHFYlqIAJykzhC5QRJ9tkIc-zNljE5c2POcLR17wgIbLw%3D%3D&devtype=pc
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001114s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002781s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003034s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2019-04-03T15:25:24+08:00 ] 10.0.0.224 /ticket/index.php/Console/dashboard.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001685s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001002s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001220s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000332s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000569s ]
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 176 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 177 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 178 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 179 行.
+NOTIC: [8] Undefined index: case D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 180 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033145s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033321s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000833s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000976s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002004s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002208s ]
+
+[ 2019-04-03T15:25:26+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/all.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000511s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000598s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000711s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 199 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is null or w.did=0) and w.wc_sataus<>'3'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000134s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000246s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.030561s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.030693s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000990s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001109s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001095s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001223s ]
+
+[ 2019-04-03T15:25:27+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/all/id/86.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000998s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001311s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001574s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='86' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,w.did w_did,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0010s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0010s ]
+SQL: SELECT r.id id,r.wid wid,r.uid uid,r.time time,r.event event,r.point_word point_word,u.uname uname FROM ticket_wrecord r left join ticket_user AS u ON r.uid=u.id  WHERE ( wid=86 ) ORDER BY time desc  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( id='89' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\ClientController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php on line 521 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 706 行.
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 707 行.
+SQL: SELECT * FROM `ticket_user` WHERE ( u_status='24' )  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000207s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000337s ]
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 225 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 226 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 227 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 228 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 229 行.
+NOTIC: [8] Undefined variable: list_group D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.059353s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.059511s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000928s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001069s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001988s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002210s ]
+
+[ 2019-04-03T15:25:29+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/all
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000674s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000799s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 199 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is null or w.did=0) and w.wc_sataus<>'3'  ) ORDER BY puddate desc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000135s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000265s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.035327s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036158s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000806s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000940s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001065s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001464s ]
+
+[ 2019-04-03T15:25:30+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/zhong.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000808s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000638s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000755s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='2' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000134s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000246s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034801s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.034979s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001307s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001548s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001217s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001402s ]
+
+[ 2019-04-03T15:25:31+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/zhong/id/84.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000689s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001292s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001592s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='84' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,w.did w_did,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_wrecord` [ RunTime:0.0013s ]
+SQL: SELECT r.id id,r.wid wid,r.uid uid,r.time time,r.event event,r.point_word point_word,u.uname uname FROM ticket_wrecord r left join ticket_user AS u ON r.uid=u.id  WHERE ( wid=84 ) ORDER BY time desc  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( id='89' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\ClientController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php on line 521 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 706 行.
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 707 行.
+SQL: SELECT * FROM `ticket_user` WHERE ( u_status='24' )  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000284s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000584s ]
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 225 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 226 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 227 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 228 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 229 行.
+NOTIC: [8] Undefined variable: list_group D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 259 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+NOTIC: [8] Use of undefined constant w_did - assumed 'w_did' D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\65f7368a14a8ab85e3cbd3c0faaf1fd3.php 第 266 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.047831s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.048013s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000888s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001015s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001282s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001662s ]
+
+[ 2019-04-03T15:25:32+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/zhong
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000582s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000773s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000919s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='2' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000134s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000246s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.036346s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.036489s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000835s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000941s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003589s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003936s ]
+
+[ 2019-04-03T15:26:02+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/manned.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000984s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001231s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001459s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 201 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( w.wc_sataus<>'3' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='84' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0008s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='84' ) ORDER BY repdate asc  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000132s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000243s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031688s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031866s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000906s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001017s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001168s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001354s ]
+
+[ 2019-04-03T15:26:02+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/all.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000530s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000991s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001258s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 199 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is null or w.did=0) and w.wc_sataus<>'3'  ) ORDER BY puddate desc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='86' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0013s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='86' ) ORDER BY repdate asc  [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000137s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000256s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.033429s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033730s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000814s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000946s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001251s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001476s ]
+
+[ 2019-04-03T15:26:03+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/yi.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000580s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000721s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000857s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='3' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined offset: 0 D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 229 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='' ) ORDER BY repdate asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_evaluation` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_evaluation` WHERE ( work_id='' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000286s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001288s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037106s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037260s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000865s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000985s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001736s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002302s ]
+
+[ 2019-04-03T15:26:04+08:00 ] 10.0.0.224 /ticket/index.php/Client/messages/case/ping.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000690s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001031s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy5' ) LIMIT 1   [ RunTime:0.0015s ]
+NOTIC: [8] Undefined variable: where D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 203 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( wc_sataus='4' and did='89'  ) ORDER BY puddate desc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='2' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( did=89 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='83' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0010s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='83' ) ORDER BY repdate asc  [ RunTime:0.0012s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000203s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000325s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041968s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.042135s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000742s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000912s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002760s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005873s ]
+
