@@ -58,7 +58,7 @@
         <div class="maincontent">
             <div class="maincontentinner">
                 <div class="messagepanel">
-                    <div class="messagemenu" style="border-top: 1px solid #0866c6;">
+                    <!-- <div class="messagemenu" style="border-top: 1px solid #0866c6;"> -->
                         <!-- <ul>
                             <li class="back"><a><span class="iconfa-chevron-left"></span > Back</a></li>
                             <li <if condition="$data.case eq 'dai'">{$data.class}</if>><a href="{:U('Client/messages?case=dai')}" ><span></span> 待处理的工单</a></li>
@@ -68,7 +68,7 @@
                             	<li <if condition="$data.case eq 'cao'">{$data.class}</if>><a href="{:U('Client/messages?case=cao')}"><span class="iconfa-edit"></span> 草稿箱</a></li>
                             </if>
                         </ul> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="messagecontent main-content">
                         <table class="table table-bordered table-fixed table-tr-click">
                             <tr>
@@ -111,12 +111,6 @@
                     </div><!--messagecontent-->
 
                 </div><!--messagepanel-->
-                
-               <!-- footer binge -->
-				<include file="Public/footer" />
-				
-				<!-- footer end -->
-                
                 
             </div><!--maincontentinner-->
         </div><!--maincontent-->

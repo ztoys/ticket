@@ -186,7 +186,7 @@
         <div class="maincontent">
             <div class="maincontentinner">
                 <div class="messagepanel">
-                    <div class="messagemenu" style="border-top: 1px solid #0866c6;">
+                    <!-- <div class="messagemenu" style="border-top: 1px solid #0866c6;"> -->
                         <!-- <ul>
                             <li class="back"><a><span class="iconfa-chevron-left"></span > Back</a></li>
                             <li <?php if($data["case"] == 'dai'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=dai');?>" ><span></span> 待处理的工单</a></li>
@@ -194,7 +194,7 @@
                             <li <?php if($data["case"] == 'yi'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-edit"></span> 已关闭的工单</a></li>
                             <?php if($data["limits"] == '3'): ?><li <?php if($data["case"] == 'cao'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-edit"></span> 草稿箱</a></li><?php endif; ?>
                         </ul> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="messagecontent main-content">
                         <table class="table table-bordered table-fixed table-tr-click">
                             <tr>
@@ -227,14 +227,6 @@
                     </div><!--messagecontent-->
 
                 </div><!--messagepanel-->
-                
-               <!-- footer binge -->
-								<div class="footer">
-                    
-                </div><!--footer-->
-				
-				<!-- footer end -->
-                
                 
             </div><!--maincontentinner-->
         </div><!--maincontent-->
