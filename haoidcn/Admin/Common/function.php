@@ -29,18 +29,16 @@ function Mobile($mobile,$content,$send_code=''){	//号码，验证码，信息�
 	return $gets['SubmitResult']['code']; 
 }
 
-// 上传图片
+// 上传附件
 function Upload_f(){
-
 	$upload = new \Think\Upload();								// 实例化上传类
-	$upload -> maxSize   =     3145728 ;							// 设置附件上传大小
-	$upload -> exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-	$upload -> rootRath  =     './Uploads/';
-	$upload -> savePath  =     './Public/Uploads/'; 				// 设置附件上传目录
+	$upload -> maxSize   =   52428800 ;							// 设置附件上传大小 50M
+	// $upload -> exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+	$upload -> rootRath  =   './Uploads/';
+	$upload -> savePath  =   './Public/Uploads/'; 				// 设置附件上传目录
 	
 	return $upload->upload();
 }
-
 
 //截取中文定
 function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=true){

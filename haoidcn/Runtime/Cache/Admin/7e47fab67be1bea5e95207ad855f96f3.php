@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>工单系统</title>
 
-<link href="<?php echo (C("URL")); ?>baidubianjiqi/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
 
 <!-- header binge -->
 
@@ -43,11 +42,7 @@
 
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
-
 <script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/third-party/jquery.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="<?php echo (C("URL")); ?>baidubianjiqi/umeditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="<?php echo (C("URL")); ?>baidubianjiqi/umeditor.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/lang/zh-cn/zh-cn.js"></script>
 
 
 
@@ -101,7 +96,7 @@
         <div class="leftmenu">        
             <ul class="nav nav-tabs nav-stacked">
             <?php if($limits == '1'): ?><!-- 管理员 -->
-            	<li class="nav-header">总后台管理</li>
+            	<li class="nav-header">管理控制中心</li>
 <!--             	<li class="active"><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-question-sign"></span> 工单</a></li> -->
 				
 				
@@ -110,7 +105,7 @@
                 <!-- <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a></li> -->
                 <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li>
                 <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>"><span class="iconfa-user"></span>成员管理</a></li>
-                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span>未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
+                <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span>工单指派<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
                 <!-- <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-user"></span> 客户管理</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/client');?>">添加客户</a></li>
@@ -129,13 +124,13 @@
                 <li <?php echo ($data02["sh_two01"]); ?>><a href="<?php echo U('Admin/office');?>"><span class="iconfa-comments"></span> 工作时间</a></li> -->
                 <!-- <li <?php echo ($data03["sh_two01"]); ?>><a href="<?php echo U('Admin/config');?>"><span class="iconfa-comments"></span> 基本配置</a></li> --><?php endif; ?>
             
-            <?php if($limits == '2'): ?><li class="nav-header">工单管理</li>
+            <?php if($limits == '2'): ?><li class="nav-header">工单中心</li>
                 <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的<span class="right"><?php echo ($ticket_count["c_myticket"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>受理中<span class="right"><?php echo ($ticket_count["c_admissible"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价<span class="right"><?php echo ($ticket_count["c_comment"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right"><?php echo ($ticket_count["c_close"]); ?></span></a></li><?php endif; ?>
-            <?php if($limits == '3'): ?><li class="nav-header">工单管理</li>
+            <?php if($limits == '3'): ?><li class="nav-header">工单中心</li>
             	<!-- <li <?php echo ($set["active"]); ?>><a href="<?php echo U('Console/dashboard');?>"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
                 <li <?php echo ($data["active01"]); ?>><a href="<?php echo U('Client/forms');?>"><span class="iconfa-pencil"></span>创建工单</a></li>
                 <li <?php if($data["case"] == 'create'): echo ($data["active02"]); endif; ?> ><a href="<?php echo U('Client/messages?case=create');?>"><span class="iconfa-bookmark"></span> 我创建的工单<span class="right"><?php echo ($ticket_count["c_mycreate"]); ?></span></a></li>
@@ -153,18 +148,14 @@
 
 
     <div class="rightpanel">
-    
         <!-- head binge -->
         
-			
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a href="<?php echo U('Console/dashboard');?>">面板</a> <span class="separator"></span></li>
             <li>新工单</li>
         </ul>
-		
 		<!-- head end -->
-        
         
         <div class="pageheader">
 <!--             <form action="results.html" method="post" class="searchbar"> -->
@@ -185,56 +176,78 @@
                 	<input type="hidden" name="x_wid" id="x_wid" value="<?php echo ($list["id"]); ?>">
                 	<input type="hidden" name="y_title" id="y_title" value="<?php echo ($list["title"]); ?>">
                 	<p>
-                         <label>主题</label>
-                         <span class="field"><input type="text" name="title" id="title" class="input-xxlarge" placeholder="工单主题" value="<?php echo ($list["title"]); ?>"/>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"></font></span>
-						 
-                     </p>
-<!--                      <div id="file_w"> -->
-<!--                      	<input type="hidden" id="file_j" value="1"> -->
-<!--                      	<input type="hidden" id="file_de" value="1"> -->
-<!-- 	                     <div class="par" id="file_j1"> -->
-<!-- 						    <label>上传文件</label> -->
-<!-- 						    <div class="fileupload fileupload-new" data-provides="fileupload"> -->
-<!-- 							<div class="input-append"> -->
-<!-- 							<div class="uneditable-input span3"> -->
-<!-- 							    <i class="iconfa-file fileupload-exists"></i> -->
-<!-- 							    <span class="fileupload-preview"></span> -->
-<!-- 							</div> -->
-<!-- 							<span class="btn btn-file"><span class="fileupload-new">选择</span> -->
-<!-- 							<span class="fileupload-exists">修改</span> -->
-<!-- 							<input type="file" name='photo[]' id='file_s1'/></span> -->
-<!-- 								<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">取消</a> -->
-<!-- 							</div> -->
-<!-- 								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void();" onclick="file_d();"  class="iconfa-plus">&nbsp;&nbsp;增加一个</a></span> -->
-<!-- 								<span>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">上传格式：jpg，gif，peg，jpeg</font></span> -->
-<!-- 						    </div> -->
-<!-- 						</div> -->
-						
-<!--                    	</div> -->
-                   	
-<!--                    	<?php if(!empty($file_arr[0])): ?>-->
-<!-- 						<div style="margin-left:220px;overflow:hidden;zoom:1;"> -->
-								
-<!-- 							<?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?>-->
-<!-- 								<div id="picture<?php echo ($k); ?>"> -->
-<!-- 									<div style="float:left;margin:5px; padding:5px;border:1px solid #ccc;" > -->
-<!-- 										<div style="width:150px;height:125px;"> -->
-<!-- 											<img src="/ticket/Uploads/<?php echo ($vo); ?>" style="width:150px;height:100px;" /> -->
-<!-- 											<input type="hidden" name="photo01[]" value="<?php echo ($vo); ?>"> -->
-<!-- 											<div style="text-align:center;"><a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a></div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!--<?php endforeach; endif; ?> -->
-								
-<!-- 						</div> -->
-<!--<?php endif; ?>	 -->
-                   	<p>
-                         <label>描述</label>
-                         <span class="field">
-	                    	<script type="text/plain" id="myEditor" style="width:80%;height:340px;"><?php echo ($list["issue"]); ?></script>
-                         </span> 
-                     </p>
+                        <label>主题</label>
+                        <span class="field"><input type="text" name="title" id="title" class="input-xxlarge" placeholder="工单主题" value="<?php echo ($list["title"]); ?>"/>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"></font></span>
+                    </p>
+                    <p>
+                        <label>工单类型</label>
+                        <select name="type" id="type">
+                            <option value="1">产品Bug</option>
+                            <option value="2">新需求</option>
+                            <option value="3">投诉与建议</option>
+                            <option value="4">其它</option>
+                        </select>                        
+                    </p>
+                    <p>
+                        <label>优先级</label>
+                        <select name="level" id="level">
+                            <option value="3">紧急</option>
+                            <option value="2">重要</option>
+                            <option value="1">一般</option>
+                        </select>                        
+                    </p>
+                    <p>
+                        <label>所属客户</label>
+                        <select name="owned" id="owned">
+                            <option value="1">客户A</option>
+                            <option value="2">客户B</option>
+                            <option value="3">客户C</option>
+                        </select>                        
+                    </p>
+                    <p>
+                        <label>描述</label>
+                        <div class="field">
+                            <textarea name="editorValue" id="editorValue" width="530" height="200"></textarea>
+                        </div>
+                    </p>
+
+                    <!-- 附件上传 START -->
+
+                    <div id="file_w">
+                     	<input type="hidden" id="file_j" value="1">
+                     	<input type="hidden" id="file_de" value="1">
+	                     <div class="par" id="file_j1">
+						    <label>上传文件</label>
+						    <div class="fileupload fileupload-new" data-provides="fileupload">
+							<div class="input-append">
+							<div class="uneditable-input span3">
+							    <i class="iconfa-file fileupload-exists"></i>
+							    <span class="fileupload-preview"></span>
+							</div>
+							<span class="btn btn-file"><span class="fileupload-new">选择</span>
+							<span class="fileupload-exists">修改</span>
+							<input type="file" name='photo[]' id='file_s1'/></span>
+								<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">取消</a>
+							</div>
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void();" onclick="file_d();"  class="iconfa-plus">&nbsp;&nbsp;增加一个</a></span>
+								<!-- <span>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">上传格式：jpg，gif，peg，jpeg</font></span> -->
+						    </div>
+						</div>
+                   	</div>
+                   	<?php if(!empty($file_arr[0])): ?><div style="margin-left:220px;overflow:hidden;zoom:1;">
+							<?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?><div id="picture<?php echo ($k); ?>">
+									<div style="float:left;margin:5px; padding:5px;border:1px solid #ccc;" >
+										<div style="width:150px;height:125px;">
+											<img src="/ticket/Uploads/<?php echo ($vo); ?>" style="width:150px;height:100px;" />
+											<input type="hidden" name="photo01[]" value="<?php echo ($vo); ?>">
+											<div style="text-align:center;"><a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a></div>
+										</div>
+									</div>
+								</div><?php endforeach; endif; ?>
+						</div><?php endif; ?>	
+
+                    <!-- 附件上传 END -->
+                    
                    	<br/>
                    	
                      
@@ -266,91 +279,6 @@
     
 </div><!--mainwrapper-->
 <script type="text/javascript">
-    //实例化编辑器
-    var um = UM.getEditor('myEditor');
-    um.addListener('blur',function(){
-        $('#focush2').html('编辑器失去焦点了')
-    });
-    um.addListener('focus',function(){
-        $('#focush2').html('')
-    });
-    //按钮的操作
-    function insertHtml() {
-        var value = prompt('插入html代码', '');
-        um.execCommand('insertHtml', value)
-    }
-    function isFocus(){
-        alert(um.isFocus())
-    }
-    function doBlur(){
-        um.blur()
-    }
-    function createEditor() {
-        enableBtn();
-        um = UM.getEditor('myEditor');
-    }
-    function getAllHtml() {
-        alert(UM.getEditor('myEditor').getAllHtml())
-    }
-    function getContent() {
-        var arr = [];
-        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-        arr.push("内容为：");
-        arr.push(UM.getEditor('myEditor').getContent());
-        alert(arr.join("\n"));
-    }
-    function getPlainTxt() {
-        var arr = [];
-        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
-        arr.push("内容为：");
-        arr.push(UM.getEditor('myEditor').getPlainTxt());
-        alert(arr.join('\n'))
-    }
-    function setContent(isAppendTo) {
-        var arr = [];
-        arr.push("使用editor.setContent('欢迎使用umeditor')方法可以设置编辑器的内容");
-        UM.getEditor('myEditor').setContent('欢迎使用umeditor', isAppendTo);
-        alert(arr.join("\n"));
-    }
-    function setDisabled() {
-        UM.getEditor('myEditor').setDisabled('fullscreen');
-        disableBtn("enable");
-    }
-
-    function setEnabled() {
-        UM.getEditor('myEditor').setEnabled();
-        enableBtn();
-    }
-
-    function getText() {
-        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
-        var range = UM.getEditor('myEditor').selection.getRange();
-        range.select();
-        var txt = UM.getEditor('myEditor').selection.getText();
-        alert(txt)
-    }
-
-    function getContentTxt() {
-        var arr = [];
-        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
-        arr.push("编辑器的纯文本内容为：");
-        arr.push(UM.getEditor('myEditor').getContentTxt());
-        alert(arr.join("\n"));
-    }
-    function hasContent() {
-        var arr = [];
-        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-        arr.push("判断结果为：");
-        arr.push(UM.getEditor('myEditor').hasContents());
-        alert(arr.join("\n"));
-    }
-    function setFocus() {
-        UM.getEditor('myEditor').focus();
-    }
-    function deleteEditor() {
-        disableBtn();
-        UM.getEditor('myEditor').destroy();
-    }
     function disableBtn(str) {
         var div = document.getElementById('btns');
         var btns = domUtils.getElementsByTagName(div, "button");

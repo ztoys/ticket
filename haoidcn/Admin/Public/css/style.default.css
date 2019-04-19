@@ -62,6 +62,7 @@ body.loginpage {
 
 a,a:hover,a:link,a:active,a:focus { outline: none; color: #0866c6; text-decoration: none; }
 a:hover { text-decoration: underline; }
+textarea{resize: none;}
 input,select,
 textarea,button { outline: none; font-size: 13px; font-family: 'RobotoRegular', 'Helvetica Neue', Helvetica, sans-serif; }
 strong { font-weight: normal; }
@@ -441,10 +442,16 @@ label.inline-block{
 
 
 /*** FORM STYLES ***/
+.stdform input,
+.stdform textarea,
+.stdform select{
+	width: 500px;
+	box-sizing: border-box;
+}
 
-.stdform input { padding: 5px; border: 1px solid #bbb; }
-.stdform textarea { padding: 6px 5px; border: 1px solid #bbb; }
-.stdform select { border: 1px solid #bbb; padding: 5px 2px; }
+.stdform input { padding: 5px; border: 1px solid #bbb; height: 30px;}
+.stdform textarea { padding: 6px 5px; border: 1px solid #bbb; height: 200px;}
+.stdform select { border: 1px solid #bbb; padding: 5px 2px;}
 .stdform p, .stdform div.par { margin: 20px 0; }
 .stdform span.field, .stdform div.field { margin-left: 220px; display: block; position: relative; }
 .stdform .formwrapper { display: block; padding-top: 5px; margin-left: 220px; line-height: 25px; }

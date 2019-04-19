@@ -164,7 +164,12 @@ function update_t(type){
 			$("#issue").focus();
 			return false;
 		}
-		
+		var editorValue = $("#editorValue").val();
+		if(editorValue == ""){
+			jAlert("描述不能为空");
+			return false;
+		}
+
 		var file_de= $("#file_de").val();
 		var file_g = "";
 		//判断是上传文件
@@ -175,17 +180,17 @@ function update_t(type){
 				return false;
 			}
 		}
-		for ( var j = 1; j <= file_de; j++ ) { 
-			if($("#file_s"+j).val() != ""){
-				file_g +=$("#file_s"+j).val();
-				var extStart = file_g.lastIndexOf(".");
-				var ext = file_g.substring(extStart, file_g.length).toUpperCase();
-				 if (ext != ".JPEG" && ext != ".JPG" && ext != ".GIF" && ext != ".PNG") {
-					 jAlert("上传文件限于jpeg,jpg,gif,png格式");
-		            return false;
-		        }
-			}
-		}
+		// for ( var j = 1; j <= file_de; j++ ) { 
+		// 	if($("#file_s"+j).val() != ""){
+		// 		file_g +=$("#file_s"+j).val();
+		// 		var extStart = file_g.lastIndexOf(".");
+		// 		var ext = file_g.substring(extStart, file_g.length).toUpperCase();
+		// 		 if (ext != ".JPEG" && ext != ".JPG" && ext != ".GIF" && ext != ".PNG") {
+		// 			 jAlert("上传文件限于jpeg,jpg,gif,png格式");
+		//             return false;
+		//         }
+		// 	}
+		// }
 		
 
 		$("#form01").submit();
@@ -530,7 +535,6 @@ function file_del(data){
 function del_tp(data){
 	$("#"+data).html("");
 }
-
 
 //搜索
 function seek(data){

@@ -30,8 +30,12 @@ class ClientController extends CommonController {
 			}
 
 			//上传图片
+			// print_r($_FILES['phpoto']);
+			// exit;
+	
 			$sc_file = "";
 			if(!empty($_FILES['photo']['tmp_name'])){
+				//ThinkPhP 根据 $_FILES上传内容
 				$info = Upload_f();
 				if($info){
 					foreach ($info as $val){
@@ -48,18 +52,21 @@ class ClientController extends CommonController {
 				//原有的图片名，拼接 上传的文件名
 				$sc_file = $photo01.','.$sc_file;
 			}
-				
+			
+			//移除右侧指定字符
 			$sc_file = rtrim($sc_file,',');
-				
+			
 			$data = array(
-					'title'		=>	I('post.title'),
-					'issue'		=>	htmlspecialchars_decode(I('post.editorValue')),
-					'sc_file'	=>	$sc_file,
-					'puddate'	=>	time(),
-					'wc_sataus'	=>	I('post.cc_status'),
-					'uid'		=>	I('post.uid'),
+				'title'		=>	I('post.title'),
+				'issue'		=>	htmlspecialchars_decode(I('post.editorValue')),
+				'sc_file'	=>	$sc_file,
+				'puddate'	=>	time(),
+				'wc_sataus'	=>	I('post.cc_status'),
+				'uid'		=>	I('post.uid'),
+				'work_type' =>  I('post.type'),
+				'work_level' => I('post.level'),
+				'work_owned' => I('post.owned'),
 			);
-				
 				
 			if(I("post.x_wid")){
 				//修改操作
@@ -78,7 +85,6 @@ class ClientController extends CommonController {
 				$id = $this->inser_sql("work",$data);	//添加到工单表
 				$url = __ROOT__."/index.php/Client/forms";
 				$type = "insert";
-
 			}
 			
 			if($id){
@@ -411,6 +417,10 @@ class ClientController extends CommonController {
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
 		
+		//文件
+		$file_arr = explode(',',$main['w_sc_file']);
+		$this->assign('file_arr',$file_arr);
+
 		//对话内容显示
 		$record = D("addwork as a")->field("u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid")->join("LEFT JOIN ".C('DB_PREFIX')."user as u ON a.uid=u.id")->where("a.pid='$aid'")->order("repdate asc")->select();
 		$this->assign('record',$record);
@@ -485,12 +495,12 @@ class ClientController extends CommonController {
 	public function detail_agent(){
 		$limits = I("session.limits");		//权限    2-售后	3-会员
 		$id = I("session.uid");				//当前用户id
-		$aid = I("get.id");			//工单id
+		$aid = I("get.id");					//工单id
 		$url_status = I("get.case");
 
 		$work_detail = $this->sel_sql_single("work", "id='$aid'");
 		if($work_detail) {
-			$status = $work_detail['wc_sataus'];			//工单状态
+			$status = $work_detail['wc_sataus'];	//工单状态
 		}
 
 		//列表选中显示样式
@@ -500,6 +510,10 @@ class ClientController extends CommonController {
 		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
+
+		//文件
+		$file_arr = explode(',',$main['w_sc_file']);
+		$this->assign('file_arr',$file_arr);
 		
 		//对话内容显示
 		$record = D("addwork as a")->field("u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid")->join("LEFT JOIN ".C('DB_PREFIX')."user as u ON a.uid=u.id")->where("a.pid='$aid'")->order("repdate asc")->select();
