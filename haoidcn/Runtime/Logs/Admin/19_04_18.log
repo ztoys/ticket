@@ -1,0 +1,91 @@
+[ 2019-04-18T14:34:33+08:00 ] 10.0.0.224 /ticket/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.016964s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001465s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001735s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000076s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000192s ]
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 59 行.
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 88 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.068791s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.068978s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.012727s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.012848s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001220s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001336s ]
+
+[ 2019-04-18T14:34:41+08:00 ] 10.0.0.224 /ticket/?
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000905s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001170s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001401s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.2024s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( (userid='or 1=1' or email='or 1=1' or phone='or 1=1') AND pwd='e10adc3949ba59abbe56e057f20f883e' ) LIMIT 1   [ RunTime:0.0051s ]
+
+[ 2019-04-18T14:34:41+08:00 ] 10.0.0.224 /ticket/index.php/Index/index/ok/-1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000053s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000665s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000658s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000780s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000184s ]
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 59 行.
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 88 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010266s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010476s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001839s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002401s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001072s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001273s ]
+
+[ 2019-04-18T14:38:02+08:00 ] 10.0.0.224 /ticket/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001526s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001041s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000122s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000250s ]
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 59 行.
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 88 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016425s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016689s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000932s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001153s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002745s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003082s ]
+
+[ 2019-04-18T14:38:47+08:00 ] 10.0.0.224 /ticket/?
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000148s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001763s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000789s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000925s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0168s ]
+ERR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'admin' or '1'='1'' or phone='admin' or '1'='1'') AND pwd='c4ca4238a0b923820dcc50' at line 1
+
