@@ -121,7 +121,7 @@ if($status){
 						wc_sataus enum('2','1','-1','3','4') NOT NULL,
 						ea_status enum('-1','1'),
 						uid int(250) NOT NULL,
-						did int(250) NOT NULL,
+						did int(250),
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."evaluation;",

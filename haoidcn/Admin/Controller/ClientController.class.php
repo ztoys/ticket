@@ -734,7 +734,6 @@ class ClientController extends CommonController {
 
 	//更新操作	
 	public function update_sql($model,$where,$data){
-
 		$result = D($model)->where($where)->setField($data);
 		return $result;
 	}
