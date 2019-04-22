@@ -144,6 +144,14 @@ if($status){
 						PRIMARY KEY (id),
 						KEY wid (wid)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."files;",
+					"CREATE TABLE ".$_POST['db_prefix']."files (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						file_name varchar(255) NOT NULL,
+						save_name varchar(255) NOT NULL,
+						save_path varchar(255) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 
 			);
 			$i = 0;
@@ -154,7 +162,7 @@ if($status){
 				}
 			}
 
-			if($i == 20){
+			if($i == 21){
 				$result = mysqli_query($mysql, "insert into ".$_POST['db_prefix']."user(userid,pwd,email,limits) values('".$_POST['userid']."','".md5($_POST['pwd'])."','".$_POST['email']."','1')");
 				if($result){
 					//创建项目的配置文件

@@ -29,33 +29,41 @@ class ClientController extends CommonController {
 				exit;
 			}
 
-			//上传图片
-			// print_r($_FILES['phpoto']);
+			//上传附件
+			// print_r($_FILES['file']);
 			// exit;
-	
 			$sc_file = "";
-			if(!empty($_FILES['photo']['tmp_name'])){
+			if(!empty($_FILES['file']['tmp_name'])){ //临时上面文件名
 				//ThinkPhP 根据 $_FILES上传内容
 				$info = Upload_f();
 				if($info){
 					foreach ($info as $val){
-						$savepath =  ltrim($val['savepath'],'.');
-						$sc_file .= $savepath.$val['savename'].',';
+						// 保存到数据库
+						$savepath =  ltrim($val['savepath'],'.'); //移除左侧的.
+						$savename = $val['savename'];
+						$filename = $val['name'];
+						$file_data = array(
+							'file_name' => $filename,
+							'save_name' => $savename,
+							'save_path' => $savepath
+						);
+						$id = $this->inser_sql("files",$file_data);
+						$sc_file .= $id.',';
 					}
 				}
 			}
-				
+
 			if(I("post.photo01")){
 				$photo01_arr = I("post.photo01");
 				$photo01 = implode($photo01_arr,',');
-		
+
 				//原有的图片名，拼接 上传的文件名
 				$sc_file = $photo01.','.$sc_file;
 			}
-			
+	
 			//移除右侧指定字符
 			$sc_file = rtrim($sc_file,',');
-			
+
 			$data = array(
 				'title'		=>	I('post.title'),
 				'issue'		=>	htmlspecialchars_decode(I('post.editorValue')),
@@ -686,6 +694,36 @@ class ClientController extends CommonController {
 			} else {
 				echo "<script>alert('评价失败');</script>";
 			}
+		}
+	}
+
+	//下载文件
+	public function download_file(){
+		$file_id = I("get.fileid");
+		$file_detail = $this->sel_sql_single("files", "id='$file_id'");
+		$file_name = $file_detail['file_name'];
+		$file_path = $file_detail['save_path'].$file_detail['save_name'];
+		$file_path = $_SERVER['DOCUMENT_ROOT'].__ROOT__.'/Uploads'.$file_path;
+		if (!file_exists($file_path)) {
+			echo "文件不存在";
+			exit();
+		} else {
+			$fp = fopen($file_path,"r+") or die('打开文件错误');  //下载文件必须要将文件先打开。写入内存
+			$file_size = filesize($file_path);
+			Header("Content-type:application/octet-stream");
+			//按照字节格式返回
+			Header("Accept-Ranges:bytes");
+			//返回文件大小
+			Header("Accept-Length:".$file_size);
+			//弹出客户端对话框，对应的文件名
+			Header("Content-Disposition:attachment;filename=".$file_name);
+			//防止服务器瞬间压力增大，分段读取
+			$buffer = 1024;
+			while(!feof($fp)){
+				$file_data = fread($fp, $buffer);
+				echo $file_data;
+			}
+			fclose($fp);
 		}
 	}
 	

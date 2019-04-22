@@ -205,7 +205,7 @@
                                                         <img src="__ROOT__/Uploads/{$vo}" style="width:150px;height:100px;" />
                                                         <input type="hidden" name="photo01[]" value="{$vo}">
                                                         <div style="text-align:center;">
-                                                            <a href="__ROOT__/Uploads/{$vo}" target="_blank">下载</a>
+                                                            <a href="{:U('Client/download_file',array('fileid'=>$vo))}" target="_blank">下载</a>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                                             <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a>
                                                         </div>

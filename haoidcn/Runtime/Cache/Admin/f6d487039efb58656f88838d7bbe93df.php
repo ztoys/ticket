@@ -298,7 +298,7 @@
                                                         <img src="/ticket/Uploads/<?php echo ($vo); ?>" style="width:150px;height:100px;" />
                                                         <input type="hidden" name="photo01[]" value="<?php echo ($vo); ?>">
                                                         <div style="text-align:center;">
-                                                            <a href="/ticket/Uploads/<?php echo ($vo); ?>" target="_blank">下载</a>
+                                                            <a href="<?php echo U('Client/download_file',array('fileid'=>$vo));?>" target="_blank">下载</a>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                                             <a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a>
                                                         </div>
