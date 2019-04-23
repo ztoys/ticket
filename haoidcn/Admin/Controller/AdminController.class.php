@@ -151,11 +151,23 @@ class AdminController extends CommonController {
 		$status = I("get.case");			//工单状态
 		
 		//搜索操作
-		if(I("get.sou")){
-			$title = I("get.sou");
-			$where = $where + " and w.title like '%$title%'";
+		$ticket_type = I("get.tktype");
+		$ticket_status = I("get.tkstatus");
+		$ticket_level = I("get.tklevel");
+		$where = "";
+		if($ticket_type != '' && $ticket_type != '0'){
+			$this->assign('ticket_type',$ticket_type);
+			$where = $where." and w.work_type='$ticket_type'";
 		}
-		
+		if($ticket_status != '' && $ticket_status != '0'){
+			$this->assign('ticket_status',$ticket_status);
+			$where = $where." and w.wc_sataus='$ticket_status'";
+		}
+		if($ticket_level != '' && $ticket_level != '0'){
+			$this->assign('ticket_level',$ticket_level);
+			$where = $where." and w.work_level='$ticket_level'";
+		}
+
 		//列表显示数据	-- 分页
 		if($limits == 1 && $status == 'all'){
 			$db_work = "work";

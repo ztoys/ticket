@@ -177,7 +177,7 @@
         <div class="maincontent">
             <div class="maincontentinner">
                 <div class="messagepanel">
-                    <div class="messagemenu" style="border-top: 1px solid #0866c6;">
+                    <div class="messagemenu">
                         <!-- <ul>
                             <li class="back"><a><span class="iconfa-chevron-left"></span > Back</a></li>
                             <li <?php if($data["case"] == 'dai'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=dai');?>" ><span></span> 待处理的工单</a></li>
@@ -187,7 +187,47 @@
                         </ul> -->
                     </div>
                     <div class="messagecontent" style="border: none;">
-                        <?php if($limits == '3'): ?><table class="table table-bordered table-fixed table-tr-click">
+                        <?php if($limits == '3'): ?><div class="form-wrap head sm-select">
+                                <div class="left">
+                                    <label for="ticket_agent" class="form-label">受理人</label>
+                                    <select id="ticket_agent">
+                                        <option value="0">全部</option>
+                                        <?php if(is_array($agent_list_info)): $i = 0; $__LIST__ = $agent_list_info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </div>
+                                <div class="left">
+                                    <label for="ticket_status" class="form-label">状态</label>
+                                    <select id="ticket_status">
+                                        <option value="0">全部</option>
+                                        <option value="1">待处理</option>
+                                        <option value="2">正在研发中</option>
+                                        <option value="4">待评价</option>
+                                    </select>
+                                </div>
+                                <div class="left">
+                                    <label for="ticket_level" class="form-label">优先级</label>
+                                    <select id="ticket_level">
+                                        <option value="0">全部</option>
+                                        <option value="3">紧急</option>
+                                        <option value="2">重要</option>
+                                        <option value="1">一般</option>
+                                    </select>
+                                </div>
+                                <div class="left">
+                                    <label for="ticket_type" class="form-label">工单类型</label>
+                                    <select id="ticket_type">
+                                        <option value="0">全部</option>
+                                        <option value="1">产品BUG</option>
+                                        <option value="2">新需求</option>
+                                        <option value="3">投诉与建议</option>
+                                        <option value="4">其它</option>
+                                    </select>
+                                </div>
+                                <div class="left">
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
+                                </div>
+                            </div>
+                            <table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="10%">编号</th>
                                     <th width="35%">标题</th>
@@ -226,7 +266,41 @@
                             </table> 
                             <?php echo ($page); endif; ?>
 
-                        <?php if($limits == '2'): ?><table class="table table-bordered table-fixed table-tr-click">
+                        <?php if($limits == '2'): ?><div class="form-wrap head sm-select">
+                                <div class="left">
+                                    <label for="ticket_status" class="form-label">状态</label>
+                                    <select id="ticket_status">
+                                        <option value="0">全部</option>
+                                        <option value="1">待处理</option>
+                                        <option value="2">正在研发中</option>
+                                        <option value="4">待评价</option>
+                                    </select>
+                                </div>
+                                <div class="left">
+                                    <label for="ticket_level" class="form-label">优先级</label>
+                                    <select id="ticket_level">
+                                        <option value="0">全部</option>
+                                        <option value="3">紧急</option>
+                                        <option value="2">重要</option>
+                                        <option value="1">一般</option>
+                                    </select>
+                                </div>
+                                <div class="left">
+                                    <label for="ticket_type" class="form-label">工单类型</label>
+                                    <select id="ticket_type">
+                                        <option value="0">全部</option>
+                                        <option value="1">产品BUG</option>
+                                        <option value="2">新需求</option>
+                                        <option value="3">投诉与建议</option>
+                                        <option value="4">其它</option>
+                                    </select>
+                                </div>
+                                <div class="left">
+                                    <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="10%">编号</th>
                                     <th width="35%">标题</th>
@@ -280,6 +354,11 @@
     </div><!--rightpanel-->
     
 </div><!--mainwrapper-->
+
+<input type="hidden" value="<?php echo ($data["case"]); ?>" id="ticket_case">
+<input type="hidden" value="<?php echo ($ticket_type); ?>" id="de_ticket_type">
+<input type="hidden" value="<?php echo ($ticket_status); ?>" id="de_ticket_status">
+<input type="hidden" value="<?php echo ($ticket_level); ?>" id="de_ticket_level">
 
 <!-- 评价模态框 -->
 <div class="modal fade modal-comment" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -348,6 +427,42 @@
             domUtils.removeAttributes(btn, ["disabled"]);
         }
     }
+
+    function selectTicket() {
+        var ticket_status = jQuery("#ticket_status").val();
+        var ticekt_level = jQuery("#ticket_level").val();
+        var ticket_type = jQuery("#ticket_type").val();
+        var ticket_case = jQuery("#ticket_case").val();
+        var ticket_agent = jQuery("#ticket_agent").val() || '0';
+
+        var url = "<?php echo U('Client/messages', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticekt_level','tkstatus'=>'ticket_status','tkagent'=>'ticket_agent'));?>";
+        url = url.replace("ticket_case", ticket_case)
+                 .replace("ticket_type", ticket_type)
+                 .replace("ticekt_level", ticekt_level)
+                 .replace("ticket_status", ticket_status)
+                 .replace("ticket_agent", ticket_agent);
+        $(location).attr('href', url);
+    }
+
+    jQuery(document).ready(function(){
+        var de_ticket_type = jQuery("#de_ticket_type").val();
+        var de_ticket_status = jQuery("#de_ticket_status").val();
+        var de_ticket_level = jQuery("#de_ticket_level").val();
+        var de_ticket_agent = jQuery("#de_ticket_agent").val();
+        if (de_ticket_type) {
+            jQuery("#ticket_type").val(de_ticket_type);
+        }
+        if (de_ticket_status) {
+            jQuery("#ticket_status").val(de_ticket_status);
+        }
+        if (de_ticket_level) {
+            jQuery("#ticket_level").val(de_ticket_level);
+        }
+        if (de_ticket_agent) {
+            jQuery("#ticket_level").val(de_ticket_agent);
+        }
+
+    })
 
 
 </script>

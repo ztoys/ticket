@@ -491,6 +491,25 @@ label.inline-block{
 
 .fileupload .btn, .fileupload .fileupload-exists { margin: 0; height: 21px; padding: 3px 10px 4px 10px; border-left: 0; }
 
+.form-label {
+	display: inline-block;
+	vertical-align: 4px;
+	margin-right: 5px;
+}
+.form-wrap.head{
+	margin-bottom: 20px;
+}
+.form-wrap::after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.form-wrap>.left+.left{
+	margin-left: 25px;
+}
+.form-wrap.sm-select select{
+	width: 150px;
+}
 
 /*** BUTTONS & ICONS ***/
 

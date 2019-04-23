@@ -37,7 +37,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/elements.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/elements.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.dataTables.min.js"></script>
 
 

@@ -175,11 +175,28 @@ class ClientController extends CommonController {
 		}
 		
 		//搜索操作
-		if(I("get.sou")){
-			$title = I("get.sou");
-			$where = $where + " and w.title like '%$title%'";
+		$ticket_type = I("get.tktype");
+		$ticket_status = I("get.tkstatus");
+		$ticket_level = I("get.tklevel");
+		$ticket_agent = I("get.tkagent");
+		$where = "";
+		if($ticket_type != '' && $ticket_type != '0'){
+			$this->assign('ticket_type',$ticket_type);
+			$where = $where." and w.work_type='$ticket_type'";
 		}
-		
+		if($ticket_status != '' && $ticket_status != '0'){
+			$this->assign('ticket_status',$ticket_status);
+			$where = $where." and w.wc_sataus='$ticket_status'";
+		}
+		if($ticket_level != '' && $ticket_level != '0'){
+			$this->assign('ticket_level',$ticket_level);
+			$where = $where." and w.work_level='$ticket_level'";
+		}
+		if($ticket_agent != '' && $ticket_agent != '0'){
+			$this->assign('ticket_agent',$ticket_agent);
+			$where = $where." and w.did='$ticket_agent'";
+		}
+
 		//列表显示数据	-- 分页
 		if($limits == 3){
 			// 客服
@@ -212,6 +229,16 @@ class ClientController extends CommonController {
 			
 			$ticket_count = $this->getWorkCount();
 			$this->assign('ticket_count', $ticket_count);
+
+			//当前受理人列表
+			$agent_list = D("work")->field("did")->where("uid='$id'")->group("did")->select();
+			$agent_str = "";
+			foreach ($agent_list as $val){
+				$agent_str .= $val['did'].",";
+			}
+			$agent_str = trim($agent_str, ",");
+			$agent_list_info = $this->sel_sql("user", "id in ($agent_str)");
+			$this->assign('agent_list_info', $agent_list_info);
 
 		}else if($limits == 2){
 			//运维
@@ -645,7 +672,9 @@ class ClientController extends CommonController {
 				);
 				$reply_sql = $this->update_sql("work","id=".$wid, $replay_data);
 
-				//如果没有受理人，自动成为该受理人
+				/**暂时注释  start*/
+				//如果没有受理人，自动成为该受理人  
+				/*
 				$ticket_did = $ticket_info['did'];
 				if ($ticket_did == 0 || !isset($ticket_did)) {
 					$ticket_data = array(
@@ -661,7 +690,9 @@ class ClientController extends CommonController {
 						$wrecord->addWorkRecord($wid, $id, time()+1, "成为了受理人。");
 					}
 				}
-
+				*/
+				/**暂时注释  end*/
+				
 				echo "<script>alert('发送成功！'); location.href='$url';</script>";
 				exit;
 			}

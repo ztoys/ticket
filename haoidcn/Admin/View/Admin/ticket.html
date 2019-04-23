@@ -63,6 +63,40 @@
                         </ul> -->
                     <!-- </div> -->
                     <div class="messagecontent main-content">
+                        <div class="form-wrap head sm-select">
+                            <div class="left">
+                                <label for="ticket_status" class="form-label">状态</label>
+                                <select id="ticket_status">
+                                    <option value="0">全部</option>
+                                    <option value="1">待处理</option>
+                                    <option value="2">正在研发中</option>
+                                    <option value="4">待评价</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_level" class="form-label">优先级</label>
+                                <select id="ticket_level">
+                                    <option value="0">全部</option>
+                                    <option value="3">紧急</option>
+                                    <option value="2">重要</option>
+                                    <option value="1">一般</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_type" class="form-label">工单类型</label>
+                                <select id="ticket_type">
+                                    <option value="0">全部</option>
+                                    <option value="1">产品BUG</option>
+                                    <option value="2">新需求</option>
+                                    <option value="3">投诉与建议</option>
+                                    <option value="4">其它</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
+                            </div>
+                        </div>
+
                         <table class="table table-bordered table-fixed table-tr-click">
                             <tr>
                                 <th width="10%">编号</th>
@@ -130,5 +164,41 @@
     
 </div><!--mainwrapper-->
 
+<input type="hidden" value="{$data.case}" id="ticket_case">
+<input type="hidden" value="{$ticket_type}" id="de_ticket_type">
+<input type="hidden" value="{$ticket_status}" id="de_ticket_status">
+<input type="hidden" value="{$ticket_level}" id="de_ticket_level">
+
 </body>
+<script>
+    function selectTicket() {
+        var ticket_status = jQuery("#ticket_status").val();
+        var ticekt_level = jQuery("#ticket_level").val();
+        var ticket_type = jQuery("#ticket_type").val();
+        var ticket_case = jQuery("#ticket_case").val();
+        
+        var url = "{:U('Admin/ticket', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticekt_level','tkstatus'=>'ticket_status'))}";
+        url = url.replace("ticket_case", ticket_case)
+                 .replace("ticket_type", ticket_type)
+                 .replace("ticekt_level", ticekt_level)
+                 .replace("ticket_status", ticket_status);
+        $(location).attr('href', url);
+    }
+
+    jQuery(document).ready(function(){
+        var de_ticket_type = jQuery("#de_ticket_type").val();
+        var de_ticket_status = jQuery("#de_ticket_status").val();
+        var de_ticket_level = jQuery("#de_ticket_level").val();
+        if (de_ticket_type) {
+            jQuery("#ticket_type").val(de_ticket_type);
+        }
+        if (de_ticket_status) {
+            jQuery("#ticket_status").val(de_ticket_status);
+        }
+        if (de_ticket_level) {
+            jQuery("#ticket_level").val(de_ticket_level);
+        }
+
+    })
+</script>
 </html>
