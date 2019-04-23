@@ -35,7 +35,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/elements.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/elements.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.dataTables.min.js"></script>
 
 
@@ -158,7 +158,7 @@
                         <li class="nav-header">工单中心</li>
                         <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/forms');?>"><span class="icon-tasks"></span>创建工单</a></li><?php endif; ?>
                         <li><a href="<?php echo U('Client/messages?case=dai');?>"><span class="icon-tasks"></span> 待处理的工单 </a></li>
-                        <li><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="icon-tasks"></span> 处理中的工单 </a></li>
+                        <li><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="icon-tasks"></span> 正在研发中的工单 </a></li>
                         <li><a href="<?php echo U('Client/messages?case=yi');?>"><span class="icon-tasks"></span> 已处理的工单</a></li>
                         <!-- <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/messages?case=cao');?>"><span class="icon-tasks"></span> 草稿箱 </a></li><?php endif; ?> -->
                     </ul>
@@ -218,7 +218,7 @@
             <?php if($limits == '2'): ?><li class="nav-header">工单中心</li>
                 <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的<span class="right"><?php echo ($ticket_count["c_myticket"]); ?></span></a></li>
-                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>受理中<span class="right"><?php echo ($ticket_count["c_admissible"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>正在研发中<span class="right"><?php echo ($ticket_count["c_admissible"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价<span class="right"><?php echo ($ticket_count["c_comment"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right"><?php echo ($ticket_count["c_close"]); ?></span></a></li><?php endif; ?>
             <?php if($limits == '3'): ?><li class="nav-header">工单中心</li>
@@ -264,7 +264,7 @@
                                     <label>工单状态</label>
                                     <select id="select_ticket_status">
                                         <option value="1" <?php if($main["wc_sataus"] == '1'): ?>selected<?php endif; ?> >待处理</option>
-                                        <option value="2" <?php if($main["wc_sataus"] == '2'): ?>selected<?php endif; ?> >受理中</option>
+                                        <option value="2" <?php if($main["wc_sataus"] == '2'): ?>selected<?php endif; ?> >正在研发中</option>
                                         <option value="4" <?php if($main["wc_sataus"] == '4'): ?>selected<?php endif; ?> >待评价</option>
                                     </select>
                                 </div>
@@ -299,7 +299,7 @@
                                     <b><?php echo ($main["w_title"]); ?></b>
                                 </div>
                                 <div style="margin-top: 10px;">
-                                    <span class="note2">创建于：<?php echo (date("Y-m-d",$main["w_puddate"])); ?></span>
+                                    <span class="note2">创建于：<?php echo (date("Y-m-d H:i:s",$main["w_puddate"])); ?></span>
                                     <button type="button" data-toggle="modal" data-target="#modal_ticket_event" class="btn btn-success btn-sm" style="margin-left: 10px;">查看工单事件</button>
                                 </div>
                             </h1>

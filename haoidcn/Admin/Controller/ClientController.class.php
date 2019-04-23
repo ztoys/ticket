@@ -183,20 +183,32 @@ class ClientController extends CommonController {
 		//列表显示数据	-- 分页
 		if($limits == 3){
 			// 客服
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, w.work_type work_type,w.work_level work_level,w.work_owned work_owned,u.uname dname";
 			if (isset($sel_reply)) {
-				$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
+				// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
+
+				$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
+				$p = Getpage($count);
+				$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
 			} else {
 				if (isset($my_ticket)) {
-					$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
-					// $list = $this->sel_sql("work","wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+					
+					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+					$p = Getpage($count);
+					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
 				} else {
-					$list = $this->left_join_sql("work", "w", "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, u.uname dname","left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
-					// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and uid='$id' $where","puddate desc");
+					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
+
+					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
+					$p = Getpage($count);
+					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
 				}
 			}
-			
-			$this->assign('list',$list);
-			$this->assign('list_empty', '<tr><td colspan="5" style="text-align:center;">暂无数据</td></tr>');
+			$p_show = $p->show();
+			$this->assign('list', $list);
+			$this->assign('page', $p_show);
+			$this->assign('list_empty', '<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>');
 			
 			$ticket_count = $this->getWorkCount();
 			$this->assign('ticket_count', $ticket_count);
@@ -204,26 +216,39 @@ class ClientController extends CommonController {
 		}else if($limits == 2){
 			//运维
 			$db_work = "work";
-			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, u.uname uname";
 			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
 			$db_order = "puddate desc";
 
 			if ($status == "all") {
 				// 未指派工单
-				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+				// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+
+				$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+				$p = Getpage($count);
+				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order, $p->firstRow, $p->listRows);
 			} elseif ($status == "manned") {
-				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
+				// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
+
+				$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
+				$p = Getpage($count);
+				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order, $p->firstRow, $p->listRows);
 			} else {
-				$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order);
-				// $list = $this->sel_sql("work","wc_sataus='$sta_nb' and did='$id' $where","puddate desc");
+				// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order);
+				
+				$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order);
+				$p = Getpage($count);
+				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order, $p->firstRow, $p->listRows);
 			}			
-			$this->assign('list',$list);
 			if ($status == "all") {
-				$this->assign('list_empty', '<tr><td colspan="5" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>');
 			} else {
-				$this->assign('list_empty', '<tr><td colspan="6" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="8" style="text-align:center;">暂无数据</td></tr>');
 			}
 
+			$p_show = $p->show();
+			$this->assign('list',$list);
+			$this->assign('page', $p_show);
 			$ticket_count = $this->getWorkCount();
 			$this->assign('ticket_count', $ticket_count);
 
@@ -768,6 +793,12 @@ class ClientController extends CommonController {
 	//左连接查询
 	public function left_join_sql($model, $alias, $field, $join, $where, $orders){
 		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->select();
+	}
+	public function left_join_count($model, $alias, $field, $join, $where, $orders){
+		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->count();
+	}
+	public function left_join_limit($model, $alias, $field, $join, $where, $orders, $first_row, $list_row){
+		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->limit($first_row, $list_row)->select();
 	}
 
 	//更新操作	

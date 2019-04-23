@@ -35,7 +35,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/elements.js"></script>
+<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/elements.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.dataTables.min.js"></script>
 
 
@@ -82,7 +82,7 @@
                         <li class="nav-header">工单中心</li>
                         <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/forms');?>"><span class="icon-tasks"></span>创建工单</a></li><?php endif; ?>
                         <li><a href="<?php echo U('Client/messages?case=dai');?>"><span class="icon-tasks"></span> 待处理的工单 </a></li>
-                        <li><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="icon-tasks"></span> 处理中的工单 </a></li>
+                        <li><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="icon-tasks"></span> 正在研发中的工单 </a></li>
                         <li><a href="<?php echo U('Client/messages?case=yi');?>"><span class="icon-tasks"></span> 已处理的工单</a></li>
                         <!-- <?php if($data["limits"] == '3'): ?><li><a href="<?php echo U('Client/messages?case=cao');?>"><span class="icon-tasks"></span> 草稿箱 </a></li><?php endif; ?> -->
                     </ul>
@@ -142,7 +142,7 @@
             <?php if($limits == '2'): ?><li class="nav-header">工单中心</li>
                 <li <?php if($data["case"] == 'all'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=all');?>"><span class="iconfa-pencil"></span> 未指派工单<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'manned'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=manned');?>"><span class="iconfa-pencil"></span> 分配给我的<span class="right"><?php echo ($ticket_count["c_myticket"]); ?></span></a></li>
-                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>受理中<span class="right"><?php echo ($ticket_count["c_admissible"]); ?></span></a></li>
+                <li <?php if($data["case"] == 'zhong'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=zhong');?>"><span class="iconfa-pencil"></span>正在研发中<span class="right"><?php echo ($ticket_count["c_admissible"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'ping'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=ping');?>"><span class="iconfa-refresh"></span>待评价<span class="right"><?php echo ($ticket_count["c_comment"]); ?></span></a></li>
                 <li <?php if($data["case"] == 'yi'): echo ($data["active02"]); endif; ?>><a href="<?php echo U('Client/messages?case=yi');?>"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right"><?php echo ($ticket_count["c_close"]); ?></span></a></li><?php endif; ?>
             <?php if($limits == '3'): ?><li class="nav-header">工单中心</li>
@@ -190,17 +190,30 @@
                         <?php if($limits == '3'): ?><table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="10%">编号</th>
-                                    <th width="50%">标题</th>
+                                    <th width="35%">标题</th>
+                                    <th width="10%">工单类型</th>
+                                    <th width="10%">优先级</th>
                                     <th width="10%">状态</th>
                                     <th width="10%">负责人</th>
-                                    <th width="20%">提交时间</th>
+                                    <th width="15%">提交时间</th>
                                 </tr>
                                 <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?case='.$data['case'].'&id='.$vo['id']);?>'">
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>
+                                            <?php switch($vo['work_type']): case "1": ?>产品BUG<?php break;?>
+                                                <?php case "2": ?>新需求<?php break;?>
+                                                <?php case "3": ?>投诉与建议<?php break;?>
+                                                <?php case "4": ?>其它<?php break; endswitch;?>
+                                        </td>
+                                        <td>
+                                            <?php switch($vo['work_level']): case "1": ?>一般<?php break;?>
+                                                <?php case "2": ?>重要<?php break;?>
+                                                <?php case "3": ?>紧急<?php break; endswitch;?>
+                                        </td>
+                                        <td>
                                             <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
-                                                <?php case "2": ?>受理中<?php break;?>
+                                                <?php case "2": ?>正在研发中<?php break;?>
                                                 <?php case "4": ?>待评价<?php break;?>
                                                 <?php case "3": ?>已关闭<?php break;?>
                                                 <?php case "-1": ?>草稿箱<?php break; endswitch;?>
@@ -210,23 +223,37 @@
                                         </td>
                                         <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
                                     </tr><?php endforeach; endif; else: echo "$list_empty" ;endif; ?>
-                            </table><?php endif; ?>
+                            </table> 
+                            <?php echo ($page); endif; ?>
 
                         <?php if($limits == '2'): ?><table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="10%">编号</th>
-                                    <th width="40%">标题</th>
+                                    <th width="35%">标题</th>
+                                    <th width="10%">工单类型</th>
+                                    <th width="10%">优先级</th>
                                     <th width="10%">状态</th>
                                     <th width="10%">工单发起人</th>
-                                    <th width="15%">创建日期</th>
-                                    <?php if($data["case"] != 'all'): ?><th width="15%">受理时间</th><?php endif; ?>
+                                    <th width="12%">创建日期</th>
+                                    <?php if($data["case"] != 'all'): ?><th width="12%">受理时间</th><?php endif; ?>
                                 </tr>
                                 <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?case='.$data['case'].'&id='.$vo['id']);?>'">
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>
+                                            <?php switch($vo['work_type']): case "1": ?>产品BUG<?php break;?>
+                                                <?php case "2": ?>新需求<?php break;?>
+                                                <?php case "3": ?>投诉与建议<?php break;?>
+                                                <?php case "4": ?>其它<?php break; endswitch;?>
+                                        </td>
+                                        <td>
+                                            <?php switch($vo['work_level']): case "1": ?>一般<?php break;?>
+                                                <?php case "2": ?>重要<?php break;?>
+                                                <?php case "3": ?>紧急<?php break; endswitch;?>
+                                        </td>
+                                        <td>
                                             <?php switch($vo['wc_sataus']): case "1": ?>待处理<?php break;?>
-                                                <?php case "2": ?>受理中<?php break;?>
+                                                <?php case "2": ?>正在研发中<?php break;?>
                                                 <?php case "4": ?>待评价<?php break;?>
                                                 <?php case "3": ?>已关闭<?php break;?>
                                                 <?php case "-1": ?>草稿箱<?php break; endswitch;?>
@@ -239,7 +266,8 @@
                                             <?php else: ?>
                                                 <td>--</td><?php endif; endif; ?>
                                     </tr><?php endforeach; endif; else: echo "$list_empty" ;endif; ?>
-                            </table><?php endif; ?>
+                            </table> 
+                            <?php echo ($page); endif; ?>
 
                     </div><!--messagecontent-->
 

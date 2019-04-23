@@ -55,7 +55,7 @@
                         <!-- <ul>
                             <li class="back"><a><span class="iconfa-chevron-left"></span > Back</a></li>
                             <li <if condition="$data.case eq 'dai'">{$data.class}</if>><a href="{:U('Client/messages?case=dai')}" ><span></span> 待处理的工单</a></li>
-                            <li <if condition="$data.case eq 'zhong'">{$data.class}</if>><a href="{:U('Client/messages?case=zhong')}"><span class="iconfa-inbox"></span> 处理中的工单</a></li>
+                            <li <if condition="$data.case eq 'zhong'">{$data.class}</if>><a href="{:U('Client/messages?case=zhong')}"><span class="iconfa-inbox"></span> 正在研发中的工单</a></li>
                             <li <if condition="$data.case eq 'yi'">{$data.class}</if>><a href="{:U('Client/messages?case=yi')}"><span class="iconfa-edit"></span> 已关闭的工单</a></li>
                             <if condition="$data.limits eq '3'">
                             	<li <if condition="$data.case eq 'cao'">{$data.class}</if>><a href="{:U('Client/messages?case=cao')}"><span class="iconfa-edit"></span> 草稿箱</a></li>
@@ -66,22 +66,39 @@
                         <table class="table table-bordered table-fixed table-tr-click">
                             <tr>
                                 <th width="10%">编号</th>
-                                <th width="40%">标题</th>
+                                <th width="35%">标题</th>
+                                <th width="10%">工单类型</th>
+                                <th width="10%">优先级</th>
                                 <th width="10%">状态</th>
                                 <th width="10%">工单发起人</th>
-                                <th width="15%">创建日期</th>
+                                <th width="12%">创建日期</th>
                                 <if condition="$data.case neq 'all'">
-                                    <th width="15%">受理时间</th>
+                                    <th width="12%">受理时间</th>
                                 </if>
                             </tr>
-                            <volist name="list" id="vo">
+                            <volist name="list" id="vo" empty="$list_empty">
                                 <tr onclick="javascript:window.location.href='{:U(\'Admin/ticket_detail?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'">
                                     <td>{$vo.id}</td>
                                     <td>{$vo.title}</td>
                                     <td>
+                                        <switch name="vo['work_type']">
+                                            <case value="1">产品BUG</case>
+                                            <case value="2">新需求</case>
+                                            <case value="3">投诉与建议</case>
+                                            <case value="4">其它</case>
+                                        </switch>
+                                    </td>
+                                    <td>
+                                        <switch name="vo['work_level']">
+                                            <case value="1">一般</case>
+                                            <case value="2">重要</case>
+                                            <case value="3">紧急</case>
+                                        </switch>
+                                    </td>
+                                    <td>
                                         <switch name="vo['wc_sataus']">
                                             <case value="1">待处理</case>
-                                            <case value="2">受理中</case>
+                                            <case value="2">正在研发中</case>
                                             <case value="4">待评价</case>
                                             <case value="3">已关闭</case>
                                             <case value="-1">草稿箱</case>
@@ -101,6 +118,7 @@
                                 </tr>
                             </volist>
                         </table> 
+                        {$page}
                     </div><!--messagecontent-->
 
                 </div><!--messagepanel-->

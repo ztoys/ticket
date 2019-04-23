@@ -159,18 +159,31 @@ class AdminController extends CommonController {
 		//列表显示数据	-- 分页
 		if($limits == 1 && $status == 'all'){
 			$db_work = "work";
-			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, u.uname uname";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, u.uname uname";
 			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
 			$db_order = "puddate desc";
 
-			$list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+			// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+
+			$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+			$p = Getpage($count);
+			$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order, $p->firstRow, $p->listRows);
+			
+			if ($status == "all") {
+				$this->assign('list_empty', '<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>');
+			} else {
+				$this->assign('list_empty', '<tr><td colspan="8" style="text-align:center;">暂无数据</td></tr>');
+			}
+			$p_show = $p->show();
 			$this->assign('list',$list);
+			$this->assign('page',$p_show);
 		}
 		
 		//列表选中显示样式
-		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
+		$db_field = "u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
 		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,
-		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
+		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone";
+		$main = D('Work as w')->field($db_field)->
 		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
@@ -759,6 +772,12 @@ class AdminController extends CommonController {
 	//左连接查询
 	public function left_join_sql($model, $alias, $field, $join, $where, $orders){
 		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->select();
+	}
+	public function left_join_count($model, $alias, $field, $join, $where, $orders){
+		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->count();
+	}
+	public function left_join_limit($model, $alias, $field, $join, $where, $orders, $first_row, $list_row){
+		return D($model)->alias($alias)->field($field)->join($join)->where($where)->order($orders)->limit($first_row, $list_row)->select();
 	}
 
 	//获取各个工单数量

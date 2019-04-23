@@ -102,10 +102,10 @@ class IndexController extends Controller {
 				$_SESSION['limits'] = $user_arr['limits'];
 				if($user_arr['limits'] == '3') {
 					// $this->redirect('Client/messages/case/create');	
-					$this->redirect('Client/messages/Console/dashboard');	
+					$this->redirect('Console/dashboard');	
 				} elseif($user_arr['limits'] == '2') {
 					// $this->redirect('Client/messages/case/all');	
-					$this->redirect('Client/messages/Console/dashboard');	
+					$this->redirect('Console/dashboard');	
 				} else {
 					$this->redirect('Admin/group_manage');
 				}
@@ -166,7 +166,7 @@ class IndexController extends Controller {
 			// if($user_limits == '3') {
 			// 	$this->redirect('Client/messages/case/create');	
 			// } elseif($user_limits == '2') {
-			// 	$this->redirect('Client/messages/case/all');	
+			// 	$this->redirect('Client/messages/case/all');
 			// }
 			$this->redirect('index',"user_law=-1");
 		} else {

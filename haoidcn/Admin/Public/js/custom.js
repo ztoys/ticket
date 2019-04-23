@@ -90,7 +90,7 @@ jQuery(document).ready(function(){
 	});
 	
 	// load selected skin color from cookie
-	if(jQuery.cookie('skin-color')) {
+	if(jQuery.cookie && jQuery.cookie('skin-color')) {
 		var c = jQuery.cookie('skin-color');
 		if(c) {
 			jQuery('head').append('<link id="skinstyle" rel="stylesheet" href="css/style.'+c+'.css" type="text/css" />');
