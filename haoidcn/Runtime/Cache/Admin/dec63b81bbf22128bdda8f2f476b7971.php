@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/style.default.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/bootstrap-fileupload.min.css" type="text/css" />
-<link rel="stylesheet" href="<?php echo (C("URL")); ?>css/bootstrap-timepicker.min.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo (C("URL")); ?>css/bootstrap-datepicker.min.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/responsive-tables.css">
 
 
@@ -19,9 +19,11 @@
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-migrate-1.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-datepicker.zh-CN.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-fileupload.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-timepicker.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
@@ -39,9 +41,8 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.dataTables.min.js"></script>
 
 
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/third-party/jquery.min.js"></script>
 
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
 
 <style type="text/css">
 	a:hover{
@@ -58,6 +59,13 @@
     .modal-comment form input[type='radio']{
         margin-left: 10px;
     }    
+    .datepicker-wrap{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #FFF;
+        box-shadow: 0 3px 3px 3px rgba(0,0,0,.5);
+    }
 </style>
 </head>
 
@@ -189,6 +197,15 @@
                     <div class="messagecontent" style="border: none;">
                         <?php if($limits == '3'): ?><div class="form-wrap head sm-select">
                                 <div class="left">
+                                    <label for="ticket_owned" class="form-label">所属客户</label>
+                                    <select id="ticket_owned">
+                                        <option value="0">全部</option>
+                                        <option value="1">客户A</option>
+                                        <option value="2">客户B</option>
+                                        <option value="3">客户C</option>
+                                    </select>
+                                </div>
+                                <div class="left">
                                     <label for="ticket_agent" class="form-label">受理人</label>
                                     <select id="ticket_agent">
                                         <option value="0">全部</option>
@@ -229,11 +246,14 @@
                             </div>
                             <table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
-                                    <th width="10%">编号</th>
-                                    <th width="35%">标题</th>
+                                    <th width="5%">编号</th>
+                                    <th width="25%">标题</th>
                                     <th width="10%">工单类型</th>
-                                    <th width="10%">优先级</th>
+                                    <th width="5%">优先级</th>
                                     <th width="10%">状态</th>
+                                    <th width="5%">产品确认</th>
+                                    <th width="5%">研发确认</th>
+                                    <th width="10%">完成时间</th>
                                     <th width="10%">负责人</th>
                                     <th width="15%">提交时间</th>
                                 </tr>
@@ -259,6 +279,19 @@
                                                 <?php case "-1": ?>草稿箱<?php break; endswitch;?>
                                         </td>
                                         <td>
+                                            <?php switch($vo['work_product']): case "1": ?>已确认<?php break;?>
+                                                <?php case "2": ?>已拒绝<?php break;?>
+                                                <?php default: ?>--<?php endswitch;?>
+                                        </td>
+                                        <td>
+                                            <?php switch($vo['work_develop']): case "1": ?>已确认<?php break;?>
+                                                <?php case "2": ?>已拒绝<?php break;?>
+                                                <?php default: ?>--<?php endswitch;?>
+                                        </td>
+                                        <?php if($vo['work_finish'] != ''): ?><td><?php echo (date("Y-m-d",$vo["work_finish"])); ?></td>
+                                        <?php else: ?>
+                                            <td>--</td><?php endif; ?>
+                                        <td>
                                             <?php echo ((isset($vo["dname"]) && ($vo["dname"] !== ""))?($vo["dname"]):" -- "); ?>
                                         </td>
                                         <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
@@ -267,6 +300,15 @@
                             <?php echo ($page); endif; ?>
 
                         <?php if($limits == '2'): ?><div class="form-wrap head sm-select">
+                                <div class="left">
+                                    <label for="ticket_owned" class="form-label">所属客户</label>
+                                    <select id="ticket_owned">
+                                        <option value="0">全部</option>
+                                        <option value="1">客户A</option>
+                                        <option value="2">客户B</option>
+                                        <option value="3">客户C</option>
+                                    </select>
+                                </div>
                                 <div class="left">
                                     <label for="ticket_status" class="form-label">状态</label>
                                     <select id="ticket_status">
@@ -302,11 +344,14 @@
 
                             <table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
-                                    <th width="10%">编号</th>
-                                    <th width="35%">标题</th>
-                                    <th width="10%">工单类型</th>
-                                    <th width="10%">优先级</th>
-                                    <th width="10%">状态</th>
+                                    <th width="5%">编号</th>
+                                    <th width="20%">标题</th>
+                                    <th width="5%">工单类型</th>
+                                    <th width="5%">优先级</th>
+                                    <th width="5%">状态</th>
+                                    <th width="10%">产品确认</th>
+                                    <th width="10%">研发确认</th>
+                                    <th width="10%">完成时间</th>
                                     <th width="10%">工单发起人</th>
                                     <th width="12%">创建日期</th>
                                     <?php if($data["case"] != 'all'): ?><th width="12%">受理时间</th><?php endif; ?>
@@ -333,6 +378,25 @@
                                                 <?php case "-1": ?>草稿箱<?php break; endswitch;?>
                                         </td>
                                         <td>
+                                            <?php switch($vo['work_product']): case "1": ?>已确认<?php break;?>
+                                                <?php case "2": ?>已拒绝<?php break;?>
+                                                <?php default: ?>
+                                                <button type="button" class="btn btn-sm btn-success" onclick="workSetProduct(<?php echo ($vo["id"]); ?>,'1')">确认</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="workSetProduct(<?php echo ($vo["id"]); ?>,'2')">拒绝</button><?php endswitch;?>
+                                        </td>
+                                        <td>
+                                            <?php switch($vo['work_develop']): case "1": ?>已确认<?php break;?>
+                                                <?php case "2": ?>已拒绝<?php break;?>
+                                                <?php default: ?>
+                                                <button type="button" class="btn btn-sm btn-success" onclick="workSetDevelop(<?php echo ($vo["id"]); ?>,'1')">确认</button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="workSetDevelop(<?php echo ($vo["id"]); ?>,'2')">拒绝</button><?php endswitch;?>
+                                        </td>
+                                        <?php if($vo['work_finish'] != ''): ?><td><?php echo (date("Y-m-d",$vo["work_finish"])); ?></td>
+                                        <?php else: ?>
+                                            <td>
+                                                <button type="button" id="show_time_btn_<?php echo ($vo["id"]); ?>" class="btn btn-sm" onclick="workShowFinish(<?php echo ($vo["id"]); ?>)">--</button>
+                                            </td><?php endif; ?>
+                                        <td>
                                             <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
                                         </td>
                                         <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
@@ -346,8 +410,7 @@
                     </div><!--messagecontent-->
 
                 </div><!--messagepanel-->
-                
-                
+
             </div><!--maincontentinner-->
         </div><!--maincontent-->
         
@@ -355,10 +418,17 @@
     
 </div><!--mainwrapper-->
 
+<!-- datepicker -->
+<div class="datepicker-wrap">
+    <input type="text" class="datepicker" id="date_picker" style="display:none;">
+</div>
+
 <input type="hidden" value="<?php echo ($data["case"]); ?>" id="ticket_case">
 <input type="hidden" value="<?php echo ($ticket_type); ?>" id="de_ticket_type">
 <input type="hidden" value="<?php echo ($ticket_status); ?>" id="de_ticket_status">
 <input type="hidden" value="<?php echo ($ticket_level); ?>" id="de_ticket_level">
+<input type="hidden" value="<?php echo ($ticket_agent); ?>" id="de_ticket_agent">
+<input type="hidden" value="<?php echo ($ticket_owned); ?>" id="de_ticket_owned">
 
 <!-- 评价模态框 -->
 <div class="modal fade modal-comment" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -428,20 +498,100 @@
         }
     }
 
+    function workSetProduct(wid, val) {
+        window.event?window.event.cancelBubble=true:event.stopPropagation();  
+        jQuery.ajax({
+            type: 'post',
+            url: '<?php echo U('Client/ticket_product');?>',
+            data: {
+                id: wid,
+                val: val
+            },
+            success:function(data) {
+                if (data.code == 0){
+                    window.location.reload();
+                } else {
+                    alert("修改失败");
+                }
+            }
+        })
+    }
+
+    function workSetDevelop(wid, val) {
+        window.event?window.event.cancelBubble=true:event.stopPropagation();  
+        jQuery.ajax({
+            type: 'post',
+            url: '<?php echo U('Client/ticket_develop');?>',
+            data: {
+                id: wid,
+                val: val
+            },
+            success:function(data) {
+                if (data.code == 0){
+                    window.location.reload();
+                } else {
+                    alert("修改失败");
+                }
+            }
+        })
+    }
+
+    function workShowFinish(wid) {
+        window.event?window.event.cancelBubble=true:event.stopPropagation();  
+        window.activeTicketId = wid;
+        var btnDom = jQuery("#show_time_btn_"+wid);
+        var obj = btnDom[0];
+        var w = obj.offsetWidth, h = obj.offsetHeight;  
+        //从目标元素开始向外遍历，累加top和left值  
+        for (var t = obj.offsetTop, l = obj.offsetLeft; obj = obj.offsetParent;) {  
+            t += obj.offsetTop;  
+            l += obj.offsetLeft;  
+        }  
+        jQuery("#date_picker").datepicker("show");
+        jQuery(".dropdown-menu").css('top', t+30);
+        jQuery(".dropdown-menu").css('left', l);
+    }
+    
+    jQuery("#date_picker").change(function(){
+        var time = jQuery("#date_picker").val();
+        var wid = window.activeTicketId;
+        if (time) {
+            time = time.replace(/-/g,'/'); 
+            var timestamp = new Date(time).getTime()/1000;
+            jQuery.ajax({
+                type: 'post',
+                url: '<?php echo U('Client/ticket_finish');?>',
+                data: {
+                    id: wid,
+                    val: timestamp
+                },
+                success:function(data) {
+                    if (data.code == 0){
+                        window.location.reload();
+                    } else {
+                        alert("修改失败");
+                    }
+                }
+            })
+        }
+    });
+
     function selectTicket() {
         var ticket_status = jQuery("#ticket_status").val();
         var ticekt_level = jQuery("#ticket_level").val();
         var ticket_type = jQuery("#ticket_type").val();
         var ticket_case = jQuery("#ticket_case").val();
+        var ticket_owned = jQuery("#ticket_owned").val();
         var ticket_agent = jQuery("#ticket_agent").val() || '0';
 
-        var url = "<?php echo U('Client/messages', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticekt_level','tkstatus'=>'ticket_status','tkagent'=>'ticket_agent'));?>";
+        var url = "<?php echo U('Client/messages', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticekt_level','tkstatus'=>'ticket_status','tkagent'=>'ticket_agent','tkowned'=>ticket_owned));?>";
         url = url.replace("ticket_case", ticket_case)
                  .replace("ticket_type", ticket_type)
                  .replace("ticekt_level", ticekt_level)
                  .replace("ticket_status", ticket_status)
+                 .replace("ticket_owned", ticket_owned)
                  .replace("ticket_agent", ticket_agent);
-        $(location).attr('href', url);
+        jQuery(location).attr('href', url);
     }
 
     jQuery(document).ready(function(){
@@ -449,6 +599,7 @@
         var de_ticket_status = jQuery("#de_ticket_status").val();
         var de_ticket_level = jQuery("#de_ticket_level").val();
         var de_ticket_agent = jQuery("#de_ticket_agent").val();
+        var de_ticket_owned = jQuery("#de_ticket_owned").val();
         if (de_ticket_type) {
             jQuery("#ticket_type").val(de_ticket_type);
         }
@@ -459,11 +610,21 @@
             jQuery("#ticket_level").val(de_ticket_level);
         }
         if (de_ticket_agent) {
-            jQuery("#ticket_level").val(de_ticket_agent);
+            jQuery("#ticket_agent").val(de_ticket_agent);
+        }
+        if (de_ticket_owned) {
+            jQuery("#ticket_owned").val(de_ticket_owned);
         }
 
+        jQuery('#date_picker').datepicker({
+            language: "zh-CN",
+            keepOpen: true,
+            autoclose: true,
+            clearBtn: false, //清除按钮
+            todayBtn: false, //今日按钮
+            format: "yyyy-mm-dd"
+        });
     })
-
 
 </script>
 </body>

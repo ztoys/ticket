@@ -179,6 +179,7 @@ class ClientController extends CommonController {
 		$ticket_status = I("get.tkstatus");
 		$ticket_level = I("get.tklevel");
 		$ticket_agent = I("get.tkagent");
+		$ticket_owned = I("get.tkowned");
 		$where = "";
 		if($ticket_type != '' && $ticket_type != '0'){
 			$this->assign('ticket_type',$ticket_type);
@@ -192,6 +193,10 @@ class ClientController extends CommonController {
 			$this->assign('ticket_level',$ticket_level);
 			$where = $where." and w.work_level='$ticket_level'";
 		}
+		if($ticket_owned != '' && $ticket_owned != '0'){
+			$this->assign('ticket_owned',$ticket_owned);
+			$where = $where." and w.work_owned='$ticket_owned'";
+		}
 		if($ticket_agent != '' && $ticket_agent != '0'){
 			$this->assign('ticket_agent',$ticket_agent);
 			$where = $where." and w.did='$ticket_agent'";
@@ -200,7 +205,7 @@ class ClientController extends CommonController {
 		//列表显示数据	-- 分页
 		if($limits == 3){
 			// 客服
-			$db_field = "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, w.work_type work_type,w.work_level work_level,w.work_owned work_owned,u.uname dname";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, w.work_type work_type,w.work_level work_level,w.work_owned work_owned,w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname dname";
 			if (isset($sel_reply)) {
 				// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
 
@@ -225,7 +230,7 @@ class ClientController extends CommonController {
 			$p_show = $p->show();
 			$this->assign('list', $list);
 			$this->assign('page', $p_show);
-			$this->assign('list_empty', '<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>');
+			$this->assign('list_empty', '<tr><td colspan="10" style="text-align:center;">暂无数据</td></tr>');
 			
 			$ticket_count = $this->getWorkCount();
 			$this->assign('ticket_count', $ticket_count);
@@ -243,7 +248,7 @@ class ClientController extends CommonController {
 		}else if($limits == 2){
 			//运维
 			$db_work = "work";
-			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, u.uname uname";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname uname";
 			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
 			$db_order = "puddate desc";
 
@@ -268,9 +273,9 @@ class ClientController extends CommonController {
 				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order, $p->firstRow, $p->listRows);
 			}			
 			if ($status == "all") {
-				$this->assign('list_empty', '<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="10" style="text-align:center;">暂无数据</td></tr>');
 			} else {
-				$this->assign('list_empty', '<tr><td colspan="8" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="11" style="text-align:center;">暂无数据</td></tr>');
 			}
 
 			$p_show = $p->show();
@@ -751,6 +756,69 @@ class ClientController extends CommonController {
 				echo "<script>alert('评价失败');</script>";
 			}
 		}
+	}
+
+	//工单 产品确认
+	public function ticket_product(){
+		$wid = I("post.id");
+		$val = I("post.val");
+		$update_data = array(
+			'work_product'	=> $val,
+		);
+		$update = $this->update_sql("work","id='$wid'",$update_data);
+		if ($update) {
+			$result = array(
+				"code" => 0,
+			);
+		} else {
+			$result = array(
+				"code" => 1,
+			);
+		}
+		header('Content-type:text/json'); 
+		echo json_encode($result);
+	}
+
+	//工单 研发确认
+	public function ticket_develop(){
+		$wid = I("post.id");
+		$val = I("post.val");
+		$update_data = array(
+			'work_develop'	=> $val,
+		);
+		$update = $this->update_sql("work","id='$wid'",$update_data);
+		if ($update) {
+			$result = array(
+				"code" => 0,
+			);
+		} else {
+			$result = array(
+				"code" => 1,
+			);
+		}
+		header('Content-type:text/json'); 
+		echo json_encode($result);
+	}
+
+	//工单 完成时间确认
+	public function ticket_finish(){
+		$wid = I("post.id");
+		$val = I("post.val");
+		$update_data = array(
+			'work_finish'	=> $val,
+		);
+		$update = $this->update_sql("work","id='$wid'",$update_data);
+		if ($update) {
+			$result = array(
+				"code" => 0,
+			);
+		} else {
+			$result = array(
+				"code" => 1,
+			);
+		}
+		header('Content-type:text/json'); 
+		echo json_encode($result);
 	}
 
 	//下载文件

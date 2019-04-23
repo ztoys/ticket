@@ -154,6 +154,7 @@ class AdminController extends CommonController {
 		$ticket_type = I("get.tktype");
 		$ticket_status = I("get.tkstatus");
 		$ticket_level = I("get.tklevel");
+		$ticket_owned = I("get.tkowned");
 		$where = "";
 		if($ticket_type != '' && $ticket_type != '0'){
 			$this->assign('ticket_type',$ticket_type);
@@ -167,11 +168,15 @@ class AdminController extends CommonController {
 			$this->assign('ticket_level',$ticket_level);
 			$where = $where." and w.work_level='$ticket_level'";
 		}
+		if($ticket_owned != '' && $ticket_owned != '0'){
+			$this->assign('ticket_owned',$ticket_owned);
+			$where = $where." and w.work_owned='$ticket_owned'";
+		}
 
 		//列表显示数据	-- 分页
 		if($limits == 1 && $status == 'all'){
 			$db_work = "work";
-			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, u.uname uname";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish, u.uname uname";
 			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
 			$db_order = "puddate desc";
 

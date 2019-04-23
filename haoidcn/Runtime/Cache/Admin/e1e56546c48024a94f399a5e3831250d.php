@@ -188,8 +188,17 @@
                             <?php if($data["limits"] == '3'): ?><li <?php if($data["case"] == 'cao'): echo ($data["class"]); endif; ?>><a href="<?php echo U('Client/messages?case=cao');?>"><span class="iconfa-edit"></span> 草稿箱</a></li><?php endif; ?>
                         </ul> -->
                     <!-- </div> -->
-                    <div class="messagecontent main-content">
+                    <div class="messagecontent">
                         <div class="form-wrap head sm-select">
+                            <div class="left">
+                                <label for="ticket_owned" class="form-label">所属客户</label>
+                                <select id="ticket_owned">
+                                    <option value="0">全部</option>
+                                    <option value="1">客户A</option>
+                                    <option value="2">客户B</option>
+                                    <option value="3">客户C</option>
+                                </select>
+                            </div>
                             <div class="left">
                                 <label for="ticket_status" class="form-label">状态</label>
                                 <select id="ticket_status">
@@ -225,11 +234,14 @@
 
                         <table class="table table-bordered table-fixed table-tr-click">
                             <tr>
-                                <th width="10%">编号</th>
-                                <th width="35%">标题</th>
+                                <th width="5%">编号</th>
+                                <th width="30%">标题</th>
                                 <th width="10%">工单类型</th>
-                                <th width="10%">优先级</th>
-                                <th width="10%">状态</th>
+                                <th width="5%">优先级</th>
+                                <th width="5%">状态</th>
+                                <th width="5%">产品确认</th>
+                                <th width="5%">研发确认</th>
+                                <th width="10%">完成时间</th>
                                 <th width="10%">工单发起人</th>
                                 <th width="12%">创建日期</th>
                                 <?php if($data["case"] != 'all'): ?><th width="12%">受理时间</th><?php endif; ?>
@@ -256,6 +268,19 @@
                                             <?php case "-1": ?>草稿箱<?php break; endswitch;?>
                                     </td>
                                     <td>
+                                        <?php switch($vo['work_product']): case "1": ?>已确认<?php break;?>
+                                            <?php case "2": ?>已拒绝<?php break;?>
+                                            <?php default: ?>--<?php endswitch;?>
+                                    </td>
+                                    <td>
+                                        <?php switch($vo['work_develop']): case "1": ?>已确认<?php break;?>
+                                            <?php case "2": ?>已拒绝<?php break;?>
+                                            <?php default: ?>--<?php endswitch;?>
+                                    </td>
+                                    <?php if($vo['work_finish'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["work_finish"])); ?></td>
+                                    <?php else: ?>
+                                        <td>--</td><?php endif; ?>
+                                    <td>
                                         <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
                                     </td>
                                     <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
@@ -280,19 +305,22 @@
 <input type="hidden" value="<?php echo ($ticket_type); ?>" id="de_ticket_type">
 <input type="hidden" value="<?php echo ($ticket_status); ?>" id="de_ticket_status">
 <input type="hidden" value="<?php echo ($ticket_level); ?>" id="de_ticket_level">
+<input type="hidden" value="<?php echo ($ticket_owned); ?>" id="de_ticket_owned">
 
 </body>
 <script>
     function selectTicket() {
         var ticket_status = jQuery("#ticket_status").val();
-        var ticekt_level = jQuery("#ticket_level").val();
+        var ticket_level = jQuery("#ticket_level").val();
         var ticket_type = jQuery("#ticket_type").val();
         var ticket_case = jQuery("#ticket_case").val();
+        var ticket_owned = jQuery("#ticket_owned").val();
         
-        var url = "<?php echo U('Admin/ticket', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticekt_level','tkstatus'=>'ticket_status'));?>";
+        var url = "<?php echo U('Admin/ticket', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticket_level','tkstatus'=>'ticket_status','tkowned'=>'ticket_owned'));?>";
         url = url.replace("ticket_case", ticket_case)
                  .replace("ticket_type", ticket_type)
-                 .replace("ticekt_level", ticekt_level)
+                 .replace("ticket_level", ticket_level)
+                 .replace("ticket_owned", ticket_owned)
                  .replace("ticket_status", ticket_status);
         $(location).attr('href', url);
     }
@@ -301,6 +329,7 @@
         var de_ticket_type = jQuery("#de_ticket_type").val();
         var de_ticket_status = jQuery("#de_ticket_status").val();
         var de_ticket_level = jQuery("#de_ticket_level").val();
+        var de_ticket_owned = jQuery("#de_ticket_owned").val();
         if (de_ticket_type) {
             jQuery("#ticket_type").val(de_ticket_type);
         }
@@ -309,6 +338,9 @@
         }
         if (de_ticket_level) {
             jQuery("#ticket_level").val(de_ticket_level);
+        }
+        if (de_ticket_owned) {
+            jQuery("#ticket_owned").val(de_ticket_owned);
         }
 
     })
