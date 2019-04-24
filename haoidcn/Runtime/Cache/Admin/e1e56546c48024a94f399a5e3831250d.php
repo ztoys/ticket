@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/style.default.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/bootstrap-fileupload.min.css" type="text/css" />
-<link rel="stylesheet" href="<?php echo (C("URL")); ?>css/bootstrap-timepicker.min.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo (C("URL")); ?>css/bootstrap-datepicker.min.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/responsive-tables.css">
 
 
@@ -19,9 +19,11 @@
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-migrate-1.1.1.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-datepicker.zh-CN.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-fileupload.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-timepicker.min.js"></script>
+
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
@@ -37,6 +39,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>
 <!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/elements.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.dataTables.min.js"></script>
+
 
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
@@ -277,7 +280,7 @@
                                             <?php case "2": ?>已拒绝<?php break;?>
                                             <?php default: ?>--<?php endswitch;?>
                                     </td>
-                                    <?php if($vo['work_finish'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["work_finish"])); ?></td>
+                                    <?php if($vo['work_finish'] != ''): ?><td><?php echo (date("Y-m-d",$vo["work_finish"])); ?></td>
                                     <?php else: ?>
                                         <td>--</td><?php endif; ?>
                                     <td>

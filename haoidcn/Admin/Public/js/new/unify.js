@@ -28,6 +28,8 @@ function update_t(type){
 			// 	jAlert("请输入邮箱校验码");
 			// 	return false;
 			// }
+
+			
 			$("#form01").submit();
 		}
 		if(pwd_status == 1){
@@ -514,7 +516,7 @@ function file_d(){
 							"<input type='file' name='photo[]' id='file_s"+file_j+"'/></span>"+
 							"	<a href='#' class='btn fileupload-exists' data-dismiss='fileupload'>取消</a>"+
 							"</div>"+
-							"	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void();' onclick="+"file_del('file_j"+file_j+"');"+"  class='iconfa-remove'>&nbsp;&nbsp;关闭</a></span>"+
+							"	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void();' onclick="+"file_del('file_j"+file_j+"');"+"  class='iconfa-remove'>&nbsp;&nbsp;删除</a></span>"+
 						    "</div>"+
 						"</div>");
 	

@@ -18,10 +18,11 @@
 <!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.js"></script> -->
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-datepicker.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-migrate-1.1.1.min.js"></script>
-<!-- <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script> -->
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-datepicker.zh-CN.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/bootstrap-fileupload.min.js"></script>
 
@@ -219,7 +220,10 @@
                      	<input type="hidden" id="file_j" value="1">
                      	<input type="hidden" id="file_de" value="1">
 	                     <div class="par" id="file_j1">
-						    <label>上传文件</label>
+						    <label>
+                                上传文件<br>
+                                <span class="note">(大小不超过50M)</span>
+                            </label>
 						    <div class="fileupload fileupload-new" data-provides="fileupload">
 							<div class="input-append">
 							<div class="uneditable-input span3">

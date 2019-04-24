@@ -28,10 +28,32 @@ class ClientController extends CommonController {
 				echo "<script>alert('标题字数不能超于100位'); history.go(-1);</script>";
 				exit;
 			}
-
+			
 			//上传附件
 			// print_r($_FILES['file']);
 			// exit;
+
+			//限制附件上传大小
+			$max_file_size = 52428800; //限制50M
+			if (!empty($_FILES['file']['size'])){
+				if ($_FILES['file']['size'][0] > $max_file_size) {
+					echo "<script>alert('附件大小不能超过50M'); history.go(-1);</script>";
+					exit;
+				}
+				if (!empty($_FILES['photo'])) {
+					$has_overstep = false;
+					foreach ($_FILES['photo']['size'] as $val) {
+						if ($val > $max_file_size) {
+							$has_overstep = true;
+						}
+					}
+					if ($has_overstep) {
+						echo "<script>alert('附件大小不能超过50M'); history.go(-1);</script>";
+						exit;
+					}
+				}
+			}
+
 			$sc_file = "";
 			if(!empty($_FILES['file']['tmp_name'])){ //临时上面文件名
 				//ThinkPhP 根据 $_FILES上传内容
