@@ -290,7 +290,7 @@
                                             <h3 class="widgettitle" style="background:#27b34b;">{$vo.uname}  回复<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
                                         </if>
                                         
-                                        <if condition="$vo['limits'] eq 3">
+                                        <if condition="$vo['limits'] eq 3 or $vo['limits'] eq 1">
                                             <h3 class="widgettitle" style="background:#666;">{$vo.uname}  评论<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
                                         </if>
                                         

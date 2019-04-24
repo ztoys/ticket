@@ -238,9 +238,9 @@ class ClientController extends CommonController {
 				if (isset($my_ticket)) {
 					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
 					
-					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "uid='$id' $where", "puddate desc");
 					$p = Getpage($count);
-					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
+					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
 				} else {
 					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
 
@@ -284,9 +284,9 @@ class ClientController extends CommonController {
 			} elseif ($status == "manned") {
 				// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
 
-				$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
+				$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "did='$id' $where", $db_order);
 				$p = Getpage($count);
-				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order, $p->firstRow, $p->listRows);
+				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "did='$id' $where", $db_order, $p->firstRow, $p->listRows);
 			} else {
 				// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order);
 				
@@ -627,7 +627,7 @@ class ClientController extends CommonController {
 		//受理人列表
 		$user_info = $this->sel_sql_single("user", "id='$id'");
 		$group_id = $user_info['u_status'];
-		$list_group_user = $this->sel_sql("user", "u_status='$group_id'");
+		$list_group_user = $this->sel_sql("user", "u_status='$group_id' and zl_status='1'");
 		$this->assign('list_group_user', $list_group_user);
 		
 		$data = array(

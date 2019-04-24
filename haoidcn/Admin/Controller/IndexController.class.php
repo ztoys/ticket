@@ -85,14 +85,20 @@ class IndexController extends Controller {
 				}
 			}
 		}
-		
     	
 		if($login){
 			$userid = strtolower(I("post.username"));
 			$pass = md5(I('post.password'));
 			$User = D("User"); // 实例化User对象
 			$user_arr = $User->where("(userid='$userid' or email='$userid' or phone='$userid') AND pwd='$pass'")->find();
-    		$ok = empty($user_arr) ? "-1" : "1";
+			$ok = empty($user_arr) ? "-1" : "1";
+			
+			//帐号是否已验证
+			$user_law = $user_arr['zl_status'];
+			if ($user_law == '-1'){
+				$this->redirect('index',"user_law=-1");
+				exit;
+			}
     		
     		if($ok == "1"){
     			$_SESSION['userid'] = $user_arr['userid'];
@@ -120,10 +126,8 @@ class IndexController extends Controller {
 		$pass = I("session.pass");
 		 
 		if(!empty($userid) && !empty($pass)){
-			 
 			$this->redirect('Console/dashboard');
 			exit;
-			 
 		}
 		
 		$ok = I('get.ok');
@@ -132,7 +136,6 @@ class IndexController extends Controller {
 		$this->assign('userlaw',$userlaw);
 		
     	$this->display();
-    	
 	}
 	
 	//用户注册

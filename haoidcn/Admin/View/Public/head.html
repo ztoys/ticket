@@ -79,24 +79,24 @@
             </if>
             
             <if condition="$limits eq '2'">
-            	<li class="nav-header">工单中心</li>
-                <li <if condition="$data.case eq 'all'">{$data.active02}</if>><a href="{:U('Client/messages?case=all')}"><span class="iconfa-pencil"></span> 未指派工单<span class="right">{$ticket_count.c_unass}</span></a></li>
-                <li <if condition="$data.case eq 'manned'">{$data.active02}</if>><a href="{:U('Client/messages?case=manned')}"><span class="iconfa-pencil"></span> 分配给我的<span class="right">{$ticket_count.c_myticket}</span></a></li>
+                <li class="nav-header">工单中心</li>
+                <li {$data.active01}><a href="{:U('Client/forms')}"><span class="iconfa-pencil"></span>创建工单</a></li>
+                <li <if condition="$data.case eq 'manned'">{$data.active02}</if>><a href="{:U('Client/messages?case=manned')}"><span class="iconfa-pencil"></span> 我的工单<span class="right">{$ticket_count.c_myticket}</span></a></li>
+                <!-- <li <if condition="$data.case eq 'all'">{$data.active02}</if>><a href="{:U('Client/messages?case=all')}"><span class="iconfa-pencil"></span> 未指派工单<span class="right">{$ticket_count.c_unass}</span></a></li>
                 <li <if condition="$data.case eq 'zhong'">{$data.active02}</if>><a href="{:U('Client/messages?case=zhong')}"><span class="iconfa-pencil"></span>正在研发中<span class="right">{$ticket_count.c_admissible}</span></a></li>
                 <li <if condition="$data.case eq 'ping'">{$data.active02}</if>><a href="{:U('Client/messages?case=ping')}"><span class="iconfa-refresh"></span>待评价<span class="right">{$ticket_count.c_comment}</span></a></li>
-                <li <if condition="$data.case eq 'yi'">{$data.active02}</if>><a href="{:U('Client/messages?case=yi')}"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right">{$ticket_count.c_close}</span></a></li>
-            
+                <li <if condition="$data.case eq 'yi'">{$data.active02}</if>><a href="{:U('Client/messages?case=yi')}"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right">{$ticket_count.c_close}</span></a></li> -->
             </if>
             <if condition="$limits eq '3'">
                 <li class="nav-header">工单中心</li>
             	<!-- <li {$set.active}><a href="{:U('Console/dashboard')}"><span class="iconfa-laptop"></span> 后台面板</a></li> -->
                 <li {$data.active01}><a href="{:U('Client/forms')}"><span class="iconfa-pencil"></span>创建工单</a></li>
-                <li <if condition="$data.case eq 'create'">{$data.active02}</if> ><a href="{:U('Client/messages?case=create')}"><span class="iconfa-bookmark"></span> 我创建的工单<span class="right">{$ticket_count.c_mycreate}</span></a></li>
-                <li <if condition="$data.case eq 'reply'">{$data.active02}</if> ><a href="{:U('Client/messages?case=reply')}"><span class="iconfa-table"></span> 待我回复<span class="right">{$ticket_count.c_reply}</span></a></li>
+                <li <if condition="$data.case eq 'create'">{$data.active02}</if> ><a href="{:U('Client/messages?case=create')}"><span class="iconfa-bookmark"></span> 我的工单<span class="right">{$ticket_count.c_mycreate}</span></a></li>
+                <!-- <li <if condition="$data.case eq 'reply'">{$data.active02}</if> ><a href="{:U('Client/messages?case=reply')}"><span class="iconfa-table"></span> 待我回复<span class="right">{$ticket_count.c_reply}</span></a></li> -->
                 <!-- <li <if condition="$data.case eq 'dai'">{$data.active02}</if> ><a href="{:U('Client/messages?case=dai')}"><span class="iconfa-pencil"></span> 待处理的工单</a></li> -->
                 <!-- <li <if condition="$data.case eq 'zhong'">{$data.active02}</if> ><a href="{:U('Client/messages?case=zhong')}"><span class="iconfa-pencil"></span> 处理中的工单</a></li> -->
-                <li <if condition="$data.case eq 'ping'">{$data.active02}</if> ><a href="{:U('Client/messages?case=ping')}"><span class="iconfa-table"></span> 待我评价<span class="right">{$ticket_count.c_comment}</span></a></li>
-                <li <if condition="$data.case eq 'yi'">{$data.active02}</if> ><a href="{:U('Client/messages?case=yi')}"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right">{$ticket_count.c_close}</span></a></li>
+                <!-- <li <if condition="$data.case eq 'ping'">{$data.active02}</if> ><a href="{:U('Client/messages?case=ping')}"><span class="iconfa-table"></span> 待我评价<span class="right">{$ticket_count.c_comment}</span></a></li> -->
+                <!-- <li <if condition="$data.case eq 'yi'">{$data.active02}</if> ><a href="{:U('Client/messages?case=yi')}"><span class="iconfa-briefcase"></span> 已关闭的工单<span class="right">{$ticket_count.c_close}</span></a></li> -->
                 <!-- <li <if condition="$data.case eq 'cao'">{$data.active02}</if> ><a href="{:U('Client/messages?case=cao')}"><span class="iconfa-th-list"></span> 草稿箱</a></li> -->
                 
             </if>

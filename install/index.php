@@ -166,7 +166,7 @@ if($status){
 			}
 
 			if($i == 21){
-				$result = mysqli_query($mysql, "insert into ".$_POST['db_prefix']."user(userid,pwd,email,limits) values('".$_POST['userid']."','".md5($_POST['pwd'])."','".$_POST['email']."','1')");
+				$result = mysqli_query($mysql, "insert into ".$_POST['db_prefix']."user(userid,pwd,email,limits,zl_status) values('".$_POST['userid']."','".md5($_POST['pwd'])."','".$_POST['email']."','1','1')");
 				if($result){
 					//创建项目的配置文件
 					$config ="<?php

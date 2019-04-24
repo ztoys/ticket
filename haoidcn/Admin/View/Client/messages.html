@@ -93,6 +93,7 @@
                                         <option value="1">待处理</option>
                                         <option value="2">正在研发中</option>
                                         <option value="4">待评价</option>
+                                        <option value="3">已关闭</option>
                                     </select>
                                 </div>
                                 <div class="left">
@@ -206,6 +207,7 @@
                                         <option value="1">待处理</option>
                                         <option value="2">正在研发中</option>
                                         <option value="4">待评价</option>
+                                        <option value="3">已关闭</option>
                                     </select>
                                 </div>
                                 <div class="left">
@@ -236,7 +238,7 @@
                                 <tr>
                                     <th width="5%">编号</th>
                                     <th width="20%">标题</th>
-                                    <th width="5%">工单类型</th>
+                                    <th width="7%">工单类型</th>
                                     <th width="5%">优先级</th>
                                     <th width="5%">状态</th>
                                     <th width="10%">产品确认</th>
@@ -281,8 +283,12 @@
                                                 <case value="1">已确认</case>
                                                 <case value="2">已拒绝</case>
                                                 <default />
-                                                <button type="button" class="btn btn-sm btn-success" onclick="workSetProduct({$vo.id},'1')">确认</button>
-                                                <button type="button" class="btn btn-sm btn-danger" onclick="workSetProduct({$vo.id},'2')">拒绝</button>
+                                                <if condition="$vo['wc_sataus'] neq '3'">
+                                                    <button type="button" class="btn btn-sm btn-success" onclick="workSetProduct({$vo.id},'1')">确认</button>
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="workSetProduct({$vo.id},'2')">拒绝</button>
+                                                <else/>
+                                                    --
+                                                </if>
                                             </switch>
                                         </td>
                                         <td>
@@ -290,15 +296,23 @@
                                                 <case value="1">已确认</case>
                                                 <case value="2">已拒绝</case>
                                                 <default />
-                                                <button type="button" class="btn btn-sm btn-success" onclick="workSetDevelop({$vo.id},'1')">确认</button>
-                                                <button type="button" class="btn btn-sm btn-danger" onclick="workSetDevelop({$vo.id},'2')">拒绝</button>
+                                                <if condition="$vo['wc_sataus'] neq '3'">
+                                                    <button type="button" class="btn btn-sm btn-success" onclick="workSetDevelop({$vo.id},'1')">确认</button>
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="workSetDevelop({$vo.id},'2')">拒绝</button>
+                                                <else/>
+                                                    --
+                                                </if>
                                             </switch>
                                         </td>
                                         <if condition="$vo['work_finish'] neq ''">
                                             <td>{$vo.work_finish|date="Y-m-d",###}</td>
                                         <else/>
                                             <td>
-                                                <button type="button" id="show_time_btn_{$vo.id}" class="btn btn-sm" onclick="workShowFinish({$vo.id})">--</button>
+                                                <if condition="$vo['wc_sataus'] neq '3'">
+                                                    <button type="button" id="show_time_btn_{$vo.id}" class="btn btn-sm" onclick="workShowFinish({$vo.id})">--</button>
+                                                <else />
+                                                    --
+                                                </if>
                                             </td>
                                         </if>
                                         <td>

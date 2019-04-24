@@ -275,7 +275,7 @@ class AdminController extends CommonController {
 		//受理人列表
 		$user_info = $this->sel_sql_single("user", "id='$id'");
 		$group_id = $user_info['u_status'];
-		$list_group_user = $this->sel_sql("user", "limits='2'");
+		$list_group_user = $this->sel_sql("user", "limits='2' and zl_status='1'");
 		$this->assign('list_group_user', $list_group_user);
 		
 		$data = array(

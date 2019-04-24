@@ -11,7 +11,7 @@ class WorkModel extends Model {
 
         if ($limits == '3') {
             //客服
-            $count_mycreate = $work->where("uid=$uid and wc_sataus<>'3'")->count();                 //我创建的
+            $count_mycreate = $work->where("uid=$uid")->count();                 //我创建的
             $count_reply = $work->where("uid=$uid and wc_sataus<>'3' and tz_status='1'")->count();  //待我回复的
             $count_comment = $work->where("uid=$uid and wc_sataus='4'")->count();                   //待我评价的
             $count_close = $work->where("uid=$uid and wc_sataus='3'")->count();                     //已关闭的
@@ -24,7 +24,7 @@ class WorkModel extends Model {
         } elseif ($limits == '2') {
             //运维
             $count_unass = $work->where("(did is null or did=0) and wc_sataus<>'3'")->count();         // 未指派
-            $count_myticket = $work->where("did=$uid and wc_sataus<>'3'")->count();                    // 分配给我的
+            $count_myticket = $work->where("did=$uid")->count();                    // 分配给我的
             $count_admissible = $work->where("did=$uid and wc_sataus='2'")->count();                   // 受理中
             $count_comment = $work->where("did=$uid and wc_sataus='4'")->count();                      // 待评价
             $count_close = $work->where("did=$uid and wc_sataus='3'")->count();                        // 已关闭的工单
