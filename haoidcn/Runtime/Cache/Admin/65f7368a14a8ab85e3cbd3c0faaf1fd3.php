@@ -329,16 +329,19 @@
                                 <div>
                                     <?php echo ($main["w_issue"]); ?>
                                 </div>
-                                <?php if(!empty($file_arr[0])): ?><div style="margin-left:220px;overflow:hidden;zoom:1;">
-                                        <?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?><div id="picture<?php echo ($k); ?>">
-                                                <div style="float:left;margin:5px; padding:5px;border:1px solid #ccc;" >
-                                                    <div style="width:150px;height:125px;">
-                                                        <img src="/ticket/Uploads/<?php echo ($vo); ?>" style="width:150px;height:100px;" />
-                                                        <input type="hidden" name="photo01[]" value="<?php echo ($vo); ?>">
-                                                        <div style="text-align:center;">
-                                                            <a href="/ticket/Uploads/<?php echo ($vo); ?>" target="_blank">下载</a>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a>
+                                <?php if(!empty($file_arr[0])): ?><div style="overflow:hidden;zoom:1;margin-top: 20px;">
+                                        <?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?><div id="picture<?php echo ($k); ?>" title="<?php echo ($vo['file_name']); ?>">
+                                                <div style="float:left;margin-right: 10px;padding:5px;border:1px solid #ccc;" >
+                                                    <div style="width:120px;height:130px;text-align:center;">
+                                                        <i class="icon-file"></i>
+                                                        <input type="hidden" name="photo01[]" value="<?php echo ($vo['id']); ?>">
+                                                        <div style="margin-top:10px ;text-align:center;">
+                                                            <p class="overlfow-text" style="margin:0 10px 5px 10px;">
+                                                                <?php echo ($vo['file_name']); ?>
+                                                            </p>
+                                                            <a href="<?php echo U('Client/download_file',array('fileid'=>$vo['id']));?>" target="_blank">下载</a>
+                                                            &nbsp;&nbsp;
+                                                            <!-- <a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a> -->
                                                         </div>
                                                     </div>
                                                 </div>

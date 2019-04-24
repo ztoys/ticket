@@ -205,6 +205,9 @@ class AdminController extends CommonController {
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
 
+		// $file_arr = $this->sel_sql("files", "id in ($filesId)");
+		$this->assign('file_arr',$file_arr);
+
 		$ticket_count = $this->getWorkCount();
 		$this->assign('ticket_count', $ticket_count);
 
@@ -246,6 +249,14 @@ class AdminController extends CommonController {
 		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
+
+		//文件
+		// $file_arr = explode(',',$main['w_sc_file']);
+		$filesId = $main['w_sc_file'];
+		if ($filesId != '') {
+			$file_arr = $this->sel_sql("files", "id in ($filesId)");
+			$this->assign('file_arr',$file_arr);
+		}
 		
 		//对话内容显示
 		$record = D("addwork as a")->field("u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid")->join("LEFT JOIN ".C('DB_PREFIX')."user as u ON a.uid=u.id")->where("a.pid='$aid'")->order("repdate asc")->select();

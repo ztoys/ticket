@@ -240,17 +240,6 @@
 						    </div>
 						</div>
                    	</div>
-                   	<?php if(!empty($file_arr[0])): ?><div style="margin-left:220px;overflow:hidden;zoom:1;">
-							<?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?><div id="picture<?php echo ($k); ?>">
-									<div style="float:left;margin:5px; padding:5px;border:1px solid #ccc;" >
-										<div style="width:150px;height:125px;">
-											<img src="/ticket/Uploads/<?php echo ($vo); ?>" style="width:150px;height:100px;" />
-											<input type="hidden" name="photo01[]" value="<?php echo ($vo); ?>">
-											<div style="text-align:center;"><a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a></div>
-										</div>
-									</div>
-								</div><?php endforeach; endif; ?>
-						</div><?php endif; ?>	
 
                     <!-- 附件上传 END -->
                     

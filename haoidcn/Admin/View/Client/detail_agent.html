@@ -238,17 +238,20 @@
                                     {$main.w_issue}
                                 </div>
                                 <notempty name="file_arr[0]">
-                                    <div style="margin-left:220px;overflow:hidden;zoom:1;">
+                                    <div style="overflow:hidden;zoom:1;margin-top: 20px;">
                                         <foreach name="file_arr" item="vo" key="k">
-                                            <div id="picture{$k}">
-                                                <div style="float:left;margin:5px; padding:5px;border:1px solid #ccc;" >
-                                                    <div style="width:150px;height:125px;">
-                                                        <img src="__ROOT__/Uploads/{$vo}" style="width:150px;height:100px;" />
-                                                        <input type="hidden" name="photo01[]" value="{$vo}">
-                                                        <div style="text-align:center;">
-                                                            <a href="__ROOT__/Uploads/{$vo}" target="_blank">下载</a>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a>
+                                            <div id="picture{$k}" title="{$vo['file_name']}">
+                                                <div style="float:left;margin-right: 10px;padding:5px;border:1px solid #ccc;" >
+                                                    <div style="width:120px;height:130px;text-align:center;">
+                                                        <i class="icon-file"></i>
+                                                        <input type="hidden" name="photo01[]" value="{$vo['id']}">
+                                                        <div style="margin-top:10px ;text-align:center;">
+                                                            <p class="overlfow-text" style="margin:0 10px 5px 10px;">
+                                                                {$vo['file_name']}
+                                                            </p>
+                                                            <a href="{:U('Client/download_file',array('fileid'=>$vo['id']))}" target="_blank">下载</a>
+                                                            &nbsp;&nbsp;
+                                                            <!-- <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a> -->
                                                         </div>
                                                     </div>
                                                 </div>

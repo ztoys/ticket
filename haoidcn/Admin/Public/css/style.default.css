@@ -112,6 +112,11 @@ label.inline-block{
 .modal{
 	display: none;
 }
+.overlfow-text{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 
 /*** LOGIN PAGE ***/
 
@@ -256,7 +261,13 @@ label.inline-block{
 	background: url(../images/icon-verify.png) no-repeat;
 	background-size: cover;
 }
-
+.icon-file{
+	display: inline-block;
+	width: 64px;
+	height: 64px;
+	background: url(../images/icon-file.png) no-repeat;
+	background-size: cover;
+}
 
 
 /*** LEFT PANEL ***/
