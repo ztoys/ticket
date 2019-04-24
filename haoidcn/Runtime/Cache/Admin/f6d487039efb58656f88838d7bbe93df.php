@@ -268,9 +268,8 @@
                                 </div>
                                 <div style="margin-top: 10px;">
                                     <span class="note2"><?php echo ($main["u_uname"]); ?></span>
-                                    <span class="note2" style="margin-left: 10px;"><?php echo (date("Y-m-d",$main["w_puddate"])); ?></span>
+                                    <span class="note2" style="margin-left: 10px;"><?php echo (date("Y-m-d H:i:s",$main["w_puddate"])); ?></span>
                                 </div>
-
                             </h1>
                             
                             <!-- comment -->

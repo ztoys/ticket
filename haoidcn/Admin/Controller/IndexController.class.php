@@ -107,13 +107,14 @@ class IndexController extends Controller {
     			$_SESSION['email'] = $user_arr['email'];
 				$_SESSION['limits'] = $user_arr['limits'];
 				if($user_arr['limits'] == '3') {
-					// $this->redirect('Client/messages/case/create');	
-					$this->redirect('Console/dashboard');	
+					$this->redirect('Client/messages/case/create');
+					// $this->redirect('Console/dashboard');	
 				} elseif($user_arr['limits'] == '2') {
-					// $this->redirect('Client/messages/case/all');	
-					$this->redirect('Console/dashboard');	
+					$this->redirect('Client/messages/case/manned');	
+					// $this->redirect('Console/dashboard');	
 				} else {
-					$this->redirect('Admin/group_manage');
+					$this->redirect('Admin/ticket/case/all');
+					// $this->redirect('Admin/group_manage');
 				}
     			exit;
     		}else{

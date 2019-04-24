@@ -1698,6 +1698,15 @@ table td.center, table th.center { text-align: center; }
 	padding: 5px 50px;
 }
 
+/* PAGE CSS */
+.pagination ul{
+	box-shadow: none;
+}
+.pagination ul>li.rows{
+	display: none;
+}
+
+
 /*** MEDIA QUERIES ***/
 
 @media screen and (max-width: 1024px) {

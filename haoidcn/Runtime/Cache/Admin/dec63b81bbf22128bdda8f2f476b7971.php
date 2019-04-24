@@ -383,28 +383,16 @@
                                         <td>
                                             <?php switch($vo['work_product']): case "1": ?>已确认<?php break;?>
                                                 <?php case "2": ?>已拒绝<?php break;?>
-                                                <?php default: ?>
-                                                <?php if($vo['wc_sataus'] != '3'): ?><button type="button" class="btn btn-sm btn-success" onclick="workSetProduct(<?php echo ($vo["id"]); ?>,'1')">确认</button>
-                                                    <button type="button" class="btn btn-sm btn-danger" onclick="workSetProduct(<?php echo ($vo["id"]); ?>,'2')">拒绝</button>
-                                                <?php else: ?>
-                                                    --<?php endif; endswitch;?>
+                                                <?php default: ?>--<?php endswitch;?>
                                         </td>
                                         <td>
                                             <?php switch($vo['work_develop']): case "1": ?>已确认<?php break;?>
                                                 <?php case "2": ?>已拒绝<?php break;?>
-                                                <?php default: ?>
-                                                <?php if($vo['wc_sataus'] != '3'): ?><button type="button" class="btn btn-sm btn-success" onclick="workSetDevelop(<?php echo ($vo["id"]); ?>,'1')">确认</button>
-                                                    <button type="button" class="btn btn-sm btn-danger" onclick="workSetDevelop(<?php echo ($vo["id"]); ?>,'2')">拒绝</button>
-                                                <?php else: ?>
-                                                    --<?php endif; endswitch;?>
+                                                <?php default: ?> --<?php endswitch;?>
                                         </td>
                                         <?php if($vo['work_finish'] != ''): ?><td><?php echo (date("Y-m-d",$vo["work_finish"])); ?></td>
                                         <?php else: ?>
-                                            <td>
-                                                <?php if($vo['wc_sataus'] != '3'): ?><button type="button" id="show_time_btn_<?php echo ($vo["id"]); ?>" class="btn btn-sm" onclick="workShowFinish(<?php echo ($vo["id"]); ?>)">--</button>
-                                                <?php else: ?>
-                                                    --<?php endif; ?>
-                                            </td><?php endif; ?>
+                                            <td>--</td><?php endif; ?>
                                         <td>
                                             <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
                                         </td>
@@ -507,84 +495,6 @@
         }
     }
 
-    function workSetProduct(wid, val) {
-        window.event?window.event.cancelBubble=true:event.stopPropagation();  
-        jQuery.ajax({
-            type: 'post',
-            url: '<?php echo U('Client/ticket_product');?>',
-            data: {
-                id: wid,
-                val: val
-            },
-            success:function(data) {
-                if (data.code == 0){
-                    window.location.reload();
-                } else {
-                    alert("修改失败");
-                }
-            }
-        })
-    }
-
-    function workSetDevelop(wid, val) {
-        window.event?window.event.cancelBubble=true:event.stopPropagation();  
-        jQuery.ajax({
-            type: 'post',
-            url: '<?php echo U('Client/ticket_develop');?>',
-            data: {
-                id: wid,
-                val: val
-            },
-            success:function(data) {
-                if (data.code == 0){
-                    window.location.reload();
-                } else {
-                    alert("修改失败");
-                }
-            }
-        })
-    }
-
-    function workShowFinish(wid) {
-        window.event?window.event.cancelBubble=true:event.stopPropagation();  
-        window.activeTicketId = wid;
-        var btnDom = jQuery("#show_time_btn_"+wid);
-        var obj = btnDom[0];
-        var w = obj.offsetWidth, h = obj.offsetHeight;  
-        //从目标元素开始向外遍历，累加top和left值  
-        for (var t = obj.offsetTop, l = obj.offsetLeft; obj = obj.offsetParent;) {  
-            t += obj.offsetTop;  
-            l += obj.offsetLeft;  
-        }  
-        jQuery("#date_picker").datepicker("show");
-        jQuery(".dropdown-menu").css('top', t+30);
-        jQuery(".dropdown-menu").css('left', l);
-    }
-    
-    jQuery("#date_picker").change(function(){
-        var time = jQuery("#date_picker").val();
-        var wid = window.activeTicketId;
-        if (time) {
-            time = time.replace(/-/g,'/'); 
-            var timestamp = new Date(time).getTime()/1000;
-            jQuery.ajax({
-                type: 'post',
-                url: '<?php echo U('Client/ticket_finish');?>',
-                data: {
-                    id: wid,
-                    val: timestamp
-                },
-                success:function(data) {
-                    if (data.code == 0){
-                        window.location.reload();
-                    } else {
-                        alert("修改失败");
-                    }
-                }
-            })
-        }
-    });
-
     function selectTicket() {
         var ticket_status = jQuery("#ticket_status").val();
         var ticekt_level = jQuery("#ticket_level").val();
@@ -624,15 +534,7 @@
         if (de_ticket_owned) {
             jQuery("#ticket_owned").val(de_ticket_owned);
         }
-
-        jQuery('#date_picker').datepicker({
-            language: "zh-CN",
-            keepOpen: true,
-            autoclose: true,
-            clearBtn: false, //清除按钮
-            todayBtn: false, //今日按钮
-            format: "yyyy-mm-dd"
-        });
+        
     })
 
 </script>

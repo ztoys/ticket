@@ -596,8 +596,7 @@ class ClientController extends CommonController {
 
 		//列表选中显示样式
 		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
-		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus, w.did w_did,
-		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
+		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus, w.did w_did,w.work_product,w.work_develop,w.work_finish,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
 		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
@@ -658,6 +657,9 @@ class ClientController extends CommonController {
 
 		$ticket_agent_name = I("post.ticket_agent_name");
 		$ticket_status_name = I("post.ticket_status_name");
+		$ticket_product_name = I("post.ticket_product_name");
+		$ticket_develop_name = I("post.ticket_develop_name");
+		$ticket_finish_name = I("post.ticket_finish_name");
 		$url = __ROOT__."/index.php/Client/detail_agent/case/$url_status/id/".$wid;
 
 		$ticket_agent = I('post.ticket_agent');
@@ -666,8 +668,23 @@ class ClientController extends CommonController {
 			$ticket_agent = null;
 		}
 
+		$ticket_product = I('post.ticket_product');
+		$ticket_develop = I('post.ticket_develop');
+		$ticket_finish = I('post.ticket_finish');
+		
+		if ($ticket_product == '0')  {
+			$ticket_product = null;
+		}
+		if ($ticket_develop == '0')  {
+			$ticket_develop = null;
+		}
+		if ($ticket_finish == '')  {
+			$ticket_finish = null;
+		}
+
 		$ticket_info = $this->sel_sql_single('work', "id='$wid'");
-		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status)) {
+
+		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status && $ticket_info['work_product'] == $ticket_product && $ticket_info['work_develop'] == $ticket_develop && $ticket_info['work_finish'] == $work_finish)) {
 			if ($ticket_status == '2' || $ticket_status == '4') {
 				$ticket_accdate = time();
 			} else {
@@ -677,12 +694,16 @@ class ClientController extends CommonController {
 				'did' => $ticket_agent,
 				'accdate' => $ticket_accdate,
 				'wc_sataus' => $ticket_status,
+				'work_product' => $ticket_product,
+				'work_develop' => $ticket_develop,
+				'work_finish' => $ticket_finish,
 			);
+			
 			$this->update_sql('work', "id='$wid'", $ticket_data);
 	
 			//增加操作记录 -- 工单状态修改
 			$wrecord = new WrecordModel();
-			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态【受理人：'.$ticket_agent_name.'】【工单状态：'.$ticket_status_name.'】。');
+			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态<br>【受理人：'.$ticket_agent_name.'】<br>【工单状态：'.$ticket_status_name.'】<br>【工单产品确认：'.$ticket_product_name.'】<br>【工单研发确认：'.$ticket_develop_name.'】<br>【工单完成时间：'.$ticket_finish_name.'】');
 		}
 		
 		if(I('post.editorValue') != ""){

@@ -43,7 +43,6 @@
 
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/third-party/jquery.min.js"></script>
 
 <style type="text/css">
     body {
@@ -137,6 +136,9 @@
         padding-left: 10px;
         margin-right: 10px;
     }    
+    .form-ticket-status label{
+        margin-bottom: 5px;
+    }
        
 </style>
 </head>
@@ -273,6 +275,29 @@
                                     </select>
                                 </div>
 
+                                <div style="margin-top: 20px;">
+                                    <label>产品确认</label>
+                                    <select id="select_ticket_product">
+                                        <option value="0" <?php if($main["work_product"] == ''): ?>selected<?php endif; ?> >--</option>
+                                        <option value="1" <?php if($main["work_product"] == '1'): ?>selected<?php endif; ?> >已确认</option>
+                                        <option value="2" <?php if($main["work_product"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
+                                    </select>
+                                </div>
+
+                                <div style="margin-top: 20px;">
+                                    <label>研发确认</label>
+                                    <select id="select_ticket_develop">
+                                        <option value="0" <?php if($main["work_develop"] == ''): ?>selected<?php endif; ?> >--</option>
+                                        <option value="1" <?php if($main["work_develop"] == '1'): ?>selected<?php endif; ?> >已确认</option>
+                                        <option value="2" <?php if($main["work_develop"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
+                                    </select>
+                                </div>
+
+                                <div style="margin-top: 20px;">
+                                    <label>完成时间</label>
+                                    <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;">
+                                </div>
+
                                 <!-- <hr>
 
                                 <div style="margin-top: 20px;">
@@ -326,14 +351,14 @@
                                 </div><?php endif; ?>
                             <!-- comment end -->
 
-                            <div class="msgbody"  style="background:#fcfcfc;border-bottom:1px solid #DDD;">
+                            <div class="msgbody"  style="background:#fcfcfc;border-bottom:1px solid #DDD;min-height:100px;">
                                 <div>
                                     <?php echo ($main["w_issue"]); ?>
                                 </div>
                                 <?php if(!empty($file_arr[0])): ?><div style="overflow:hidden;zoom:1;margin-top: 20px;">
                                         <?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?><div id="picture<?php echo ($k); ?>" title="<?php echo ($vo['file_name']); ?>">
                                                 <div style="float:left;margin-right: 10px;padding:5px;border:1px solid #ccc;" >
-                                                    <div style="width:120px;height:130px;text-align:center;">
+                                                    <div style="width:120px;height:130px;text-align:center;padding-top: 10px;">
                                                         <i class="icon-file"></i>
                                                         <input type="hidden" name="photo01[]" value="<?php echo ($vo['id']); ?>">
                                                         <div style="margin-top:10px ;text-align:center;">
@@ -356,7 +381,14 @@
                                         <input type="hidden" name="ticket_agent" id="form_agent">
                                         <input type="hidden" name="ticket_agent_name" id="form_agent_name">
                                         <input type="hidden" name="ticket_status" id="form_ticket_status">
+                                        <input type="hidden" name="ticket_product" id="form_ticket_product">
+                                        <input type="hidden" name="ticket_develop" id="form_ticket_develop">
+                                        <input type="hidden" name="ticket_finish" id="form_ticket_finish">
                                         <input type="hidden" name="ticket_status_name" id="form_ticket_status_name">
+                                        <input type="hidden" name="ticket_product_name" id="form_ticket_product_name">
+                                        <input type="hidden" name="ticket_develop_name" id="form_ticket_develop_name">
+                                        <input type="hidden" name="ticket_finish_name" id="form_ticket_finish_name">
+                                        
                                         <input type="hidden" name="insert" value="insert" />
                                         <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
                                         <div>
@@ -434,22 +466,51 @@
 
 <!-- 模态框END -->
 
+<input type="hidden" id="n_ticket_finish" value="<?php echo ($main["work_finish"]); ?>">
 
 <script type="text/javascript">
 
     function submitTicket() {
         var ticket_agent = jQuery("#select_ticket_agent").val();
         var ticket_status = jQuery("#select_ticket_status").val();
+        var ticket_product = jQuery("#select_ticket_product").val();
+        var ticket_develop = jQuery("#select_ticket_develop").val();
+        var ticket_finish = jQuery("#ticket_finish").val();
         if (ticket_status == "2" && ticket_agent == "-1") {
             alert("请选择受理人");
             return false;
         }
+        if (ticket_finish) {
+            ticket_finish = ticket_finish.replace(/-/g,'/'); 
+            var timestamp = new Date(ticket_finish).getTime()/1000;
+        }
         jQuery("#form_agent").val(ticket_agent);
         jQuery("#form_ticket_status").val(ticket_status);
+        jQuery("#form_ticket_product").val(ticket_product);
+        jQuery("#form_ticket_develop").val(ticket_develop);
+        jQuery("#form_ticket_finish").val(timestamp);
         jQuery("#form_agent_name").val(jQuery("#select_ticket_agent").find("option:selected").text());
         jQuery("#form_ticket_status_name").val(jQuery("#select_ticket_status").find("option:selected").text());
+        jQuery("#form_ticket_product_name").val(jQuery("#select_ticket_product").find("option:selected").text());
+        jQuery("#form_ticket_develop_name").val(jQuery("#select_ticket_develop").find("option:selected").text());
+        jQuery("#form_ticket_finish_name").val(jQuery("#select_ticket_finish").find("option:selected").text());
         jQuery("#form_ticket").submit();
     }
+
+    jQuery(document).ready(function(){
+        jQuery('#ticket_finish').datepicker({
+            language: "zh-CN",
+            keepOpen: true,
+            autoclose: true,
+            clearBtn: true, //清除按钮
+            todayBtn: false, //今日按钮
+            format: "yyyy-mm-dd"
+        });
+        var nTicketFinish = jQuery("#n_ticket_finish").val();
+        if (nTicketFinish) {
+            jQuery("#ticket_finish").datepicker('setDate',new Date(nTicketFinish*1000)); //参数为毫秒数
+        }
+    })
 
     function disableBtn(str) {
         var div = document.getElementById('btns');
