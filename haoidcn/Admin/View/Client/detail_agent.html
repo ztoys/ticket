@@ -125,7 +125,7 @@
 
                     <if condition="$main.wc_sataus neq '3'">
                         <div class="messageleft">
-                            <form class="form-ticket-status" action="{:U('Client/messages')}" method="post" enctype="multipart/form-data">
+                            <form class="form-ticket-status" id="form_ticket_statues" action="{:U('Client/messages')}" method="post" enctype="multipart/form-data">
                                 <!-- <div>
                                     <label>受理用户组</label>
                                     <select name="" id="">
@@ -181,7 +181,7 @@
                                 <div style="margin-top: 20px;">
                                     <button type="submit" class="btn btn-success" style="width: 100%;">确认</button>
                                 </div> -->
-                                <button type="button"  class="btn btn-primary btn-line" style="margin-top: 40px;" onclick="submitTicket()"> 提交 </button>
+                                <!-- <button type="button"  class="btn btn-primary btn-line" style="margin-top: 40px;" onclick="submitTicket()"> 提交 </button> -->
 
                             </form>
                         </div>
@@ -431,6 +431,10 @@
         if (nTicketFinish) {
             jQuery("#ticket_finish").datepicker('setDate',new Date(nTicketFinish*1000)); //参数为毫秒数
         }
+
+        jQuery("#form_ticket_statues select,#ticket_finish").change(function(){
+            submitTicket();
+        })
     })
 
     function disableBtn(str) {

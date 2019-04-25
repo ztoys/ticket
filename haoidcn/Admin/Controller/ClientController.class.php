@@ -684,7 +684,7 @@ class ClientController extends CommonController {
 
 		$ticket_info = $this->sel_sql_single('work', "id='$wid'");
 
-		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status && $ticket_info['work_product'] == $ticket_product && $ticket_info['work_develop'] == $ticket_develop && $ticket_info['work_finish'] == $work_finish)) {
+		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status && $ticket_info['work_product'] == $ticket_product && $ticket_info['work_develop'] == $ticket_develop && $ticket_info['work_finish'] == $ticket_finish)) {
 			if ($ticket_status == '2' || $ticket_status == '4') {
 				$ticket_accdate = time();
 			} else {
