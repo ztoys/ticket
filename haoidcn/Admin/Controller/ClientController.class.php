@@ -275,7 +275,7 @@ class ClientController extends CommonController {
 				$agent_str .= $val['did'].",";
 			}
 			$agent_str = trim($agent_str, ",");
-			$agent_list_info = $this->sel_sql("user", "id in ($agent_str)");
+			$agent_list_info = $this->sel_sql("user", "id in ('$agent_str')");
 			$this->assign('agent_list_info', $agent_list_info);
 		}else if($limits == 2){
 			//运维

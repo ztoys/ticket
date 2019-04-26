@@ -124,7 +124,7 @@
                                         <div class="">
                                             <div class="add-group-wrap">
                                                 <span class="add-group-title">群组列表</span>
-                                                <button type="button" class="btn right btn-primary btn-sm">添加群组</button>
+                                                <button type="button" data-toggle="modal" class="btn right btn-primary btn-sm" data-target="#modal_add_group">添加群组</button>
                                             </div>
                                             <ul class="group-list" id="group_list">
                                                 <volist name="list_group" id="vo">
@@ -256,6 +256,51 @@
 
 <!-- 模态框 START -->
 
+<!-- 添加新群组 -->
+<div class="modal fade modal-add-group" id="modal_add_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{:U('Admin/group_add')}" method="post" enctype="multipart/form-data" id="form_group_add">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        添加新群组
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-top: 20px;">
+                        <label class="left label-title" style="margin-top:4px;width:100px;">群组名称：</label>
+                        <div class="cell">
+                            <input type="text" name="name" placeholder="请输入新群组名称">
+                        </div>
+                    </p>
+                    <p style="margin-top: 20px;">
+                        <label class="left label-title" style="margin-top:4px;width:100px;">群组类型：</label>
+                        <input type="hidden" name="type" id="group_type">
+                        <div class="cell">
+                            <select id="select_group_type">
+                                <option value="3">客户</option>
+                                <option value="2">服务</option>
+                            </select>
+                        </div>
+                        <p class="note">* 客户类型：该类型用户主要提交工单，可创建、评论、评价和关闭工单。</p>
+                        <p class="note" style="margin-bottom: 20px;">* 服务类型：该类型用户主要处理工单，可修改工单状态、评论工单和查看工单事件。</p>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="addGroup()">
+                        提交
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
 <!-- 添加新成员 -->
 <div class="modal fade modal-add-user" id="modal_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -333,7 +378,6 @@
 <!-- 修改成员 -->
 <div class="modal fade modal-add-user" id="modal_edit_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -570,6 +614,22 @@
                 tbody.html(html_tpl);
             }
         })
+    }
+
+    function setGroupName(id, oriName) {
+        jQuery("#set_group_id").val(id);
+        jQuery("#set_group_name").val(oriName);
+        jQuery('#modal_set_group').modal('show');
+    }
+    function addGroup() {
+        var groupTypeVal = jQuery("#select_group_type").val();
+        jQuery("#group_type").val(groupTypeVal);
+        jQuery("#form_group_add").submit();
+    }
+    function delGroup(id, name) {
+        jQuery("#del_group_id").val(id);
+        jQuery("#group_del_name").text(name);
+        jQuery('#modal_del_group').modal('show');
     }
 
 </script>

@@ -57,7 +57,7 @@ class AdminController extends CommonController {
 		);
 		$result = $this->inser_sql("status", $data);
 		if ($result) {
-			echo "<meta charset='utf-8' /><script>alert('添加新群组 $name 成功'); location.href='group_manage.html';</script>";
+			echo "<meta charset='utf-8' /><script>alert('添加新群组 $name 成功'); location.href='user_manage.html';</script>";
 		} else {
 			echo "<meta charset='utf-8' /><script>alert('添加新群组 $name 失败');</script>";
 		}
@@ -283,9 +283,9 @@ class AdminController extends CommonController {
 			$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order, $p->firstRow, $p->listRows);
 			
 			if ($status == "all") {
-				$this->assign('list_empty', '<tr><td colspan="7" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="11" style="text-align:center;">暂无数据</td></tr>');
 			} else {
-				$this->assign('list_empty', '<tr><td colspan="8" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="12" style="text-align:center;">暂无数据</td></tr>');
 			}
 			$p_show = $p->show();
 			$this->assign('list',$list);
