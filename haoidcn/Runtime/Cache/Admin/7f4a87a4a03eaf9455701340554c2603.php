@@ -57,6 +57,10 @@
 		margin: 20px 0;
 		font-size: 14px;
 	}
+	.table-note2{
+		font-size: 18px;
+		margin-bottom: 20px;
+	}
 	.back-href{
 		font-size: 14px;
 	}
@@ -85,15 +89,6 @@
 	.del-field{
 		color: #c9102f;
 		cursor: pointer;
-	}
-
-	input::-webkit-outer-spin-button,
-	input::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-	}
-
-	input[type="number"] {
-		-moz-appearance: textfield;
 	}
 	
 </style>
@@ -229,6 +224,9 @@
 												<?php case "2": ?>文本区域<?php break;?>
 												<?php case "3": ?>下拉菜单<?php break; endswitch;?>
 											类型
+										</p>
+										<p class="table-note2">
+											<?php switch($main["type"]): case "3": ?>选项<?php break; endswitch;?>
 										</p>
 										<ul class="list-field">
 											<?php if(count($list_field) == 0): ?><li>

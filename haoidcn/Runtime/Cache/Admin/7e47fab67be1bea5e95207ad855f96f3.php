@@ -47,7 +47,12 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/third-party/jquery.min.js"></script>
 
-
+<style type="text/css">
+    .form-wrap{
+        width: 850px;
+        margin: 0 auto;
+    }
+</style>
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 </head>
@@ -172,8 +177,7 @@
         </div><!--pageheader-->
         <div class="maincontent">
             <div class="maincontentinner">
-            <h4 class="widgettitle">新工单</h4>
-            <div class="widgetcontent">
+            <div class="form-wrap">
                 <form id="form01" class="stdform" action="<?php echo U('Client/forms');?>" method="post" enctype="multipart/form-data">
                 	<input type="hidden" name="uid" id="uid" value="<?php echo ($data["uid"]); ?>">
                 	<input type="hidden" name="x_wid" id="x_wid" value="<?php echo ($list["id"]); ?>">

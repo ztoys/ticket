@@ -31,6 +31,9 @@
         background: #FFF;
         box-shadow: 0 3px 3px 3px rgba(0,0,0,.5);
     }
+    .table tr.danger{
+        background: #eee;
+    }
 </style>
 </head>
 
@@ -135,7 +138,7 @@
                                     <th width="15%">提交时间</th>
                                 </tr>
                                 <volist name="list" id="vo" empty="$list_empty">
-                                    <tr onclick="javascript:window.location.href='{:U(\'Client/detail?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'">
+                                    <tr onclick="javascript:window.location.href='{:U(\'Client/detail?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'" <if condition="$vo['wc_sataus'] eq '3'">class="danger"</if>>
                                         <td>{$vo.id}</td>
                                         <td>{$vo.title}</td>
                                         <td>
@@ -255,7 +258,7 @@
                                     </if>
                                 </tr>
                                 <volist name="list" id="vo" empty="$list_empty">
-                                    <tr onclick="javascript:window.location.href='{:U(\'Client/detail_agent?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'">
+                                    <tr onclick="javascript:window.location.href='{:U(\'Client/detail_agent?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'" <if condition="$vo['wc_sataus'] eq '3'">class="danger"</if>>
                                         <td>{$vo.id}</td>
                                         <td>{$vo.title}</td>
                                         <td>

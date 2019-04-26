@@ -122,7 +122,7 @@ class ClientController extends CommonController {
 			}else{
 				//添加操作
 				$id = $this->inser_sql("work",$data);	//添加到工单表
-				$url = __ROOT__."/index.php/Client/forms";
+				$url = __ROOT__."/index.php/Client/detail/case/create/id/$id";
 				$type = "insert";
 			}
 			
@@ -237,25 +237,27 @@ class ClientController extends CommonController {
 		if($limits == 3){
 			// 客服
 			$db_field = "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, w.work_type work_type,w.work_level work_level,w.work_owned work_owned,w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname dname";
+			$db_order = "field(wc_sataus, '1','2','4','-1','3'),puddate desc";
+			
 			if (isset($sel_reply)) {
-				// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
+				// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", $db_order);
 
-				$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc");
+				$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", $db_order);
 				$p = Getpage($count);
-				$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
+				$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", $db_order, $p->firstRow, $p->listRows);
 			} else {
 				if (isset($my_ticket)) {
-					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", "puddate desc");
+					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and uid='$id' $where", $db_order);
 					
-					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "uid='$id' $where", "puddate desc");
+					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "uid='$id' $where", $db_order);
 					$p = Getpage($count);
-					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
+					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "uid='$id' $where", $db_order, $p->firstRow, $p->listRows);
 				} else {
-					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
+					// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", $db_order);
 
-					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc");
+					$count = $this->left_join_count("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", $db_order);
 					$p = Getpage($count);
-					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", "puddate desc", $p->firstRow, $p->listRows);
+					$list = $this->left_join_limit("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus='$sta_nb' and uid='$id' $where", $db_order, $p->firstRow, $p->listRows);
 				}
 			}
 			$p_show = $p->show();
@@ -280,7 +282,7 @@ class ClientController extends CommonController {
 			$db_work = "work";
 			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname uname";
 			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
-			$db_order = "puddate desc";
+			$db_order = "field(wc_sataus, '1','2','4','-1','3'),puddate desc";
 
 			if ($status == "all") {
 				// 未指派工单
@@ -315,7 +317,9 @@ class ClientController extends CommonController {
 			$this->assign('ticket_count', $ticket_count);
 
 		}else if($limits == 1){
-			$list = $this->sel_sql("work","wc_sataus='$sta_nb' $where","puddate asc");
+			$db_order = "field(wc_sataus, '1','2','4','-1','3'),puddate desc";
+			
+			$list = $this->sel_sql("work","wc_sataus='$sta_nb' $where",$db_order);
 			$this->assign('list',$list);
 		}
 		
@@ -480,7 +484,7 @@ class ClientController extends CommonController {
 			$owned_field[$k] = json_decode($owned_field[$k], true);
 		}
 		$this->assign('owned_field', $owned_field);
-		
+
 		
 		$data = array(
 			'unread'		=>	"unread",

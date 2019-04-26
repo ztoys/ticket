@@ -66,6 +66,9 @@
         background: #FFF;
         box-shadow: 0 3px 3px 3px rgba(0,0,0,.5);
     }
+    .table tr.danger{
+        background: #eee;
+    }
 </style>
 </head>
 
@@ -258,7 +261,7 @@
                                     <th width="10%">负责人</th>
                                     <th width="15%">提交时间</th>
                                 </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?case='.$data['case'].'&id='.$vo['id']);?>'">
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail?case='.$data['case'].'&id='.$vo['id']);?>'" <?php if($vo['wc_sataus'] == '3'): ?>class="danger"<?php endif; ?>>
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>
@@ -356,7 +359,7 @@
                                     <th width="12%">创建日期</th>
                                     <?php if($data["case"] != 'all'): ?><th width="12%">受理时间</th><?php endif; ?>
                                 </tr>
-                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?case='.$data['case'].'&id='.$vo['id']);?>'">
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Client/detail_agent?case='.$data['case'].'&id='.$vo['id']);?>'" <?php if($vo['wc_sataus'] == '3'): ?>class="danger"<?php endif; ?>>
                                         <td><?php echo ($vo["id"]); ?></td>
                                         <td><?php echo ($vo["title"]); ?></td>
                                         <td>

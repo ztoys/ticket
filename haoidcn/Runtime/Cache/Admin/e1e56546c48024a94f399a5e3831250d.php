@@ -63,6 +63,11 @@
     .modal-comment form input[type='radio']{
         margin-left: 10px;
     }    
+    .td-select{
+        height: 25px;
+        width: 100%;
+        margin: 0;
+    }
 </style>
 </head>
 
@@ -239,14 +244,15 @@
                         <table class="table table-bordered table-fixed table-tr-click">
                             <tr>
                                 <th width="5%">编号</th>
-                                <th width="30%">标题</th>
-                                <th width="10%">工单类型</th>
+                                <th width="20%">标题</th>
+                                <th width="6%">工单类型</th>
                                 <th width="5%">优先级</th>
                                 <th width="5%">状态</th>
                                 <th width="5%">产品确认</th>
                                 <th width="5%">研发确认</th>
                                 <th width="10%">完成时间</th>
                                 <th width="10%">工单发起人</th>
+                                <th width="10%">受理人</th>
                                 <th width="12%">创建日期</th>
                                 <?php if($data["case"] != 'all'): ?><th width="12%">受理时间</th><?php endif; ?>
                             </tr>
@@ -287,11 +293,17 @@
                                     <td>
                                         <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
                                     </td>
+                                    <td onclick="stopProp()" data-id="<?php echo ($vo["id"]); ?>" class="select-ticket-agent">
+                                        <select name="" id="" class="td-select">
+                                            <option value="-1"> -- </option>
+                                            <?php if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$wuser): $mod = ($i % 2 );++$i;?><option value="<?php echo ($wuser["id"]); ?>"><?php echo ($wuser["uname"]); ?></option><?php endforeach; endif; else: echo "$list_empty" ;endif; ?>
+                                        </select>
+                                    </td>
                                     <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
                                     <?php if($data["case"] != 'all'): if($vo['accdate'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["accdate"])); ?></td>
                                         <?php else: ?>
                                             <td>--</td><?php endif; endif; ?>
-                                </tr><?php endforeach; endif; else: echo "$list_empty" ;endif; ?>
+                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                         </table> 
                         <?php echo ($page); ?>
                     </div><!--messagecontent-->
@@ -347,6 +359,31 @@
             jQuery("#ticket_owned").val(de_ticket_owned);
         }
 
+        //选择受理人
+        jQuery(".select-ticket-agent select").change(function(){
+            var val = $(this).val();
+            var id = $(this).parents(".select-ticket-agent").data("id");
+            if (val != "-1"){
+                jQuery.ajax({
+                    type: "post",
+                    url: "<?php echo U('Admin/set_ticket_agnet');?>",
+                    data: {
+                        id: id,
+                        agent: val
+                    },
+                    success: function(data){
+                        if (data.code == 0) {
+                            window.location.reload();
+                        }
+                    }
+                })
+            }
+        })
     })
+
+    function stopProp() {
+        //阻止冒泡
+        window.event?window.event.cancelBubble=true:event.stopPropagation();
+    }
 </script>
 </html>
