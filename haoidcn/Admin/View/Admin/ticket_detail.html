@@ -44,6 +44,7 @@
         background: #FFF;
         border-bottom: none;
         font-size: 14px;
+        text-align: center;
     }
     .title-tip{
         margin-right: 10px;
@@ -116,8 +117,8 @@
             <div class="messagepanel">
                 <div class="messagecontent main-content">
                     <div class="ticket-initiator">
-                        <span class="title-tip"></span>工单发起人：{$main.u_uname}
-                        <a href="{$data.url}" class="btn btn-success btn-sm right" style="margin-top: -3px;color: #FFF;">返回</a>
+                        工单发起人：{$main.u_uname}
+                        <a href="{$data.url}" class="left underline"><  返回</a>
                     </div>
 
                     <if condition="$main.wc_sataus neq '3'">
@@ -340,11 +341,6 @@
                     </div><!--messageright-->
                 </div><!--messagecontent-->
             </div><!--messagepanel-->
-            
-            <!-- footer binge -->
-            <include file="Public/footer" />
-            
-            <!-- footer end -->
             
         </div><!--maincontentinner-->
     </div><!--maincontent-->

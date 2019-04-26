@@ -79,6 +79,7 @@
         background: #FFF;
         border-bottom: none;
         font-size: 14px;
+        text-align: center;
     }
     .title-tip{
         margin-right: 10px;
@@ -244,8 +245,8 @@
             <div class="messagepanel">
                 <div class="messagecontent main-content">
                     <div class="ticket-initiator">
-                        <span class="title-tip"></span>工单发起人：<?php echo ($main["u_uname"]); ?>
-                        <a href="<?php echo ($data["url"]); ?>" class="btn btn-success btn-sm right" style="margin-top: -3px;color: #FFF;">返回</a>
+                        工单发起人：<?php echo ($main["u_uname"]); ?>
+                        <a href="<?php echo ($data["url"]); ?>" class="left underline"><  返回</a>
                     </div>
 
                     <?php if($main["wc_sataus"] != '3'): ?><div class="messageleft">
@@ -420,13 +421,6 @@
                     </div><!--messageright-->
                 </div><!--messagecontent-->
             </div><!--messagepanel-->
-            
-            <!-- footer binge -->
-            				<div class="footer">
-                    
-                </div><!--footer-->
-            
-            <!-- footer end -->
             
         </div><!--maincontentinner-->
     </div><!--maincontent-->

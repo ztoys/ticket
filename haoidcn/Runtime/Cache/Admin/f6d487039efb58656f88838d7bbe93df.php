@@ -130,6 +130,13 @@
         width: 200px;
         margin: 50px auto 20px;
     }
+    .messageview .subject{
+        padding-right: 20px;
+    }
+    .back{
+        font-size: 14px;
+        margin-top: 5px;
+    }
     
 
     .modal-comment form input[type='radio']{
@@ -250,26 +257,19 @@
                 <div class="messagecontent main-content">
                     <div class="messageright">
                         <div class="messageview" style="<?php if($data["status"] == 3): ?>height:100%<?php endif; ?>">
-                            <div class="btn-group pull-right">
-                                <!-- <?php if($data["limits"] == 3 and $data["case"] == '1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <a href="javascript:void();" onclick="del('messages-<?php echo ($main["w_id"]); ?>');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a><?php endif; ?> -->
-                                
-                                <!-- <?php if($data["limits"] == 2 and $data["case"] == '1'): ?><a href="<?php echo U('Client/messages?type=chu&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a><?php endif; ?> -->
-
-                                <!-- <?php if($data["limits"] == 2 and $data["case"] == '2'): ?><a href="<?php echo U('Client/messages?type=ping&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a><?php endif; ?> -->
+                            <!-- <div class="btn-group pull-right">
                                 <button class="btn btn-primary btn-sm" onclick="javascript:window.location.href='<?php echo ($data["url"]); ?>'" style="margin-right:10px;">&nbsp;&nbsp;返回&nbsp;&nbsp;</button> 
-                                <?php if($data["limits"] == 3 and $data["status"] != '3'): ?><!-- <a href="<?php echo U('Client/messages?type=wang&wc_sataus='.$main['w_id']);?>" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a> -->
-                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-danger btn-sm" style="color:#fff;">关闭工单</button><?php endif; ?>
-                                <!-- <?php if($data["limits"] == 3 and $data["case"] == '-1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a><?php endif; ?> -->
-                            </div>
+                                <?php if($data["limits"] == 3 and $data["status"] != '3'): ?><button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-danger btn-sm" style="color:#fff;">关闭工单</button><?php endif; ?>
+                            </div> -->
                             <h1 class="subject" style="border-bottom: 1px solid #ddd;">
-                                <div>
+                                <div style="text-align:center;border-bottom:1px solid #EEE;padding-bottom: 20px;">
+                                    <a href="<?php echo ($data["url"]); ?>" class="left underline back"><  返回</a>
                                     <b><?php echo ($main["w_title"]); ?></b>
+                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-danger btn-sm right" style="color:#fff;">关闭工单</button>
                                 </div>
-                                <div style="margin-top: 10px;">
-                                    <span class="note2"><?php echo ($main["u_uname"]); ?></span>
-                                    <span class="note2" style="margin-left: 10px;"><?php echo (date("Y-m-d H:i:s",$main["w_puddate"])); ?></span>
+                                <div style="margin-top: 20px;">
+                                    <p class="note2">创建人员：<?php echo ($main["u_uname"]); ?></p>
+                                    <p class="note2">创建时间：<?php echo (date("Y-m-d H:i:s",$main["w_puddate"])); ?></p>
                                 </div>
                             </h1>
                             
