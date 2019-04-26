@@ -44,62 +44,26 @@
 
 
 <style type="text/css">
-	.rightpanel {
-		background: none;
-	}
-	.widget-group-wrap {
-		padding: 20px;
-		border: 1px solid #dbe9f7;
-		border-radius: 3px;
-	}
-	.widget-group-wrap::after{
-		content: '';
-		display: block;
-		clear: both;
-	}	
-	.widget-item{
-		float: left;
-		width: 25%;
-		text-align: center;
-		color: #000000;
-	}
-	.agent .widget-item{
-		width: 20%;
-	}
-	.widget-item .bottom{
-		padding-top: 15px;
-	}	
-	.widget-item i{
-		vertical-align: -15px;
-	}
-	.widget-item .num{
-		display: inline-block;
-		font-size: 40px;
-		font-weight: bold;
-		margin-left: 10px;
-	}	
-	.ticket-add-wrap{
-		display: block;
-		margin-top: 20px;
-		padding-top: 50px;
-		height: 140px;
-		border: 1px dashed #0866c6;
-		border-radius: 3px;
-		color: #0866c6;
+	.table-title{
 		font-size: 18px;
-		text-align: center;
+		font-weight: bold;
 	}
-	.ticket-add-wrap:hover{
-		text-decoration: none;
-		color: #0866c6;
-	}	
-
+	.table-note{
+		border-left: 2px solid #0866c6;
+		padding-left: 10px;
+		margin: 20px 0;
+		font-size: 14px;
+	}
 </style>
 <!-- header end -->
 
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
+</head>
+
+
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 </head>
-<body>
+<body >
 
 <!-- header binge -->
 
@@ -155,13 +119,14 @@
                 
                 <!-- <li class="dropdown <?php echo ($data["user_one"]); ?>"><a href=""><span class="iconfa-user"></span> 用户管理</a></li> -->
                 <li <?php echo ($data["user_block04"]); ?>><a href="<?php echo U('Admin/role_permissions');?>"><span class="iconfa-tags"></span>角色权限</a></li>
-                <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li>
+                <!-- <li <?php echo ($data["user_block01"]); ?>><a href="<?php echo U('Admin/group_manage');?>"><span class="iconfa-group"></span>群组管理</a></li> -->
                 <li <?php echo ($data["user_block02"]); ?>><a href="<?php echo U('Admin/user_manage');?>"><span class="iconfa-user"></span>成员和组</a></li>
                 <!-- <li <?php echo ($data["user_block03"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="iconfa-file"></span>工单指派<span class="right"><?php echo ($ticket_count["c_unass"]); ?></span></a></li> -->
-                 <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-file"></span>工单中心</a>
+                <li class="dropdown <?php echo ($data01["kh_one"]); ?>"><a href=""><span class="iconfa-file"></span>工单中心</a>
                 	<ul <?php echo ($data01["kh_block"]); ?>>
                     	<li <?php echo ($data01["kh_two01"]); ?>><a href="<?php echo U('Admin/ticket?case=all');?>"><span class="right"><?php echo ($ticket_count["c_unass"]); ?></span>工单指派</a></li>
-                        <li <?php echo ($data01["kh_two02"]); ?>><a href="<?php echo U('Admin/c_manage');?>">工单字段</a></li>
+                        <li <?php echo ($data01["kh_two02"]); ?>><a href="<?php echo U('Admin/ticket_field');?>">工单字段</a></li>
+                        <!-- <li <?php echo ($data01["kh_two02"]); ?>><a href="<?php echo U('Admin/c_manage');?>">管理客户</a></li> -->
                     </ul>
                 </li>
                 
@@ -197,178 +162,67 @@
     </div><!-- leftpanel -->
 
 <!-- header end -->
-
-
+    
     <div class="rightpanel">
+        
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li>面板</li>
+            <li><a href="<?php echo U('Console/dashboard');?>">面板</a> <span class="separator"></span></li>
+            <li>工单字段</li>
         </ul>
+        
         <div class="maincontent">
             <div class="maincontentinner">
-				<?php if($data["limits"] == 3 ): ?><div class="widget-group-wrap">
-						<a href="<?php echo U('Client/messages?case=create');?>">
-							<div class="widget-item">
-								<h3>我创建的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-my"></i>
-									<span class="num"><?php echo ($ticket_count["c_mycreate"]); ?></span>
-								</div>
-							</div>
-						</a>
-
-						<a href="<?php echo U('Client/messages?case=create');?>">
-							<div class="widget-item">
-								<h3>待我回复的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-reply"></i>
-									<span class="num"><?php echo ($ticket_count["c_reply"]); ?></span>
-								</div>
-							</div>
-						</a>
-
-						<a href="<?php echo U('Client/messages?case=ping');?>">
-							<div class="widget-item">
-								<h3>待我评价的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-comment"></i>
-									<span class="num"><?php echo ($ticket_count["c_comment"]); ?></span>
-								</div>
-							</div>
-						</a>
-
-						<a href="<?php echo U('Client/messages?case=yi');?>">
-							<div class="widget-item">
-								<h3>已关闭的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-close"></i>
-									<span class="num"><?php echo ($ticket_count["c_close"]); ?></span>
-								</div>
-							</div>
-						</a>
-					</div>
-					<a href="<?php echo U('Client/forms');?>" class="ticket-add-wrap">
-						<i class="icon-ticket-add"></i>
-						<br>
-						创建工单
-					</a><?php endif; ?>
-
-				<?php if($data["limits"] == 2): ?><div class="widget-group-wrap agent">
-
-						<a href="<?php echo U('Client/messages?case=all');?>">
-							<div class="widget-item">
-								<h3>未指派的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-all"></i>
-									<span class="num"><?php echo ($ticket_count["c_unass"]); ?></span>
-								</div>
-							</div>
-						</a>
-
-						<a href="<?php echo U('Client/messages?case=manned');?>">
-							<div class="widget-item">
-								<h3>分配给我的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-my"></i>
-									<span class="num"><?php echo ($ticket_count["c_myticket"]); ?></span>
-								</div>
-							</div>
-						</a>
-
-						<a href="<?php echo U('Client/messages?case=zhong');?>">
-							<div class="widget-item">
-								<h3>正在研发中的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-comment"></i>
-									<span class="num"><?php echo ($ticket_count["c_admissible"]); ?></span>
-								</div>
-							</div>
-						</a>
-
-						<a href="<?php echo U('Client/messages?case=ping');?>">
-							<div class="widget-item">
-								<h3>待评价的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-assess"></i>
-									<span class="num"><?php echo ($ticket_count["c_comment"]); ?></span>
-								</div>
-							</div>
-						</a>
-
-						<a href="<?php echo U('Client/messages?case=yi');?>">
-							<div class="widget-item">
-								<h3>已关闭的工单</h3>
-								<div class="bottom">
-									<i class="icon-ticket-close"></i>
-									<span class="num"><?php echo ($ticket_count["c_close"]); ?></span>
-								</div>
-							</div>
-						</a>
-					</div><?php endif; ?>
-
-            </div><!--maincontentinner-->
+                <div class="row-fluid">
+                        <div>
+                           <div class="widgetbox personal-information">
+                               <div class="dataTables_wrapper">
+								   <div class="table-title">工单字段</div>
+								   <p class="table-note">启用的字段</p>
+                                   <table class="table table-bordered">
+                                   	<tr>
+                                   		<th width="25%">字段名称</th>
+                                   		<th width="25%">字段类型</th>
+                                   		<th width="25%">字段类别</th>
+                                   		<th width="25%">操作</th>
+                                   	</tr>
+                                   	<?php if(is_array($list_field)): $i = 0; $__LIST__ = $list_field;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr id="c_manage<?php echo ($vo["id"]); ?>">
+                                   			<td><?php echo ($vo["name"]); ?></td>
+                                   			<td>
+												<?php switch($vo['type']): case "1": ?>文本框<?php break;?>
+													<?php case "2": ?>文本区域<?php break;?>
+													<?php case "3": ?>下拉菜单<?php break; endswitch;?>
+											</td>
+                                   			<td>
+												<?php switch($vo['system']): case "1": ?>系统内置<?php break;?>
+													<?php default: ?>自定义<?php endswitch;?>
+											</td>
+                                   			<td>
+												<?php if($vo["system"] == '1' && $vo["id"] != 5): ?><span class="note">无法编辑</span>
+													<?php else: ?>
+													<a href="<?php echo U('Admin/ticket_field_detail', array('fieldid'=>$vo['id']));?>">编辑</a><?php endif; ?>
+											</td>
+                                   		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                   	
+                                   </table>
+                           </div>
+                        </div>
+                    </div><!--row-fluid-->
         </div><!--maincontent-->
+        
     </div><!--rightpanel-->
+    
 </div><!--mainwrapper-->
 <script type="text/javascript">
-    jQuery(document).ready(function() {
-      // simple chart
-		var flash = [[0, 11], [1, 9], [2,12], [3, 8], [4, 7], [5, 3], [6, 1]];
-		var html5 = [[0, 5], [1, 4], [2,4], [3, 1], [4, 9], [5, 10], [6, 13]];
-      var css3 = [[0, 6], [1, 1], [2,9], [3, 12], [4, 10], [5, 12], [6, 11]];
-		function showTooltip(x, y, contents) {
-			jQuery('<div id="tooltip" class="tooltipflot">' + contents + '</div>').css( {
-				position: 'absolute',
-				display: 'none',
-				top: y + 5,
-				left: x + 5
-			}).appendTo("body").fadeIn(200);
-		}
-		var plot = jQuery.plot(jQuery("#chartplace"),
-			   [ { data: flash, label: "Flash(x)", color: "#6fad04"},
-              { data: html5, label: "HTML5(x)", color: "#06c"},
-              { data: css3, label: "CSS3", color: "#666"} ], {
-				   series: {
-					   lines: { show: true, fill: true, fillColor: { colors: [ { opacity: 0.05 }, { opacity: 0.15 } ] } },
-					   points: { show: true }
-				   },
-				   legend: { position: 'nw'},
-				   grid: { hoverable: true, clickable: true, borderColor: '#666', borderWidth: 2, labelMargin: 10 },
-				   yaxis: { min: 0, max: 15 }
-				 });
-		var previousPoint = null;
-		jQuery("#chartplace").bind("plothover", function (event, pos, item) {
-			jQuery("#x").text(pos.x.toFixed(2));
-			jQuery("#y").text(pos.y.toFixed(2));
-			if(item) {
-				if (previousPoint != item.dataIndex) {
-					previousPoint = item.dataIndex;
-						
-					jQuery("#tooltip").remove();
-					var x = item.datapoint[0].toFixed(2),
-					y = item.datapoint[1].toFixed(2);
-						
-					showTooltip(item.pageX, item.pageY,
-									item.series.label + " of " + x + " = " + y);
-				}
-			
-			} else {
-			   jQuery("#tooltip").remove();
-			   previousPoint = null;            
-			}
-		});
-		jQuery("#chartplace").bind("plotclick", function (event, pos, item) {
-			if (item) {
-				jQuery("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
-				plot.highlight(item.series, item.datapoint);
-			}
-		});
-        //datepicker
-        jQuery('#datepicker').datepicker();
-        
-        // tabbed widget
-        jQuery('.tabbedwidget').tabs();
-    });
+jQuery(document).ready(function(){
+
+	
+	jQuery('.taglist .close').click(function(){
+		jQuery(this).parent().remove();
+		return false;
+	});
+	
+});
 </script>
 </body>
 </html>

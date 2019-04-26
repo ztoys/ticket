@@ -6,6 +6,25 @@ use Admin\Model\WrecordModel;
 use Admin\Model\WorkModel;
 
 class AdminController extends CommonController {
+
+	//角色权限
+	public function role_permissions() {
+		$data = array(
+			'user_one' => "active",
+			'user_block' => "style='display:block'",
+			'user_block04' => "class='active'",
+		);
+		$this->assign("data", $data);
+
+		//客服
+		$list_service = $this->sel_sql("status", "type='3'");
+		$this->assign("list_service", $list_service);
+		//运维
+		$list_agent = $this->sel_sql("status", "type='2'");
+		$this->assign("list_agent", $list_agent);
+
+    	$this->display();
+	}
 	
 	//用户管理 - 群组管理
 	public function group_manage() {
@@ -85,12 +104,82 @@ class AdminController extends CommonController {
 		$this->assign("list_group", $list_group);
 
 		//查询用户
-		$group_id =  $list_group[0]['id'];
-		$list_user = $this->sel_sql("user", "u_status='$group_id'");
+		$group_id = I("get.groupid");
+		if (!isset($group_id) || $group_id=="") {
+			$group_id =  $list_group[0]['id'];
+		}
+		$count = $this->sel_sql_count("user", "u_status='$group_id'");
+		$p = Getpage($count);
+		$list_user = $this->sel_sql_limit("user", "u_status='$group_id'", "zl_status desc,f_date desc", $p->firstRow, $p->listRows);
+		$p_show = $p->show();
+
+		$this->assign("page", $p_show);
+		$this->assign("group_id", $group_id);
 		$this->assign("list_user", $list_user);
 		$this->assign("list_user_empty", '<tr><td colspan="5" style="text-align: center;">暂无数据</td></tr>');
 
     	$this->display();
+	}
+
+	//用户管理 - 授权名单
+	public function user_auth() {
+		$data = array(
+			'user_one' => "active",
+			'user_block' => "style='display:block'",
+			'user_block02' => "class='active'",
+		);
+
+		$this->assign("data", $data);
+
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
+
+		$list_group = $this->sel_sql("status", "");
+		$this->assign("list_group", $list_group);
+
+		$count = $this->sel_sql_count("user", "zl_status='-1'");
+		$p = Getpage($count);
+		$list_user = $this->sel_sql_limit("user", "zl_status='-1'","", $p->firstRow, $p->listRows);
+		$p_show = $p->show();
+
+		$this->assign("page", $p_show);
+		$this->assign("list_user", $list_user);
+		$this->assign("list_user_empty", '<tr><td colspan="5" style="text-align: center;">暂无数据</td></tr>');
+
+    	$this->display();
+	}
+
+	//用户管理 - 成员管理 - 获取用户信息
+	public function user_info() {
+		$id = I("post.id");
+		if ($id) {
+			$user_info = $this->sel_sql_single("user", "userid='$id'");
+			$this->ajaxReturn($user_info,'JSON');
+		}
+	}
+
+	//用户管理 - 成员管理 - 修改用户信息
+	public function user_edit(){
+		$uid = I("post.userid");
+		$uname = I("post.uname");
+		$phone = I("post.phone");
+		$email = I("post.email");
+
+		$data_arr = array(
+			"uname" => $uname,
+			"phone" => $phone,
+			"email" => $email,
+		);
+		$id = $this->update_sql("user", "userid='$uid'", $data_arr);
+		if ($id) {
+			$code = 0;
+		} else {
+			$code = 1;
+		}
+		$result_arr = array(
+			"code" => $code,
+		);
+		$this->ajaxReturn($result_arr,'JSON');
 	}
 
 	//用户管理 - 成员管理 - 添加用户
@@ -99,6 +188,8 @@ class AdminController extends CommonController {
 		$name = I("post.name");
 		$pwd = I("post.pwd");
 		$status = I("post.status");
+		$phone = I("post.phone");
+		$email = I("post.email");
 
 		$group_info = $this->sel_sql_single("status", "id='$status'");
 		$limits = $group_info['type'];
@@ -109,11 +200,13 @@ class AdminController extends CommonController {
 			'uname'    => $name,
 			'u_status' => $status,
 			'limits'  => $limits,
+			'phone'   => $phone,
+			'email'   => $email,
 			'f_date'   => time(),
 		);
 		$result = $this->inser_sql("user", $data);
 		if ($result) {
-			echo "<meta charset='utf-8' /><script>alert('添加成员 $name 成功'); location.href='user_manage.html';</script>";
+			echo "<meta charset='utf-8' /><script>alert('添加成员 $name 成功'); location.href='user_manage/groupid/$status.html';</script>";
 		} else {
 			echo "<meta charset='utf-8' /><script>alert('添加成员 $name 失败');</script>";
 		}
@@ -211,22 +304,36 @@ class AdminController extends CommonController {
 		$ticket_count = $this->getWorkCount();
 		$this->assign('ticket_count', $ticket_count);
 
+		//所属客户字段
+		$owned_field_arr = $this->sel_sql_single("field_value", "field_id=5", "");
+		$owned_field = explode('|',$owned_field_arr['fields']);
+		foreach ($owned_field as $k => $v) {
+			$owned_field[$k] = htmlspecialchars_decode($owned_field[$k]);
+			$owned_field[$k] = json_decode($owned_field[$k], true);
+		}
+		$this->assign('owned_field', $owned_field);
+
 		$data = array(
-				'user_one' => "active",
-				'user_block' => "style='display:block'",
-				'user_block03' => "class='active'",
-				'unread'		=>	"unread",
-				"selected"		=>	"selected",
-				'unread'		=>	"unread",
-				'limits'		=>	$limits,
-				'class'			=>	'class="active"',
-				'case'			=>	$status,
-				"active02"		=>	"class='active'",
-				'url'			=>	__ROOT__."/index.php/Admin/ticket/case/".$status,
-				'sou'			=>	'&sou='.I("get.sou"),
+			'user_one' => "active",
+			'user_block' => "style='display:block'",
+			'user_block03' => "class='active'",
+			'unread'		=>	"unread",
+			"selected"		=>	"selected",
+			'unread'		=>	"unread",
+			'limits'		=>	$limits,
+			'class'			=>	'class="active"',
+			'case'			=>	$status,
+			"active02"		=>	"class='active'",
+			'url'			=>	__ROOT__."/index.php/Admin/ticket/case/".$status,
+			'sou'			=>	'&sou='.I("get.sou"),
 		);
 		$this->assign('data',$data);
-		
+		$data01 = array(
+    		'kh_one' => "active",
+    		'kh_block' => " style='display:block';",
+    		'kh_two01' => " class='active'"
+		);
+		$this->assign('data01', $data01);
 		$this->display();
 	}
 
@@ -407,8 +514,6 @@ class AdminController extends CommonController {
     //管理客户
     public function c_manage(){
     	if(IS_AJAX){
-    	
-    		
     		//修改客户
     		if(I("get.sel")){
     			$data = array(
@@ -503,8 +608,111 @@ class AdminController extends CommonController {
     	
     	$this->assign("page",$show);
     	$this->display();
-    }
-    
+	}
+	
+	//工单字段
+	public function ticket_field() {
+
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
+
+		$data01 = array(
+    		'kh_one' => "active",
+    		'kh_block' => " style='display:block';",
+    		'kh_two02' => " class='active'"
+		);
+		$this->assign('data01', $data01);
+
+
+		$list_field = $this->sel_sql("field", "", "");
+		$this->assign('list_field', $list_field);
+		
+    	$this->display();
+	}
+
+	//工单字段 -- 详细
+	public function ticket_field_detail() {
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
+		$data01 = array(
+    		'kh_one' => "active",
+    		'kh_block' => " style='display:block';",
+    		'kh_two02' => " class='active'"
+		);
+		$this->assign('data01', $data01);
+
+		$field_id = I("get.fieldid");
+		$field_info = $this->sel_sql_single("field", "id=$field_id");
+		$this->assign('main', $field_info);
+
+		$list_field_arr = $this->sel_sql_single("field_value", "field_id=$field_id", "");
+		$list_field = explode('|',$list_field_arr['fields']);
+		foreach ($list_field as $k => $v) {
+			$list_field[$k] = htmlspecialchars_decode($list_field[$k]);
+			$list_field[$k] = json_decode($list_field[$k], true);
+		}
+		$this->assign('list_field', $list_field);
+		
+    	$this->display();
+	}
+
+	//工单字段 -- 保存
+	public function ticket_field_save() {
+		$field_id = I("post.id");
+		$field_val = I("post.fields");
+		$field_delid = I("post.delid");
+
+		$id = $this->sel_sql_single("field_value", "field_id=$field_id");
+
+		if (!empty($field_delid)) {
+			$data_arr = array(
+				"work_owned" => null,
+			);
+			foreach($field_delid as $k => $val) {
+				$this->update_sql("work","work_owned='$val'",$data_arr);
+			}
+		}
+
+		if (empty($field_val)) {
+			if ($id) {
+				$result = $this->del_sql("field_value", "field_id=$field_id");
+			}
+			$result_arr = array(
+				"code" => 0,
+			);
+			$this->ajaxReturn($result_arr,'JSON');
+			exit;
+		}
+
+		$field_val = implode("|", $field_val);
+		$id = $this->sel_sql_single("field_value", "field_id=$field_id");
+		if ($id) {
+			//更新
+			$data_arr = array(
+				"fields" => $field_val,
+			);
+			$result = $this->update_sql("field_value", "field_id=$field_id", $data_arr);
+			if ($result) {
+				$result_arr = array(
+					"code" => 0,
+				);
+			}
+			$this->ajaxReturn($result_arr,'JSON');
+		} else {
+			//插入
+			$data_arr = array(
+				"field_id" => $field_id,
+				"fields" => $field_val
+			);
+			$result = $this->inser_sql("field_value", $data_arr);
+			if ($result) {
+				$result_arr = array(
+					"code" => 0,
+				);
+			}
+			$this->ajaxReturn($result_arr,'JSON');
+		}
+	}
     
     //添加类型
     public function c_status(){
@@ -789,6 +997,13 @@ class AdminController extends CommonController {
 	public function sel_sql($model,$where,$orders){
 		$result_arr = D($model)->where($where)->order($orders)->select();
 		return $result_arr;
+	}
+	public function sel_sql_count($model,$where,$orders){
+		$result_arr = D($model)->where($where)->order($orders)->count();
+		return $result_arr;
+	}
+	public function sel_sql_limit($model, $where, $orders, $first_row, $list_row){
+		return D($model)->where($where)->order($orders)->limit($first_row, $list_row)->select();
 	}
 
 	//简单查询 单条

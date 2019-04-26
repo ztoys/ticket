@@ -90,6 +90,12 @@ h1,h2,h3,h4,h5 { font-weight: normal; line-height: normal; }
 .right{
 	float: right;
 }
+.aside{
+	float: left;
+    z-index: 111;
+    padding-bottom: 9999px;
+    margin-bottom: -9999px;
+}
 .cell{
 	position: relative;
 	display: table-cell;
@@ -202,6 +208,14 @@ label.inline-block{
 .btn-line{
 	width: 100%;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
 
 
 /* ICON */
@@ -268,6 +282,13 @@ label.inline-block{
 	background: url(../images/icon-file.png) no-repeat;
 	background-size: cover;
 }
+.icon-delete{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(../images/icon-delete.png) no-repeat;
+	background-size: cover;
+}
 
 
 /*** LEFT PANEL ***/
@@ -324,12 +345,12 @@ label.inline-block{
 	background: url(../images/bcarrow.png) no-repeat 0 0; margin-left: 2px; }
 .breadcrumbs > li:first-child a:hover { text-decoration: none; color: #666; }
 
-.pageheader { padding: 20px; border-bottom: 1px solid #ddd; position: relative; min-height: 68px; background: #fff; }
+.pageheader { padding: 20px; border-bottom: 1px solid #ddd; position: relative; background: #fff; }
 .pageicon {
 	width: 44px; font-size: 42px; padding: 10px; color: #0866c6; border: 3px solid #0866c6; display: inline-block;
 	-moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; float: left; text-align: center;
 }
-.pagetitle { margin-left: 90px; padding-top: 5px; }
+.pagetitle { }
 .pagetitle h1 { font-size: 32px; margin-left: -2px; color: #0866c6; }
 .pagetitle h5 { text-transform: uppercase; font-size: 11px; color: #999; }
 

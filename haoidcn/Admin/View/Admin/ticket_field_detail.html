@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>工单系统</title>
+
+<!-- header binge -->
+<include file="Public/header" />
+
+<style type="text/css">
+	.table-title{
+		font-size: 18px;
+		font-weight: bold;
+		text-align: center;
+		padding-bottom: 20px;
+		border-bottom: 1px solid #DDD;
+	}
+	.table-note{
+		border-left: 2px solid #0866c6;
+		padding-left: 10px;
+		margin: 20px 0;
+		font-size: 14px;
+	}
+	.back-href{
+		font-size: 14px;
+	}
+	.fields-wrap{
+		width: 250px;
+		margin: 0 auto;
+	}
+	.list-field li{
+		list-style: none;
+		padding-bottom: 5px;
+		/* border-bottom: 1px solid #EEE; */
+	}
+	.list-field li+li{
+		margin-top: 5px;
+	}	
+	.list-field li .icon-delete{
+		margin: -5px 0 0 10px;
+		cursor: pointer;
+	}
+	.btn-wrap{
+		margin-top: 20px;
+	}
+	.btn-wrap button{
+		width: 220px;
+	}
+	.del-field{
+		color: #c9102f;
+		cursor: pointer;
+	}
+	
+</style>
+<!-- header end -->
+
+<script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
+</head>
+
+
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+</head>
+<body >
+
+<!-- header binge -->
+<include file="Public/head" />
+
+<!-- header end -->
+    
+    <div class="rightpanel">
+        
+        <ul class="breadcrumbs">
+            <li><a href="{:U('Console/dashboard')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
+            <li><a href="{:U('Console/dashboard')}">面板</a> <span class="separator"></span></li>
+            <li>工单字段</li>
+        </ul>
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                        <div>
+                           <div class="widgetbox personal-information">
+                               <div class="dataTables_wrapper">
+								   <div class="table-title">
+										<a class="left back-href" href="javascript:history.go(-1);"><返回</a>
+									   {$main.name}
+									</div>
+									<div class="fields-wrap">
+										<p class="table-note">
+											<switch name="main.type">
+												<case value="1">文本框</case>
+												<case value="2">文本区域</case>
+												<case value="3">下拉菜单</case>
+											</switch>
+											类型
+										</p>
+										<ul class="list-field">
+											<if condition="count($list_field) eq 0">
+												<li>
+													<input name="field-name" type="text" placeholder="字段名称"><input name="field-id" type="hidden" placeholder="字段ID(数字)"><i class="icon-delete" onclick="delField(this)"></i>
+												</li>
+											<else/>
+												<volist name="list_field" id="vo">
+													<li>
+														<input name="field-name" type="text" placeholder="字段名称" value="{$vo.name}"><input name="field-id" type="hidden" placeholder="字段ID(数字)" value="{$vo.id}"><i class="icon-delete" onclick="delField(this)"></i>
+													</li>
+												</volist>
+											</if>
+										</ul>
+
+										<div class="btn-wrap">
+											<p>
+												<button type="button" class="btn btn-success" onclick="addField()">添加菜单选项</button>
+											</p>
+											<br>
+											<p>
+												<button type="button" class="btn btn-primary" onclick="saveField('{$main.id}')">保存</button>
+											</p>
+										</div>
+									</div>
+                           	</div>
+                        </div>
+                    </div><!--row-fluid-->
+        </div><!--maincontent-->
+	</div><!--rightpanel-->
+</div><!--mainwrapper-->
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	window.saveDelFieldId = [];
+	jQuery('.taglist .close').click(function(){
+		jQuery(this).parent().remove();
+		return false;
+	});
+});
+
+function addField(){
+	var listDom = jQuery(".list-field");
+	
+	var fileTpl = '<li><input type="text" name="field-name" placeholder="字段名称"><input type="hidden" name="field-id" placeholder="字段ID(数字)"><i class="icon-delete" onclick="delField(this)"></i></li>';
+	listDom.append(fileTpl);
+}
+function delField(dom){
+	var dom = jQuery(dom);
+	var delId = dom.parents("li").find("input[name='field-id']").val();
+	var hasId = false;
+	jQuery.each(window.saveDelFieldId, function(index, val){
+		if (val == delId) {
+			hasId = true;
+		}
+	})
+	if (!hasId) {
+		window.saveDelFieldId.push(delId);
+	}
+	dom.parents("li").remove();
+}
+function saveField(id) {
+	var listDom = jQuery(".list-field");
+	var postData = {
+		id: id,
+		fields: [],
+		delid: window.saveDelFieldId
+	};
+	var hasEmptyName = false;
+	listDom.find("li").each(function(){
+		var fieldName = jQuery(this).find("input[name='field-name']").val();
+		var fieldId = jQuery(this).find("input[name='field-id']").val();
+		if (!fieldName) {
+			hasEmptyName = true;
+		}
+		if (!fieldId) {
+			fieldId = String(new Date().getTime())+String(Math.ceil(Math.random()*10000));
+		}
+		var obj = {
+			id: fieldId,
+			name: fieldName
+		}
+		postData.fields.push(JSON.stringify(obj));
+	})
+
+	if (hasEmptyName) {
+		alert("字段名称不允许为空");
+		return false;
+	}
+
+	// postData.fields = JSON.stringify(postData.fields);
+	jQuery.ajax({
+		type: "POST",
+		url: "{:U('/Admin/ticket_field_save')}",
+		data: postData,
+		success: function(data){
+			if (data.code == 0){
+				alert("保存成功");
+			} else {
+				alert("保存失败");
+			}
+		}
+	})
+}
+</script>
+</body>
+</html>

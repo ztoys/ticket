@@ -72,9 +72,11 @@
                                     <label for="ticket_owned" class="form-label">所属客户</label>
                                     <select id="ticket_owned">
                                         <option value="0">全部</option>
-                                        <option value="1">客户A</option>
-                                        <option value="2">客户B</option>
-                                        <option value="3">客户C</option>
+                                        <volist name="owned_field" id="vo">
+                                            <if condition="$vo['id'] neq ''">
+                                                <option value="{$vo.id}">{$vo.name}</option>
+                                            </if>
+                                        </volist>
                                     </select>
                                 </div>
                                 <div class="left">
@@ -195,9 +197,11 @@
                                     <label for="ticket_owned" class="form-label">所属客户</label>
                                     <select id="ticket_owned">
                                         <option value="0">全部</option>
-                                        <option value="1">客户A</option>
-                                        <option value="2">客户B</option>
-                                        <option value="3">客户C</option>
+                                        <volist name="owned_field" id="vo">
+                                            <if condition="$vo['id'] neq ''">
+                                                <option value="{$vo.id}">{$vo.name}</option>
+                                            </if>
+                                        </volist>
                                     </select>
                                 </div>
                                 <div class="left">

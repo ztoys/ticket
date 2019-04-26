@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>工单系统</title>
+
+<!-- header binge -->
+<include file="Public/header" />
+
+<!-- header end -->
+
+<script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery('.taglist .close').click(function(){
+		jQuery(this).parent().remove();
+		return false;
+	});
+});
+</script>
+
+</head>
+
+
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+</head>
+<body>
+
+<!-- header binge -->
+<include file="Public/head" />
+
+<!-- header end -->
+    
+    <div class="rightpanel">
+        <!-- head binge -->
+        
+			<include file="Public/nav" name='群组管理'/>
+		
+		<!-- head end -->
+        <div class="pageheader">
+            <div class="pagetitle">
+                <h1>角色权限</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                   <div>
+                        <div class="widgetbox personal-information">
+                            <h4 class="widgettitle">
+                                <span>角色权限</span>
+                            </h4>
+                            <div class="widgetcontent">
+                            	<table class="table table-bordered table-middle">
+                            		<tr>
+                                        <th width="10%">角色名称</th>
+                                        <th width="40%">权限说明</th>
+                            			<th width="50%">群组</th>
+                            		</tr>
+                                    <tr>
+                                        <td>客服</td>
+                                        <td>该类型用户主要提交工单，可创建、评论、评价和关闭工单。</td>
+                                        <td>
+                                            <volist name="list_service" id="vo">
+                                                <span>{$vo.status}
+                                                    <if condition="$i eq count($list_service)">
+                                                        。
+                                                    <else />，
+                                                    </if>
+                                                </span>
+                                            </volist>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>运维</td>
+                                        <td>该类型用户主要处理工单，可创建、评论工单和查看工单事件。</td>
+                                        <td>
+                                           <volist name="list_agent" id="vo">
+                                                <span>{$vo.status}
+                                                    <if condition="$i eq count($list_agent)">
+                                                        。
+                                                    <else />，
+                                                    </if>
+                                                </span>
+                                            </volist>
+                                        </td>
+                                    </tr>
+                            	</table> 
+                            </div>
+                        </div>
+                    </div><!--row-fluid-->
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+
+</body>
+
+</html>

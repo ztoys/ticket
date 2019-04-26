@@ -38,6 +38,7 @@ if($status){
 						uid int(10) NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."config;",
 					"CREATE TABLE ".$_POST['db_prefix']."config (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -51,6 +52,7 @@ if($status){
 						phone_pass varchar(250) NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."ecomment;",
 					"CREATE TABLE ".$_POST['db_prefix']."ecomment (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -61,6 +63,7 @@ if($status){
 						uid int(10) NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."service;",
 					"CREATE TABLE ".$_POST['db_prefix']."service (
 						id tinyint(10) unsigned NOT NULL,
@@ -70,6 +73,7 @@ if($status){
 						time varchar(250) NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."status;",
 					"CREATE TABLE ".$_POST['db_prefix']."status (
 						id tinyint(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -78,6 +82,7 @@ if($status){
 						time varchar(250) NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."time;",
 					"CREATE TABLE ".$_POST['db_prefix']."time (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -88,6 +93,7 @@ if($status){
 						pubtime varchar(250) NOT NULL,
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."user;",
 					"CREATE TABLE ".$_POST['db_prefix']."user (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -105,6 +111,7 @@ if($status){
 						sid varchar(250),
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."work;",
 					"CREATE TABLE ".$_POST['db_prefix']."work (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -115,7 +122,7 @@ if($status){
 						accdate varchar(250) ,
 						work_type int(11) NOT NULL,
 						work_level int(11) NOT NULL,
-						work_owned int(11) NOT NULL,
+						work_owned varchar(255),
 						work_product int(11),
 						work_develop int(11),
 						work_finish varchar(250),
@@ -127,6 +134,7 @@ if($status){
 						did int(250),
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."evaluation;",
 					"CREATE TABLE ".$_POST['db_prefix']."evaluation (
 						work_id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -136,6 +144,7 @@ if($status){
 						create_time bigint(20) NOT NULL,
 						PRIMARY KEY (work_id)
 						) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."wrecord;",
 					"CREATE TABLE ".$_POST['db_prefix']."wrecord (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -147,6 +156,7 @@ if($status){
 						PRIMARY KEY (id),
 						KEY wid (wid)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+
 					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."files;",
 					"CREATE TABLE ".$_POST['db_prefix']."files (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -156,6 +166,22 @@ if($status){
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."field;",
+					"CREATE TABLE ".$_POST['db_prefix']."field (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						name varchar(255) NOT NULL,
+						type int(11) NOT NULL,
+						system enum('0','1') NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
+					"INSERT INTO `".$_POST['db_prefix']."field` VALUES ('1', '工单标题', '1', '1'),('2', '内容描述', '2', '1'),('3', '工单类型', '3', '1'),('4', '优先级', '3', '1'),('5', '所属客户', '3', '1');",
+					"DROP TABLE IF EXISTS ".$_POST['db_prefix']."field_value;",
+					"CREATE TABLE ".$_POST['db_prefix']."field_value (
+						id int(10) unsigned NOT NULL AUTO_INCREMENT,
+						field_id varchar(255) NOT NULL,
+						fields varchar(255) NOT NULL,
+						PRIMARY KEY (id)
+					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 			);
 			$i = 0;
 			foreach ($sql_arr as $k=>$v){
@@ -165,7 +191,7 @@ if($status){
 				}
 			}
 
-			if($i == 21){
+			if($i == 27){
 				$result = mysqli_query($mysql, "insert into ".$_POST['db_prefix']."user(userid,pwd,email,limits,zl_status) values('".$_POST['userid']."','".md5($_POST['pwd'])."','".$_POST['email']."','1','1')");
 				if($result){
 					//创建项目的配置文件

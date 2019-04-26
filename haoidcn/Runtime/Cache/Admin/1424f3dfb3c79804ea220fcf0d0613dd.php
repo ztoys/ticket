@@ -71,6 +71,11 @@
     }
     .mian-head{
         margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #DDD;
     }
     .group-list a{
         display: block;
@@ -114,10 +119,6 @@
     .active-group-name{
         font-size: 18px;
         margin-top: 10px;
-    }
-    .edit-user-wrap{
-        width: 290px;
-        margin: 0 auto;
     }
 </style>
 <!-- header end -->
@@ -260,7 +261,7 @@
                                                 <button type="button" class="btn right btn-primary btn-sm">添加群组</button>
                                             </div>
                                             <ul class="group-list" id="group_list">
-                                                <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li data-id="<?php echo ($vo["id"]); ?>" <?php if($vo["id"] == $group_id): ?>class="active"<?php endif; ?>>
+                                                <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li data-id="<?php echo ($vo["id"]); ?>">
                                                         <a href="<?php echo U('Admin/user_manage',array('groupid'=>$vo['id']));?>">
                                                             <?php echo ($vo["status"]); ?>
                                                         </a>
@@ -272,12 +273,8 @@
                                 <div class="cell">
                                     <div class="main-wrap">
                                         <div class="mian-head">
-                                            <!-- <label class="inline-block">群组：</label>
-                                            <select class="form-control" id="group_select">
-                                                <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </select> -->
-                                            <div class="left active-group-name" id="active_group_name"></div>
-                                            <button type="button" data-toggle="modal" data-target="#modal_add_user" class="btn btn-success right">添加成员</button>
+                                            <a class="left" href="javascript:history.go(-1)">< 返回</a>
+                                            授权名单
                                         </div>
                                         <table class="table table-bordered table-middle">
                                             <tr>
@@ -295,8 +292,7 @@
                                                         <td><?php echo ((isset($vo["email"]) && ($vo["email"] !== ""))?($vo["email"]):" -- "); ?></td>
                                                         <td>
                                                             <?php if($vo["zl_status"] == '-1'): ?><button type="button" class="btn btn-sm btn-primary" onclick="verUser('<?php echo ($vo["userid"]); ?>')" style="margin-right: 10px;">确认授权</button><?php endif; ?>
-                                                            <button type="button" class="btn btn-sm" onclick="editUser('<?php echo ($vo["userid"]); ?>')">编辑</button>
-                                                            <!-- <button type="button" class="btn btn-sm btn-danger" onclick="delUser('<?php echo ($vo["userid"]); ?>')">删除</button> -->
+                                                            <button type="button" class="btn btn-sm btn-danger" onclick="delUser('<?php echo ($vo["userid"]); ?>')">删除</button>
                                                         </td>
                                                     </tr><?php endforeach; endif; else: echo "$list_user_empty" ;endif; ?>
                                             </tbody>
@@ -379,6 +375,7 @@
     
 </div><!--mainwrapper-->
 
+
 <!-- 模态框 START -->
 
 <!-- 添加新成员 -->
@@ -420,18 +417,6 @@
                         </div>
                     </p>
                     <input type="hidden" name="status" id="user_status">
-                    <p style="margin-top: 10px;">
-                        <label class="left label-title" style="margin-top:4px;width:100px;">手机：</label>
-                        <div class="cell">
-                            <input type="number" name="phone" placeholder="" id="add_user_phone">
-                        </div>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        <label class="left label-title" style="margin-top:4px;width:100px;">邮箱：</label>
-                        <div class="cell">
-                            <input type="text" name="email" placeholder="" id="add_user_email">
-                        </div>
-                    </p>
                     <!-- <p style="margin-top: 10px;">
                         <label class="left label-title" style="margin-top:4px;width:100px;">群组：</label>
                         <div class="cell">
@@ -445,57 +430,6 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消
                     </button>
                     <button type="button" class="btn btn-primary" onclick="addUser()">
-                        提交
-                    </button>
-                </div>
-            </div><!-- /.modal-content -->
-        </form>
-    </div><!-- /.modal -->
-</div>
-
-<!-- 修改成员 -->
-<div class="modal fade modal-add-user" id="modal_edit_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        修改信息
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="widgetbox personal-information">
-                            <div class="edit-user-wrap">
-                                <div id="update01">
-                                    <p>
-                                        <label>账号：</label>
-                                        <input disabled type="text" name="userid" id="edit_userid" class="input-xlarge" value="" />
-                                    </p>
-                                        <p>
-                                        <label>名称：</label>
-                                        <input type="text" name="uname" id="edit_uname" class="input-xlarge" value="" />
-                                    </p>
-                                    <p>
-                                        <label>手机：</label>
-                                        <input type="number" name="phone" id="edit_phone" class="input-xlarge" value="" />
-                                    </p>
-                                    <p>
-                                        <label>邮箱：</label>
-                                        <input type="text" name="email" id="edit_email" class="input-xlarge" value="" />
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
-                    </button>
-                    <button type="button" class="btn btn-primary" onclick="submitEditUser()">
                         提交
                     </button>
                 </div>
@@ -562,6 +496,7 @@
     </div><!-- /.modal -->
 </div>
 
+
 <!-- 模态框 END -->
 
 </body>
@@ -604,51 +539,6 @@
         var groupId = jQuery("#group_list li.active").data("id");
         jQuery("#user_status").val(groupId);
         jQuery("#form_user_add").submit();
-    }
-
-    function editUser(id) {
-        jQuery.ajax({
-            type: "post",
-            url: "<?php echo U('Admin/user_info');?>",
-            data: {
-                id: id
-            },
-            success: function(data) {
-                var acc = data.userid;
-                var name = data.uname;
-                var phone = data.phone;
-                var email = data.email;
-                jQuery("#edit_userid").val(acc);
-                jQuery("#edit_uname").val(name);
-                jQuery("#edit_phone").val(phone);
-                jQuery("#edit_email").val(email);
-                jQuery("#modal_edit_user").modal('show');
-            }
-        })
-    }
-
-    function submitEditUser(){
-        var uname = jQuery("#edit_uname");
-        if (!uname) {
-            alert("名称不运行为空");
-        }
-
-        var postData = {
-            userid: jQuery("#edit_userid").val(),
-            uname: jQuery("#edit_uname").val(),
-            phone: jQuery("#edit_phone").val(),
-            email: jQuery("#edit_email").val(),
-        }
-        jQuery.ajax({
-            type: "post",
-            url: "<?php echo U('Admin/user_edit');?>",
-            data: postData,
-            success: function(data) {
-               if (data.code == 0) {
-                    window.location.reload();
-               }
-            }
-        })
     }
 
     function delUser(uid) {

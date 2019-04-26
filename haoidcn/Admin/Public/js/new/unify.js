@@ -29,7 +29,7 @@ function update_t(type){
 			// 	return false;
 			// }
 
-			
+
 			$("#form01").submit();
 		}
 		if(pwd_status == 1){
@@ -424,33 +424,33 @@ function del(nb){
 function block(str){
 
 	var arr = str.split('-');
-	$("#pwd_status").val(0);
-	$("#update").css("display","block");
-	$("#update01").css("display","block");
-	$("#update02").css("display","none");
+	jQuery("#pwd_status").val(0);
+	jQuery("#update").css("display","block");
+	jQuery("#update01").css("display","block");
+	jQuery("#update02").css("display","none");
 	
 	
-	$.get(arr[0]+".html", { sel: "sel_u", id: arr[1] },function(data){
+	jQuery.get(arr[0]+".html", { sel: "sel_u", id: arr[1] },function(data){
 		
 		var data_arr = data.split('-');
 		
 		if(arr[0] == "s_manage"){
-			$("#id").val(data_arr[0]);
-			$("#userid").val(data_arr[1]);
-			$("#uname").val(data_arr[3]);
-			$("#phone").val(data_arr[6]);
-			$("#email").val(data_arr[5]);
+			jQuery("#id").val(data_arr[0]);
+			jQuery("#userid").val(data_arr[1]);
+			jQuery("#uname").val(data_arr[3]);
+			jQuery("#phone").val(data_arr[6]);
+			jQuery("#email").val(data_arr[5]);
 		}
 		if(arr[0] == "c_manage"){
-			$("#id").val(data_arr[0]);
-			$("#userid").val(data_arr[1]);
-			$("#uname").val(data_arr[2]);
-			$("#phone").val(data_arr[5]);
-			$("#email").val(data_arr[4]);
-			$("#qq").val(data_arr[3]);
-			$("#url").val(data_arr[6]);
-			$("#"+data_arr[7]).attr("selected","selected");
-			$("#"+data_arr[8]).attr("selected","selected");
+			jQuery("#id").val(data_arr[0]);
+			jQuery("#userid").val(data_arr[1]);
+			jQuery("#uname").val(data_arr[2]);
+			jQuery("#phone").val(data_arr[5]);
+			jQuery("#email").val(data_arr[4]);
+			jQuery("#qq").val(data_arr[3]);
+			jQuery("#url").val(data_arr[6]);
+			jQuery("#"+data_arr[7]).attr("selected","selected");
+			jQuery("#"+data_arr[8]).attr("selected","selected");
 			
 		}
 		

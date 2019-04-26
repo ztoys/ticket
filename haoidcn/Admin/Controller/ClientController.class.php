@@ -19,6 +19,15 @@ class ClientController extends CommonController {
 
 		$ticket_count = $this->getWorkCount();
 		$this->assign('ticket_count', $ticket_count);
+
+		//所属客户字段
+		$owned_field_arr = $this->sel_sql_single("field_value", "field_id=5", "");
+		$owned_field = explode('|',$owned_field_arr['fields']);
+		foreach ($owned_field as $k => $v) {
+			$owned_field[$k] = htmlspecialchars_decode($owned_field[$k]);
+			$owned_field[$k] = json_decode($owned_field[$k], true);
+		}
+		$this->assign('owned_field', $owned_field);
 		
 		if(IS_POST){
 			$string = I("post.title");
@@ -266,7 +275,6 @@ class ClientController extends CommonController {
 			$agent_str = trim($agent_str, ",");
 			$agent_list_info = $this->sel_sql("user", "id in ($agent_str)");
 			$this->assign('agent_list_info', $agent_list_info);
-
 		}else if($limits == 2){
 			//运维
 			$db_work = "work";
@@ -429,7 +437,6 @@ class ClientController extends CommonController {
 		
 		//工单结束操作
 		if(I("get.type") == "wang" and $limits == "3"){
-			
 			$url = __ROOT__."/index.php/Client/messages/case/zhong";
 			$wc_sataus = I("get.wc_sataus");
 			$data = array(
@@ -452,10 +459,8 @@ class ClientController extends CommonController {
 		
 		//取消操作工单
 		if(I("get.del")){
-
 			$de = D('work')->where('id='.I("get.id"))->delete();
 			if($de){
-				
 				$url = __ROOT__."/index.php/Client/messages/case/dai";
 				// $E = Email($main["s_email"],"工单取消通知","亲爱的同事：".$main["s_uname"]."，".$main["u_uname"]."这位客户的工单标题为：“".$main['w_title']."” 已取消。");
 				// $M = Mobile($main["s_phone"],'亲爱的同事：'.$main['s_uname'].'。'.$main['u_uname'].'这位客户的工单标题为：“'.$main['w_title'].'”已取消。');
@@ -466,18 +471,28 @@ class ClientController extends CommonController {
 				exit;
 			}
 		}
+
+		//所属客户字段
+		$owned_field_arr = $this->sel_sql_single("field_value", "field_id=5", "");
+		$owned_field = explode('|',$owned_field_arr['fields']);
+		foreach ($owned_field as $k => $v) {
+			$owned_field[$k] = htmlspecialchars_decode($owned_field[$k]);
+			$owned_field[$k] = json_decode($owned_field[$k], true);
+		}
+		$this->assign('owned_field', $owned_field);
+		
 		
 		$data = array(
-				'unread'		=>	"unread",
-				"selected"		=>	"selected",
-				'unread'		=>	"unread",
-				'aid'			=>	$aid,
-				'limits'		=>	$limits,
-				'class'			=>	'class="active"',
-				'case'			=>	$status,
-				"active02"		=>	"class='active'",
-				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
-				'sou'			=>	'&sou='.I("get.sou"),
+			'unread'		=>	"unread",
+			"selected"		=>	"selected",
+			'unread'		=>	"unread",
+			'aid'			=>	$aid,
+			'limits'		=>	$limits,
+			'class'			=>	'class="active"',
+			'case'			=>	$status,
+			"active02"		=>	"class='active'",
+			'url'			=>	__ROOT__."/index.php/Client/messages/case/".$status,
+			'sou'			=>	'&sou='.I("get.sou"),
 		);
 		$this->assign('data',$data);
 		

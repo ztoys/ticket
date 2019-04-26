@@ -157,7 +157,7 @@
                                     <button type="submit" class="btn btn-success" style="width: 100%;">确认</button>
                                 </div> -->
 
-                                <button type="button"  class="btn btn-primary btn-line" style="margin-top: 40px;" onclick="submitTicket()"> 提交 </button>
+                                <!-- <button type="button"  class="btn btn-primary btn-line" style="margin-top: 40px;" onclick="submitTicket()"> 提交 </button> -->
                             </form>
                         </div>
                     </if>
@@ -358,6 +358,10 @@
 
 
 <script type="text/javascript">
+
+    jQuery(".form-ticket-status select").change(function(){
+        submitTicket();
+    })
 
     function submitTicket() {
         var ticket_agent = jQuery("#select_ticket_agent").val();

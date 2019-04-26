@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>工单系统</title>
+
+<!-- header binge -->
+<include file="Public/header" />
+
+<style type="text/css">
+	.table-title{
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.table-note{
+		border-left: 2px solid #0866c6;
+		padding-left: 10px;
+		margin: 20px 0;
+		font-size: 14px;
+	}
+</style>
+<!-- header end -->
+
+<script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
+</head>
+
+
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+</head>
+<body >
+
+<!-- header binge -->
+<include file="Public/head" />
+
+<!-- header end -->
+    
+    <div class="rightpanel">
+        
+        <ul class="breadcrumbs">
+            <li><a href="{:U('Console/dashboard')}"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
+            <li><a href="{:U('Console/dashboard')}">面板</a> <span class="separator"></span></li>
+            <li>工单字段</li>
+        </ul>
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                        <div>
+                           <div class="widgetbox personal-information">
+                               <div class="dataTables_wrapper">
+								   <div class="table-title">工单字段</div>
+								   <p class="table-note">启用的字段</p>
+                                   <table class="table table-bordered">
+                                   	<tr>
+                                   		<th width="25%">字段名称</th>
+                                   		<th width="25%">字段类型</th>
+                                   		<th width="25%">字段类别</th>
+                                   		<th width="25%">操作</th>
+                                   	</tr>
+                                   	<volist name="list_field" id="vo">
+                                   		<tr id="c_manage{$vo.id}">
+                                   			<td>{$vo.name}</td>
+                                   			<td>
+												<switch name="vo['type']">
+													<case value="1">文本框</case>
+													<case value="2">文本区域</case>
+													<case value="3">下拉菜单</case>
+												</switch>
+											</td>
+                                   			<td>
+												<switch name="vo['system']">
+													<case value="1">系统内置</case>
+													<default/>自定义
+												</switch>
+											</td>
+                                   			<td>
+												<if condition="$vo.system eq '1' && $vo.id neq 5">
+													<span class="note">无法编辑</span>
+													<else/>
+													<a href="{:U('Admin/ticket_field_detail', array('fieldid'=>$vo['id']))}">编辑</a>
+												</if>
+											</td>
+                                   		</tr>
+                                   	</volist>
+                                   	
+                                   </table>
+                           </div>
+                        </div>
+                    </div><!--row-fluid-->
+        </div><!--maincontent-->
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+	
+	jQuery('.taglist .close').click(function(){
+		jQuery(this).parent().remove();
+		return false;
+	});
+	
+});
+</script>
+</body>
+</html>
