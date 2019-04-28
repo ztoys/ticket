@@ -301,6 +301,9 @@ input[type="number"] {
 .leftmenu .nav-header {
 	font-weight: normal; font-size: 11px; padding: 5px 20px; text-shadow: none; background: #282828;
 	border-bottom: 1px solid #222; }
+.leftmenu .nav-header-child {
+	padding: 10px 0;
+}
 .leftmenu .nav-tabs.nav-stacked a { color: #999; padding: 10px 20px; font-size: 14px; }
 .leftmenu .nav-tabs.nav-stacked a span { margin-right: 10px; }
 .leftmenu .nav-tabs.nav-stacked > li > a { border: 0; border-bottom: 1px solid #282828; }
@@ -311,17 +314,16 @@ input[type="number"] {
 .leftmenu .nav-tabs > li { margin-bottom: 0; }
 
 
-.leftmenu .nav-tabs.nav-stacked > li.dropdown ul { background: #FFF; display: none; }
-.leftmenu .nav-tabs.nav-stacked > li.dropdown ul li { border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; }
+.leftmenu .nav-tabs.nav-stacked > li.dropdown ul { background: #353535; display: none; }
 .leftmenu .nav-tabs.nav-stacked > li.dropdown > a {
 	background-image: url(../images/droparrow.png); background-repeat: no-repeat; background-position: right 19px; }
 
 .leftmenu .nav-tabs.nav-stacked .dropdown ul li a  {
-	display: block; font-size: 13px; padding: 7px 10px 7px 50px; color: #333; background-position: 25px 12px;
-	background-image: url(../images/menuarrow.png); background-repeat: no-repeat;  
+	display: block; font-size: 13px; padding: 7px 10px 7px 50px; color: #FFF; background-position: 25px 12px;
+	background-image: url(../images/menuarrow.png);background-repeat: no-repeat;  
 }
-.leftmenu .nav-tabs.nav-stacked .dropdown ul li.active a { background-color: #DDD; }
-.leftmenu .nav-tabs.nav-stacked .dropdown ul li a:hover { text-decoration: none; background-color: #DDD; }
+.leftmenu .nav-tabs.nav-stacked .dropdown ul li.active a { background-color: #4c4c4c; }
+.leftmenu .nav-tabs.nav-stacked .dropdown ul li a:hover { text-decoration: none; background-color: #4c4c4c; }
 .leftmenu .nav-tabs.nav-stacked .dropdown ul ul li { border-right: 0; }
 .leftmenu .nav-tabs.nav-stacked .dropdown ul ul li a { padding-left: 70px; background-position: 50px 12px; }
 .leftmenu .nav-tabs.nav-stacked .dropdown ul ul li:first-child a { border-top: 1px solid #ddd; } 
