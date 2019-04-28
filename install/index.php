@@ -7,7 +7,10 @@ if($status){
 	$mysql = mysqli_connect($_POST['db_host'],$_POST['db_user'],$_POST['db_pwd']);
 	$link =  $mysql ? 1 : 2;
 	if($link == 1){
-
+		$mysql->query("set names 'utf8'");
+		$mysql->query("set character_set_client=utf8");
+		$mysql->query("set character_set_results=utf8");
+		
 		//创建数据库
 		$db_name = $_POST['db_name'];
 		//查询数据库是否存在 ，存在则删除，再创建
@@ -16,6 +19,7 @@ if($status){
 		// 	$dbname01 = mysql_query("drop database $db_name");
 		// }
 		$conn = new mysqli($_POST['db_host'],$_POST['db_user'],$_POST['db_pwd']);
+		
 		// 检测连接
 		if ($conn->connect_error) {
 			die("连接失败: " . $conn->connect_error);
