@@ -64,9 +64,11 @@
         margin-left: 10px;
     }    
     .td-select{
-        height: 25px;
         width: 100%;
         margin: 0;
+    }
+    .table tr.danger{
+        background: #eee;
     }
 </style>
 </head>
@@ -180,11 +182,11 @@
             <div class="maincontentinner">
                 <div class="head-tab">
                     <ul>
-                        <li class="on">
-                            <a>未指派工单</a>
-                        </li>
                         <li>
-                            <a href="<?php echo U('Admin/ticket_history?case=history');?>">指派历史</a>
+                            <a href="<?php echo U('Admin/ticket?case=all');?>">未指派工单</a>
+                        </li>
+                        <li class="on">
+                            <a>指派历史</a>
                         </li>
                     </ul>
                 </div>
@@ -199,20 +201,63 @@
                         </ul> -->
                     <!-- </div> -->
                     <div class="messagecontent">
-                        <table class="table table-bordered table-fixed table-tr-click">
+                        <div class="form-wrap head sm-select">
+                            <div class="left">
+                                <label for="ticket_owned" class="form-label">所属客户</label>
+                                <select id="ticket_owned">
+                                    <option value="0">全部</option>
+                                    <?php if(is_array($owned_field)): $i = 0; $__LIST__ = $owned_field;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['id'] != ''): ?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_status" class="form-label">状态</label>
+                                <select id="ticket_status">
+                                    <option value="0">全部</option>
+                                    <option value="1">待处理</option>
+                                    <option value="2">正在研发中</option>
+                                    <option value="4">待评价</option>
+                                    <option value="3">已关闭</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_level" class="form-label">优先级</label>
+                                <select id="ticket_level">
+                                    <option value="0">全部</option>
+                                    <option value="3">紧急</option>
+                                    <option value="2">重要</option>
+                                    <option value="1">一般</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_type" class="form-label">工单类型</label>
+                                <select id="ticket_type">
+                                    <option value="0">全部</option>
+                                    <option value="1">产品BUG</option>
+                                    <option value="2">新需求</option>
+                                    <option value="3">投诉与建议</option>
+                                    <option value="4">其它</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered table-fixed table-tr-click table-middle">
                             <tr>
                                 <th width="5%">编号</th>
                                 <th width="20%">标题</th>
                                 <th width="6%">工单类型</th>
                                 <th width="5%">优先级</th>
                                 <th width="5%">状态</th>
-                                <th width="10%">完成时间</th>
+                                <th width="7%">完成时间</th>
                                 <th width="10%">工单发起人</th>
                                 <th width="10%">受理人</th>
-                                <th width="12%">创建日期</th>
-                                <?php if($data["case"] != 'all'): ?><th width="12%">受理时间</th><?php endif; ?>
+                                <th width="10%">创建日期</th>
+                                <?php if($data["case"] != 'all'): ?><th width="10%">受理时间</th><?php endif; ?>
+                                <th width="10%">指派时间</th>
                             </tr>
-                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Admin/ticket_detail?case='.$data['case'].'&id='.$vo['id']);?>'">
+                            <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "$list_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr onclick="javascript:window.location.href='<?php echo U('Admin/ticket_detail?case='.$data['case'].'&id='.$vo['id']);?>'" <?php if($vo['wc_sataus'] == '3'): ?>class="danger"<?php endif; ?>>
                                     <td><?php echo ($vo["id"]); ?></td>
                                     <td><?php echo ($vo["title"]); ?></td>
                                     <td>
@@ -240,15 +285,18 @@
                                         <?php echo ((isset($vo["uname"]) && ($vo["uname"] !== ""))?($vo["uname"]):" -- "); ?>
                                     </td>
                                     <td onclick="stopProp()" data-id="<?php echo ($vo["id"]); ?>" class="select-ticket-agent">
-                                        <select name="" id="" class="td-select">
-                                            <option value="-1"> -- </option>
-                                            <?php if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$wuser): $mod = ($i % 2 );++$i;?><option value="<?php echo ($wuser["id"]); ?>"><?php echo ($wuser["uname"]); ?></option><?php endforeach; endif; else: echo "$list_empty" ;endif; ?>
-                                        </select>
+                                        <?php if($vo['wc_sataus'] == '3'): if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$wuser): $mod = ($i % 2 );++$i; if($vo['did'] == $wuser['id']): echo ($wuser["uname"]); endif; endforeach; endif; else: echo "$list_empty" ;endif; ?>
+                                        <?php else: ?>
+                                            <select name="" id="" class="td-select">
+                                                <?php if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$wuser): $mod = ($i % 2 );++$i;?><option value="<?php echo ($wuser["id"]); ?>" <?php if($vo['did'] == $wuser['id']): ?>selected<?php endif; ?>><?php echo ($wuser["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </select><?php endif; ?>
+                                        
                                     </td>
                                     <td><?php echo (date("Y-m-d H:i:s",$vo["puddate"])); ?></td>
                                     <?php if($data["case"] != 'all'): if($vo['accdate'] != ''): ?><td><?php echo (date("Y-m-d H:i:s",$vo["accdate"])); ?></td>
                                         <?php else: ?>
                                             <td>--</td><?php endif; endif; ?>
+                                    <td><?php echo (date("Y-m-d H:i:s",$vo["appoint"])); ?></td>
                                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                         </table> 
                         <?php echo ($page); ?>

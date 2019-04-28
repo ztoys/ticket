@@ -62,7 +62,6 @@
 <script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
 </head>
 
-
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
 </head>
 <body >
@@ -134,9 +133,42 @@
         </div><!--maincontent-->
 	</div><!--rightpanel-->
 </div><!--mainwrapper-->
+
+<!-- 模态框 -->
+
+<!-- 确认删除 -->
+<div class="modal fade modal-confirm" id="modal_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					提示
+				</h4>
+			</div>
+			<div class="modal-body ticket-confirm">
+				<h4>是否确认删除“<span id="confirm_field_title"></span>”?</h4>
+				<p style="margin-top:5px;">
+					删除后属于该项的工单将被解除关联关系
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" onclick="delFieldSure()">确认</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">取消
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+
 <script type="text/javascript">
 jQuery(document).ready(function(){
 	window.saveDelFieldId = [];
+	window.saveDelFieldDom = null;
+
 	jQuery('.taglist .close').click(function(){
 		jQuery(this).parent().remove();
 		return false;
@@ -152,6 +184,15 @@ function addField(){
 function delField(dom){
 	var dom = jQuery(dom);
 	var delId = dom.parents("li").find("input[name='field-id']").val();
+	var delName = dom.parents("li").find("input[name='field-name']").val();
+	jQuery("#confirm_field_title").text(delName);
+	window.saveDelFieldDom = dom;
+	jQuery("#modal_confirm").modal('show');
+}
+function delFieldSure() {
+	var dom = jQuery(window.saveDelFieldDom);
+	var delId = dom.parents("li").find("input[name='field-id']").val();
+
 	var hasId = false;
 	jQuery.each(window.saveDelFieldId, function(index, val){
 		if (val == delId) {
@@ -162,7 +203,9 @@ function delField(dom){
 		window.saveDelFieldId.push(delId);
 	}
 	dom.parents("li").remove();
+	jQuery("#modal_confirm").modal('hide');
 }
+
 function saveField(id) {
 	var listDom = jQuery(".list-field");
 	var postData = {

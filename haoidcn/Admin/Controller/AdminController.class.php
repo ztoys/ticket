@@ -194,6 +194,13 @@ class AdminController extends CommonController {
 		$phone = I("post.phone");
 		$email = I("post.email");
 
+		//查询是否存在相同账户
+		$is_user_exist = $this->sel_sql_single("user", "userid='$acc'");
+		if ($is_user_exist) {
+			echo "<meta charset='utf-8' /><script>alert('添加失败，帐号 $acc 已存在');history.go(-1)</script>";
+			exit;
+		}
+
 		$group_info = $this->sel_sql_single("status", "id='$status'");
 		$limits = $group_info['type'];
 		
@@ -205,6 +212,7 @@ class AdminController extends CommonController {
 			'limits'  => $limits,
 			'phone'   => $phone,
 			'email'   => $email,
+			'zl_status' => '1',
 			'f_date'   => time(),
 		);
 		$result = $this->inser_sql("user", $data);
@@ -222,8 +230,10 @@ class AdminController extends CommonController {
 			"zl_status" => '1',
 		);
 		$result = $this->update_sql("user", "userid='$id'", $data);
+		$user_info = $this->sel_sql_single("user", "userid='$id'");
+		$user_group_id = $user_info['u_status'];
 		if ($result) {
-			echo "<meta charset='utf-8' /><script>alert('授权成员 $id 成功'); location.href='user_manage.html';</script>";
+			echo "<meta charset='utf-8' /><script>alert('授权成员 $id 成功'); location.href='user_manage/groupid/$user_group_id.html';</script>";
 		} else {
 			echo "<meta charset='utf-8' /><script>alert('授权成员 $id 失败');</script>";
 		}
@@ -283,9 +293,113 @@ class AdminController extends CommonController {
 			$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order, $p->firstRow, $p->listRows);
 			
 			if ($status == "all") {
-				$this->assign('list_empty', '<tr><td colspan="11" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="9" style="text-align:center;">暂无数据</td></tr>');
 			} else {
-				$this->assign('list_empty', '<tr><td colspan="12" style="text-align:center;">暂无数据</td></tr>');
+				$this->assign('list_empty', '<tr><td colspan="10" style="text-align:center;">暂无数据</td></tr>');
+			}
+			$p_show = $p->show();
+			$this->assign('list',$list);
+			$this->assign('page',$p_show);
+		}
+		
+		//列表选中显示样式
+		$db_field = "u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
+		w.id w_id,w.did w_did, w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,
+		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone";
+		$main = D('Work as w')->field($db_field)->
+		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
+		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
+		$this->assign('main',$main);
+
+		// $file_arr = $this->sel_sql("files", "id in ($filesId)");
+		$this->assign('file_arr',$file_arr);
+
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
+
+		//所属客户字段
+		$owned_field_arr = $this->sel_sql_single("field_value", "field_id=5", "");
+		$owned_field = explode('|',$owned_field_arr['fields']);
+		foreach ($owned_field as $k => $v) {
+			$owned_field[$k] = htmlspecialchars_decode($owned_field[$k]);
+			$owned_field[$k] = json_decode($owned_field[$k], true);
+		}
+		$this->assign('owned_field', $owned_field);
+
+		//受理人列表
+		$list_group_user = $this->sel_sql("user", "limits='2' and zl_status='1'");
+		$this->assign('list_group_user', $list_group_user);
+
+		$data = array(
+			'user_one' => "active",
+			'user_block' => "style='display:block'",
+			'user_block03' => "class='active'",
+			'unread'		=>	"unread",
+			"selected"		=>	"selected",
+			'unread'		=>	"unread",
+			'limits'		=>	$limits,
+			'class'			=>	'class="active"',
+			'case'			=>	$status,
+			"active02"		=>	"class='active'",
+			'url'			=>	__ROOT__."/index.php/Admin/ticket/case/".$status,
+			'sou'			=>	'&sou='.I("get.sou"),
+		);
+		$this->assign('data',$data);
+		$data01 = array(
+    		'kh_one' => "active",
+    		'kh_block' => " style='display:block';",
+    		'kh_two01' => " class='active'"
+		);
+		$this->assign('data01', $data01);
+		$this->display();
+	}
+
+	//用户管理 - 指派历史
+	public function ticket_history(){
+		$limits = I("session.limits");		//权限    2-售后	3-会员
+		$id = I("session.uid");				//当前用户id
+		$status = I("get.case");			//工单状态
+		
+		//搜索操作
+		$ticket_type = I("get.tktype");
+		$ticket_status = I("get.tkstatus");
+		$ticket_level = I("get.tklevel");
+		$ticket_owned = I("get.tkowned");
+		$where = "";
+		if($ticket_type != '' && $ticket_type != '0'){
+			$this->assign('ticket_type',$ticket_type);
+			$where = $where." and w.work_type='$ticket_type'";
+		}
+		if($ticket_status != '' && $ticket_status != '0'){
+			$this->assign('ticket_status',$ticket_status);
+			$where = $where." and w.wc_sataus='$ticket_status'";
+		}
+		if($ticket_level != '' && $ticket_level != '0'){
+			$this->assign('ticket_level',$ticket_level);
+			$where = $where." and w.work_level='$ticket_level'";
+		}
+		if($ticket_owned != '' && $ticket_owned != '0'){
+			$this->assign('ticket_owned',$ticket_owned);
+			$where = $where." and w.work_owned='$ticket_owned'";
+		}
+
+		//列表显示数据	-- 分页
+		if($limits == 1 && $status == 'history'){
+			$db_work = "work";
+			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.appoint, w.wc_sataus wc_sataus, w.uid uid, w.did,w.work_type work_type,w.work_level work_level,w.work_owned work_owned, w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish, u.uname uname";
+			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
+			$db_order = "field(wc_sataus, '1','2','4','-1','3'),puddate desc";
+
+			// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order);
+
+			$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "(w.did is not null and w.did<>0) $where", $db_order);
+			$p = Getpage($count);
+			$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "(w.did is not null and w.did<>0) $where", $db_order, $p->firstRow, $p->listRows);
+			
+			if ($status == "history") {
+				$this->assign('list_empty', '<tr><td colspan="9" style="text-align:center;">暂无数据</td></tr>');
+			} else {
+				$this->assign('list_empty', '<tr><td colspan="10" style="text-align:center;">暂无数据</td></tr>');
 			}
 			$p_show = $p->show();
 			$this->assign('list',$list);
@@ -1004,6 +1118,7 @@ class AdminController extends CommonController {
 		if (!empty($ticket_id) && !empty($agent_id)) {
 			$data_arr = array(
 				"did" => $agent_id,
+				"appoint" => time(),
 			);
 			$this->update_sql("work", "id='$ticket_id'", $data_arr);
 			$result_arr = array(

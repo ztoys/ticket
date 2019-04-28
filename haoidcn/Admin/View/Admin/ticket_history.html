@@ -29,9 +29,11 @@
         margin-left: 10px;
     }    
     .td-select{
-        height: 25px;
         width: 100%;
         margin: 0;
+    }
+    .table tr.danger{
+        background: #eee;
     }
 </style>
 </head>
@@ -52,11 +54,11 @@
             <div class="maincontentinner">
                 <div class="head-tab">
                     <ul>
-                        <li class="on">
-                            <a>未指派工单</a>
-                        </li>
                         <li>
-                            <a href="{:U('Admin/ticket_history?case=history')}">指派历史</a>
+                            <a href="{:U('Admin/ticket?case=all')}">未指派工单</a>
+                        </li>
+                        <li class="on">
+                            <a>指派历史</a>
                         </li>
                     </ul>
                 </div>
@@ -73,23 +75,70 @@
                         </ul> -->
                     <!-- </div> -->
                     <div class="messagecontent">
-                        <table class="table table-bordered table-fixed table-tr-click">
+                        <div class="form-wrap head sm-select">
+                            <div class="left">
+                                <label for="ticket_owned" class="form-label">所属客户</label>
+                                <select id="ticket_owned">
+                                    <option value="0">全部</option>
+                                    <volist name="owned_field" id="vo">
+                                        <if condition="$vo['id'] neq ''">
+                                            <option value="{$vo.id}">{$vo.name}</option>
+                                        </if>
+                                    </volist>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_status" class="form-label">状态</label>
+                                <select id="ticket_status">
+                                    <option value="0">全部</option>
+                                    <option value="1">待处理</option>
+                                    <option value="2">正在研发中</option>
+                                    <option value="4">待评价</option>
+                                    <option value="3">已关闭</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_level" class="form-label">优先级</label>
+                                <select id="ticket_level">
+                                    <option value="0">全部</option>
+                                    <option value="3">紧急</option>
+                                    <option value="2">重要</option>
+                                    <option value="1">一般</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <label for="ticket_type" class="form-label">工单类型</label>
+                                <select id="ticket_type">
+                                    <option value="0">全部</option>
+                                    <option value="1">产品BUG</option>
+                                    <option value="2">新需求</option>
+                                    <option value="3">投诉与建议</option>
+                                    <option value="4">其它</option>
+                                </select>
+                            </div>
+                            <div class="left">
+                                <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered table-fixed table-tr-click table-middle">
                             <tr>
                                 <th width="5%">编号</th>
                                 <th width="20%">标题</th>
                                 <th width="6%">工单类型</th>
                                 <th width="5%">优先级</th>
                                 <th width="5%">状态</th>
-                                <th width="10%">完成时间</th>
+                                <th width="7%">完成时间</th>
                                 <th width="10%">工单发起人</th>
                                 <th width="10%">受理人</th>
-                                <th width="12%">创建日期</th>
+                                <th width="10%">创建日期</th>
                                 <if condition="$data.case neq 'all'">
-                                    <th width="12%">受理时间</th>
+                                    <th width="10%">受理时间</th>
                                 </if>
+                                <th width="10%">指派时间</th>
                             </tr>
                             <volist name="list" id="vo" empty="$list_empty">
-                                <tr onclick="javascript:window.location.href='{:U(\'Admin/ticket_detail?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'">
+                                <tr onclick="javascript:window.location.href='{:U(\'Admin/ticket_detail?case=\'.$data[\'case\'].\'&id=\'.$vo[\'id\'])}'" <if condition="$vo['wc_sataus'] eq '3'">class="danger"</if>>
                                     <td>{$vo.id}</td>
                                     <td>{$vo.title}</td>
                                     <td>
@@ -125,12 +174,18 @@
                                         {$vo.uname|default=" -- "}
                                     </td>
                                     <td onclick="stopProp()" data-id="{$vo.id}" class="select-ticket-agent">
-                                        <select name="" id="" class="td-select">
-                                            <option value="-1"> -- </option>
+                                        <if condition="$vo['wc_sataus'] eq '3'">
                                             <volist name="list_group_user" id="wuser">
-                                                <option value="{$wuser.id}">{$wuser.uname}</option>
+                                                <if condition="$vo['did'] eq $wuser['id']">{$wuser.uname}</if>
                                             </volist>
-                                        </select>
+                                        <else/>
+                                            <select name="" id="" class="td-select">
+                                                <volist name="list_group_user" id="wuser">
+                                                    <option value="{$wuser.id}" <if condition="$vo['did'] eq $wuser['id']">selected</if>>{$wuser.uname}</option>
+                                                </volist>
+                                            </select>
+                                        </if>
+                                        
                                     </td>
                                     <td>{$vo.puddate|date="Y-m-d H:i:s",###}</td>
                                     <if condition="$data.case neq 'all'">
@@ -140,6 +195,7 @@
                                             <td>--</td>
                                         </if>
                                     </if>
+                                    <td>{$vo.appoint|date="Y-m-d H:i:s",###}</td>
                                 </tr>
                             </volist>
                         </table> 

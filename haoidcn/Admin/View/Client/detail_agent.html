@@ -136,7 +136,7 @@
                                         </volist>
                                     </select>
                                 </div> -->
-                                <div>
+                                <!-- <div>
                                     <label>受理人</label>
                                     <select id="select_ticket_agent">
                                         <option value="-1"> -- </option>
@@ -144,8 +144,8 @@
                                             <option value="{$vo.id}" <if condition="$vo[id] eq $main[w_did]">selected</if> >{$vo.uname}</option>
                                         </volist>
                                     </select>
-                                </div>
-                                <div style="margin-top: 20px;">
+                                </div> -->
+                                <div>
                                     <label>工单状态</label>
                                     <select id="select_ticket_status">
                                         <option value="1" <if condition="$main.wc_sataus eq '1'">selected</if> >待处理</option>

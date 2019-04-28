@@ -357,7 +357,6 @@ input[type="number"] {
 	width: 44px; font-size: 42px; padding: 10px; color: #0866c6; border: 3px solid #0866c6; display: inline-block;
 	-moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; float: left; text-align: center;
 }
-.pagetitle { }
 .pagetitle h1 { font-size: 32px; margin-left: -2px; color: #0866c6; }
 .pagetitle h5 { text-transform: uppercase; font-size: 11px; color: #999; }
 
@@ -402,6 +401,49 @@ input[type="number"] {
 .wt1 { background: #333; color: #fff; }
 .wc1 { border-color: #333; }
 
+
+/*** HEAD TAB ***/
+.head-tab{
+	background-color: #f5f8fd;
+	border-bottom: 1px solid #dbe9f7;
+	height: 40px;
+	margin-bottom: 30px;
+}
+.head-tab::after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.head-tab ul li{
+	float: left;
+	list-style: none;
+}
+.head-tab ul li a{
+	display: block;
+    font-size: 14px;
+	text-align: center;
+	width: 110px;
+    height: 40px;
+	line-height: 40px;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+.head-tab ul li a:hover{
+	background-color: #FFF;
+    border: 1px solid #dbe9f7;
+    border-bottom: 0 none;
+	text-decoration: none;
+}
+
+.head-tab ul li.on a{
+	background-color: #FFF;
+	border: 1px solid #dbe9f7;
+	margin-top: 1px;
+	height: 41px;
+    border-bottom: 0;
+	text-decoration: none;
+	cursor: initial;
+}
 
 /*** DASHBOARD ***/
 
@@ -1617,6 +1659,7 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,
 }
 
 .modal { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; }
+.modal-footer {padding:5px 15px 5px;}
 .modal-footer .btn { margin: 0; }
 
 .popover, .popover-title { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; }
