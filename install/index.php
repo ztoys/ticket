@@ -10,7 +10,7 @@ if($status){
 		$mysql->query("set names 'utf8'");
 		$mysql->query("set character_set_client=utf8");
 		$mysql->query("set character_set_results=utf8");
-		
+
 		//创建数据库
 		$db_name = $_POST['db_name'];
 		//查询数据库是否存在 ，存在则删除，再创建
@@ -183,7 +183,7 @@ if($status){
 					"CREATE TABLE ".$_POST['db_prefix']."field_value (
 						id int(10) unsigned NOT NULL AUTO_INCREMENT,
 						field_id varchar(255) NOT NULL,
-						fields varchar(255) NOT NULL,
+						fields text,
 						PRIMARY KEY (id)
 					) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;",
 			);

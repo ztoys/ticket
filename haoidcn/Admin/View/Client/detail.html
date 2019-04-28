@@ -139,7 +139,9 @@
                                 <div style="text-align:center;border-bottom:1px solid #EEE;padding-bottom: 20px;">
                                     <a href="{$data.url}" class="left underline back"><  返回</a>
                                     <b>{$main.w_title}</b>
-                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-danger btn-sm right" style="color:#fff;">关闭工单</button>
+                                    <if condition="$main.wc_sataus neq '3'">
+                                        <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-danger btn-sm right" style="color:#fff;">关闭工单</button>
+                                    </if>
                                 </div>
                                 <div style="margin-top: 20px;">
                                     <p class="note2">创建人员：{$main.u_uname}</p>

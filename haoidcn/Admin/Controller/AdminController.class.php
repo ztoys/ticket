@@ -697,7 +697,7 @@ class AdminController extends CommonController {
 		$field_val = I("post.fields");
 		$field_delid = I("post.delid");
 
-		$id = $this->sel_sql_single("field_value", "field_id=$field_id");
+		$id = $this->sel_sql_single("field_value", "field_id='$field_id'");
 
 		if (!empty($field_delid)) {
 			$data_arr = array(
@@ -718,20 +718,19 @@ class AdminController extends CommonController {
 			$this->ajaxReturn($result_arr,'JSON');
 			exit;
 		}
-
+		
 		$field_val = implode("|", $field_val);
-		$id = $this->sel_sql_single("field_value", "field_id=$field_id");
+		$id = $this->sel_sql_single("field_value", "field_id='$field_id'");
+		
 		if ($id) {
 			//更新
 			$data_arr = array(
 				"fields" => $field_val,
 			);
-			$result = $this->update_sql("field_value", "field_id=$field_id", $data_arr);
-			if ($result) {
-				$result_arr = array(
-					"code" => 0,
-				);
-			}
+			$this->update_sql("field_value", "field_id='$field_id'", $data_arr);
+			$result_arr = array(
+				"code" => 0,
+			);
 			$this->ajaxReturn($result_arr,'JSON');
 		} else {
 			//插入
@@ -739,12 +738,10 @@ class AdminController extends CommonController {
 				"field_id" => $field_id,
 				"fields" => $field_val
 			);
-			$result = $this->inser_sql("field_value", $data_arr);
-			if ($result) {
-				$result_arr = array(
-					"code" => 0,
-				);
-			}
+			$this->inser_sql("field_value", $data_arr);
+			$result_arr = array(
+				"code" => 0,
+			);
 			$this->ajaxReturn($result_arr,'JSON');
 		}
 	}
