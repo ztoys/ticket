@@ -72,9 +72,9 @@ class AdminController extends CommonController {
 		);
 		$result = $this->update_sql("status", "id='$id'",$data);
 		if ($result) {
-			echo "<meta charset='utf-8' /><script>alert('修改群组成功'); location.href='group_manage.html';</script>";
+			echo "<meta charset='utf-8' /><script>alert('修改群组成功'); location.href='user_manage.html';</script>";
 		} else {
-			echo "<meta charset='utf-8' /><script>alert('修改群组失败');</script>";
+			echo "<meta charset='utf-8' /><script>alert('修改群组失败');history.go(-1);</script>";
 		}
 	}
 
@@ -83,9 +83,9 @@ class AdminController extends CommonController {
 		$id = I("post.id");
 		$result = $this->del_sql("status", "id='$id'");
 		if ($result) {
-			echo "<meta charset='utf-8' /><script>alert('删除群组成功'); location.href='group_manage.html';</script>";
+			echo "<meta charset='utf-8' /><script>alert('删除群组成功'); location.href='user_manage.html';</script>";
 		} else {
-			echo "<meta charset='utf-8' /><script>alert('删除群组失败');</script>";
+			echo "<meta charset='utf-8' /><script>alert('删除群组失败');history.go(-1);</script>";
 		}
 	}
 

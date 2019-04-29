@@ -83,11 +83,15 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    .group-list li.active a,
-    .group-list a:hover{
+    .group-list li.active,
+    .group-list li:hover{
         background: #0866c6;
         color: #FFF;
     }
+    .group-list li.active a,
+    .group-list li:hover a{
+        color: #FFF;
+    }    
     .add-group-wrap{
         padding: 10px;
     }
@@ -119,6 +123,29 @@
         width: 290px;
         margin: 0 auto;
     }
+    .group-list li {
+        position: relative;
+    }
+    .group-list li .icon-more-wrap{
+        position: absolute;
+        display: block;
+        text-align: center;
+        width: 40px;
+        height: 30px;
+        top: 0;
+        right: 0;
+        background: none;
+        cursor: pointer;
+        padding-top: 6px;
+    }
+    .group-menu-rights{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .group-menu-rights ul{
+        background: #FFF;
+    }    
 </style>
 <!-- header end -->
 
@@ -264,6 +291,9 @@
                                                         <a href="<?php echo U('Admin/user_manage',array('groupid'=>$vo['id']));?>">
                                                             <?php echo ($vo["status"]); ?>
                                                         </a>
+                                                        <span class="icon-more-wrap" onclick="handleGroup('<?php echo ($vo["id"]); ?>', '<?php echo ($vo["status"]); ?>')">
+                                                            <i class="icon-more"></i>
+                                                        </span>
                                                     </li><?php endforeach; endif; else: echo "" ;endif; ?>
                                             </ul>
                                         </div>
@@ -379,6 +409,16 @@
     
 </div><!--mainwrapper-->
 
+<!-- 群组右键菜单 -->
+<div class="group-menu rights" id="group-rights">
+    <input type="hidden" id="rights-group-id">
+    <input type="hidden" id="rights-group-name">
+    <ul>
+        <li onclick="setGroupName()">编辑</li>
+        <li onclick="delGroup()">删除</li>
+    </ul>
+</div>
+
 <!-- 模态框 START -->
 
 <!-- 添加新群组 -->
@@ -419,6 +459,69 @@
                     </button>
                     <button type="button" class="btn btn-primary" onclick="addGroup()">
                         提交
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+<!-- 修改群组名称 -->
+<div class="modal fade modal-set-group" id="modal_set_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/group_set');?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改群组名称
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-top: 20px;">
+                        <input type="hidden" name="id" id="set_group_id" value="">
+                        <label class="left label-title" style="margin-top:4px;width:50px;">名称：</label>
+                        <div class="cell">
+                            <input type="text" name="name" id="set_group_name" placeholder="请输入群组名称">
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
+
+<!-- 删除群组 -->
+<div class="modal fade modal-del-group" id="modal_del_group" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?php echo U('Admin/group_del');?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        删除群组
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="del_group_id">
+                    确认删除<span id="group_del_name"></span>吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        确认
                     </button>
                 </div>
             </div><!-- /.modal-content -->
@@ -619,6 +722,10 @@
 
         var groupName = jQuery.trim(jQuery("#group_list .active a").text());
         jQuery("#active_group_name").text(groupName);
+
+        jQuery(document).click(function(){
+            jQuery(".rights").hide();
+        })
     });
 
     function addUser() {
@@ -739,7 +846,9 @@
         })
     }
 
-    function setGroupName(id, oriName) {
+    function setGroupName() {
+        var id = jQuery("#rights-group-id").val();
+        var oriName = jQuery("#rights-group-name").val();
         jQuery("#set_group_id").val(id);
         jQuery("#set_group_name").val(oriName);
         jQuery('#modal_set_group').modal('show');
@@ -749,11 +858,30 @@
         jQuery("#group_type").val(groupTypeVal);
         jQuery("#form_group_add").submit();
     }
-    function delGroup(id, name) {
+    function delGroup() {
+        var id = jQuery("#rights-group-id").val();
+        var oriName = jQuery("#rights-group-name").val();
         jQuery("#del_group_id").val(id);
         jQuery("#group_del_name").text(name);
         jQuery('#modal_del_group').modal('show');
     }
+    function handleGroup(id, name){
+        window.event?window.event.cancelBubble=true:event.stopPropagation();
+        var obj = event.target;
+        var w = obj.offsetWidth, h = obj.offsetHeight;
+        //从目标元素开始向外遍历，累加top和left值
+        for (var t = obj.offsetTop, l = obj.offsetLeft; obj = obj.offsetParent;) {
+            t += obj.offsetTop;
+            l += obj.offsetLeft;
+        }
+        jQuery("#group-rights").css('top', t + 10);
+        jQuery("#group-rights").css('left', l + 10);
+        jQuery("#rights-group-id").val(id);
+        jQuery("#rights-group-name").val(name);
+        jQuery("#group-rights").show();
+    }
+
+    
 
 </script>
 </html>
