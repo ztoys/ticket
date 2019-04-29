@@ -211,6 +211,7 @@ class ClientController extends CommonController {
 		$ticket_level = I("get.tklevel");
 		$ticket_agent = I("get.tkagent");
 		$ticket_owned = I("get.tkowned");
+		$ticket_search = I("get.tksearch");
 		$where = "";
 		if($ticket_type != '' && $ticket_type != '0'){
 			$this->assign('ticket_type',$ticket_type);
@@ -231,6 +232,23 @@ class ClientController extends CommonController {
 		if($ticket_agent != '' && $ticket_agent != '0'){
 			$this->assign('ticket_agent',$ticket_agent);
 			$where = $where." and w.did='$ticket_agent'";
+		}
+		if($ticket_search != '') {
+			$this->assign('ticket_search',$ticket_search);
+			$where = $where."and title like '%$ticket_search%'";
+			//受理人
+			$search_user = $this->sel_sql("user","uname like '%$ticket_search%'","");
+			$agent_str = "";
+			if (count($search_user) > 0) {
+				foreach ($search_user as $val){
+					$agent_str .= $val['id'].",";
+				}
+				$agent_str = trim($agent_str, ",");
+				
+			}
+			if ($agent_str != "") {
+				$where = $where."and did in ($agent_str)";
+			}
 		}
 
 		//列表显示数据	-- 分页

@@ -52,6 +52,9 @@
         width: 850px;
         margin: 0 auto;
     }
+    .input-append.danger{
+        box-shadow: 0px 0px 6px rgba(244, 67, 54, 0.3);
+    }
 </style>
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
@@ -258,17 +261,6 @@
                 </form>
             </div><!--widgetcontent-->
             </div><!--widget-->
-            
-            
-            
-            
-        		 <!-- footer binge -->
-								<div class="footer">
-                    
-                </div><!--footer-->
-				
-				<!-- footer end -->
-                
             </div><!--maincontentinner-->
         </div><!--maincontent-->
         
@@ -294,6 +286,7 @@
             domUtils.removeAttributes(btn, ["disabled"]);
         }
     }
+
 </script>
 </body>
 </html>

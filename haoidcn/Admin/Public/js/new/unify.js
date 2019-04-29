@@ -10,15 +10,15 @@ function update_t(type){
 			if(editprofile == false){
 				return false;
 			}
-//			if(($("#phone_yl").val() != $("#phone").val())){
-//				jAlert("请获取手机校验码");
-//				return false;
-//			}
-//			if(($("#email_yl").val() != $("#email").val())){
-//				jAlert("请获取邮箱校验码");
-//				return false;
-//			}
-			
+
+			// if(($("#phone_yl").val() != $("#phone").val())){
+			// 	jAlert("请获取手机校验码");
+			// 	return false;
+			// }
+			// if(($("#email_yl").val() != $("#email").val())){
+			// 	jAlert("请获取邮箱校验码");
+			// 	return false;
+			// }
 			// if(($("#phone_yl").val() != $("#phone").val()) && $("#phone_y").val() == ""){
 			// 	jAlert("请输入手机校验码");
 			// 	return false;
@@ -28,7 +28,6 @@ function update_t(type){
 			// 	jAlert("请输入邮箱校验码");
 			// 	return false;
 			// }
-
 
 			$("#form01").submit();
 		}
@@ -41,32 +40,25 @@ function update_t(type){
 		}
 	}
 	
-	
 	//添加类型
 	if(type == "c_status"){
-		
 		var status = $("#status").val();
 		if(status == ""){
 			jAlert('类型不能为空，请输入');
 			$("#status").focus();
 			return false;
 		}
-
 		$("#form01").submit();
-		
 	}
 	
 	//添加客户
 	if(type == "client"){
-		
 		//基本信息简单判断
 		var client = upd_jiben(type);
 		if(client == false){
 			return false;
 		}
-		
 		$("#form01").submit();
-		
 	}
 	
 	//修改客户
@@ -103,7 +95,6 @@ function update_t(type){
 		
 	}
 	
-	
 	//添加售后人员
 	if(type == "service"){
 		
@@ -117,6 +108,7 @@ function update_t(type){
 		$("#form01").submit();
 		
 	}
+
 	//修改售后人员
 	if(type == "s_manage"){
 		var pwd_status = $("#pwd_status").val();
@@ -144,26 +136,18 @@ function update_t(type){
 	
 	//新工单
 	if(type == "forms" || type == "c_forms"){
-		
 		if(type == "forms"){
 			$("#cc_status").val(1);
 		}
 
 		if(type == "c_forms"){
-
 			$("#cc_status").val("-1");
 		}
 		
 		var title = $("#title").val();
 		if(title == ""){
-			jAlert("标题不能为空");
+			jAlert("主题不能为空");
 			$("#title").focus();
-			return false;
-		}
-		var issue = $("#issue").val();
-		if(issue == ""){
-			jAlert("标题不能为空");
-			$("#issue").focus();
 			return false;
 		}
 		var editorValue = $("#editorValue").val();
@@ -182,18 +166,24 @@ function update_t(type){
 				return false;
 			}
 		}
-		// for ( var j = 1; j <= file_de; j++ ) { 
-		// 	if($("#file_s"+j).val() != ""){
-		// 		file_g +=$("#file_s"+j).val();
-		// 		var extStart = file_g.lastIndexOf(".");
-		// 		var ext = file_g.substring(extStart, file_g.length).toUpperCase();
-		// 		 if (ext != ".JPEG" && ext != ".JPG" && ext != ".GIF" && ext != ".PNG") {
-		// 			 jAlert("上传文件限于jpeg,jpg,gif,png格式");
-		//             return false;
-		//         }
-		// 	}
-		// }
-		
+		//50M限制提示
+		var restrictedByte = 52428800;
+		var exceedArr = [];
+		for ( var j = 1; j <= file_de; j++ ) { 
+			if($("#file_s"+j).val() != ""){
+				var size = $("#file_s"+j).get(0).files[0].size;
+				if (size > restrictedByte){
+					exceedArr.push(j);
+				}
+			}
+		}
+		if (exceedArr.length) {
+			jQuery.each(exceedArr, function(index, val){
+				jQuery("#file_j"+val).find(".input-append").addClass('danger');
+			});
+			alert("附件大小不能超过50M");
+			return false;
+		}
 
 		$("#form01").submit();
 	}

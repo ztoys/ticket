@@ -177,14 +177,12 @@
     <div class="rightpanel">
         
          <!-- head binge -->
-        
 			
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a href="<?php echo U('Console/dashboard');?>">面板</a> <span class="separator"></span></li>
             <li>处理工单</li>
         </ul>
-		
 		<!-- head end -->
 		
         <div class="maincontent">
@@ -303,7 +301,10 @@
                             </table> 
                             <?php echo ($page); endif; ?>
 
-                        <?php if($limits == '2'): ?><div class="form-wrap head sm-select">
+                        <?php if($limits == '2'): ?><div>
+                                <input type="text" id="ticket_search" placeholder="搜索标题或者工单发起人">
+                            </div>
+                            <div class="form-wrap head sm-select">
                                 <div class="left">
                                     <label for="ticket_owned" class="form-label">所属客户</label>
                                     <select id="ticket_owned">
@@ -426,6 +427,7 @@
 <input type="hidden" value="<?php echo ($ticket_level); ?>" id="de_ticket_level">
 <input type="hidden" value="<?php echo ($ticket_agent); ?>" id="de_ticket_agent">
 <input type="hidden" value="<?php echo ($ticket_owned); ?>" id="de_ticket_owned">
+<input type="hidden" value="<?php echo ($ticket_search); ?>" id="de_ticket_search">
 
 <!-- 评价模态框 -->
 <div class="modal fade modal-comment" id="modal_comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -502,16 +504,22 @@
         var ticket_case = jQuery("#ticket_case").val();
         var ticket_owned = jQuery("#ticket_owned").val();
         var ticket_agent = jQuery("#ticket_agent").val() || '0';
+        var ticket_search = jQuery("#ticket_search").val();
 
-        var url = "<?php echo U('Client/messages', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticekt_level','tkstatus'=>'ticket_status','tkagent'=>'ticket_agent','tkowned'=>ticket_owned));?>";
+        var url = "<?php echo U('Client/messages', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticekt_level','tkstatus'=>'ticket_status','tkagent'=>'ticket_agent','tkowned'=>'ticket_owned','tksearch'=>'ticket_search'));?>";
         url = url.replace("ticket_case", ticket_case)
                  .replace("ticket_type", ticket_type)
                  .replace("ticekt_level", ticekt_level)
                  .replace("ticket_status", ticket_status)
                  .replace("ticket_owned", ticket_owned)
-                 .replace("ticket_agent", ticket_agent);
+                 .replace("ticket_agent", ticket_agent)
+                 .replace("ticket_search", ticket_search);
         jQuery(location).attr('href', url);
     }
+
+    jQuery("#ticket_search").bind('change',function(){
+        selectTicket();
+    })
 
     jQuery(document).ready(function(){
         var de_ticket_type = jQuery("#de_ticket_type").val();
@@ -519,6 +527,7 @@
         var de_ticket_level = jQuery("#de_ticket_level").val();
         var de_ticket_agent = jQuery("#de_ticket_agent").val();
         var de_ticket_owned = jQuery("#de_ticket_owned").val();
+        var de_ticket_search = jQuery("#de_ticket_search").val();
         if (de_ticket_type) {
             jQuery("#ticket_type").val(de_ticket_type);
         }
@@ -534,8 +543,24 @@
         if (de_ticket_owned) {
             jQuery("#ticket_owned").val(de_ticket_owned);
         }
-        
+        if (de_ticket_search) {
+            jQuery("#ticket_search").val(de_ticket_search);
+        }
     })
+
+    // 函数防抖，在高频率执行时，如果没有传入第二个参数则300ms内没有再次触发才执行callback
+    function debounce (callback, time) {
+        var timer 
+        return function () {
+        clearTimeout(timer)
+        timer = setTimeout(function () {
+            callback && callback()
+        }, time || 300)
+        }
+    }
+
+
+
 
 </script>
 </body>
