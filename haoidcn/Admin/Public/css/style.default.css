@@ -516,8 +516,6 @@ input[type="number"] {
 .userlist-favorites li .link a:hover { text-decoration: none; color: #fff; }
 
 
-
-
 /*** HEADERS AND BOXES ***/
 
 .title-danger { background-color: #dd0000 !important; }
@@ -626,7 +624,7 @@ input[type="number"] {
 	margin-left: 25px;
 }
 .form-wrap.sm-select select{
-	width: 150px;
+	width: 120px;
 }
 
 /*** BUTTONS & ICONS ***/

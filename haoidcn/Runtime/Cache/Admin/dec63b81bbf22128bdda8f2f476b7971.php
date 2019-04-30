@@ -198,54 +198,60 @@
                         </ul> -->
                     </div>
                     <div class="messagecontent" style="border: none;">
-                        <?php if($limits == '3'): ?><div class="form-wrap head sm-select">
-                                <div class="left">
-                                    <label for="ticket_owned" class="form-label">所属客户</label>
-                                    <select id="ticket_owned">
-                                        <option value="0">全部</option>
-                                        <?php if(is_array($owned_field)): $i = 0; $__LIST__ = $owned_field;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['id'] != ''): ?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
-                                    </select>
+                        <?php if($limits == '3'): ?><form id="form_head_search">
+                                <div class="form-wrap head sm-select">
+                                    <div class="left">
+                                        <label for="ticket_owned" class="form-label">所属客户</label>
+                                        <select id="ticket_owned">
+                                            <option value="0">全部</option>
+                                            <?php if(is_array($owned_field)): $i = 0; $__LIST__ = $owned_field;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['id'] != ''): ?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_agent" class="form-label">受理人</label>
+                                        <select id="ticket_agent">
+                                            <option value="0">全部</option>
+                                            <?php if(is_array($agent_list_info)): $i = 0; $__LIST__ = $agent_list_info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_status" class="form-label">状态</label>
+                                        <select id="ticket_status">
+                                            <option value="0">全部</option>
+                                            <option value="1">待处理</option>
+                                            <option value="2">正在研发中</option>
+                                            <option value="4">待评价</option>
+                                            <option value="3">已关闭</option>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_level" class="form-label">优先级</label>
+                                        <select id="ticket_level">
+                                            <option value="0">全部</option>
+                                            <option value="3">紧急</option>
+                                            <option value="2">重要</option>
+                                            <option value="1">一般</option>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_type" class="form-label">工单类型</label>
+                                        <select id="ticket_type">
+                                            <option value="0">全部</option>
+                                            <option value="1">产品BUG</option>
+                                            <option value="2">新需求</option>
+                                            <option value="3">投诉与建议</option>
+                                            <option value="4">其它</option>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_search" class="form-label">标题、负责人</label>
+                                        <input type="text" id="ticket_search" style="width:120px;">
+                                    </div>
+                                    <div class="left">
+                                        <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
+                                    </div>
                                 </div>
-                                <div class="left">
-                                    <label for="ticket_agent" class="form-label">受理人</label>
-                                    <select id="ticket_agent">
-                                        <option value="0">全部</option>
-                                        <?php if(is_array($agent_list_info)): $i = 0; $__LIST__ = $agent_list_info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                    </select>
-                                </div>
-                                <div class="left">
-                                    <label for="ticket_status" class="form-label">状态</label>
-                                    <select id="ticket_status">
-                                        <option value="0">全部</option>
-                                        <option value="1">待处理</option>
-                                        <option value="2">正在研发中</option>
-                                        <option value="4">待评价</option>
-                                        <option value="3">已关闭</option>
-                                    </select>
-                                </div>
-                                <div class="left">
-                                    <label for="ticket_level" class="form-label">优先级</label>
-                                    <select id="ticket_level">
-                                        <option value="0">全部</option>
-                                        <option value="3">紧急</option>
-                                        <option value="2">重要</option>
-                                        <option value="1">一般</option>
-                                    </select>
-                                </div>
-                                <div class="left">
-                                    <label for="ticket_type" class="form-label">工单类型</label>
-                                    <select id="ticket_type">
-                                        <option value="0">全部</option>
-                                        <option value="1">产品BUG</option>
-                                        <option value="2">新需求</option>
-                                        <option value="3">投诉与建议</option>
-                                        <option value="4">其它</option>
-                                    </select>
-                                </div>
-                                <div class="left">
-                                    <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
-                                </div>
-                            </div>
+                            </form>
                             <table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
                                     <th width="5%">编号</th>
@@ -301,50 +307,53 @@
                             </table> 
                             <?php echo ($page); endif; ?>
 
-                        <?php if($limits == '2'): ?><div>
-                                <input type="text" id="ticket_search" placeholder="搜索标题或者工单发起人">
-                            </div>
-                            <div class="form-wrap head sm-select">
-                                <div class="left">
-                                    <label for="ticket_owned" class="form-label">所属客户</label>
-                                    <select id="ticket_owned">
-                                        <option value="0">全部</option>
-                                        <?php if(is_array($owned_field)): $i = 0; $__LIST__ = $owned_field;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['id'] != ''): ?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
-                                    </select>
+                        <?php if($limits == '2'): ?><form id="form_head_search">
+                                <div class="form-wrap head sm-select">
+                                    <div class="left">
+                                        <label for="ticket_owned" class="form-label">所属客户</label>
+                                        <select id="ticket_owned">
+                                            <option value="0">全部</option>
+                                            <?php if(is_array($owned_field)): $i = 0; $__LIST__ = $owned_field;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if($vo['id'] != ''): ?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["name"]); ?></option><?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_status" class="form-label">状态</label>
+                                        <select id="ticket_status">
+                                            <option value="0">全部</option>
+                                            <option value="1">待处理</option>
+                                            <option value="2">正在研发中</option>
+                                            <option value="4">待评价</option>
+                                            <option value="3">已关闭</option>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_level" class="form-label">优先级</label>
+                                        <select id="ticket_level">
+                                            <option value="0">全部</option>
+                                            <option value="3">紧急</option>
+                                            <option value="2">重要</option>
+                                            <option value="1">一般</option>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_type" class="form-label">工单类型</label>
+                                        <select id="ticket_type">
+                                            <option value="0">全部</option>
+                                            <option value="1">产品BUG</option>
+                                            <option value="2">新需求</option>
+                                            <option value="3">投诉与建议</option>
+                                            <option value="4">其它</option>
+                                        </select>
+                                    </div>
+                                    <div class="left">
+                                        <label for="ticket_search" class="form-label">标题、发起人</label>
+                                        <input type="text" id="ticket_search" style="width:120px;">
+                                    </div>
+                                    <div class="left">
+                                        <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">搜索</button>
+                                    </div>
                                 </div>
-                                <div class="left">
-                                    <label for="ticket_status" class="form-label">状态</label>
-                                    <select id="ticket_status">
-                                        <option value="0">全部</option>
-                                        <option value="1">待处理</option>
-                                        <option value="2">正在研发中</option>
-                                        <option value="4">待评价</option>
-                                        <option value="3">已关闭</option>
-                                    </select>
-                                </div>
-                                <div class="left">
-                                    <label for="ticket_level" class="form-label">优先级</label>
-                                    <select id="ticket_level">
-                                        <option value="0">全部</option>
-                                        <option value="3">紧急</option>
-                                        <option value="2">重要</option>
-                                        <option value="1">一般</option>
-                                    </select>
-                                </div>
-                                <div class="left">
-                                    <label for="ticket_type" class="form-label">工单类型</label>
-                                    <select id="ticket_type">
-                                        <option value="0">全部</option>
-                                        <option value="1">产品BUG</option>
-                                        <option value="2">新需求</option>
-                                        <option value="3">投诉与建议</option>
-                                        <option value="4">其它</option>
-                                    </select>
-                                </div>
-                                <div class="left">
-                                    <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
-                                </div>
-                            </div>
+                            </form>
 
                             <table class="table table-bordered table-fixed table-tr-click">
                                 <tr>
@@ -517,10 +526,6 @@
         jQuery(location).attr('href', url);
     }
 
-    jQuery("#ticket_search").bind('change',function(){
-        selectTicket();
-    })
-
     jQuery(document).ready(function(){
         var de_ticket_type = jQuery("#de_ticket_type").val();
         var de_ticket_status = jQuery("#de_ticket_status").val();
@@ -548,19 +553,10 @@
         }
     })
 
-    // 函数防抖，在高频率执行时，如果没有传入第二个参数则300ms内没有再次触发才执行callback
-    function debounce (callback, time) {
-        var timer 
-        return function () {
-        clearTimeout(timer)
-        timer = setTimeout(function () {
-            callback && callback()
-        }, time || 300)
-        }
-    }
-
-
-
+    jQuery("#form_head_search").submit(function(){
+        selectTicket();
+        return false;
+    })
 
 </script>
 </body>

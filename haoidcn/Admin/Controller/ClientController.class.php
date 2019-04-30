@@ -235,7 +235,7 @@ class ClientController extends CommonController {
 		}
 		if($ticket_search != '') {
 			$this->assign('ticket_search',$ticket_search);
-			$where = $where."and title like '%$ticket_search%'";
+			$where .= " and (title like '%$ticket_search%'";
 			//受理人
 			$search_user = $this->sel_sql("user","uname like '%$ticket_search%'","");
 			$agent_str = "";
@@ -244,11 +244,17 @@ class ClientController extends CommonController {
 					$agent_str .= $val['id'].",";
 				}
 				$agent_str = trim($agent_str, ",");
-				
 			}
 			if ($agent_str != "") {
-				$where = $where."and did in ($agent_str)";
+				if ($limits == 3) {
+					// 客服
+					$where .= " or did in ($agent_str)";
+				} else if ($limits == 2) {
+					//运维
+					$where .= " or uid in ($agent_str)";
+				}
 			}
+			$where .= ")";
 		}
 
 		//列表显示数据	-- 分页
@@ -310,11 +316,13 @@ class ClientController extends CommonController {
 				$p = Getpage($count);
 				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "(w.did is null or w.did=0) and w.wc_sataus<>'3' $where", $db_order, $p->firstRow, $p->listRows);
 			} elseif ($status == "manned") {
+				//我的工单
 				// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "w.wc_sataus<>'3' and did='$id' $where", $db_order);
 
 				$count = $this->left_join_count($db_work, "w", $db_field, $db_join, "did='$id' $where", $db_order);
 				$p = Getpage($count);
 				$list = $this->left_join_limit($db_work, "w", $db_field, $db_join, "did='$id' $where", $db_order, $p->firstRow, $p->listRows);
+
 			} else {
 				// $list = $this->left_join_sql($db_work, "w", $db_field, $db_join, "wc_sataus='$sta_nb' and did='$id' $where", $db_order);
 				
@@ -692,14 +700,13 @@ class ClientController extends CommonController {
 		$wid = I('post.pid');
 		$url_status = I('get.case');
 
-		$ticket_agent_name = I("post.ticket_agent_name");
 		$ticket_status_name = I("post.ticket_status_name");
 		$ticket_product_name = I("post.ticket_product_name");
 		$ticket_develop_name = I("post.ticket_develop_name");
 		$ticket_finish_name = I("post.ticket_finish_name");
 		$url = __ROOT__."/index.php/Client/detail_agent/case/$url_status/id/".$wid;
 
-		$ticket_agent = I('post.ticket_agent');
+		$ticket_agent = $id;
 		$ticket_status = I('post.ticket_status');
 		if($ticket_agent == '-1') {
 			$ticket_agent = null;
@@ -721,7 +728,7 @@ class ClientController extends CommonController {
 
 		$ticket_info = $this->sel_sql_single('work', "id='$wid'");
 
-		if (!($ticket_info['did'] == $ticket_agent && $ticket_info['wc_sataus'] == $ticket_status && $ticket_info['work_product'] == $ticket_product && $ticket_info['work_develop'] == $ticket_develop && $ticket_info['work_finish'] == $ticket_finish)) {
+		if (!($ticket_info['wc_sataus'] == $ticket_status && $ticket_info['work_product'] == $ticket_product && $ticket_info['work_develop'] == $ticket_develop && $ticket_info['work_finish'] == $ticket_finish)) {
 			if ($ticket_status == '2' || $ticket_status == '4') {
 				$ticket_accdate = time();
 			} else {
@@ -740,7 +747,7 @@ class ClientController extends CommonController {
 	
 			//增加操作记录 -- 工单状态修改
 			$wrecord = new WrecordModel();
-			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态<br>【受理人：'.$ticket_agent_name.'】<br>【工单状态：'.$ticket_status_name.'】<br>【工单产品确认：'.$ticket_product_name.'】<br>【工单研发确认：'.$ticket_develop_name.'】<br>【工单完成时间：'.$ticket_finish_name.'】');
+			$wrecord->addWorkRecord($wid, $id, time(), '修改了工单状态<br>【工单状态：'.$ticket_status_name.'】<br>【工单产品确认：'.$ticket_product_name.'】<br>【工单研发确认：'.$ticket_develop_name.'】<br>【工单完成时间：'.$ticket_finish_name.'】');
 		}
 		
 		if(I('post.editorValue') != ""){
@@ -752,7 +759,6 @@ class ClientController extends CommonController {
 			);
 			$result = $this->inser_sql("addwork",$data);
 			if($result){
-
 				//增加操作记录 -- 工单评论
 				$wrecord = new WrecordModel();
 				$wrecord->addWorkRecord($wid, $id, time(), '评论了工单：'.htmlspecialchars_decode(I('post.editorValue')));
@@ -764,6 +770,14 @@ class ClientController extends CommonController {
 					'tz_status' => '1',
 				);
 				$reply_sql = $this->update_sql("work","id=".$wid, $replay_data);
+
+				//受理时间
+				if (!isset($ticket_info['accdate']) || $ticket_info['accdate'] == "") {
+					$accdate_data = array(
+						'accdate' => time(),
+					);
+					$reply_sql = $this->update_sql("work","id=".$wid, $accdate_data);
+				}
 
 				/**暂时注释  start*/
 				//如果没有受理人，自动成为该受理人  

@@ -393,20 +393,15 @@
 <script type="text/javascript">
 
     function submitTicket() {
-        var ticket_agent = jQuery("#select_ticket_agent").val();
         var ticket_status = jQuery("#select_ticket_status").val();
         var ticket_product = jQuery("#select_ticket_product").val();
         var ticket_develop = jQuery("#select_ticket_develop").val();
         var ticket_finish = jQuery("#ticket_finish").val();
-        if (ticket_status == "2" && ticket_agent == "-1") {
-            alert("请选择受理人");
-            return false;
-        }
+        
         if (ticket_finish) {
             ticket_finish = ticket_finish.replace(/-/g,'/'); 
             var timestamp = new Date(ticket_finish).getTime()/1000;
         }
-        jQuery("#form_agent").val(ticket_agent);
         jQuery("#form_ticket_status").val(ticket_status);
         jQuery("#form_ticket_product").val(ticket_product);
         jQuery("#form_ticket_develop").val(ticket_develop);
@@ -415,7 +410,7 @@
         jQuery("#form_ticket_status_name").val(jQuery("#select_ticket_status").find("option:selected").text());
         jQuery("#form_ticket_product_name").val(jQuery("#select_ticket_product").find("option:selected").text());
         jQuery("#form_ticket_develop_name").val(jQuery("#select_ticket_develop").find("option:selected").text());
-        jQuery("#form_ticket_finish_name").val(jQuery("#select_ticket_finish").find("option:selected").text());
+        jQuery("#form_ticket_finish_name").val(jQuery("#ticket_finish").val());
         jQuery("#form_ticket").submit();
     }
 
