@@ -609,18 +609,18 @@ class ClientController extends CommonController {
 		}
 		
 		$data = array(
-				'unread'		=>	"unread",
-				"selected"		=>	"selected",
-				'unread'		=>	"unread",
-				'aid'			=>	$aid,
-				'limits'		=>	$limits,
-				'class'			=>	'class="active"',
-				'case'			=>	$status,
-				'status'		=>  $status,
-				"active02"		=>	"class='active'",
-				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$url_status,
-				'url_status'     =>  $url_status,
-				'sou'			=>	'&sou='.I("get.sou"),
+			'unread'		=>	"unread",
+			"selected"		=>	"selected",
+			'unread'		=>	"unread",
+			'aid'			=>	$aid,
+			'limits'		=>	$limits,
+			'class'			=>	'class="active"',
+			'case'			=>	$status,
+			'status'		=>  $status,
+			"active02"		=>	"class='active'",
+			'url'			=>	__ROOT__."/index.php/Client/messages/case/".$url_status,
+			'url_status'     =>  $url_status,
+			'sou'			=>	'&sou='.I("get.sou"),
 		);
 		$this->assign('data',$data);
 		
@@ -641,7 +641,7 @@ class ClientController extends CommonController {
 
 		//列表选中显示样式
 		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
-		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus, w.did w_did,w.work_product,w.work_develop,w.work_finish,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
+		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.accdate w_accdate,w.wc_sataus,w.work_type w_type, w.did w_did,w.work_level w_level,w.work_product,w.work_develop,w.work_finish,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
 		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
@@ -675,22 +675,26 @@ class ClientController extends CommonController {
 		$this->assign('list_group_user', $list_group_user);
 		
 		$data = array(
-				'unread'		=>	"unread",
-				"selected"		=>	"selected",
-				'unread'		=>	"unread",
-				'aid'			=>	$aid,
-				'limits'		=>	$limits,
-				'class'			=>	'class="active"',
-				'case'			=>	$status,
-				'status'		=>  $status,
-				"active02"		=>	"class='active'",
-				'url'			=>	__ROOT__."/index.php/Client/messages/case/".$url_status,
-				'url_status'    =>  $url_status,
-				'sou'			=>	'&sou='.I("get.sou"),
-				'record'		=>  $record_list,
+			'unread'		=>	"unread",
+			"selected"		=>	"selected",
+			'unread'		=>	"unread",
+			'aid'			=>	$aid,
+			'uid'			=>  $id,
+			'limits'		=>	$limits,
+			'class'			=>	'class="active"',
+			'case'			=>	'manned',
+			'status'		=>  $status,
+			"active02"		=>	"class='active'",
+			'url'			=>	__ROOT__."/index.php/Client/messages/case/".$url_status,
+			'url_status'    =>  $url_status,
+			'sou'			=>	'&sou='.I("get.sou"),
+			'record'		=>  $record_list,
 		);
 		$this->assign('data',$data);
 		
+		$ticket_count = $this->getWorkCount();
+		$this->assign('ticket_count', $ticket_count);
+
 		$this->display();
 	}
 

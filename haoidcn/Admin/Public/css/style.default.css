@@ -54,7 +54,7 @@ h4 { font-size: 16px; }
 
 body {
 	background: url(../images/leftpanelbg.png) repeat-y 0 0; font-size: 12px;
-	font-family: 'RobotoRegular', 'Helvetica Neue', Helvetica, sans-serif; }
+	font-family: 'Microsoft Yahei','RobotoRegular', 'Helvetica Neue', Helvetica, sans-serif; }
 body.errorpage { background: #fff url(../images/bg1.png);  }
 body.loginpage { 
 	background: url(../images/bg.png) no-repeat; 
@@ -280,8 +280,8 @@ input[type="number"] {
 }
 .icon-file{
 	display: inline-block;
-	width: 64px;
-	height: 64px;
+	width: 50px;
+	height: 50px;
 	background: url(../images/icon-file.png) no-repeat;
 	background-size: cover;
 }
@@ -297,6 +297,20 @@ input[type="number"] {
 	width: 12px;
 	height: 12px;
 	background: url(../images/icon-more.png) no-repeat;
+	background-size: cover;
+}
+.icon-doc{
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background: url(../images/icons/icon-doc.png) no-repeat;
+	background-size: cover;
+}
+.icon-person{
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background: url(../images/icons/icon-person.png) no-repeat;
 	background-size: cover;
 }
 
@@ -1138,7 +1152,7 @@ input[type="number"] {
 .msgreply .thumb { width: 40px; height: 40px; float: left; }
 .msgreply .reply { margin-left: 50px; }
 .msgreply textarea {
-		  display: block; width: 100%; height: 128px; -moz-box-sizing: border-box;
+		  display: block; width: 100%; height: 150px; -moz-box-sizing: border-box;
 		  -webkit-box-sizing: border-box; box-sizing: border-box; }
 		  
 

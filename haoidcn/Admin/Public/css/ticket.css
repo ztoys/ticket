@@ -1,0 +1,141 @@
+.messagecontent{
+	border: none;
+}
+.ticket-head{
+	font-size: 15px;
+	text-align: center;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #DDD;
+	font-weight: bolder;
+}
+.ticket-head .back{
+	font-size: 14px;
+	font-weight: 500;
+}
+.messagepanel{
+	overflow: hidden;
+}
+.messageleft{
+	width: auto;
+}
+.messagecontent {
+	padding: 20px;
+}
+.main-right{
+	float: right;
+	padding-bottom: 9999px;
+	margin-bottom: -9999px;
+	border-left: 1px solid #DDD;
+}
+.messageview .msgreply{
+	padding: 0;
+	border-bottom: none;
+}
+.ticket-info{
+	width: 300px;
+}
+.ticket-info-title{
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 15px;
+	border-bottom: 1px solid #DDD;
+	color: #3986d4;
+	font-weight: bold;
+}
+.ticket-info-main{
+	padding: 20px;
+}
+.ticket-info-label{
+	margin: 30px 0 20px;
+	font-size: 15px;
+}
+.ticket-info-label i{
+	margin-right: 10px;
+	vertical-align: -3px;
+}
+.ticket-info-detail p{
+	font-size: 13px;
+}
+.ticket-info-detail p+p{
+	margin-top: 35px;
+}
+.ticket-info-detail .info-label{
+	display: inline-block;
+	margin-right: 10px;
+}
+.msg-reply-wrap{
+	background: none;
+	padding: 0;
+	border: none;
+}
+.ticket-title{
+	font-size: 18px;
+	font-weight: 600;
+	margin: 30px 0 20px;
+}
+.ticket-content{
+	font-size: 14px;
+}
+.ticket-file{
+	font-size: 12px;
+	margin-top: 50px;
+	padding-top: 30px;
+	border-top: 1px dashed #DDD;
+}
+.ticket-file-item{
+	float: left;
+}
+.ticket-file-item+.ticket-file-item{
+	margin-left: 30px;
+}
+.btn-reply{
+	font-size: 13px;
+	height: 35px;
+	line-height: 35px;
+	width: 80px;
+	border-radius: 5px;
+	padding: 0;
+}
+.tab-content-wrap{
+	max-height: 400px;
+	overflow-y: auto;
+	margin-bottom: 50px;	
+}
+.tab-content-wrap .tab-item{
+	display: none;
+}
+.msgauthor{
+	border: none;
+	padding: 0;
+}
+.msgauthor+.msgauthor{
+	margin-top: 40px;
+}
+.msgauthor .head-portrait{
+	padding-top: 5px;
+}
+.reply-right{
+	padding-left: 15px;
+}
+.reply-right .name{
+	font-size: 14px;
+}
+.reply-right .date{
+	font-size: 12px;
+	color: #999;
+	margin-left: 5px;
+	vertical-align: bottom;
+}
+.msg-reply-wrap .msgbody{
+	background: #F2F6FA;
+	border: 1px solid #CDE4FF;
+	margin-top: 5px;
+	padding: 5px 10px;
+	float: left;
+	border-radius: 2px;
+}
+.msg-reply-wrap .msgbody.mine{
+	border: none;
+	background: #CDE4FF;
+}
