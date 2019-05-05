@@ -657,6 +657,7 @@ class ClientController extends CommonController {
 		//对话内容显示
 		$record = D("addwork as a")->field("u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid")->join("LEFT JOIN ".C('DB_PREFIX')."user as u ON a.uid=u.id")->where("a.pid='$aid'")->order("repdate asc")->select();
 		$this->assign('record',$record);
+		$this->assign('record_empty', '<p class="record-empty">暂无服务器记录</p>');
 
 		//显示评价
 		if($status == "3") {

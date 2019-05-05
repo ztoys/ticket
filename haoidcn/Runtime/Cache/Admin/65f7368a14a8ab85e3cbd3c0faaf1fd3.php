@@ -248,7 +248,7 @@
         <div class="maincontent">
             <div class="">
                 <div class="messagepanel">
-                    <div class="ticket-info main-right">
+                    <div class="ticket-info">
                         <?php if($main["wc_sataus"] != '3'): ?><div class="">
                                 <div class="ticket-info-title">
                                     工单信息
@@ -342,7 +342,7 @@
                             </div><?php endif; ?>
                     </div>
 
-                    <div class="messagecontent cell">
+                    <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
                             <a href="<?php echo ($data["url"]); ?>" class="back left underline"><  返回</a>
@@ -390,21 +390,21 @@
                                         <?php echo ($main["w_issue"]); ?>
                                     </div>
                                     <div class="ticket-file">
-                                        <?php if(!empty($file_arr[0])): ?><p>附件：</p>
-                                            <div style="overflow:hidden;zoom:1;margin-top: 10px;">
+                                        <?php if(!empty($file_arr[0])): ?><p class="left">附件：</p>
+                                            <div class="cell">
                                                 <?php if(is_array($file_arr)): foreach($file_arr as $k=>$vo): ?><div class="ticket-file-item" id="picture<?php echo ($k); ?>" title="<?php echo ($vo['file_name']); ?>">
                                                         <div>
-                                                            <div style="height:130px;text-align:center;">
+                                                            <div class="left">
                                                                 <i class="icon-file"></i>
                                                                 <input type="hidden" name="photo01[]" value="<?php echo ($vo['id']); ?>">
-                                                                <div style="margin-top:10px ;text-align:center;">
-                                                                    <p class="overlfow-text" style="max-width: 100px;">
-                                                                        <?php echo ($vo['file_name']); ?>
-                                                                    </p>
-                                                                    <a href="<?php echo U('Client/download_file',array('fileid'=>$vo['id']));?>" target="_blank">下载</a>
-                                                                    <!-- <a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a> -->
-                                                                </div>
                                                             </div>
+                                                            <div class="left file-text">
+                                                                <p class="overlfow-text" style="max-width: 100px;"><?php echo ($vo['file_name']); ?></p>
+                                                                <a href="<?php echo U('Client/download_file',array('fileid'=>$vo['id']));?>" target="_blank">下载</a>
+                                                            </div>
+                                                            <!-- <div style="margin-top:5px ;text-align:center;">
+                                                                <a href="javascript:void()" onclick="del_tp('picture<?php echo ($k); ?>');">删除</a>
+                                                            </div> -->
                                                         </div>
                                                     </div><?php endforeach; endif; ?>
                                             </div><?php endif; ?>	
@@ -427,7 +427,7 @@
                                 <div class="tab-content-wrap">
                                     <div class="tab-item">
                                         <div class="msg-reply-wrap">
-                                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor">
+                                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "$record_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor">
                                                     <div class="left head-portrait">
                                                         <i class="icon-person"></i>
                                                     </div>
@@ -443,7 +443,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div><!--msgauthor--><?php endforeach; endif; else: echo "" ;endif; ?>
+                                                </div><!--msgauthor--><?php endforeach; endif; else: echo "$record_empty" ;endif; ?>
                                         </div>
                                     </div>
                                     <div class="tab-item">

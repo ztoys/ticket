@@ -115,7 +115,7 @@
         <div class="maincontent">
             <div class="">
                 <div class="messagepanel">
-                    <div class="ticket-info main-right">
+                    <div class="ticket-info">
                         <if condition="$main.wc_sataus neq '3'">
                             <div class="">
                                 <div class="ticket-info-title">
@@ -221,7 +221,7 @@
                         </if>
                     </div>
 
-                    <div class="messagecontent cell">
+                    <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
                             <a href="{$data.url}" class="back left underline"><  返回</a>
@@ -298,22 +298,22 @@
                                     </div>
                                     <div class="ticket-file">
                                         <notempty name="file_arr[0]">
-                                            <p>附件：</p>
-                                            <div style="overflow:hidden;zoom:1;margin-top: 10px;">
+                                            <p class="left">附件：</p>
+                                            <div class="cell">
                                                 <foreach name="file_arr" item="vo" key="k">
                                                     <div class="ticket-file-item" id="picture{$k}" title="{$vo['file_name']}">
                                                         <div>
-                                                            <div style="height:130px;text-align:center;">
+                                                            <div class="left">
                                                                 <i class="icon-file"></i>
                                                                 <input type="hidden" name="photo01[]" value="{$vo['id']}">
-                                                                <div style="margin-top:10px ;text-align:center;">
-                                                                    <p class="overlfow-text" style="max-width: 100px;">
-                                                                        {$vo['file_name']}
-                                                                    </p>
-                                                                    <a href="{:U('Client/download_file',array('fileid'=>$vo['id']))}" target="_blank">下载</a>
-                                                                    <!-- <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a> -->
-                                                                </div>
                                                             </div>
+                                                            <div class="left file-text">
+                                                                <p class="overlfow-text" style="max-width: 100px;">{$vo['file_name']}</p>
+                                                                <a href="{:U('Client/download_file',array('fileid'=>$vo['id']))}" target="_blank">下载</a>
+                                                            </div>
+                                                            <!-- <div style="margin-top:5px ;text-align:center;">
+                                                                <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </foreach>
@@ -338,7 +338,7 @@
                                 <div class="tab-content-wrap">
                                     <div class="tab-item">
                                         <div class="msg-reply-wrap">
-                                            <volist name='record' id="vo">
+                                            <volist name='record' id="vo" empty="$record_empty">
                                                 <div class="msgauthor">
                                                     <div class="left head-portrait">
                                                         <i class="icon-person"></i>

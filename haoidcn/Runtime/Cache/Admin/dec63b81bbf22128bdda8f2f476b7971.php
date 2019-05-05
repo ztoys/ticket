@@ -346,8 +346,7 @@
                                         </select>
                                     </div>
                                     <div class="left">
-                                        <label for="ticket_search" class="form-label">标题、发起人</label>
-                                        <input type="text" id="ticket_search" style="width:120px;">
+                                        <input type="text" id="ticket_search" style="width:120px;" placeholder="搜索标题、发起人">
                                     </div>
                                     <div class="left">
                                         <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">搜索</button>
