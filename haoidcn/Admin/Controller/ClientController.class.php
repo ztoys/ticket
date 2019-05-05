@@ -261,7 +261,7 @@ class ClientController extends CommonController {
 		if($limits == 3){
 			// 客服
 			$db_field = "w.id id, w.title title, w.puddate puddate, w.wc_sataus wc_sataus, w.did did, w.work_type work_type,w.work_level work_level,w.work_owned work_owned,w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname dname";
-			$db_order = "field(wc_sataus, '1','2','4','-1','3'),puddate desc";
+			$db_order = "field(wc_sataus, '4','1','2','-1','3'),puddate desc";
 			
 			if (isset($sel_reply)) {
 				// $list = $this->left_join_sql("work", "w", $db_field,"left join ".C('DB_PREFIX')."user AS u ON w.did=u.id", "wc_sataus<>'3' and tz_status='1' and uid='$id' $where", $db_order);
@@ -306,7 +306,7 @@ class ClientController extends CommonController {
 			$db_work = "work";
 			$db_field = "w.id id, w.title title, w.puddate puddate, w.accdate accdate, w.wc_sataus wc_sataus, w.uid uid, w.work_type work_type,w.work_level work_level,w.work_owned work_owned, w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname uname";
 			$db_join = "left join ".C('DB_PREFIX')."user AS u ON w.uid=u.id";
-			$db_order = "field(wc_sataus, '1','2','4','-1','3'),puddate desc";
+			$db_order = "field(wc_sataus, '4','1','2','-1','3'),puddate desc";
 
 			if ($status == "all") {
 				// 未指派工单
@@ -343,7 +343,7 @@ class ClientController extends CommonController {
 			$this->assign('ticket_count', $ticket_count);
 
 		}else if($limits == 1){
-			$db_order = "field(wc_sataus, '1','2','4','-1','3'),puddate desc";
+			$db_order = "field(wc_sataus, '4','1','2','-1','3'),puddate desc";
 			
 			$list = $this->sel_sql("work","wc_sataus='$sta_nb' $where",$db_order);
 			$this->assign('list',$list);
@@ -543,8 +543,7 @@ class ClientController extends CommonController {
 
 		//列表选中显示样式
 		$main = D('Work as w')->field("u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,
-		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,
-		s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
+		w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.accdate w_accdate,w.wc_sataus,w.work_type w_type, w.did w_did,w.work_level w_level,w.work_product,w.work_develop,w.work_finish,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone")->
 		join("LEFT JOIN ".C('DB_PREFIX')."user as u ON w.uid=u.id")->
 		join("LEFT JOIN ".C('DB_PREFIX')."service as s ON u.sid=s.id")->where("w.id='$aid'")->find();
 		$this->assign('main',$main);
@@ -560,6 +559,7 @@ class ClientController extends CommonController {
 		//对话内容显示
 		$record = D("addwork as a")->field("u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid")->join("LEFT JOIN ".C('DB_PREFIX')."user as u ON a.uid=u.id")->where("a.pid='$aid'")->order("repdate asc")->select();
 		$this->assign('record',$record);
+		$this->assign('record_empty', '<p class="record-empty">暂无服务器记录</p>');
 
 		//显示评价
 		if($status == "3") {
@@ -615,9 +615,10 @@ class ClientController extends CommonController {
 			'aid'			=>	$aid,
 			'limits'		=>	$limits,
 			'class'			=>	'class="active"',
-			'case'			=>	$status,
+			'case'			=>	$url_status,
 			'status'		=>  $status,
 			"active02"		=>	"class='active'",
+			'uid'			=>  $id,
 			'url'			=>	__ROOT__."/index.php/Client/messages/case/".$url_status,
 			'url_status'     =>  $url_status,
 			'sou'			=>	'&sou='.I("get.sou"),

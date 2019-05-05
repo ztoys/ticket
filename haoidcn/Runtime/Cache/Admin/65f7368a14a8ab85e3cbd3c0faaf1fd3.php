@@ -42,7 +42,6 @@
 
 
 <link rel="stylesheet" href="<?php echo (C("URL")); ?>css/ticket.css">
-
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
 
 <style type="text/css">
@@ -242,7 +241,7 @@
         <ul class="breadcrumbs">
             <li><a href="<?php echo U('Console/dashboard');?>"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
             <li><a href="<?php echo U('Console/dashboard');?>">面板</a> <span class="separator"></span></li>
-            <li>处理工单</li>
+            <li>工单详情</li>
         </ul>
         <!-- head end -->
         <div class="maincontent">
@@ -350,19 +349,6 @@
 
                         <div class="messageright cell">
                             <div class="messageview" style="<?php if($data["status"] == 3): ?>height:100%<?php endif; ?>">
-                                <div class="btn-group pull-right">
-                                    <!-- <?php if($data["limits"] == 3 and $data["case"] == '1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
-                                            &nbsp;&nbsp;&nbsp;
-                                            <a href="javascript:void();" onclick="del('messages-<?php echo ($main["w_id"]); ?>');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a><?php endif; ?> -->
-                                    
-                                    <!-- <?php if($data["limits"] == 2 and $data["case"] == '1'): ?><a href="<?php echo U('Client/messages?type=chu&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a><?php endif; ?>
-
-                                    <?php if($data["limits"] == 2 and $data["case"] == '2'): ?><a href="<?php echo U('Client/messages?type=ping&wc_sataus='.$main['w_id']);?>" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a><?php endif; ?>
-                                    
-                                    <?php if($data["limits"] == 3 and $data["status"] != '3'): ?><a href="<?php echo U('Client/messages?type=wang&wc_sataus='.$main['w_id']);?>" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a>
-                                        <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button><?php endif; ?>
-                                    <?php if($data["limits"] == 3 and $data["case"] == '-1'): ?><a href="<?php echo U('Client/forms?type=xiu&forms='.$main['w_id']);?>" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a><?php endif; ?> -->
-                                </div>
                                 <div class="ticket-title">
                                     <?php echo ($main["w_title"]); ?>
                                 </div>

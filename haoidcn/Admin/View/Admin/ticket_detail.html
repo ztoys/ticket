@@ -6,26 +6,15 @@
 <title>工单系统</title>
 <!-- header binge -->
 <include file="Public/header" />
-
+<link rel="stylesheet" href="{$Think.config.URL}css/ticket.css">
 <script type="text/javascript" src="{$Think.config.URL}js/new/unify.js"></script>
 
 <style type="text/css">
-    body {
-        background: #F5F5F5;
-    }
-	a:hover{
-		text-decoration:none;
-    }
-    .leftpanel{
-        display: none;
-    }
     .rightpanel{
         margin: 0;
     }
     .messageright{
         margin: 0;
-        border-top: 1px solid #0866c6;
-        border-left: 1px solid #0866c6;
     }
     .comments li:last-child .comment p{margin-top:15px;}
     .modal-comment form input[type='radio']{
@@ -112,239 +101,285 @@
     <!-- header binge -->
     <include file="Public/head" />
     
-    <div class="maincontent">
-        <div class="maincontentinner">
-            <div class="messagepanel">
-                <div class="messagecontent main-content">
-                    <div class="ticket-initiator">
-                        工单发起人：{$main.u_uname}
-                        <a href="{$data.url}" class="left underline"><  返回</a>
-                    </div>
-
-                    <if condition="$main.wc_sataus neq '3'">
-                        <div class="messageleft">
-                            <form class="form-ticket-status" action="{:U('Client/messages')}" method="post" enctype="multipart/form-data">
-                                <!-- <div>
-                                    <label>受理用户组</label>
-                                    <select name="" id="">
-                                        <option value="">请选择</option>
-                                        <volist name="list_group" id="vo">
-                                            <option value="{$vo.id}">{$vo.status}</option>
-                                        </volist>
-                                    </select>
-                                </div> -->
-                                <div>
-                                    <label>受理人</label>
-                                    <select id="select_ticket_agent">
-                                        <option value="-1"> -- </option>
-                                        <volist name="list_group_user" id="vo">
-                                            <option value="{$vo.id}" <if condition="$vo[id] eq $main[w_did]">selected</if> >{$vo.uname}</option>
-                                        </volist>
-                                    </select>
-                                </div>
-                                <div style="margin-top: 20px;">
-                                    <label>工单状态</label>
-                                    <select id="select_ticket_status">
-                                        <option value="1" <if condition="$main.wc_sataus eq '1'">selected</if> >待处理</option>
-                                        <option value="2" <if condition="$main.wc_sataus eq '2'">selected</if> >正在研发中</option>
-                                        <option value="4" <if condition="$main.wc_sataus eq '4'">selected</if> >待评价</option>
-                                    </select>
-                                </div>
-
-                                <div style="margin-top: 20px;">
-                                    <label>产品确认</label>
-                                    <select id="select_ticket_product">
-                                        <option value="0" <if condition="$main.work_product eq ''">selected</if> >--</option>
-                                        <option value="1" <if condition="$main.work_product eq '1'">selected</if> >已确认</option>
-                                        <option value="2" <if condition="$main.work_product eq '2'">selected</if> >已拒绝</option>
-                                    </select>
-                                </div>
-
-                                <div style="margin-top: 20px;">
-                                    <label>研发确认</label>
-                                    <select id="select_ticket_develop">
-                                        <option value="0" <if condition="$main.work_develop eq ''">selected</if> >--</option>
-                                        <option value="1" <if condition="$main.work_develop eq '1'">selected</if> >已确认</option>
-                                        <option value="2" <if condition="$main.work_develop eq '2'">selected</if> >已拒绝</option>
-                                    </select>
-                                </div>
-
-                                <div style="margin-top: 20px;">
-                                    <label>完成时间</label>
-                                    <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;">
-                                </div>
-
-                                <!-- <hr>
-
-                                <div style="margin-top: 20px;">
-                                    <button type="submit" class="btn btn-success" style="width: 100%;">确认</button>
-                                </div> -->
-
-                                <!-- <button type="button"  class="btn btn-primary btn-line" style="margin-top: 40px;" onclick="submitTicket()"> 提交 </button> -->
-                            </form>
-                        </div>
-                    </if>
-
-                    <div class="messageright cell">
-                        <div class="messageview" style="<if condition="$data.status eq 3">height:100%</if>">
-                            <div class="btn-group pull-right">
-                                <!-- <if condition="$data.limits eq 3 and $data.case eq '1'">
-                                        <a href="{:U('Client/forms?type=xiu&forms='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;修改&nbsp;&nbsp;</a>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <a href="javascript:void();" onclick="del('messages-{$main.w_id}');" class="btn btn-danger alertdanger" style="color:#fff;">&nbsp;&nbsp;取消&nbsp;&nbsp;</a>
-                                </if> -->
-                                
-                                <!-- <if condition="$data.limits eq 2 and $data.case eq '1'">
-                                    <a href="{:U('Client/messages?type=chu&wc_sataus='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;处理&nbsp;&nbsp;</a>
-                                </if>
-
-                                <if condition="$data.limits eq 2 and $data.case eq '2'">
-                                    <a href="{:U('Client/messages?type=ping&wc_sataus='.$main['w_id'])}" class="btn dropdown-toggle"  style="color:#555;">&nbsp;&nbsp;待评价&nbsp;&nbsp;</a>
-                                </if>
-                                
-                                <if condition="$data.limits eq 3 and $data.status neq '3'">
-                                    <a href="{:U('Client/messages?type=wang&wc_sataus='.$main['w_id'])}" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</a>
-                                    <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-success" style="color:#fff;">&nbsp;&nbsp;关闭工单&nbsp;&nbsp;</button>
-                                </if>
-                                <if condition="$data.limits eq 3 and $data.case eq '-1'">
-                                    <a href="{:U('Client/forms?type=xiu&forms='.$main['w_id'])}" class="btn dropdown-toggle" style="color:#555;">&nbsp;&nbsp;编辑&nbsp;&nbsp;</a>
-                                </if> -->
+    <div class="rightpanel" style="margin-left: 260px;">
+        <!-- head binge -->
+        <include file="Public/nav" name='工单详情'/>
+        <!-- head end -->
+        <div class="maincontent">
+            <div class="">
+                <div class="messagepanel">
+                    <div class="ticket-info">
+                        <div class="">
+                            <div class="ticket-info-title">
+                                工单详情
                             </div>
-                            <h1 class="subject" style="border-bottom: 1px solid #ddd;">
-                                <div>
-                                    <b>{$main.w_title}</b>
-                                </div>
-                                <div style="margin-top: 10px;">
-                                    <span class="note2">创建于：{$main.w_puddate|date="Y-m-d H:i:s",###}</span>
-                                    <button type="button" data-toggle="modal" data-target="#modal_ticket_event" class="btn btn-success btn-sm" style="margin-left: 10px;">查看工单事件</button>
-                                </div>
-                            </h1>
-                            
-                            <!-- comment -->
-                            <if condition="$main.wc_sataus eq '3'">
-                                <div class="comment-wrap">
-                                    <p class="comment-title">工单评价</p>
-                                    <p class="comment-item">
-                                        <span class="comment-item-label">问题是否已经解决</span>
-                                        <switch name="comment.resolve">
-                                            <case value="1">
-                                                <span class="label">是</span>
-                                            </case>
-                                            <case value="0">
-                                                <span class="label">否</span>
-                                            </case>
-                                        </switch>
-                                    </p>
-                                    <p class="comment-item">
-                                        <span class="comment-item-label">服务评价</span>
-                                        <switch name="comment.assess">
-                                            <case value="3">
-                                                <span class="label">非常满意</span>
-                                            </case>
-                                            <case value="2">
-                                                <span class="label">满意</span>
-                                            </case>
-                                            <case value="1">
-                                                <span class="label">一般</span>
-                                            </case>
-                                            <case value="0">
-                                                <span class="label">不满意</span>
-                                            </case>
-                                        </switch>
-                                    </p>
-                                </div>
-                            </if>
-                            <!-- comment end -->
+                            <div class="ticket-info-main">
+                                <form class="form-ticket-status" id="form_ticket_statues" action="{:U('Client/messages')}" method="post" enctype="multipart/form-data">
+                                    <!-- <div>
+                                        <label>受理用户组</label>
+                                        <select name="" id="">
+                                            <option value="">请选择</option>
+                                            <volist name="list_group" id="vo">
+                                                <option value="{$vo.id}">{$vo.status}</option>
+                                            </volist>
+                                        </select>
+                                    </div> -->
+                                    <div>
+                                        <label>受理人</label>
+                                        <select id="select_ticket_agent">
+                                            <option value="-1"> -- </option>
+                                            <volist name="list_group_user" id="vo">
+                                                <option value="{$vo.id}" <if condition="$vo[id] eq $main[w_did]">selected</if> >{$vo.uname}</option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                    <div style="margin-top: 20px;">
+                                        <label>工单状态</label>
+                                        <select id="select_ticket_status">
+                                            <option value="1" <if condition="$main.wc_sataus eq '1'">selected</if> >待处理</option>
+                                            <option value="2" <if condition="$main.wc_sataus eq '2'">selected</if> >正在研发中</option>
+                                            <option value="4" <if condition="$main.wc_sataus eq '4'">selected</if> >待评价</option>
+                                        </select>
+                                    </div>
 
-                            <div class="msgbody"  style="background:#fcfcfc;border-bottom:1px solid #DDD;">
+                                    <div style="margin-top: 20px;">
+                                        <label>产品确认</label>
+                                        <select id="select_ticket_product">
+                                            <option value="0" <if condition="$main.work_product eq ''">selected</if> >--</option>
+                                            <option value="1" <if condition="$main.work_product eq '1'">selected</if> >已确认</option>
+                                            <option value="2" <if condition="$main.work_product eq '2'">selected</if> >已拒绝</option>
+                                        </select>
+                                    </div>
+
+                                    <div style="margin-top: 20px;">
+                                        <label>研发确认</label>
+                                        <select id="select_ticket_develop">
+                                            <option value="0" <if condition="$main.work_develop eq ''">selected</if> >--</option>
+                                            <option value="1" <if condition="$main.work_develop eq '1'">selected</if> >已确认</option>
+                                            <option value="2" <if condition="$main.work_develop eq '2'">selected</if> >已拒绝</option>
+                                        </select>
+                                    </div>
+
+                                    <div style="margin-top: 20px;">
+                                        <label>完成时间</label>
+                                        <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;">
+                                    </div>
+                                </form>
+
                                 <div>
-                                    {$main.w_issue}
+                                    <p class="ticket-info-label"><i class="icon-doc"></i>工单信息</p>
+                                    <div class="ticket-info-detail">
+                                        <p>
+                                            <span class="info-label">工单号：</span>
+                                            {$main.w_id}
+                                        </p>
+                                        <p>
+                                            <span class="info-label">优先级：</span>
+                                            <switch name="main['w_level']">
+                                                <case value="1">一般</case>
+                                                <case value="2">重要</case>
+                                                <case value="3">紧急</case>
+                                                <default /> --
+                                            </switch>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">工单类型：</span>
+                                            <switch name="main['w_type']">
+                                                <case value="1">产品BUG</case>
+                                                <case value="2">新需求</case>
+                                                <case value="3">投诉与建议</case>
+                                                <case value="4">其它</case>
+                                                <default /> --
+                                            </switch>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">创建时间：</span>
+                                            {$main.w_puddate|date="Y-m-d H:i:s",###}
+                                        </p>
+                                        <p>
+                                            <span class="info-label">受理时间：</span>
+                                            <if condition="$main['w_accdate'] neq ''">
+                                                {$main.w_accdate|date="Y-m-d H:i:s",###}
+                                            <else/>
+                                                --
+                                            </if>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">发起人：</span>
+                                            {$main.u_uname}
+                                        </p>
+                                    </div>
                                 </div>
-                                <notempty name="file_arr[0]">
-                                    <div style="overflow:hidden;zoom:1;margin-top: 20px;">
-                                        <foreach name="file_arr" item="vo" key="k">
-                                            <div id="picture{$k}" title="{$vo['file_name']}">
-                                                <div style="float:left;margin-right: 10px;padding:5px;border:1px solid #ccc;" >
-                                                    <div style="width:120px;height:130px;text-align:center;padding-top: 10px;">
-                                                        <i class="icon-file"></i>
-                                                        <input type="hidden" name="photo01[]" value="{$vo['id']}">
-                                                        <div style="margin-top:10px ;text-align:center;">
-                                                            <p class="overlfow-text" style="margin:0 10px 5px 10px;">
-                                                                {$vo['file_name']}
-                                                            </p>
-                                                            <a href="{:U('Client/download_file',array('fileid'=>$vo['id']))}" target="_blank">下载</a>
-                                                            &nbsp;&nbsp;
-                                                            <!-- <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ticket-main messagecontent">
+                        <div class="ticket-head">
+                            工单详情
+                            <a href="{$data.url}" class="back left underline"><  返回</a>
+                        </div>
+    
+                        <div class="messageright cell">
+                            <div class="messageview" style="<if condition="$data.status eq 3">height:100%</if>">
+                                <div class="ticket-title">
+                                    {$main.w_title}
+                                </div>
+                                
+                                <!-- comment -->
+                                <if condition="$main.wc_sataus eq '3'">
+                                    <div class="comment-wrap">
+                                        <p class="comment-title">工单评价</p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">问题是否已经解决</span>
+                                            <switch name="comment.resolve">
+                                                <case value="1">
+                                                    <span class="label">是</span>
+                                                </case>
+                                                <case value="0">
+                                                    <span class="label">否</span>
+                                                </case>
+                                            </switch>
+                                        </p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">服务评价</span>
+                                            <switch name="comment.assess">
+                                                <case value="3">
+                                                    <span class="label">非常满意</span>
+                                                </case>
+                                                <case value="2">
+                                                    <span class="label">满意</span>
+                                                </case>
+                                                <case value="1">
+                                                    <span class="label">一般</span>
+                                                </case>
+                                                <case value="0">
+                                                    <span class="label">不满意</span>
+                                                </case>
+                                            </switch>
+                                        </p>
+                                    </div>
+                                </if>
+                                <!-- comment end -->
+    
+                                <div class="ticket-content">
+                                    <div>
+                                        {$main.w_issue}
+                                    </div>
+                                    <div class="ticket-file">
+                                        <notempty name="file_arr[0]">
+                                            <p class="left">附件：</p>
+                                            <div class="cell">
+                                                <foreach name="file_arr" item="vo" key="k">
+                                                    <div class="ticket-file-item" id="picture{$k}" title="{$vo['file_name']}">
+                                                        <div>
+                                                            <div class="left">
+                                                                <i class="icon-file"></i>
+                                                                <input type="hidden" name="photo01[]" value="{$vo['id']}">
+                                                            </div>
+                                                            <div class="left file-text">
+                                                                <p class="overlfow-text" style="max-width: 100px;">{$vo['file_name']}</p>
+                                                                <a href="{:U('Client/download_file',array('fileid'=>$vo['id']))}" target="_blank">下载</a>
+                                                            </div>
+                                                            <!-- <div style="margin-top:5px ;text-align:center;">
+                                                                <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a>
+                                                            </div> -->
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </foreach>
                                             </div>
-                                        </foreach>
+                                        </notempty>	
                                     </div>
-                                </notempty>	
-                                <if condition="$data.limits eq 3 and $data.case eq 'zhong'">
-                                    <p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p>
-                                </if>
-                            </div><!--msgbody-->
-
-                            <if condition="$data.status neq '3'">	
-                                <div class="msgreply" >
-                                    <form id="form_ticket" action="{:U('Admin/submit_ticket_agent?case=\'.$data[\'url_status\'])}" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="ticket_agent" id="form_agent">
-                                        <input type="hidden" name="ticket_agent_name" id="form_agent_name">
-                                        <input type="hidden" name="ticket_status" id="form_ticket_status">
-                                        <input type="hidden" name="ticket_product" id="form_ticket_product">
-                                        <input type="hidden" name="ticket_develop" id="form_ticket_develop">
-                                        <input type="hidden" name="ticket_finish" id="form_ticket_finish">
-                                        <input type="hidden" name="ticket_status_name" id="form_ticket_status_name">
-                                        <input type="hidden" name="ticket_product_name" id="form_ticket_product_name">
-                                        <input type="hidden" name="ticket_develop_name" id="form_ticket_develop_name">
-                                        <input type="hidden" name="ticket_finish_name" id="form_ticket_finish_name">
-                                        <input type="hidden" name="insert" value="insert" />
-                                        <input type="hidden" name="pid" value="{$main.w_id}">
-                                        <div>
-                                            <textarea name="editorValue" id="editorValue" placeholder="回复内容"></textarea>
-                                        </div>
-                                        <p style="margin-top:20px;" align="right">
-                                            <button type="button"  class="btn btn-primary btn-lg" onclick="submitTicket()"> 提交 </button>
-                                        </p>
-                                    </form>
-                                </div><!--messagereply-->
-                            </if>
-                            
-                            <div class="msg-reply-wrap">
-                                <volist name='record' id="vo">
-                                    <div class="msgauthor"  style="padding:0 0 10px;border:1px solid #ddd;box-sizing:border-box;margin:10px 0;">
                                     
-                                        <if condition="$vo['limits'] eq 2">
-                                            <h3 class="widgettitle" style="background:#27b34b;">{$vo.uname}  回复<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
-                                        </if>
-                                        
-                                        <if condition="$vo['limits'] eq 3 or $vo['limits'] eq 1">
-                                            <h3 class="widgettitle" style="background:#666;">{$vo.uname}  评论<span class="date pull-right">{$vo.repdate|date="Y-m-d H:i:s",###}</span></h3>
-                                        </if>
-                                        
-                                        <div >
-                                            <div class="msgbody">
-                                                {$vo.g_reply}
-                                            </div>
+                                    <if condition="$data.limits eq 3 and $data.case eq 'zhong'">
+                                        <p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p>
+                                    </if>
+                                </div><!--msgbody-->
+
+                                <div style="margin-top: 10px;">
+                                    <div class="head-tab">
+                                        <ul>
+                                            <li class="on">
+                                                <a onclick="showTabItem(0)">服务记录</a>
+                                            </li>
+                                            <li>
+                                                <a onclick="showTabItem(1)">操作日志</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tab-content-wrap">
+                                    <div class="tab-item">
+                                        <div class="msg-reply-wrap">
+                                            <volist name='record' id="vo" empty="$record_empty">
+                                                <div class="msgauthor">
+                                                    <div class="left head-portrait">
+                                                        <i class="icon-person"></i>
+                                                    </div>
+                                                    <div class="cell reply-right">
+                                                        <div class="">
+                                                            <span class="name">{$vo.uname}</span>
+                                                            <span class="date">{$vo.repdate|date="Y-m-d H:i:s",###}</span>
+                                                        </div>
+                                                
+                                                        <div clas="">
+                                                            <div class="msgbody <if condition="$vo['uid'] eq $data['uid']">mine</if>">
+                                                                {$vo.g_reply}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!--msgauthor-->
+                                            </volist>
                                         </div>
-                                    </div><!--msgauthor-->
-                                </volist>
-                            </div>
-
-                            <div name="one"></div>
-
-                            
-                        </div><!--messageview-->
-                      
-                    </div><!--messageright-->
-                </div><!--messagecontent-->
-            </div><!--messagepanel-->
-            
-        </div><!--maincontentinner-->
-    </div><!--maincontent-->
+                                    </div>
+                                    <div class="tab-item">
+                                        <ul class="record-list">
+                                            <volist name="data.record" id="vo">
+                                                <li>
+                                                    <p class="note2">{$vo.time|date="Y-m-d H:i:s",###}</p>
+                                                    {$vo.uname}{$vo.event}
+                                                </li>
+                                            </volist>
+                                        </ul>
+                                    </div>
+                                </div>
     
+                                <if condition="$data.status neq '3'">	
+                                    <div class="msgreply" >
+                                        <form id="form_ticket" action="{:U('Admin/submit_ticket_agent?case=\'.$data[\'url_status\'])}" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="ticket_agent" id="form_agent">
+                                            <input type="hidden" name="ticket_agent_name" id="form_agent_name">
+                                            <input type="hidden" name="ticket_status" id="form_ticket_status">
+                                            <input type="hidden" name="ticket_product" id="form_ticket_product">
+                                            <input type="hidden" name="ticket_develop" id="form_ticket_develop">
+                                            <input type="hidden" name="ticket_finish" id="form_ticket_finish">
+                                            <input type="hidden" name="ticket_status_name" id="form_ticket_status_name">
+                                            <input type="hidden" name="ticket_product_name" id="form_ticket_product_name">
+                                            <input type="hidden" name="ticket_develop_name" id="form_ticket_develop_name">
+                                            <input type="hidden" name="ticket_finish_name" id="form_ticket_finish_name">
+                                            <input type="hidden" name="insert" value="insert" />
+                                            <input type="hidden" name="pid" value="{$main.w_id}">
+                                            <div>
+                                                <textarea name="editorValue" id="editorValue" placeholder="请输入回复内容"></textarea>
+                                            </div>
+                                            <p style="margin-top:20px;">
+                                                <button type="button"  class="btn btn-primary btn-lg btn-reply" onclick="submitTicket()">回复</button>
+                                            </p>
+                                        </form>
+                                    </div><!--messagereply-->
+                                </if>
+                                
+                                
+    
+                            </div><!--messageview-->
+                            
+                        </div><!--messageright-->
+                    </div><!--messagecontent-->
+                </div><!--messagepanel-->
+                
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+    </div>
 </div><!--mainwrapper-->
 
 <!-- 模态框START -->
@@ -432,6 +467,8 @@
         jQuery("#form_ticket_statues select,#ticket_finish").change(function(){
             submitTicket();
         })
+
+        showTabItem(0);
     })
 
     function disableBtn(str) {
@@ -452,6 +489,13 @@
         for (var i = 0, btn; btn = btns[i++];) {
             domUtils.removeAttributes(btn, ["disabled"]);
         }
+    }
+
+    function showTabItem(index) {
+        var tabHead = jQuery(".head-tab");
+        var tabContent = jQuery(".tab-content-wrap");
+        tabHead.find("li").removeClass("on").eq(index).addClass("on");
+        tabContent.find(".tab-item").hide().eq(index).show();
     }
 
 </script>
