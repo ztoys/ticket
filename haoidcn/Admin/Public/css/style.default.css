@@ -299,6 +299,13 @@ input[type="number"] {
 	background: url(../images/icon-more.png) no-repeat;
 	background-size: cover;
 }
+.icon-more2{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../images/icons/icon-more2.png) no-repeat;
+	background-size: cover;
+}
 .icon-doc{
 	display: inline-block;
 	width: 18px;
@@ -313,6 +320,13 @@ input[type="number"] {
 	background: url(../images/icons/icon-person.png) no-repeat;
 	background-size: cover;
 }
+.icon-comment{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../images/icons/icon-comment.png) no-repeat;
+	background-size: cover;
+}
 
 /*** ICON STATUS ***/
 
@@ -320,6 +334,9 @@ input[type="number"] {
 .group-list li:hover .icon-more{
 	background: url(../images/icon-more-white.png) no-repeat;
 	background-size: cover;
+}
+.icon-more2{
+	cursor: pointer;
 }
 
 /*** LEFT PANEL ***/
@@ -1828,6 +1845,10 @@ table td.center, table th.center { text-align: center; }
 }
 .btn-lg {
 	padding: 5px 50px;
+}
+
+.comment-wrap .label{
+	background: #5793cc;
 }
 
 /* PAGE CSS */

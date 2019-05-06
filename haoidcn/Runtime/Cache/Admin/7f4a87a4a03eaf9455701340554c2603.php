@@ -285,12 +285,12 @@
 </div>
 
 <div id="alertSuccess" class="alert alert-success fadeInDown animated">
-	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	<a href="#" class="close">&times;</a>
 	保存成功！
 </div>
 
 <div id="alertError" class="alert alert-error fadeInDown animated">
-	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	<a href="#" class="close">&times;</a>
 	<span id="alert_error_text"></span>
 </div>
 

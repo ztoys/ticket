@@ -365,6 +365,7 @@ class AdminController extends CommonController {
 		$ticket_status = I("get.tkstatus");
 		$ticket_level = I("get.tklevel");
 		$ticket_owned = I("get.tkowned");
+		$ticket_search = I("get.tksearch");
 		$where = "";
 		if($ticket_type != '' && $ticket_type != '0'){
 			$this->assign('ticket_type',$ticket_type);
@@ -381,6 +382,29 @@ class AdminController extends CommonController {
 		if($ticket_owned != '' && $ticket_owned != '0'){
 			$this->assign('ticket_owned',$ticket_owned);
 			$where = $where." and w.work_owned='$ticket_owned'";
+		}
+		if($ticket_search != '') {
+			$this->assign('ticket_search',$ticket_search);
+			$where .= " and (title like '%$ticket_search%'";
+			//受理人
+			$search_user = $this->sel_sql("user","uname like '%$ticket_search%'","");
+			$agent_str = "";
+			if (count($search_user) > 0) {
+				foreach ($search_user as $val){
+					$agent_str .= $val['id'].",";
+				}
+				$agent_str = trim($agent_str, ",");
+			}
+			if ($agent_str != "") {
+				if ($limits == 3) {
+					//客服
+					$where .= " or did in ($agent_str)";
+				} else if ($limits == 2 || $limits == 1) {
+					//运维
+					$where .= " or uid in ($agent_str)";
+				}
+			}
+			$where .= ")";
 		}
 
 		//列表显示数据	-- 分页

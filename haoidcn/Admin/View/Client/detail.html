@@ -22,11 +22,10 @@
     }
     .comments li:last-child .comment p{margin-top:15px;}
     .comment-wrap {
-        padding: 10px 20px;
-        border-bottom: 1px solid #DDD;
+        margin: 30px 0;
     }
     .comment-wrap .comment-title{
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 10px;
     }
     .comment-wrap .comment-item+.comment-item{
@@ -108,6 +107,15 @@
     .modal-comment form input[type='radio']{
         margin-left: 10px;
     }    
+    .rights.ticket {
+        right: 20px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .icon-comment{
+        vertical-align: bottom;
+        margin-right: 5px;
+    }
 </style>
 </head>
 
@@ -214,9 +222,14 @@
                     <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
-                            <a href="{$data.url}" class="left underline back"><  返回</a>
+                            <a href="javascript:history.go(-1);" class="left underline back"><  返回</a>
                             <if condition="$main.wc_sataus neq '3'">
-                                <button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-sm right">关闭工单</button>
+                                <i class="icon-more2 right" onclick="showRights()"></i>
+                                <div class="group-menu rights ticket" id="ticket_rights">
+                                    <ul>
+                                        <li data-toggle="modal" data-target="#modal_comment">关闭工单</li>
+                                    </ul>
+                                </div>
                             </if>
                         </div>
 
@@ -226,10 +239,40 @@
                                     {$main.w_title}
                                 </div>
                                 
+                                <div class="ticket-content">
+                                    <div>
+                                        {$main.w_issue}
+                                    </div>
+                                    <div class="ticket-file">
+                                        <notempty name="file_arr[0]">
+                                            <p class="left">附件：</p>
+                                            <div class="cell">
+                                                <foreach name="file_arr" item="vo" key="k">
+                                                    <div class="ticket-file-item" id="picture{$k}" title="{$vo['file_name']}">
+                                                        <div>
+                                                            <div class="left">
+                                                                <i class="icon-file"></i>
+                                                                <input type="hidden" name="photo01[]" value="{$vo['id']}">
+                                                            </div>
+                                                            <div class="left file-text">
+                                                                <p class="overlfow-text" style="max-width: 100px;">{$vo['file_name']}</p>
+                                                                <a href="{:U('Client/download_file',array('fileid'=>$vo['id']))}" target="_blank">下载</a>
+                                                            </div>
+                                                            <!-- <div style="margin-top:5px ;text-align:center;">
+                                                                <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </foreach>
+                                            </div>
+                                        </notempty>	
+                                    </div>
+                                </div><!--msgbody-->
+
                                 <!-- comment -->
                                 <if condition="$main.wc_sataus eq '3'">
                                     <div class="comment-wrap">
-                                        <p class="comment-title">工单评价</p>
+                                        <p class="comment-title"><i class="icon-comment"></i>工单评价</p>
                                         <p class="comment-item">
                                             <span class="comment-item-label">问题是否已经解决</span>
                                             <switch name="comment.resolve">
@@ -261,73 +304,6 @@
                                     </div>
                                 </if>
                                 <!-- comment end -->
-    
-                                <div class="ticket-content">
-                                    <div>
-                                        {$main.w_issue}
-                                    </div>
-                                    <div class="ticket-file">
-                                        <notempty name="file_arr[0]">
-                                            <p class="left">附件：</p>
-                                            <div class="cell">
-                                                <foreach name="file_arr" item="vo" key="k">
-                                                    <div class="ticket-file-item" id="picture{$k}" title="{$vo['file_name']}">
-                                                        <div>
-                                                            <div class="left">
-                                                                <i class="icon-file"></i>
-                                                                <input type="hidden" name="photo01[]" value="{$vo['id']}">
-                                                            </div>
-                                                            <div class="left file-text">
-                                                                <p class="overlfow-text" style="max-width: 100px;">{$vo['file_name']}</p>
-                                                                <a href="{:U('Client/download_file',array('fileid'=>$vo['id']))}" target="_blank">下载</a>
-                                                            </div>
-                                                            <!-- <div style="margin-top:5px ;text-align:center;">
-                                                                <a href="javascript:void()" onclick="del_tp('picture{$k}');">删除</a>
-                                                            </div> -->
-                                                        </div>
-                                                    </div>
-                                                </foreach>
-                                            </div>
-                                        </notempty>	
-                                    </div>
-                                </div><!--msgbody-->
-
-                                <div style="margin-top: 10px;">
-                                    <div class="head-tab">
-                                        <ul>
-                                            <li class="on">
-                                                <a onclick="showTabItem(0)">服务记录</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="tab-content-wrap">
-                                    <div class="tab-item">
-                                        <div class="msg-reply-wrap" id="reply_wrap">
-                                            <volist name='record' id="vo" empty="$record_empty">
-                                                <div class="msgauthor">
-                                                    <div class="left head-portrait">
-                                                        <i class="icon-person"></i>
-                                                    </div>
-                                                    <div class="cell reply-right">
-                                                        <div class="">
-                                                            <span class="name">{$vo.uname}</span>
-                                                            <span class="date">{$vo.repdate|date="Y-m-d H:i:s",###}</span>
-                                                        </div>
-                                                
-                                                        <div clas="">
-                                                            <div class="msgbody <if condition="$vo['uid'] eq $data['uid']">mine</if>">
-                                                                {$vo.g_reply}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!--msgauthor-->
-                                            </volist>
-                                        </div>
-                                    </div>
-                                    <div class="tab-item"></div>
-                                </div>
 
                                 <if condition="$main.wc_sataus eq '4' and $data.limits eq 3 ">
                                     <div class="ticket-comment-wrap">
@@ -375,6 +351,43 @@
                                         </form>
                                     </div>
                                 </if>
+
+                                <div style="margin-top: 10px;">
+                                    <div class="head-tab">
+                                        <ul>
+                                            <li class="on">
+                                                <a onclick="showTabItem(0)">服务记录</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tab-content-wrap" <if condition="$main.wc_sataus eq '3'">style="max-height:initial;"</if>>
+                                    <div class="tab-item">
+                                        <div class="msg-reply-wrap" id="reply_wrap">
+                                            <volist name='record' id="vo" empty="$record_empty">
+                                                <div class="msgauthor">
+                                                    <div class="left head-portrait">
+                                                        <i class="icon-person"></i>
+                                                    </div>
+                                                    <div class="cell reply-right">
+                                                        <div class="">
+                                                            <span class="name">{$vo.uname}</span>
+                                                            <span class="date">{$vo.repdate|date="Y-m-d H:i:s",###}</span>
+                                                        </div>
+                                                
+                                                        <div clas="">
+                                                            <div class="msgbody <if condition="$vo['uid'] eq $data['uid']">mine</if>">
+                                                                {$vo.g_reply}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!--msgauthor-->
+                                            </volist>
+                                        </div>
+                                    </div>
+                                    <div class="tab-item"></div>
+                                </div>
     
                                 <if condition="$data.status neq '3'">	
                                     <div class="msgreply" >
@@ -571,6 +584,16 @@
         tabHead.find("li").removeClass("on").eq(index).addClass("on");
         tabContent.find(".tab-item").hide().eq(index).show();
     }
+
+    function showRights(){
+        window.event?window.event.cancelBubble=true:event.stopPropagation();
+        jQuery("#ticket_rights").show();
+        console.log(jQuery("#ticket_rights")[0]);
+    }
+
+    jQuery(document).click(function(){
+        jQuery("#ticket_rights").hide();
+    })
 
 </script>
 </body>

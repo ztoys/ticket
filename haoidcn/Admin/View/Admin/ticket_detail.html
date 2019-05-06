@@ -76,11 +76,10 @@
         top: 12px;
     } 
     .comment-wrap {
-        padding: 10px 20px;
-        border-bottom: 1px solid #DDD;
+        margin: 30px 0;
     }
     .comment-wrap .comment-title{
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 10px;
     }
     .comment-wrap .comment-item+.comment-item{
@@ -91,7 +90,10 @@
         padding-left: 10px;
         margin-right: 10px;
     }    
-       
+    .icon-comment{
+        vertical-align: bottom;
+        margin-right: 5px;
+    }
 </style>
 </head>
 
@@ -126,7 +128,7 @@
                                     </div> -->
                                     <div>
                                         <label>受理人</label>
-                                        <select id="select_ticket_agent">
+                                        <select id="select_ticket_agent" <if condition="$main.wc_sataus eq '3'">disabled</if>>
                                             <option value="-1"> -- </option>
                                             <volist name="list_group_user" id="vo">
                                                 <option value="{$vo.id}" <if condition="$vo[id] eq $main[w_did]">selected</if> >{$vo.uname}</option>
@@ -135,7 +137,7 @@
                                     </div>
                                     <div style="margin-top: 20px;">
                                         <label>工单状态</label>
-                                        <select id="select_ticket_status">
+                                        <select id="select_ticket_status" <if condition="$main.wc_sataus eq '3'">disabled</if>>
                                             <option value="1" <if condition="$main.wc_sataus eq '1'">selected</if> >待处理</option>
                                             <option value="2" <if condition="$main.wc_sataus eq '2'">selected</if> >正在研发中</option>
                                             <option value="4" <if condition="$main.wc_sataus eq '4'">selected</if> >待评价</option>
@@ -144,7 +146,7 @@
 
                                     <div style="margin-top: 20px;">
                                         <label>产品确认</label>
-                                        <select id="select_ticket_product">
+                                        <select id="select_ticket_product" <if condition="$main.wc_sataus eq '3'">disabled</if>>
                                             <option value="0" <if condition="$main.work_product eq ''">selected</if> >--</option>
                                             <option value="1" <if condition="$main.work_product eq '1'">selected</if> >已确认</option>
                                             <option value="2" <if condition="$main.work_product eq '2'">selected</if> >已拒绝</option>
@@ -153,7 +155,7 @@
 
                                     <div style="margin-top: 20px;">
                                         <label>研发确认</label>
-                                        <select id="select_ticket_develop">
+                                        <select id="select_ticket_develop" <if condition="$main.wc_sataus eq '3'">disabled</if>>
                                             <option value="0" <if condition="$main.work_develop eq ''">selected</if> >--</option>
                                             <option value="1" <if condition="$main.work_develop eq '1'">selected</if> >已确认</option>
                                             <option value="2" <if condition="$main.work_develop eq '2'">selected</if> >已拒绝</option>
@@ -162,7 +164,7 @@
 
                                     <div style="margin-top: 20px;">
                                         <label>完成时间</label>
-                                        <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;">
+                                        <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;" <if condition="$main.wc_sataus eq '3'">disabled</if>>
                                     </div>
                                 </form>
 
@@ -216,7 +218,7 @@
                     <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
-                            <a href="{$data.url}" class="back left underline"><  返回</a>
+                            <a href="javascript:history.go(-1);" class="back left underline"><  返回</a>
                         </div>
     
                         <div class="messageright cell">
@@ -224,42 +226,6 @@
                                 <div class="ticket-title">
                                     {$main.w_title}
                                 </div>
-                                
-                                <!-- comment -->
-                                <if condition="$main.wc_sataus eq '3'">
-                                    <div class="comment-wrap">
-                                        <p class="comment-title">工单评价</p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">问题是否已经解决</span>
-                                            <switch name="comment.resolve">
-                                                <case value="1">
-                                                    <span class="label">是</span>
-                                                </case>
-                                                <case value="0">
-                                                    <span class="label">否</span>
-                                                </case>
-                                            </switch>
-                                        </p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">服务评价</span>
-                                            <switch name="comment.assess">
-                                                <case value="3">
-                                                    <span class="label">非常满意</span>
-                                                </case>
-                                                <case value="2">
-                                                    <span class="label">满意</span>
-                                                </case>
-                                                <case value="1">
-                                                    <span class="label">一般</span>
-                                                </case>
-                                                <case value="0">
-                                                    <span class="label">不满意</span>
-                                                </case>
-                                            </switch>
-                                        </p>
-                                    </div>
-                                </if>
-                                <!-- comment end -->
     
                                 <div class="ticket-content">
                                     <div>
@@ -294,6 +260,42 @@
                                         <p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p>
                                     </if>
                                 </div><!--msgbody-->
+
+                                <!-- comment -->
+                                <if condition="$main.wc_sataus eq '3'">
+                                    <div class="comment-wrap">
+                                        <p class="comment-title"><i class="icon-comment"></i>工单评价</p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">问题是否已经解决</span>
+                                            <switch name="comment.resolve">
+                                                <case value="1">
+                                                    <span class="label">是</span>
+                                                </case>
+                                                <case value="0">
+                                                    <span class="label">否</span>
+                                                </case>
+                                            </switch>
+                                        </p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">服务评价</span>
+                                            <switch name="comment.assess">
+                                                <case value="3">
+                                                    <span class="label">非常满意</span>
+                                                </case>
+                                                <case value="2">
+                                                    <span class="label">满意</span>
+                                                </case>
+                                                <case value="1">
+                                                    <span class="label">一般</span>
+                                                </case>
+                                                <case value="0">
+                                                    <span class="label">不满意</span>
+                                                </case>
+                                            </switch>
+                                        </p>
+                                    </div>
+                                </if>
+                                <!-- comment end -->
 
                                 <div style="margin-top: 10px;">
                                     <div class="head-tab">

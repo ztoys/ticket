@@ -112,11 +112,10 @@
         top: 12px;
     } 
     .comment-wrap {
-        padding: 10px 20px;
-        border-bottom: 1px solid #DDD;
+        margin: 30px 0;
     }
     .comment-wrap .comment-title{
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 10px;
     }
     .comment-wrap .comment-item+.comment-item{
@@ -127,7 +126,10 @@
         padding-left: 10px;
         margin-right: 10px;
     }    
-       
+    .icon-comment{
+        vertical-align: bottom;
+        margin-right: 5px;
+    }
 </style>
 </head>
 
@@ -258,14 +260,14 @@
                                     </div> -->
                                     <div>
                                         <label>受理人</label>
-                                        <select id="select_ticket_agent">
+                                        <select id="select_ticket_agent" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
                                             <option value="-1"> -- </option>
                                             <?php if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>" <?php if($vo[id] == $main[w_did]): ?>selected<?php endif; ?> ><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                                         </select>
                                     </div>
                                     <div style="margin-top: 20px;">
                                         <label>工单状态</label>
-                                        <select id="select_ticket_status">
+                                        <select id="select_ticket_status" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
                                             <option value="1" <?php if($main["wc_sataus"] == '1'): ?>selected<?php endif; ?> >待处理</option>
                                             <option value="2" <?php if($main["wc_sataus"] == '2'): ?>selected<?php endif; ?> >正在研发中</option>
                                             <option value="4" <?php if($main["wc_sataus"] == '4'): ?>selected<?php endif; ?> >待评价</option>
@@ -274,7 +276,7 @@
 
                                     <div style="margin-top: 20px;">
                                         <label>产品确认</label>
-                                        <select id="select_ticket_product">
+                                        <select id="select_ticket_product" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
                                             <option value="0" <?php if($main["work_product"] == ''): ?>selected<?php endif; ?> >--</option>
                                             <option value="1" <?php if($main["work_product"] == '1'): ?>selected<?php endif; ?> >已确认</option>
                                             <option value="2" <?php if($main["work_product"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
@@ -283,7 +285,7 @@
 
                                     <div style="margin-top: 20px;">
                                         <label>研发确认</label>
-                                        <select id="select_ticket_develop">
+                                        <select id="select_ticket_develop" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
                                             <option value="0" <?php if($main["work_develop"] == ''): ?>selected<?php endif; ?> >--</option>
                                             <option value="1" <?php if($main["work_develop"] == '1'): ?>selected<?php endif; ?> >已确认</option>
                                             <option value="2" <?php if($main["work_develop"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
@@ -292,7 +294,7 @@
 
                                     <div style="margin-top: 20px;">
                                         <label>完成时间</label>
-                                        <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;">
+                                        <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
                                     </div>
                                 </form>
 
@@ -340,7 +342,7 @@
                     <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
-                            <a href="<?php echo ($data["url"]); ?>" class="back left underline"><  返回</a>
+                            <a href="javascript:history.go(-1);" class="back left underline"><  返回</a>
                         </div>
     
                         <div class="messageright cell">
@@ -348,24 +350,6 @@
                                 <div class="ticket-title">
                                     <?php echo ($main["w_title"]); ?>
                                 </div>
-                                
-                                <!-- comment -->
-                                <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
-                                        <p class="comment-title">工单评价</p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">问题是否已经解决</span>
-                                            <?php switch($comment["resolve"]): case "1": ?><span class="label">是</span><?php break;?>
-                                                <?php case "0": ?><span class="label">否</span><?php break; endswitch;?>
-                                        </p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">服务评价</span>
-                                            <?php switch($comment["assess"]): case "3": ?><span class="label">非常满意</span><?php break;?>
-                                                <?php case "2": ?><span class="label">满意</span><?php break;?>
-                                                <?php case "1": ?><span class="label">一般</span><?php break;?>
-                                                <?php case "0": ?><span class="label">不满意</span><?php break; endswitch;?>
-                                        </p>
-                                    </div><?php endif; ?>
-                                <!-- comment end -->
     
                                 <div class="ticket-content">
                                     <div>
@@ -394,6 +378,24 @@
                                     
                                     <?php if($data["limits"] == 3 and $data["case"] == 'zhong'): ?><p style="color:red;">【备注】：若本工单已无问题，请点击右上角的“结束”按钮，本工单将处理完毕，将会在“已处理的工单”处显示。</p><?php endif; ?>
                                 </div><!--msgbody-->
+
+                                <!-- comment -->
+                                <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
+                                        <p class="comment-title"><i class="icon-comment"></i>工单评价</p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">问题是否已经解决</span>
+                                            <?php switch($comment["resolve"]): case "1": ?><span class="label">是</span><?php break;?>
+                                                <?php case "0": ?><span class="label">否</span><?php break; endswitch;?>
+                                        </p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">服务评价</span>
+                                            <?php switch($comment["assess"]): case "3": ?><span class="label">非常满意</span><?php break;?>
+                                                <?php case "2": ?><span class="label">满意</span><?php break;?>
+                                                <?php case "1": ?><span class="label">一般</span><?php break;?>
+                                                <?php case "0": ?><span class="label">不满意</span><?php break; endswitch;?>
+                                        </p>
+                                    </div><?php endif; ?>
+                                <!-- comment end -->
 
                                 <div style="margin-top: 10px;">
                                     <div class="head-tab">
@@ -509,7 +511,7 @@
 <input type="hidden" id="n_ticket_finish" value="<?php echo ($main["work_finish"]); ?>">
 
 <div id="alertSuccess" class="alert alert-success fadeInDown animated">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <a href="#" class="close">&times;</a>
     提交成功！
 </div>
 

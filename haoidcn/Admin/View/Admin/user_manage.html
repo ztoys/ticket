@@ -285,9 +285,9 @@
 </div><!--mainwrapper-->
 
 <!-- 群组右键菜单 -->
-<div class="group-menu rights" id="group-rights">
-    <input type="hidden" id="rights-group-id">
-    <input type="hidden" id="rights-group-name">
+<div class="group-menu rights" id="group_rights">
+    <input type="hidden" id="rights_group_id">
+    <input type="hidden" id="rights_group_name">
     <ul>
         <li onclick="setGroupName()">编辑</li>
         <li onclick="delGroup()">删除</li>
@@ -724,8 +724,8 @@
     }
 
     function setGroupName() {
-        var id = jQuery("#rights-group-id").val();
-        var oriName = jQuery("#rights-group-name").val();
+        var id = jQuery("#rights_group_id").val();
+        var oriName = jQuery("#rights_group_name").val();
         jQuery("#set_group_id").val(id);
         jQuery("#set_group_name").val(oriName);
         jQuery('#modal_set_group').modal('show');
@@ -736,8 +736,8 @@
         jQuery("#form_group_add").submit();
     }
     function delGroup() {
-        var id = jQuery("#rights-group-id").val();
-        var oriName = jQuery("#rights-group-name").val();
+        var id = jQuery("#rights_group_id").val();
+        var oriName = jQuery("#rights_group_name").val();
         jQuery("#del_group_id").val(id);
         jQuery("#group_del_name").text(name);
         jQuery('#modal_del_group').modal('show');
@@ -751,11 +751,11 @@
             t += obj.offsetTop;
             l += obj.offsetLeft;
         }
-        jQuery("#group-rights").css('top', t + 10);
-        jQuery("#group-rights").css('left', l + 10);
-        jQuery("#rights-group-id").val(id);
-        jQuery("#rights-group-name").val(name);
-        jQuery("#group-rights").show();
+        jQuery("#group_rights").css('top', t + 10);
+        jQuery("#group_rights").css('left', l + 10);
+        jQuery("#rights_group_id").val(id);
+        jQuery("#rights_group_name").val(name);
+        jQuery("#group_rights").show();
     }
 
     

@@ -115,11 +115,10 @@
         border: none;
     }     
     .comment-wrap {
-        padding: 10px 20px;
-        border-bottom: 1px solid #DDD;
+        margin: 30px 0;
     }
     .comment-wrap .comment-title{
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 10px;
     }
     .comment-wrap .comment-item+.comment-item{
@@ -133,7 +132,10 @@
     .form-ticket-status label{
         margin-bottom: 5px;
     }
-       
+    .icon-comment{
+        vertical-align: bottom;
+        margin-right: 5px;
+    }
 </style>
 </head>
 
@@ -249,103 +251,103 @@
             <div class="">
                 <div class="messagepanel">
                     <div class="ticket-info">
-                        <?php if($main["wc_sataus"] != '3'): ?><div class="">
-                                <div class="ticket-info-title">
-                                    工单信息
-                                </div>
-                                <div class="ticket-info-main">
-                                    <form class="form-ticket-status" id="form_ticket_statues" action="<?php echo U('Client/messages');?>" method="post" enctype="multipart/form-data">
-                                        <!-- <div>
-                                            <label>受理用户组</label>
-                                            <select name="" id="">
-                                                <option value="">请选择</option>
-                                                <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </select>
-                                        </div> -->
-                                        <!-- <div>
-                                            <label>受理人</label>
-                                            <select id="select_ticket_agent">
-                                                <option value="-1"> -- </option>
-                                                <?php if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>" <?php if($vo[id] == $main[w_did]): ?>selected<?php endif; ?> ><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                                            </select>
-                                        </div> -->
-                                        <div>
-                                            <label>工单状态</label>
-                                            <select id="select_ticket_status">
-                                                <option value="1" <?php if($main["wc_sataus"] == '1'): ?>selected<?php endif; ?> >待处理</option>
-                                                <option value="2" <?php if($main["wc_sataus"] == '2'): ?>selected<?php endif; ?> >正在研发中</option>
-                                                <option value="4" <?php if($main["wc_sataus"] == '4'): ?>selected<?php endif; ?> >待评价</option>
-                                            </select>
-                                        </div>
-    
-                                        <div style="margin-top: 20px;">
-                                            <label>产品确认</label>
-                                            <select id="select_ticket_product">
-                                                <option value="0" <?php if($main["work_product"] == ''): ?>selected<?php endif; ?> >--</option>
-                                                <option value="1" <?php if($main["work_product"] == '1'): ?>selected<?php endif; ?> >已确认</option>
-                                                <option value="2" <?php if($main["work_product"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
-                                            </select>
-                                        </div>
-    
-                                        <div style="margin-top: 20px;">
-                                            <label>研发确认</label>
-                                            <select id="select_ticket_develop">
-                                                <option value="0" <?php if($main["work_develop"] == ''): ?>selected<?php endif; ?> >--</option>
-                                                <option value="1" <?php if($main["work_develop"] == '1'): ?>selected<?php endif; ?> >已确认</option>
-                                                <option value="2" <?php if($main["work_develop"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
-                                            </select>
-                                        </div>
-    
-                                        <div style="margin-top: 20px;">
-                                            <label>完成时间</label>
-                                            <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;">
-                                        </div>
-                                    </form>
-
+                        <div class="">
+                            <div class="ticket-info-title">
+                                工单信息
+                            </div>
+                            <div class="ticket-info-main">
+                                <form class="form-ticket-status" id="form_ticket_statues" action="<?php echo U('Client/messages');?>" method="post" enctype="multipart/form-data">
+                                    <!-- <div>
+                                        <label>受理用户组</label>
+                                        <select name="" id="">
+                                            <option value="">请选择</option>
+                                            <?php if(is_array($list_group)): $i = 0; $__LIST__ = $list_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["status"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                        </select>
+                                    </div> -->
+                                    <!-- <div>
+                                        <label>受理人</label>
+                                        <select id="select_ticket_agent">
+                                            <option value="-1"> -- </option>
+                                            <?php if(is_array($list_group_user)): $i = 0; $__LIST__ = $list_group_user;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>" <?php if($vo[id] == $main[w_did]): ?>selected<?php endif; ?> ><?php echo ($vo["uname"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                        </select>
+                                    </div> -->
                                     <div>
-                                        <p class="ticket-info-label"><i class="icon-doc"></i>工单信息</p>
-                                        <div class="ticket-info-detail">
-                                            <p>
-                                                <span class="info-label">工单号：</span>
-                                                <?php echo ($main["w_id"]); ?>
-                                            </p>
-                                            <p>
-                                                <span class="info-label">优先级：</span>
-                                                <?php switch($main['w_level']): case "1": ?>一般<?php break;?>
-                                                    <?php case "2": ?>重要<?php break;?>
-                                                    <?php case "3": ?>紧急<?php break; endswitch;?>
-                                            </p>
-                                            <p>
-                                                <span class="info-label">工单类型：</span>
-                                                <?php switch($main['w_type']): case "1": ?>产品BUG<?php break;?>
-                                                    <?php case "2": ?>新需求<?php break;?>
-                                                    <?php case "3": ?>投诉与建议<?php break;?>
-                                                    <?php case "4": ?>其它<?php break; endswitch;?>
-                                            </p>
-                                            <p>
-                                                <span class="info-label">创建时间：</span>
-                                                <?php echo (date("Y-m-d H:i:s",$main["w_puddate"])); ?>
-                                            </p>
-                                            <p>
-                                                <span class="info-label">受理时间：</span>
-                                                <?php if($main['w_accdate'] != ''): echo (date("Y-m-d H:i:s",$main["w_accdate"])); ?>
-                                                <?php else: ?>
-                                                    --<?php endif; ?>
-                                            </p>
-                                            <p>
-                                                <span class="info-label">发起人：</span>
-                                                <?php echo ($main["u_uname"]); ?>
-                                            </p>
-                                        </div>
+                                        <label>工单状态</label>
+                                        <select id="select_ticket_status" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
+                                            <option value="1" <?php if($main["wc_sataus"] == '1'): ?>selected<?php endif; ?> >待处理</option>
+                                            <option value="2" <?php if($main["wc_sataus"] == '2'): ?>selected<?php endif; ?> >正在研发中</option>
+                                            <option value="4" <?php if($main["wc_sataus"] == '4'): ?>selected<?php endif; ?> >待评价</option>
+                                        </select>
+                                    </div>
+
+                                    <div style="margin-top: 20px;">
+                                        <label>产品确认</label>
+                                        <select id="select_ticket_product" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
+                                            <option value="0" <?php if($main["work_product"] == ''): ?>selected<?php endif; ?> >--</option>
+                                            <option value="1" <?php if($main["work_product"] == '1'): ?>selected<?php endif; ?> >已确认</option>
+                                            <option value="2" <?php if($main["work_product"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
+                                        </select>
+                                    </div>
+
+                                    <div style="margin-top: 20px;">
+                                        <label>研发确认</label>
+                                        <select id="select_ticket_develop" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
+                                            <option value="0" <?php if($main["work_develop"] == ''): ?>selected<?php endif; ?> >--</option>
+                                            <option value="1" <?php if($main["work_develop"] == '1'): ?>selected<?php endif; ?> >已确认</option>
+                                            <option value="2" <?php if($main["work_develop"] == '2'): ?>selected<?php endif; ?> >已拒绝</option>
+                                        </select>
+                                    </div>
+
+                                    <div style="margin-top: 20px;">
+                                        <label>完成时间</label>
+                                        <input type="text" id="ticket_finish" style="width:100%;box-sizing:border-box;height:30px;" <?php if($main["wc_sataus"] == '3'): ?>disabled<?php endif; ?>>
+                                    </div>
+                                </form>
+
+                                <div>
+                                    <p class="ticket-info-label"><i class="icon-doc"></i>工单信息</p>
+                                    <div class="ticket-info-detail">
+                                        <p>
+                                            <span class="info-label">工单号：</span>
+                                            <?php echo ($main["w_id"]); ?>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">优先级：</span>
+                                            <?php switch($main['w_level']): case "1": ?>一般<?php break;?>
+                                                <?php case "2": ?>重要<?php break;?>
+                                                <?php case "3": ?>紧急<?php break; endswitch;?>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">工单类型：</span>
+                                            <?php switch($main['w_type']): case "1": ?>产品BUG<?php break;?>
+                                                <?php case "2": ?>新需求<?php break;?>
+                                                <?php case "3": ?>投诉与建议<?php break;?>
+                                                <?php case "4": ?>其它<?php break; endswitch;?>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">创建时间：</span>
+                                            <?php echo (date("Y-m-d H:i:s",$main["w_puddate"])); ?>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">受理时间：</span>
+                                            <?php if($main['w_accdate'] != ''): echo (date("Y-m-d H:i:s",$main["w_accdate"])); ?>
+                                            <?php else: ?>
+                                                --<?php endif; ?>
+                                        </p>
+                                        <p>
+                                            <span class="info-label">发起人：</span>
+                                            <?php echo ($main["u_uname"]); ?>
+                                        </p>
                                     </div>
                                 </div>
-                            </div><?php endif; ?>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
-                            <a href="<?php echo ($data["url"]); ?>" class="back left underline"><  返回</a>
+                            <a href="javascript:history.go(-1);" class="back left underline"><  返回</a>
                         </div>
 
                         <div class="messageright cell">
@@ -353,24 +355,6 @@
                                 <div class="ticket-title">
                                     <?php echo ($main["w_title"]); ?>
                                 </div>
-                                
-                                <!-- comment -->
-                                <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
-                                        <p class="comment-title">工单评价</p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">问题是否已经解决</span>
-                                            <?php switch($comment["resolve"]): case "1": ?><span class="label">是</span><?php break;?>
-                                                <?php case "0": ?><span class="label">否</span><?php break; endswitch;?>
-                                        </p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">服务评价</span>
-                                            <?php switch($comment["assess"]): case "3": ?><span class="label">非常满意</span><?php break;?>
-                                                <?php case "2": ?><span class="label">满意</span><?php break;?>
-                                                <?php case "1": ?><span class="label">一般</span><?php break;?>
-                                                <?php case "0": ?><span class="label">不满意</span><?php break; endswitch;?>
-                                        </p>
-                                    </div><?php endif; ?>
-                                <!-- comment end -->
 
                                 <div class="ticket-content">
                                     <div>
@@ -397,6 +381,24 @@
                                             </div><?php endif; ?>	
                                     </div>
                                 </div><!--msgbody-->
+
+                                <!-- comment -->
+                                <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
+                                        <p class="comment-title"><i class="icon-comment"></i>工单评价</p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">问题是否已经解决</span>
+                                            <?php switch($comment["resolve"]): case "1": ?><span class="label">是</span><?php break;?>
+                                                <?php case "0": ?><span class="label">否</span><?php break; endswitch;?>
+                                        </p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">服务评价</span>
+                                            <?php switch($comment["assess"]): case "3": ?><span class="label">非常满意</span><?php break;?>
+                                                <?php case "2": ?><span class="label">满意</span><?php break;?>
+                                                <?php case "1": ?><span class="label">一般</span><?php break;?>
+                                                <?php case "0": ?><span class="label">不满意</span><?php break; endswitch;?>
+                                        </p>
+                                    </div><?php endif; ?>
+                                <!-- comment end -->
 
                                 <div style="margin-top: 10px;">
                                     <div class="head-tab">

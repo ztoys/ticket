@@ -36,6 +36,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/common.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>

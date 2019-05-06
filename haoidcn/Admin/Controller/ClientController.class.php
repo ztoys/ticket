@@ -140,10 +140,10 @@ class ClientController extends CommonController {
 						);
 						$this->update_sql("work","id=".$id,$data);
 					}
-					echo "<script>alert('工单提交成功。'); location.href='$url';</script>";
+					echo "<script>location.href='$url';</script>";
 					exit;
 				}else if(I('post.cc_status') == -1){
-					echo "<script>alert('工单已保存到草稿箱，可到草稿箱修改该工单。'); location.href='$url';</script>";
+					echo "<script>location.href='$url';</script>";
 					exit;
 				}
 			}else{
@@ -873,7 +873,7 @@ class ClientController extends CommonController {
 					$wrecord = new WrecordModel();
 					$wrecord->addWorkRecord($w_id, $id, time()+1, '已关闭工单。');
 
-					echo "<script>alert('操作成功。'); location.href='$url';</script>";
+					echo "<script>location.href='$url';</script>";
 					exit;
 				} else {
 					echo "<script>alert('关闭工单失败');</script>";

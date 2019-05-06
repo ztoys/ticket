@@ -117,6 +117,9 @@
                                 </select>
                             </div>
                             <div class="left">
+                                <input type="text" id="ticket_search" style="width:120px;" placeholder="搜索标题、负责人">
+                            </div>
+                            <div class="left">
                                 <button type="button" class="btn btn-primary btn-lg" onclick="selectTicket()">查询</button>
                             </div>
                         </div>
@@ -216,6 +219,7 @@
 <input type="hidden" value="{$ticket_status}" id="de_ticket_status">
 <input type="hidden" value="{$ticket_level}" id="de_ticket_level">
 <input type="hidden" value="{$ticket_owned}" id="de_ticket_owned">
+<input type="hidden" value="{$ticket_search}" id="de_ticket_search">
 
 </body>
 <script>
@@ -225,13 +229,15 @@
         var ticket_type = jQuery("#ticket_type").val();
         var ticket_case = jQuery("#ticket_case").val();
         var ticket_owned = jQuery("#ticket_owned").val();
+        var ticket_search = jQuery("#ticket_search").val();
         
-        var url = "{:U('Admin/ticket', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticket_level','tkstatus'=>'ticket_status','tkowned'=>'ticket_owned'))}";
+        var url = "{:U('Admin/ticket_history', array('case'=>'ticket_case','tktype'=>'ticket_type','tklevel'=>'ticket_level','tkstatus'=>'ticket_status','tkowned'=>'ticket_owned','tksearch'=>'ticket_search'))}";
         url = url.replace("ticket_case", ticket_case)
                  .replace("ticket_type", ticket_type)
                  .replace("ticket_level", ticket_level)
                  .replace("ticket_owned", ticket_owned)
-                 .replace("ticket_status", ticket_status);
+                 .replace("ticket_status", ticket_status)
+                 .replace("ticket_search", ticket_search);
         $(location).attr('href', url);
     }
 
@@ -240,6 +246,8 @@
         var de_ticket_status = jQuery("#de_ticket_status").val();
         var de_ticket_level = jQuery("#de_ticket_level").val();
         var de_ticket_owned = jQuery("#de_ticket_owned").val();
+        var de_ticket_search = jQuery("#de_ticket_search").val();
+
         if (de_ticket_type) {
             jQuery("#ticket_type").val(de_ticket_type);
         }
@@ -251,6 +259,9 @@
         }
         if (de_ticket_owned) {
             jQuery("#ticket_owned").val(de_ticket_owned);
+        }
+        if (de_ticket_search) {
+            jQuery("#ticket_search").val(de_ticket_search);
         }
 
         //选择受理人

@@ -58,11 +58,10 @@
     }
     .comments li:last-child .comment p{margin-top:15px;}
     .comment-wrap {
-        padding: 10px 20px;
-        border-bottom: 1px solid #DDD;
+        margin: 30px 0;
     }
     .comment-wrap .comment-title{
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 10px;
     }
     .comment-wrap .comment-item+.comment-item{
@@ -144,6 +143,15 @@
     .modal-comment form input[type='radio']{
         margin-left: 10px;
     }    
+    .rights.ticket {
+        right: 20px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+    .icon-comment{
+        vertical-align: bottom;
+        margin-right: 5px;
+    }
 </style>
 </head>
 
@@ -334,8 +342,13 @@
                     <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
-                            <a href="<?php echo ($data["url"]); ?>" class="left underline back"><  返回</a>
-                            <?php if($main["wc_sataus"] != '3'): ?><button type="button" data-toggle="modal" data-target="#modal_comment" class="btn btn-sm right">关闭工单</button><?php endif; ?>
+                            <a href="javascript:history.go(-1);" class="left underline back"><  返回</a>
+                            <?php if($main["wc_sataus"] != '3'): ?><i class="icon-more2 right" onclick="showRights()"></i>
+                                <div class="group-menu rights ticket" id="ticket_rights">
+                                    <ul>
+                                        <li data-toggle="modal" data-target="#modal_comment">关闭工单</li>
+                                    </ul>
+                                </div><?php endif; ?>
                         </div>
 
                         <div class="messageright">
@@ -344,24 +357,6 @@
                                     <?php echo ($main["w_title"]); ?>
                                 </div>
                                 
-                                <!-- comment -->
-                                <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
-                                        <p class="comment-title">工单评价</p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">问题是否已经解决</span>
-                                            <?php switch($comment["resolve"]): case "1": ?><span class="label">是</span><?php break;?>
-                                                <?php case "0": ?><span class="label">否</span><?php break; endswitch;?>
-                                        </p>
-                                        <p class="comment-item">
-                                            <span class="comment-item-label">服务评价</span>
-                                            <?php switch($comment["assess"]): case "3": ?><span class="label">非常满意</span><?php break;?>
-                                                <?php case "2": ?><span class="label">满意</span><?php break;?>
-                                                <?php case "1": ?><span class="label">一般</span><?php break;?>
-                                                <?php case "0": ?><span class="label">不满意</span><?php break; endswitch;?>
-                                        </p>
-                                    </div><?php endif; ?>
-                                <!-- comment end -->
-    
                                 <div class="ticket-content">
                                     <div>
                                         <?php echo ($main["w_issue"]); ?>
@@ -388,40 +383,23 @@
                                     </div>
                                 </div><!--msgbody-->
 
-                                <div style="margin-top: 10px;">
-                                    <div class="head-tab">
-                                        <ul>
-                                            <li class="on">
-                                                <a onclick="showTabItem(0)">服务记录</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="tab-content-wrap">
-                                    <div class="tab-item">
-                                        <div class="msg-reply-wrap" id="reply_wrap">
-                                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "$record_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor">
-                                                    <div class="left head-portrait">
-                                                        <i class="icon-person"></i>
-                                                    </div>
-                                                    <div class="cell reply-right">
-                                                        <div class="">
-                                                            <span class="name"><?php echo ($vo["uname"]); ?></span>
-                                                            <span class="date"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span>
-                                                        </div>
-                                                
-                                                        <div clas="">
-                                                            <div class="msgbody <?php if($vo['uid'] == $data['uid']): ?>mine<?php endif; ?>">
-                                                                <?php echo ($vo["g_reply"]); ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!--msgauthor--><?php endforeach; endif; else: echo "$record_empty" ;endif; ?>
-                                        </div>
-                                    </div>
-                                    <div class="tab-item"></div>
-                                </div>
+                                <!-- comment -->
+                                <?php if($main["wc_sataus"] == '3'): ?><div class="comment-wrap">
+                                        <p class="comment-title"><i class="icon-comment"></i>工单评价</p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">问题是否已经解决</span>
+                                            <?php switch($comment["resolve"]): case "1": ?><span class="label">是</span><?php break;?>
+                                                <?php case "0": ?><span class="label">否</span><?php break; endswitch;?>
+                                        </p>
+                                        <p class="comment-item">
+                                            <span class="comment-item-label">服务评价</span>
+                                            <?php switch($comment["assess"]): case "3": ?><span class="label">非常满意</span><?php break;?>
+                                                <?php case "2": ?><span class="label">满意</span><?php break;?>
+                                                <?php case "1": ?><span class="label">一般</span><?php break;?>
+                                                <?php case "0": ?><span class="label">不满意</span><?php break; endswitch;?>
+                                        </p>
+                                    </div><?php endif; ?>
+                                <!-- comment end -->
 
                                 <?php if($main["wc_sataus"] == '4' and $data["limits"] == 3 ): ?><div class="ticket-comment-wrap">
                                         <form action="<?php echo U('Client/close_ticket');?>" method="post" enctype="multipart/form-data" id="form_close_ticket2">
@@ -467,6 +445,41 @@
                                             </div>
                                         </form>
                                     </div><?php endif; ?>
+
+                                <div style="margin-top: 10px;">
+                                    <div class="head-tab">
+                                        <ul>
+                                            <li class="on">
+                                                <a onclick="showTabItem(0)">服务记录</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tab-content-wrap" <?php if($main["wc_sataus"] == '3'): ?>style="max-height:initial;"<?php endif; ?>>
+                                    <div class="tab-item">
+                                        <div class="msg-reply-wrap" id="reply_wrap">
+                                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "$record_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor">
+                                                    <div class="left head-portrait">
+                                                        <i class="icon-person"></i>
+                                                    </div>
+                                                    <div class="cell reply-right">
+                                                        <div class="">
+                                                            <span class="name"><?php echo ($vo["uname"]); ?></span>
+                                                            <span class="date"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span>
+                                                        </div>
+                                                
+                                                        <div clas="">
+                                                            <div class="msgbody <?php if($vo['uid'] == $data['uid']): ?>mine<?php endif; ?>">
+                                                                <?php echo ($vo["g_reply"]); ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!--msgauthor--><?php endforeach; endif; else: echo "$record_empty" ;endif; ?>
+                                        </div>
+                                    </div>
+                                    <div class="tab-item"></div>
+                                </div>
     
                                 <?php if($data["status"] != '3'): ?><div class="msgreply" >
                                         <form id="form01" action="<?php echo U('Client/submit_ticket');?>" method="post" enctype="multipart/form-data" target="rfFrame">
@@ -551,7 +564,7 @@
 </div>
 
 <div id="alertSuccess" class="alert alert-success fadeInDown animated">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <a href="#" class="close">&times;</a>
     提交成功！
 </div>
 
@@ -566,7 +579,10 @@
     function submitTicketSuccess() {
         var alertDom = jQuery("#alertSuccess");
         alertDom.show();
-        setTimeout(function(){
+        if (window.alertTimeOut) {
+            clearTimeout(window.alertTimeOut);
+        }
+        window.alertTimeOut = setTimeout(function(){
             alertDom.hide();
         }, 5000);
         var uid = "<?php echo ($data['uid']); ?>";
@@ -580,7 +596,7 @@
             success: function(data){
                 var data = JSON.parse(data);
                 if (data.error_code == 0){
-                    jQuery("#editorValue").val('');
+                    var editorDom = jQuery("#editorValue");
                     var replyDom = jQuery("#reply_wrap");
                     var scrollDom = replyDom.parents(".tab-content-wrap");
                     var listData = data.data;
@@ -603,9 +619,12 @@
                             tpl += itemTpl;
                         }
                         replyDom.html(tpl);
-                        scrollDom.animate({
-                            scrollTop: scrollDom[0].scrollHeight
-                        }, 500);
+                        if (jQuery.trim(editorDom.val()) != '') {
+                            editorDom.val('');
+                            scrollDom.animate({
+                                scrollTop: scrollDom[0].scrollHeight
+                            }, 500);
+                        }
                     }
                 }
             }
@@ -655,6 +674,16 @@
         tabHead.find("li").removeClass("on").eq(index).addClass("on");
         tabContent.find(".tab-item").hide().eq(index).show();
     }
+
+    function showRights(){
+        window.event?window.event.cancelBubble=true:event.stopPropagation();
+        jQuery("#ticket_rights").show();
+        console.log(jQuery("#ticket_rights")[0]);
+    }
+
+    jQuery(document).click(function(){
+        jQuery("#ticket_rights").hide();
+    })
 
 </script>
 </body>
