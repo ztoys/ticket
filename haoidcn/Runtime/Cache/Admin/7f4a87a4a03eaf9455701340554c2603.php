@@ -35,6 +35,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/common.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>
@@ -283,6 +284,15 @@
 	</div><!-- /.modal -->
 </div>
 
+<div id="alertSuccess" class="alert alert-success fadeInDown animated">
+	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	保存成功！
+</div>
+
+<div id="alertError" class="alert alert-error fadeInDown animated">
+	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	<span id="alert_error_text"></span>
+</div>
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
@@ -325,7 +335,6 @@ function delFieldSure() {
 	dom.parents("li").remove();
 	jQuery("#modal_confirm").modal('hide');
 }
-
 function saveField(id) {
 	var listDom = jQuery(".list-field");
 	var postData = {
@@ -334,8 +343,10 @@ function saveField(id) {
 		delid: window.saveDelFieldId
 	};
 	var hasEmptyName = false;
+	var filedNameArr = [];
 	listDom.find("li").each(function(){
 		var fieldName = jQuery(this).find("input[name='field-name']").val();
+		filedNameArr.push(fieldName);
 		var fieldId = jQuery(this).find("input[name='field-id']").val();
 		if (!fieldName) {
 			hasEmptyName = true;
@@ -351,10 +362,20 @@ function saveField(id) {
 	})
 
 	if (hasEmptyName) {
-		alert("字段名称不允许为空");
+		alertError("字段名称不允许为空");
 		return false;
 	}
-
+	
+	var hasSameNameArr = [];
+	(filedNameArr || []).forEach(function (item, index) {
+      if (hasSameNameArr.indexOf(item) === -1) {
+		hasSameNameArr.push(item);
+      }
+	})
+	if (hasSameNameArr.length != filedNameArr.length) {
+		alertError("字段名称不允许重复");
+		return false;
+	}
 	// postData.fields = JSON.stringify(postData.fields);
 	jQuery.ajax({
 		type: "POST",
@@ -362,12 +383,34 @@ function saveField(id) {
 		data: postData,
 		success: function(data){
 			if (data.code == 0){
-				alert("保存成功");
+				alertSucc();
 			} else {
 				alert("保存失败");
 			}
 		}
 	})
+}
+
+function alertSucc(){
+	var alertDom = jQuery("#alertSuccess");
+	alertDom.show();
+	if (window.alertTimeOut) {
+		clearTimeout(window.alertTimeOut);
+	}
+	window.alertTimeOut = setTimeout(function(){
+		alertDom.hide();
+	}, 5000);
+}
+function alertError(str){
+	var alertDom = jQuery("#alertError");
+	jQuery("#alert_error_text").text(str);
+	alertDom.show();
+	if (window.alertTimeOut) {
+		clearTimeout(window.alertTimeOut);
+	}
+	window.alertTimeOut = setTimeout(function(){
+		alertDom.hide();
+	}, 5000);
 }
 </script>
 </body>

@@ -23,3 +23,12 @@ function formatTimeStamp (timestamp) {
     var s = time.getSeconds();
     return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
 }
+
+/**
+ * bootstrap 隐藏alert
+ */
+jQuery(function(){
+    jQuery(".alert").find(".close").on("click", function(){
+        jQuery(this).parents(".alert").hide();
+    })
+})

@@ -464,7 +464,7 @@
 </div><!--mainwrapper-->
 
 <div id="alertSuccess" class="alert alert-success fadeInDown animated">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <a href="#" class="close">&times;</a>
     提交成功！
 </div>
 
@@ -499,7 +499,10 @@
     function submitTicketSuccess() {
         var alertDom = jQuery("#alertSuccess");
         alertDom.show();
-        setTimeout(function(){
+        if (window.alertTimeOut) {
+            clearTimeout(window.alertTimeOut);
+        }
+        window.alertTimeOut = setTimeout(function(){
             alertDom.hide();
         }, 5000);
         var uid = "<?php echo ($data['uid']); ?>";
@@ -513,9 +516,9 @@
             success: function(data){
                 var data = JSON.parse(data);
                 if (data.error_code == 0){
-                    jQuery("#editorValue").val('');
+                    var editorDom = jQuery("#editorValue");
                     var replyDom = jQuery("#reply_wrap");
-                    var scrollDom = replyDom.parents(".tab-content-wrap")[0];
+                    var scrollDom = replyDom.parents(".tab-content-wrap");
                     var listData = data.data;
                     var uname_tpl = '<&uname&>';
                     var date_tpl = '<&date&>';
@@ -536,7 +539,12 @@
                             tpl += itemTpl;
                         }
                         replyDom.html(tpl);
-                        scrollDom.scrollTop = scrollDom.scrollHeight;
+                        if (jQuery.trim(editorDom.val()) != '') {
+                            editorDom.val('');
+                            scrollDom.animate({
+                                scrollTop: scrollDom[0].scrollHeight
+                            }, 500);
+                        }
                     }
                 }
             }
