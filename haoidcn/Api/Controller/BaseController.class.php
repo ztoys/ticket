@@ -1,51 +1,37 @@
 <?php
-namespace Admin\Controller;
+namespace Api\Controller;
 use Think\Controller;
-use Admin\Model\WrecordModel;
 use Admin\Model\WorkModel;
+class BaseController extends Controller {
 
-class CommonController extends Controller {
-	
-	public function _initialize() {
+	//是否开启本地调试
+	private $is_local_debug;
 
-		header("Content-type: text/html; charset=utf-8");
-		
-		Session_start();
-		$userid = strtolower(I("session.userid"));
-		$pass = I("session.pass");
-		 
-		//是否已登录
-		if(empty($userid) && empty($pass)){
-			 
-			$this->redirect('Index/index');
-			exit;
-			 
+    public function __construct()
+    {
+		//是否开启本地调试。
+		$this->is_local_debug = 0 ;
+
+		//做一个检测，以免这个配置更新到线上。
+		if (
+			$this->is_local_debug > 0 
+			&&$_SERVER['HTTP_HOST'] != '127.0.0.1' 
+			&& $_SERVER['HTTP_HOST'] != 'wu.com' 
+			&& strpos($_SERVER['HTTP_HOST'], "192.168") == false
+		){
+			$this->sendError("-1001","非本地环境禁止开通调试。请通知管理员关闭调试模式");
+			exit();
 		}
-		 
-		//是否已验证
-		if(I("session.zl_status") == "-1" and I("session.limtis") == "3"){
-		
-			$this->redirect('Index/index');
-			exit;
-		}
-		
-		$User = D("User");
-		$user_arr = $User->where("userid='$userid'")->find();
-
-		//权限
-		$limits = $user_arr['limits'];
-		$this->assign("limits",$limits);
-		
-		//是否已验证
-		if($user_arr['zl_status'] == "-1" and $user_arr['limits'] == "3"){
-				
-			$this->redirect('Index/index');
-			exit;
+		//为了兼容纯json请求
+		if (strstr($_SERVER['CONTENT_TYPE'],"json")) {
+			$json = file_get_contents('php://input');
+			$array = json_decode($json,1);
+			$_POST = array_merge($_POST,$array) ;
 		}
 		
-	}
-	
-		/**
+    }
+
+	/**
 	 * 返回json结果
 	 */
 	protected function sendResult($array, $param){
@@ -143,6 +129,5 @@ class CommonController extends Controller {
 		return $data;
 	}
 	
-	
-	
+
 }

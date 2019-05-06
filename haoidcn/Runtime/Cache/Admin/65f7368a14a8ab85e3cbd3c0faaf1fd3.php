@@ -34,6 +34,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/common.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>
@@ -412,24 +413,8 @@
 
                                 <div class="tab-content-wrap">
                                     <div class="tab-item">
-                                        <div class="msg-reply-wrap">
-                                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "$record_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor">
-                                                    <div class="left head-portrait">
-                                                        <i class="icon-person"></i>
-                                                    </div>
-                                                    <div class="cell reply-right">
-                                                        <div class="">
-                                                            <span class="name"><?php echo ($vo["uname"]); ?></span>
-                                                            <span class="date"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span>
-                                                        </div>
-                                                
-                                                        <div clas="">
-                                                            <div class="msgbody <?php if($vo['uid'] == $data['uid']): ?>mine<?php endif; ?>">
-                                                                <?php echo ($vo["g_reply"]); ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!--msgauthor--><?php endforeach; endif; else: echo "$record_empty" ;endif; ?>
+                                        <div class="msg-reply-wrap" id="reply_wrap">
+                                            <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "$record_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor"><div class="left head-portrait"><i class="icon-person"></i></div><div class="cell reply-right"><div class=""><span class="name"><?php echo ($vo["uname"]); ?></span><span class="date"><?php echo (date("Y-m-d H:i:s",$vo["repdate"])); ?></span></div><div clas=""><div class="msgbody <?php if($vo['uid'] == $data['uid']): ?>mine<?php endif; ?>"><?php echo ($vo["g_reply"]); ?></div></div></div></div><!--msgauthor--><?php endforeach; endif; else: echo "$record_empty" ;endif; ?>
                                         </div>
                                     </div>
                                     <div class="tab-item">
@@ -445,7 +430,7 @@
 
 
                                 <?php if($data["status"] != '3'): ?><div class="msgreply" >
-                                        <form id="form_ticket" action="<?php echo U('Client/submit_ticket_agent?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data">
+                                        <form id="form_ticket" action="<?php echo U('Client/submit_ticket_agent?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data" target="rfFrame">
                                             <input type="hidden" name="ticket_agent" id="form_agent">
                                             <input type="hidden" name="ticket_agent_name" id="form_agent_name">
                                             <input type="hidden" name="ticket_status" id="form_ticket_status">
@@ -476,8 +461,14 @@
             </div><!--maincontentinner-->
         </div><!--maincontent-->
     </div>
-    
 </div><!--mainwrapper-->
+
+<div id="alertSuccess" class="alert alert-success fadeInDown animated">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    提交成功！
+</div>
+
+<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
 
 <input type="hidden" id="n_ticket_finish" value="<?php echo ($main["work_finish"]); ?>">
 
@@ -503,6 +494,54 @@
         jQuery("#form_ticket_develop_name").val(jQuery("#select_ticket_develop").find("option:selected").text());
         jQuery("#form_ticket_finish_name").val(jQuery("#ticket_finish").val());
         jQuery("#form_ticket").submit();
+    }
+
+    function submitTicketSuccess() {
+        var alertDom = jQuery("#alertSuccess");
+        alertDom.show();
+        setTimeout(function(){
+            alertDom.hide();
+        }, 5000);
+        var uid = "<?php echo ($data['uid']); ?>";
+
+        jQuery.ajax({
+            type: "post",
+            url: "<?php echo U('Api/ticket_reply_info');?>",
+            data: {
+                "tid": "<?php echo ($main["w_id"]); ?>",
+            },
+            success: function(data){
+                var data = JSON.parse(data);
+                if (data.error_code == 0){
+                    jQuery("#editorValue").val('');
+                    var replyDom = jQuery("#reply_wrap");
+                    var scrollDom = replyDom.parents(".tab-content-wrap")[0];
+                    var listData = data.data;
+                    var uname_tpl = '<&uname&>';
+                    var date_tpl = '<&date&>';
+                    var reply_tpl = '<&reply&>';
+                    var mine_tpl = '<&mine&>'
+                    var htmlTpl = '<div class="msgauthor"><div class="left head-portrait"><i class="icon-person"></i></div><div class="cell reply-right"><div class=""><span class="name">'+uname_tpl+'</span><span class="date">'+date_tpl+'</span></div><div clas=""><div class="msgbody '+mine_tpl+'">'+reply_tpl+'</div></div></div></div>';
+                    if (listData && listData.length) {
+                        var tpl = "";
+                        for( var i=0; i < listData.length; i++ ){
+                            var uname = listData[i].name || '';
+                            var date = formatTimeStamp(listData[i].date+"000" || '');
+                            var reply = listData[i].reply || '';
+                            var mine = '';
+                            if (listData[i].uid == uid) {
+                                mine = 'mine';
+                            }
+                            var itemTpl = htmlTpl.replace(/<&uname&>/ig, uname).replace(/<&date&>/ig, date).replace(/<&reply&>/ig, reply).replace(/<&mine&>/ig, mine);
+                            tpl += itemTpl;
+                        }
+                        replyDom.html(tpl);
+                        scrollDom.scrollTop = scrollDom.scrollHeight;
+                    }
+                }
+            }
+        })
+
     }
 
     jQuery(document).ready(function(){

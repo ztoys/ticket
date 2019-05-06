@@ -33,11 +33,5 @@ define('APP_PATH','./haoidcn/');
 // 绑定入口文件到Admin模块访问
 define('BIND_MODULE','Admin');
 
-// 注释掉绑定模块的定义
-//define('BIND_MODULE','Admin');
-
-
 // 引入ThinkPHP入口文件
 require './thinkphp/ThinkPHP.php';
-
-// 亲^_^ 后面不需要任何代码了 就是如此简单

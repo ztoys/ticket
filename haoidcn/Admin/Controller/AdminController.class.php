@@ -611,12 +611,12 @@ class AdminController extends CommonController {
 				);
 				$reply_sql = $this->update_sql("work","id=".$wid, $replay_data);
 
-				echo "<script>alert('发送成功！'); location.href='$url';</script>";
+				echo "<script>window.parent.submitTicketSuccess()</script>";
 				exit;
 			}
 			exit;
 		} else {
-			echo "<script>alert('修改成功！'); location.href='$url';</script>";
+			echo "<script>window.parent.submitTicketSuccess()</script>";
 			exit;
 		}
 	}

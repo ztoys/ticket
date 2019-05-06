@@ -1,0 +1,42 @@
+[ 2019-05-06T10:29:26+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/124
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000061s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001008s ]
+ERR: 无法加载模块:Client
+
+[ 2019-05-06T10:29:28+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/124
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000585s ]
+ERR: 无法加载模块:Client
+
+[ 2019-05-06T10:29:28+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/124
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000638s ]
+ERR: 无法加载模块:Client
+
+[ 2019-05-06T10:29:28+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/124
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000808s ]
+ERR: 无法加载模块:Client
+
+[ 2019-05-06T10:29:28+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/124
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000912s ]
+ERR: 无法加载模块:Client
+
+[ 2019-05-06T10:29:29+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/124
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000877s ]
+ERR: 无法加载模块:Client
+
+[ 2019-05-06T10:29:29+08:00 ] 10.0.0.224 /ticket/index.php/Client/detail_agent/case/manned/id/124
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000867s ]
+ERR: 无法加载模块:Client
+

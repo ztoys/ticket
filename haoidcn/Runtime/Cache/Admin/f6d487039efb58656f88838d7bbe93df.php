@@ -34,6 +34,7 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/responsive-tables.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/custom.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/common.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>prettify/prettify.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.jgrowl.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.alerts.js"></script>
@@ -399,7 +400,7 @@
 
                                 <div class="tab-content-wrap">
                                     <div class="tab-item">
-                                        <div class="msg-reply-wrap">
+                                        <div class="msg-reply-wrap" id="reply_wrap">
                                             <?php if(is_array($record)): $i = 0; $__LIST__ = $record;if( count($__LIST__)==0 ) : echo "$record_empty" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="msgauthor">
                                                     <div class="left head-portrait">
                                                         <i class="icon-person"></i>
@@ -468,14 +469,13 @@
                                     </div><?php endif; ?>
     
                                 <?php if($data["status"] != '3'): ?><div class="msgreply" >
-                                        <form id="form01" action="<?php echo U('Client/detail?case='.$data['url_status']);?>" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="insert" value="insert" />
+                                        <form id="form01" action="<?php echo U('Client/submit_ticket');?>" method="post" enctype="multipart/form-data" target="rfFrame">
                                             <input type="hidden" name="pid" value="<?php echo ($main["w_id"]); ?>">
                                             <div>
                                                 <textarea name="editorValue" id="editorValue" placeholder="请输入回复内容"></textarea>
                                             </div>
                                             <p style="margin-top:20px;">
-                                                <button type="submit" class="btn btn-primary btn-lg btn-reply" onclick="submitTicket()">回复</button>
+                                                <button type="submit" class="btn btn-primary btn-lg btn-reply">回复</button>
                                             </p>
                                         </form>
                                     </div><!--messagereply--><?php endif; ?>
@@ -550,12 +550,67 @@
 	</div><!-- /.modal -->
 </div>
 
+<div id="alertSuccess" class="alert alert-success fadeInDown animated">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    提交成功！
+</div>
+
+<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
+
 <script type="text/javascript">
 
     jQuery(document).ready(function(){
         showTabItem(0);
     })
 
+    function submitTicketSuccess() {
+        var alertDom = jQuery("#alertSuccess");
+        alertDom.show();
+        setTimeout(function(){
+            alertDom.hide();
+        }, 5000);
+        var uid = "<?php echo ($data['uid']); ?>";
+
+        jQuery.ajax({
+            type: "post",
+            url: "<?php echo U('Api/ticket_reply_info');?>",
+            data: {
+                "tid": "<?php echo ($main["w_id"]); ?>",
+            },
+            success: function(data){
+                var data = JSON.parse(data);
+                if (data.error_code == 0){
+                    jQuery("#editorValue").val('');
+                    var replyDom = jQuery("#reply_wrap");
+                    var scrollDom = replyDom.parents(".tab-content-wrap");
+                    var listData = data.data;
+                    var uname_tpl = '<&uname&>';
+                    var date_tpl = '<&date&>';
+                    var reply_tpl = '<&reply&>';
+                    var mine_tpl = '<&mine&>'
+                    var htmlTpl = '<div class="msgauthor"><div class="left head-portrait"><i class="icon-person"></i></div><div class="cell reply-right"><div class=""><span class="name">'+uname_tpl+'</span><span class="date">'+date_tpl+'</span></div><div clas=""><div class="msgbody '+mine_tpl+'">'+reply_tpl+'</div></div></div></div>';
+                    if (listData && listData.length) {
+                        var tpl = "";
+                        for( var i=0; i < listData.length; i++ ){
+                            var uname = listData[i].name || '';
+                            var date = formatTimeStamp(listData[i].date+"000" || '');
+                            var reply = listData[i].reply || '';
+                            var mine = '';
+                            if (listData[i].uid == uid) {
+                                mine = 'mine';
+                            }
+                            var itemTpl = htmlTpl.replace(/<&uname&>/ig, uname).replace(/<&date&>/ig, date).replace(/<&reply&>/ig, reply).replace(/<&mine&>/ig, mine);
+                            tpl += itemTpl;
+                        }
+                        replyDom.html(tpl);
+                        scrollDom.animate({
+                            scrollTop: scrollDom[0].scrollHeight
+                        }, 500);
+                    }
+                }
+            }
+        })
+    }
 
     function closeTicket () {
         var resolveText = jQuery("#form_close_ticket input[name='resolve']:checked").data('text');

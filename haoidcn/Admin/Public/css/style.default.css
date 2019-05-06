@@ -1714,7 +1714,19 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,
 .popover, .popover-title { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; }
 .popover { padding: 0; }
 
-.alert .close { right: -25px; top: 1px; }
+.alert {
+	position: absolute;
+	width: 400px;
+	z-index: 9999;
+	left: 50%;
+	margin-left: -200px;
+	top: 30px;
+	border-radius: 3px;
+	display: none;
+}
+
+
+.alert .close { top: -1px; }
 
 .table th { font-weight: normal; text-transform: uppercase; font-size: 12px; border-top: 0; background: #333; color: #fff; }
 .table th.centeralign, .table td.centeralign { text-align: center; }
