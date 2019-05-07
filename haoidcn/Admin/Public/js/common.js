@@ -32,3 +32,10 @@ jQuery(function(){
         jQuery(this).parents(".alert").hide();
     })
 })
+
+/**
+ * 返回上一页（刷新缓存）
+ */
+function goBack(){
+    window.location.href=document.referrer;
+}

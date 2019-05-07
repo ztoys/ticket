@@ -347,7 +347,7 @@
                     <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
-                            <a href="javascript:history.go(-1);" class="back left underline"><  返回</a>
+                            <a href="javascript:goBack();" class="back left underline"><  返回</a>
                         </div>
 
                         <div class="messageright cell">

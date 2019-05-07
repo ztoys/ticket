@@ -93,6 +93,8 @@
         background: #f7fcff;
         padding: 20px 0;
         margin: 20px 0;
+        border: 1px solid #0766c6;
+        border-radius: 5px;
     }
     .ticket-comment{
         width: 500px;
@@ -342,7 +344,7 @@
                     <div class="ticket-main messagecontent">
                         <div class="ticket-head">
                             工单详情
-                            <a href="javascript:history.go(-1);" class="left underline back"><  返回</a>
+                            <a href="javascript:goBack();" class="left underline back"><  返回</a>
                             <?php if($main["wc_sataus"] != '3'): ?><i class="icon-more2 right" onclick="showRights()"></i>
                                 <div class="group-menu rights ticket" id="ticket_rights">
                                     <ul>
@@ -408,7 +410,7 @@
                                                 <input type="hidden" name="resolve_text" id="resolve_text2">
                                                 <input type="hidden" name="assess_text" id="assess_text2">
                                                 <div style="zoom:1;">
-                                                    <h4 class="title">请进行服务评价</h4>
+                                                    <h4 class="title"><i class="icon-comment"></i>请进行服务评价</h4>
                                                     <p class="note2">评价后将自动关闭工单</p>
                                                 </div>
                                                 <div style="padding-left: 105px;margin-top: 50px;">
