@@ -124,7 +124,7 @@
     .ticket-comment .btn.submit{
         display: block;
         width: 200px;
-        margin: 50px auto 20px;
+        margin: 30px auto 20px;
     }
     .messageview .subject{
         padding-right: 20px;
@@ -413,7 +413,7 @@
                                                     <h4 class="title"><i class="icon-comment"></i>请进行服务评价</h4>
                                                     <p class="note2">评价后将自动关闭工单</p>
                                                 </div>
-                                                <div style="padding-left: 105px;margin-top: 50px;">
+                                                <div style="padding-left: 105px;margin-top: 20px;">
                                                     <p style="margin-top: 20px;">
                                                         <label class="label-title">问题是否已经解决：</label>
                                                         <div class="radio-wrap">

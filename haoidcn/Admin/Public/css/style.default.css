@@ -1551,6 +1551,7 @@ input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,
 .fileupload .btn { vertical-align: top; color: #666; }
 .btn-group > .btn + .dropdown-toggle { padding-left: 3px; }
 .input-append .add-on, .input-prepend .add-on { height: 22px; }
+
 .bootstrap-timepicker-widget a.btn, .bootstrap-timepicker-widget input {
 	-moz-border-radius: 0 !important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
 
@@ -2147,7 +2148,6 @@ table td.center, table th.center { text-align: center; }
 		  .btn-circle { width: 6px; }
 		  .btn-circle i { margin-left: -3px; }
 		  .input-append .btn, .input-prepend .btn { padding-left: 8px; padding-right: 8px; font-size: 12px; }
-		  
 		  /* footer */
 		  .footer .footer-left { float: none; text-align: center; }
 		  .footer .footer-right { float: none; text-align: center; }

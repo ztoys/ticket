@@ -159,8 +159,6 @@
     </div><!-- leftpanel -->
 
 <!-- header end -->
-
-
     <div class="rightpanel">
         <!-- head binge -->
         
@@ -241,16 +239,14 @@
 							<input type="file" name='file[]' id='file_s1'/></span>
 								<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">取消</a>
 							</div>
-								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void();" onclick="file_d();"  class="iconfa-plus">&nbsp;&nbsp;增加一个</a></span>
+								<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="file_d();" style="cursor:pointer;" class="iconfa-plus">&nbsp;&nbsp;增加一个</a></span>
 								<!-- <span>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">上传格式：jpg，gif，peg，jpeg</font></span> -->
 						    </div>
 						</div>
                    	</div>
 
                     <!-- 附件上传 END -->
-                    
                    	<br/>
-                   	
                      
                    	<p>
                    		<label></label>

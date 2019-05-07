@@ -39,7 +39,7 @@ class ClientController extends CommonController {
 			}
 			
 			//上传附件
-			// print_r($_FILES['file']);
+			// print_r($_FILES);
 			// exit;
 
 			//限制附件上传大小

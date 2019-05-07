@@ -159,13 +159,13 @@ function update_t(type){
 		var file_de= $("#file_de").val();
 		var file_g = "";
 		//判断是上传文件
-		for ( var j = 2; j <= file_de; j++ ) {   
-			if($("#file_s"+j).val() == ""){
-				jAlert("请关闭未上传的操作");
-				$("#file_s"+j).focus();
-				return false;
-			}
-		}
+		// for ( var j = 2; j <= file_de; j++ ) {   
+		// 	if($("#file_s"+j).val() == ""){
+		// 		jAlert("请关闭未上传的操作");
+		// 		$("#file_s"+j).focus();
+		// 		return false;
+		// 	}
+		// }
 		//50M限制提示
 		var restrictedByte = 52428800;
 		var exceedArr = [];
@@ -503,16 +503,12 @@ function file_d(){
 							"</div>"+
 							"<span class='btn btn-file'><span class='fileupload-new'>选择</span>"+
 							"<span class='fileupload-exists'>修改</span>"+
-							"<input type='file' name='photo[]' id='file_s"+file_j+"'/></span>"+
+							"<input type='file' name='file[]' id='file_s"+file_j+"'/></span>"+
 							"	<a href='#' class='btn fileupload-exists' data-dismiss='fileupload'>取消</a>"+
 							"</div>"+
 							"	<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:void();' onclick="+"file_del('file_j"+file_j+"');"+"  class='iconfa-remove'>&nbsp;&nbsp;删除</a></span>"+
 						    "</div>"+
 						"</div>");
-	
-	
-	
-	
 	
 }
 

@@ -1,0 +1,194 @@
+[03-07 18:54:12.67][INFO ] ------------ start ------------
+[03-07 18:54:50.933][WARN ] failed get youdu-srv lcs: 4000:jgauthd:4000:licens not exist 2019-03-07 18:54:47 (models/base.go:156)
+[03-07 18:54:50.933][WARN ] can not get buin,exit. (models/base.go:179)
+[03-07 18:55:02.433][INFO ] ------------ start ------------
+[03-07 18:55:04.495][INFO ] fetch buin: 123456 (models/base.go:149)
+[03-07 18:55:04.496][INFO ] init app: 123456 sysClockAssistant http://127.0.0.1:7080 (models/base.go:198)
+[03-08 09:46:43.688][INFO ] ------------ start ------------
+[03-08 09:46:45.787][INFO ] fetch buin: 123456 (models/base.go:149)
+[03-08 09:46:45.788][INFO ] init app: 123456 sysClockAssistant http://127.0.0.1:7080 (models/base.go:198)
+[03-08 16:37:15.205][INFO ] ------------ start ------------
+[03-08 16:37:21.943][INFO ] fetch buin: 123456 (models/base.go:149)
+[03-08 16:37:21.943][INFO ] init app: 123456 sysClockAssistant http://127.0.0.1:7080 (models/base.go:198)
+[03-11 09:06:16.385][INFO ] ------------ start ------------
+[03-11 09:06:40.885][INFO ] fetch buin: 123456 (models/base.go:149)
+[03-11 09:06:40.957][INFO ] init app: 123456 sysClockAssistant http://127.0.0.1:7080 (models/base.go:198)
+[03-14 10:41:02.913][INFO ] ------------ start ------------
+[03-14 10:41:05.063][INFO ] fetch buin: 123456 (models/base.go:149)
+[03-14 10:41:05.064][INFO ] init app: 123456 sysClockAssistant http://127.0.0.1:7080 (models/base.go:198)
+[GIN] 2019/03/14 - 18:24:43 | 200 |      2.0116ms | 10.0.0.159:56044 | GET      /clockapp/mobile/?appver=4.0.12&devtype=ios
+[GIN] 2019/03/14 - 18:24:43 | 200 |     41.0506ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/css/style.css
+[GIN] 2019/03/14 - 18:24:43 | 200 |     44.9206ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/css/icon-mobile.css
+[GIN] 2019/03/14 - 18:24:43 | 200 |     51.9199ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/css/common.css
+[GIN] 2019/03/14 - 18:24:43 | 200 |     59.6131ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/css/reset.css
+[GIN] 2019/03/14 - 18:24:43 | 200 |     61.1114ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/css/animate.css
+[GIN] 2019/03/14 - 18:24:43 | 200 |     73.0908ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/js/youdu_sdk-1.0.js
+[GIN] 2019/03/14 - 18:24:43 | 200 |      7.0038ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/icon-mobile/16900_026@2x.png
+[GIN] 2019/03/14 - 18:24:43 | 200 |     11.5196ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/icon-mobile/16900_029@3x.png
+[GIN] 2019/03/14 - 18:24:43 | 200 |     26.1922ms | 10.0.0.159:56044 | GET      /clockapp/mobile/static/icon-mobile/16900_034@2x.png
+[03-14 18:24:46.113][INFO ] PunchPrepare: toy1 e4:f4:c6:0d:a1:d8 22.253554634841777 113.51954590308213 (controllers/client_api.go:64)
+[GIN] 2019/03/14 - 18:24:46 | 200 |      3.9929ms | 10.0.0.159:56044 | POST     /clockapp/punch.prepare?token=om8ECDJvSMAtOkatpWZW2CWYCOgarqngRrnEfwcpt33A-OenUyMGe-3axTuLS5ukbGStwG6ABKdMGdhL0p2LmA==
+[03-20 16:20:20.056][INFO ] ------------ start ------------
+[03-20 16:20:31.617][INFO ] fetch buin: 123456 (models/base.go:149)
+[03-20 16:20:31.695][INFO ] init app: 123456 sysClockAssistant http://127.0.0.1:7080 (models/base.go:198)
+[GIN] 2019/04/03 - 16:41:53 | 302 |      113.59ms | 10.0.0.224:65091 | GET      /clockapp/backend.jump?acctoken=uePSWDWWZPNqTIDFPQRrVY51qnVdaDnwRFltnjGb
+[GIN] 2019/04/03 - 16:41:54 | 200 |    146.1154ms | 10.0.0.224:65091 | GET      /clockapp/backend/
+[GIN] 2019/04/03 - 16:41:54 | 200 |      33.023ms | 10.0.0.224:65091 | GET      /clockapp/backend/static/css/app.4d3147e6933c0871417b9ea7083f5e8a.css
+[GIN] 2019/04/03 - 16:41:54 | 200 |      63.052ms | 10.0.0.224:65084 | GET      /clockapp/backend/static/js/manifest.62cf2e195bbb8638e392.js
+[GIN] 2019/04/03 - 16:41:54 | 200 |     64.0525ms | 10.0.0.224:65085 | GET      /clockapp/backend/static/js/app.66e5ca23da0cfb739eac.js
+[GIN] 2019/04/03 - 16:41:54 | 200 |     81.0631ms | 10.0.0.224:65090 | GET      /clockapp/backend/static/js/vendor.7af72c61322cc51de6cb.js
+[GIN] 2019/04/03 - 16:41:54 | 200 |     190.114ms | 10.0.0.224:65085 | GET      /clockapp/rule.list
+[GIN] 2019/04/03 - 16:41:54 | 200 |     14.5112ms | 10.0.0.224:65085 | GET      /clockapp/backend/static/img/favicon.ico
+[04-03 16:41:56.101][INFO ] get org tree: false <nil> (models/orgtree.go:240)
+[GIN] 2019/04/03 - 16:41:56 | 200 |    1.5053241s | 10.0.0.224:65090 | GET      /clockapp/deptexpand/0
+[GIN] 2019/04/03 - 16:41:56 | 200 |       998.7µs | 10.0.0.224:65090 | GET      /clockapp/deptexpand/0
+[GIN] 2019/04/03 - 16:41:58 | 200 |            0s | 10.0.0.224:65090 | GET      /clockapp/deptexpand/0
+[04-03 16:42:31.507][INFO ] rule thread start: main e5da95564100fb399fbcb406539371e9 (controllers/threads.go:50)
+[GIN] 2019/04/03 - 16:42:31 | 200 |    1.0804573s | 10.0.0.224:65196 | POST     /clockapp/rule.update
+[GIN] 2019/04/03 - 16:43:08 | 302 |      1.0007ms | 10.0.0.224:65265 | GET      /clockapp/backend.jump?acctoken=uePSWDWWZPNqTIDFPQRrVY51qnVdaDnwRFltnjGb
+[GIN] 2019/04/03 - 16:43:08 | 200 |            0s | 10.0.0.224:65265 | GET      /clockapp/deptexpand/0
+[04-03 16:43:10.148][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[GIN] 2019/04/03 - 16:43:10 | 200 |    1.1633568s | 10.0.0.224:65266 | GET      /clockapp/rule.list
+[GIN] 2019/04/03 - 16:44:14 | 200 |     74.1422ms | 10.0.0.159:53910 | GET      /clockapp/mobile/?appver=4.0.12&devtype=ios
+[GIN] 2019/04/03 - 16:44:14 | 304 |       990.7µs | 10.0.0.159:53910 | GET      /clockapp/mobile/static/css/reset.css
+[GIN] 2019/04/03 - 16:44:14 | 304 |            0s | 10.0.0.159:53910 | GET      /clockapp/mobile/static/css/common.css
+[GIN] 2019/04/03 - 16:44:14 | 304 |            0s | 10.0.0.159:53910 | GET      /clockapp/mobile/static/css/animate.css
+[GIN] 2019/04/03 - 16:44:14 | 304 |            0s | 10.0.0.159:53910 | GET      /clockapp/mobile/static/css/icon-mobile.css
+[GIN] 2019/04/03 - 16:44:14 | 304 |            0s | 10.0.0.159:53910 | GET      /clockapp/mobile/static/js/youdu_sdk-1.0.js
+[GIN] 2019/04/03 - 16:44:14 | 304 |            0s | 10.0.0.159:53910 | GET      /clockapp/mobile/static/css/style.css
+[GIN] 2019/04/03 - 16:44:14 | 304 |       1.001ms | 10.0.0.159:53910 | GET      /clockapp/mobile/static/icon-mobile/16900_034@2x.png
+[GIN] 2019/04/03 - 16:44:14 | 304 |            0s | 10.0.0.159:53910 | GET      /clockapp/mobile/static/icon-mobile/16900_026@2x.png
+[GIN] 2019/04/03 - 16:44:14 | 304 |            0s | 10.0.0.159:53910 | GET      /clockapp/mobile/static/icon-mobile/16900_029@3x.png
+[04-03 16:44:14.506][DEBUG] cannot punch signOn now: toy1 (controllers/client_api.go:92)
+[04-03 16:44:14.506][INFO ] PunchPrepare: toy1 e4:f4:c6:0d:a1:d8 22.253356656570226 113.51955885481554 e5da95564100fb399fbcb406539371e9 1 (controllers/client_api.go:100)
+[GIN] 2019/04/03 - 16:44:14 | 200 |     20.0243ms | 10.0.0.159:53910 | POST     /clockapp/punch.prepare?token=KgTITQNQHZ5QOQyhs79zAm4dHuBVcrF2-AQy6pesmhDKOfXP3o3TROLdh62ygbzQd-63HR4wLJ-_K57keUcYng==
+[GIN] 2019/04/03 - 16:44:14 | 200 |     13.0184ms | 10.0.0.159:53910 | GET      /clockapp/mobile/static/icon-mobile/16900_028@3x.png
+[GIN] 2019/04/03 - 16:44:17 | 200 |      2.9867ms | 10.0.0.159:53910 | POST     /clockapp/punch.finish?token=KgTITQNQHZ5QOQyhs79zAm4dHuBVcrF2-AQy6pesmhDKOfXP3o3TROLdh62ygbzQd-63HR4wLJ-_K57keUcYng==
+[GIN] 2019/04/03 - 16:44:17 | 200 |     11.0181ms | 10.0.0.159:53910 | GET      /clockapp/mobile/static/icon-mobile/1900_008@2x.png
+[GIN] 2019/04/03 - 16:50:10 | 200 |     52.0846ms | 10.0.0.159:53940 | GET      /clockapp/mobile/?appver=4.0.12&devtype=ios
+[04-03 16:50:10.809][INFO ] PunchPrepare: toy1 e4:f4:c6:0d:a1:d8 22.253401482277404 113.51956240228044 e5da95564100fb399fbcb406539371e9 2 (controllers/client_api.go:100)
+[GIN] 2019/04/03 - 16:50:10 | 200 |     36.5348ms | 10.0.0.159:53940 | POST     /clockapp/punch.prepare?token=FckeGNRyOTeXizNfAHGEUAhWzsZajqUnNwyUMZuR2E-ZzTjWsTk960S-Vscjq_kzul6fDFksx8pNMIcizq0KyQ==
+[04-03 16:50:10.839][INFO ] PunchPrepare: toy1 e4:f4:c6:0d:a1:d8 22.253401482277404 113.51956240228044 e5da95564100fb399fbcb406539371e9 2 (controllers/client_api.go:100)
+[GIN] 2019/04/03 - 16:50:10 | 200 |       3.001ms | 10.0.0.159:53940 | POST     /clockapp/punch.prepare?token=FckeGNRyOTeXizNfAHGEUAhWzsZajqUnNwyUMZuR2E-ZzTjWsTk960S-Vscjq_kzul6fDFksx8pNMIcizq0KyQ==
+[GIN] 2019/04/03 - 16:50:11 | 200 |      1.9909ms | 10.0.0.159:53940 | GET      /clockapp/mobile/record.html
+[GIN] 2019/04/03 - 16:50:11 | 200 |     24.0211ms | 10.0.0.159:53940 | GET      /clockapp/records.all?token=mdmuCJF831TafXdz0JqIxFNrumO1EJEWODYRHmNt772LLru1vvHFCleX00F7HFILFjq0grsHmcmO4s0b-t5aLg==
+[04-03 17:00:00.345][INFO ] end day clock... (controllers/threads.go:158)
+[04-03 17:00:01.673][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-04 08:50:00.038][INFO ] start day clock... (controllers/threads.go:122)
+[04-04 08:50:01.030][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-04 17:00:00.211][INFO ] end day clock... (controllers/threads.go:158)
+[04-04 17:00:01.244][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-05 08:50:00.969][INFO ] start day clock... (controllers/threads.go:122)
+[04-05 08:50:01.933][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-05 17:00:00.600][INFO ] end day clock... (controllers/threads.go:158)
+[04-05 17:00:01.939][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-06 17:00:00.618][INFO ] end day clock... (controllers/threads.go:158)
+[04-06 17:00:01.614][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-07 17:00:00.252][INFO ] end day clock... (controllers/threads.go:158)
+[04-07 17:00:01.251][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-08 08:50:00.154][INFO ] start day clock... (controllers/threads.go:122)
+[04-08 08:50:01.118][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-08 17:00:00.752][INFO ] end day clock... (controllers/threads.go:158)
+[04-08 17:00:01.784][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-09 08:50:00.296][INFO ] start day clock... (controllers/threads.go:122)
+[04-09 08:50:01.305][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-09 17:00:00.424][INFO ] end day clock... (controllers/threads.go:158)
+[04-09 17:00:01.668][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-10 08:50:00.257][INFO ] start day clock... (controllers/threads.go:122)
+[04-10 08:50:01.731][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-10 17:00:00.058][INFO ] end day clock... (controllers/threads.go:158)
+[04-10 17:00:01.487][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-11 08:50:00.733][INFO ] start day clock... (controllers/threads.go:122)
+[04-11 08:50:01.790][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-11 17:00:00.814][INFO ] end day clock... (controllers/threads.go:158)
+[04-11 17:00:02.119][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-12 08:50:00.651][INFO ] start day clock... (controllers/threads.go:122)
+[04-12 08:50:01.681][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-12 17:00:00.307][INFO ] end day clock... (controllers/threads.go:158)
+[04-12 17:00:01.541][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-13 17:00:00.852][INFO ] end day clock... (controllers/threads.go:158)
+[04-13 17:00:02.309][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-14 17:00:00.753][INFO ] end day clock... (controllers/threads.go:158)
+[04-14 17:00:01.826][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-15 08:50:00.289][INFO ] start day clock... (controllers/threads.go:122)
+[04-15 08:50:01.271][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-15 17:00:00.613][INFO ] end day clock... (controllers/threads.go:158)
+[04-15 17:00:01.634][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-16 08:50:00.256][INFO ] start day clock... (controllers/threads.go:122)
+[04-16 08:50:01.661][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-16 17:00:00.713][INFO ] end day clock... (controllers/threads.go:158)
+[04-16 17:00:01.777][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-16 20:20:30.347][INFO ] ------------ start ------------
+[04-16 20:20:47.662][INFO ] fetch buin: 123456 (models/base.go:149)
+[04-16 20:20:47.754][INFO ] init app: 123456 sysClockAssistant http://127.0.0.1:7080 (models/base.go:198)
+[04-16 20:20:50.505][INFO ] rule thread start: main e5da95564100fb399fbcb406539371e9 (controllers/threads.go:50)
+[04-17 08:50:00.356][INFO ] start day clock... (controllers/threads.go:122)
+[04-17 08:50:01.559][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-17 17:00:00.785][INFO ] end day clock... (controllers/threads.go:158)
+[04-17 17:00:01.908][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-18 08:50:00.464][INFO ] start day clock... (controllers/threads.go:122)
+[04-18 08:50:01.537][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-18 17:00:00.979][INFO ] end day clock... (controllers/threads.go:158)
+[04-18 17:00:02.038][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-19 08:50:00.851][INFO ] start day clock... (controllers/threads.go:122)
+[04-19 08:50:02.150][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-19 17:00:00.583][INFO ] end day clock... (controllers/threads.go:158)
+[04-19 17:00:02.148][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-20 17:00:00.343][INFO ] end day clock... (controllers/threads.go:158)
+[04-20 17:00:01.275][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-21 17:00:00.574][INFO ] end day clock... (controllers/threads.go:158)
+[04-21 17:00:01.728][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-22 08:50:00.841][INFO ] start day clock... (controllers/threads.go:122)
+[04-22 08:50:02.030][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-22 17:00:00.639][INFO ] end day clock... (controllers/threads.go:158)
+[04-22 17:00:01.728][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-23 08:50:00.905][INFO ] start day clock... (controllers/threads.go:122)
+[04-23 08:50:01.826][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-23 17:00:00.070][INFO ] end day clock... (controllers/threads.go:158)
+[04-23 17:00:01.682][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-24 08:50:00.524][INFO ] start day clock... (controllers/threads.go:122)
+[04-24 08:50:01.430][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-24 17:00:00.118][INFO ] end day clock... (controllers/threads.go:158)
+[04-24 17:00:01.592][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-25 08:50:00.818][INFO ] start day clock... (controllers/threads.go:122)
+[04-25 08:50:01.756][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-25 17:00:00.124][INFO ] end day clock... (controllers/threads.go:158)
+[04-25 17:00:01.100][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-26 08:50:00.769][INFO ] start day clock... (controllers/threads.go:122)
+[04-26 08:50:01.814][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-26 17:00:00.690][INFO ] end day clock... (controllers/threads.go:158)
+[04-26 17:00:01.685][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-27 17:00:00.331][INFO ] end day clock... (controllers/threads.go:158)
+[04-27 17:00:01.460][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-28 17:00:00.767][INFO ] end day clock... (controllers/threads.go:158)
+[04-28 17:00:02.552][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-29 08:50:00.170][INFO ] start day clock... (controllers/threads.go:122)
+[04-29 08:50:01.506][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-29 17:00:00.855][INFO ] end day clock... (controllers/threads.go:158)
+[04-29 17:00:02.221][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-30 08:50:00.639][INFO ] start day clock... (controllers/threads.go:122)
+[04-30 08:50:02.010][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[04-30 17:00:00.634][INFO ] end day clock... (controllers/threads.go:158)
+[04-30 17:00:02.310][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-01 08:50:00.479][INFO ] start day clock... (controllers/threads.go:122)
+[05-01 08:50:01.564][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-01 17:00:00.847][INFO ] end day clock... (controllers/threads.go:158)
+[05-01 17:00:02.048][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-02 08:50:00.171][INFO ] start day clock... (controllers/threads.go:122)
+[05-02 08:50:01.099][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-02 17:00:00.908][INFO ] end day clock... (controllers/threads.go:158)
+[05-02 17:00:02.269][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-03 08:50:00.705][INFO ] start day clock... (controllers/threads.go:122)
+[05-03 08:50:01.721][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-03 17:00:00.914][INFO ] end day clock... (controllers/threads.go:158)
+[05-03 17:00:01.932][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-04 17:00:00.657][INFO ] end day clock... (controllers/threads.go:158)
+[05-04 17:00:01.614][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-05 17:00:00.972][INFO ] end day clock... (controllers/threads.go:158)
+[05-05 17:00:01.955][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-06 08:50:00.477][INFO ] start day clock... (controllers/threads.go:122)
+[05-06 08:50:01.504][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-06 17:00:00.016][INFO ] end day clock... (controllers/threads.go:158)
+[05-06 17:00:02.432][INFO ] get org tree: true <nil> (models/orgtree.go:240)
+[05-07 08:50:00.282][INFO ] start day clock... (controllers/threads.go:122)
+[05-07 08:50:01.267][INFO ] get org tree: true <nil> (models/orgtree.go:240)
