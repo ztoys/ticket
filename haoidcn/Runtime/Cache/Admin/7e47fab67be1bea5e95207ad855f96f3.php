@@ -29,7 +29,6 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.uniform.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.resize.min.js"></script>
@@ -46,7 +45,7 @@
 
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/third-party/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.min.js"></script>
 
 <style type="text/css">
     .form-wrap{

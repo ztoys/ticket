@@ -17,10 +17,22 @@ class ApiController extends CommonController {
         if ($ret) {
             $this->sendResult($ret);
          }else{
-             $return['error_code'] = -1;
-             $return['error_message'] = 'request  fail';
-             $this->sendResult($return);
+            $return['error_code'] = -1;
+            $return['error_message'] = 'request  fail';
+            $this->sendResult($return);
          }
+    }
+
+    //获取群组列表
+    public function group_list(){
+        $list_group = $this->sel_sql("status", "");
+        if ($list_group) {
+            $this->sendResult($list_group);
+        }else{
+            $return['error_code'] = -1;
+            $return['error_message'] = 'request  fail';
+            $this->sendResult($return);
+        }
     }
 
 }

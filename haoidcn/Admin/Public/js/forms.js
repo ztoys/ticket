@@ -95,23 +95,4 @@ jQuery(document).ready(function(){
 	
 	jQuery('#timepicker1').timepicker();
 	
-	
-	// color picker
-	if(jQuery('#colorpicker').length > 0) {
-		jQuery('#colorSelector').ColorPicker({
-			onShow: function (colpkr) {
-				jQuery(colpkr).fadeIn(500);
-				return false;
-			},
-			onHide: function (colpkr) {
-				jQuery(colpkr).fadeOut(500);
-				return false;
-			},
-			onChange: function (hsb, hex, rgb) {
-				jQuery('#colorSelector span').css('backgroundColor', '#' + hex);
-				jQuery('#colorpicker').val('#'+hex);
-			}
-		});
-	}
-	
 });

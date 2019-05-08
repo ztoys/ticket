@@ -27,7 +27,6 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.uniform.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.resize.min.js"></script>

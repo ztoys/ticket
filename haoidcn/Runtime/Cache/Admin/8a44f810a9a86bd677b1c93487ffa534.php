@@ -27,7 +27,6 @@
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/modernizr.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.cookie.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>js/jquery.uniform.min.js"></script>
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.min.js"></script>
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/flot/jquery.flot.resize.min.js"></script>
@@ -44,7 +43,6 @@
 
 
 <script type="text/javascript" src="<?php echo (C("URL")); ?>js/new/unify.js"></script>
-<script type="text/javascript" src="<?php echo (C("URL")); ?>baidubianjiqi/third-party/jquery.min.js"></script>
 
 <style type="text/css">
 	a:hover{
@@ -367,8 +365,8 @@
 
         //选择受理人
         jQuery(".select-ticket-agent select").change(function(){
-            var val = $(this).val();
-            var id = $(this).parents(".select-ticket-agent").data("id");
+            var val = jQuery(this).val();
+            var id = jQuery(this).parents(".select-ticket-agent").data("id");
             if (val != "-1"){
                 jQuery.ajax({
                     type: "post",
