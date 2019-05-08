@@ -17,7 +17,7 @@ class ApiController extends CommonController {
         if ($ret) {
             $this->sendResult($ret);
          }else{
-             $return['error_code'] = -1 ;
+             $return['error_code'] = -1;
              $return['error_message'] = 'request  fail';
              $this->sendResult($return);
          }

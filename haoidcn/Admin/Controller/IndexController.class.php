@@ -90,6 +90,7 @@ class IndexController extends Controller {
 			$userid = strtolower(I("post.username"));
 			$pass = md5(I('post.password'));
 			$User = D("User"); // 实例化User对象
+		
 			$user_arr = $User->where("(userid='$userid' or email='$userid' or phone='$userid') AND pwd='$pass'")->find();
 			$ok = empty($user_arr) ? "-1" : "1";
 			

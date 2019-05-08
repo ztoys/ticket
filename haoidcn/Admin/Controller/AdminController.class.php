@@ -197,7 +197,7 @@ class AdminController extends CommonController {
 		//查询是否存在相同账户
 		$is_user_exist = $this->sel_sql_single("user", "userid='$acc'");
 		if ($is_user_exist) {
-			echo "<meta charset='utf-8' /><script>alert('添加失败，帐号 $acc 已存在');history.go(-1)</script>";
+			echo "<meta charset='utf-8' /><script>window.parent.alertError('添加失败，帐号 $acc 已存在');</script>";
 			exit;
 		}
 
@@ -217,9 +217,9 @@ class AdminController extends CommonController {
 		);
 		$result = $this->inser_sql("user", $data);
 		if ($result) {
-			echo "<meta charset='utf-8' /><script>alert('添加成员 $name 成功'); location.href='user_manage/groupid/$status.html';</script>";
+			echo "<meta charset='utf-8' /><script>window.parent.location.href='user_manage/groupid/$status.html?alertSuccess=1';</script>";
 		} else {
-			echo "<meta charset='utf-8' /><script>alert('添加成员 $name 失败');</script>";
+			echo "<meta charset='utf-8' /><script>window.parent.alertError('添加成员 $name 失败');</script>";
 		}
 	}
 

@@ -1,0 +1,635 @@
+[ 2019-05-08T09:56:21+08:00 ] 10.0.0.224 /ticket/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000950s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.012035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.012180s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+
+[ 2019-05-08T09:56:21+08:00 ] 10.0.0.224 /ticket/index.php/console/dashboard.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001182s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001560s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001799s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0041s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000138s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000281s ]
+NOTIC: [8] Undefined index: user_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 157 行.
+NOTIC: [8] Undefined index: user_block04 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 158 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 159 行.
+NOTIC: [8] Undefined index: user_block02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 160 行.
+NOTIC: [8] Undefined index: user_block03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 161 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 162 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 163 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 164 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 165 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 166 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 170 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 171 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 172 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 173 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 177 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\1896c1cf806f2d66e648efcc3142bdb7.php 第 178 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.111816s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.111936s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.010729s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.010860s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001879s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002040s ]
+
+[ 2019-05-08T09:56:23+08:00 ] 10.0.0.224 /ticket/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000918s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002658s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002893s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+
+[ 2019-05-08T09:56:26+08:00 ] 10.0.0.224 /ticket/index.php/index/exit_t.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000608s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000889s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001014s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 185 行.
+
+[ 2019-05-08T09:56:26+08:00 ] 10.0.0.224 /ticket/index.php/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000826s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000921s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001053s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000074s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000185s ]
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 67 行.
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 95 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.027051s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.027248s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000733s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000833s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000891s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001032s ]
+
+[ 2019-05-08T09:56:30+08:00 ] 10.0.0.224 /ticket/index.php/index/index.html?
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000898s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000930s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001138s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( (userid='kf1' or email='kf1' or phone='kf1') AND pwd='e10adc3949ba59abbe56e057f20f883e' ) LIMIT 1   [ RunTime:0.0007s ]
+
+[ 2019-05-08T09:56:30+08:00 ] 10.0.0.224 /ticket/index.php/client/messages/case/create.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000086s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000932s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001071s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001362s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='kf1' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( uid='95'  ) ORDER BY field(wc_sataus, '4','1','2','-1','3'),puddate desc LIMIT 1   [ RunTime:0.0009s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.wc_sataus wc_sataus,w.did did,w.work_type work_type,w.work_level work_level,w.work_owned work_owned,w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname dname FROM ticket_work w left join ticket_user AS u ON w.did=u.id  WHERE ( uid='95'  ) ORDER BY field(wc_sataus, '4','1','2','-1','3'),puddate desc LIMIT 0,15   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=95 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=95 and wc_sataus<>'3' and tz_status='1' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=95 and wc_sataus='4' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( uid=95 and wc_sataus='3' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT `did` FROM `ticket_work` WHERE ( uid='95' ) GROUP BY did  [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\ClientController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php on line 302 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 1008 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0017s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 1009 行.
+SQL: SELECT * FROM `ticket_user` WHERE ( id in ('0,62,70,75,79,83,85') )  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0012s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='124' ) LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0011s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='124' ) ORDER BY repdate asc  [ RunTime:0.0020s ]
+SQL: SHOW COLUMNS FROM `ticket_field_value` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ticket_field_value` WHERE ( field_id=5 ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001410s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001677s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 163 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 164 行.
+NOTIC: [8] Undefined variable: ticket_type D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 433 行.
+NOTIC: [8] Undefined variable: ticket_status D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 434 行.
+NOTIC: [8] Undefined variable: ticket_level D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 435 行.
+NOTIC: [8] Undefined variable: ticket_agent D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 436 行.
+NOTIC: [8] Undefined variable: ticket_owned D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 437 行.
+NOTIC: [8] Undefined variable: ticket_search D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\dec63b81bbf22128bdda8f2f476b7971.php 第 438 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.088008s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.088231s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001318s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001451s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000964s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001131s ]
+
+[ 2019-05-08T09:56:38+08:00 ] 10.0.0.224 /ticket/index.php/client/detail/case/create/id/124.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000593s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000670s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000798s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='kf1' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_work` WHERE ( id='124' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.accdate w_accdate,w.wc_sataus,w.work_type w_type,w.did w_did,w.work_level w_level,w.work_product,w.work_develop,w.work_finish,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='124' ) LIMIT 1   [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\ClientController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php on line 555 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 1008 行.
+SQL: SHOW COLUMNS FROM `ticket_files` [ RunTime:0.0009s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\ClientController.class.php 第 1009 行.
+SQL: SELECT * FROM `ticket_files` WHERE ( id in (20) )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_addwork` [ RunTime:0.0007s ]
+SQL: SELECT u.uname,u.email,u.phone,u.url,u.limits,a.id,a.g_reply,a.repdate,a.pid,a.uid FROM ticket_addwork as a LEFT JOIN ticket_user as u ON a.uid=u.id  WHERE ( a.pid='124' ) ORDER BY repdate asc  [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000215s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000333s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 246 行.
+NOTIC: [8] Undefined index: active01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 247 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 248 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 249 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 252 行.
+NOTIC: [8] Undefined variable: ticket_count D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 253 行.
+NOTIC: [8] Undefined index: w_finish D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\f6d487039efb58656f88838d7bbe93df.php 第 321 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.038384s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.038494s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000677s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000778s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001803s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002046s ]
+
+[ 2019-05-08T09:57:03+08:00 ] 10.0.0.224 /ticket/index.php/index/exit_t.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000862s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000853s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000978s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 185 行.
+
+[ 2019-05-08T09:57:03+08:00 ] 10.0.0.224 /ticket/index.php/index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000601s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000837s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000957s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000077s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000195s ]
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 67 行.
+NOTIC: [8] Undefined variable: user_not_exist D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4eb4ec678664914e8b74da7f993668d8.php 第 95 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011243s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.011383s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000698s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000802s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000835s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000943s ]
+
+[ 2019-05-08T09:57:07+08:00 ] 10.0.0.224 /ticket/index.php/index/index.html?
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000525s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000676s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000819s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\IndexController.class.php 第 11 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( (userid='admin' or email='admin' or phone='admin') AND pwd='e10adc3949ba59abbe56e057f20f883e' ) LIMIT 1   [ RunTime:0.0007s ]
+
+[ 2019-05-08T09:57:07+08:00 ] 10.0.0.224 /ticket/index.php/admin/ticket/case/all.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000517s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000628s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000743s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is null or w.did=0) and w.wc_sataus<>'3'  ) ORDER BY field(wc_sataus, '1','2','4','-1','3'),puddate desc LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.wc_sataus wc_sataus,w.uid uid,w.work_type work_type,w.work_level work_level,w.work_owned work_owned,w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is null or w.did=0) and w.wc_sataus<>'3'  ) ORDER BY field(wc_sataus, '1','2','4','-1','3'),puddate desc LIMIT 0,15   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: aid D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 311 行.
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.did w_did,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: file_arr D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 315 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_field_value` [ RunTime:0.0150s ]
+SQL: SELECT * FROM `ticket_field_value` WHERE ( field_id=5 ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 330 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_user` WHERE ( limits='2' and zl_status='1' )  [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000144s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000264s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 129 行.
+NOTIC: [8] Undefined index: user_block04 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 132 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 133 行.
+NOTIC: [8] Undefined index: user_block02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 134 行.
+NOTIC: [8] Undefined index: kh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 139 行.
+NOTIC: [8] Undefined index: kh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 140 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 144 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 145 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 146 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 147 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 151 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 152 行.
+NOTIC: [8] Undefined variable: ticket_type D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 268 行.
+NOTIC: [8] Undefined variable: ticket_status D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 269 行.
+NOTIC: [8] Undefined variable: ticket_level D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 270 行.
+NOTIC: [8] Undefined variable: ticket_owned D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\e1e56546c48024a94f399a5e3831250d.php 第 271 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.056328s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.056470s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000839s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000932s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001095s ]
+
+[ 2019-05-08T09:57:15+08:00 ] 10.0.0.224 /ticket/index.php/admin/ticket_history/case/history.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000880s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001097s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001308s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is not null and w.did<>0)  ) ORDER BY field(wc_sataus, '1','2','4','-1','3'),puddate desc LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT w.id id,w.title title,w.puddate puddate,w.accdate accdate,w.appoint,w.wc_sataus wc_sataus,w.uid uid,w.did,w.work_type work_type,w.work_level work_level,w.work_owned work_owned,w.work_product work_product,w.work_develop work_develop,w.work_finish work_finish,u.uname uname FROM ticket_work w left join ticket_user AS u ON w.uid=u.id  WHERE ( (w.did is not null and w.did<>0)  ) ORDER BY field(wc_sataus, '1','2','4','-1','3'),puddate desc LIMIT 0,15   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined variable: aid D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 439 行.
+SQL: SELECT u.id u_id,u.uname u_uname,u.email u_email,u.url u_url,u.phone u_phone,w.id w_id,w.did w_did,w.title w_title,w.issue w_issue,w.sc_file w_sc_file,w.puddate w_puddate,w.wc_sataus,s.id s_id,s.email s_email,s.uname s_uname,s.phone s_phone FROM ticket_work as w LEFT JOIN ticket_user as u ON w.uid=u.id LEFT JOIN ticket_service as s ON u.sid=s.id  WHERE ( w.id='' ) LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: file_arr D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 443 行.
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_field_value` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_field_value` WHERE ( field_id=5 ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 458 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_user` WHERE ( limits='2' and zl_status='1' )  [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000163s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000285s ]
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 131 行.
+NOTIC: [8] Undefined index: user_block04 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 134 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 135 行.
+NOTIC: [8] Undefined index: user_block02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 136 行.
+NOTIC: [8] Undefined index: kh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 141 行.
+NOTIC: [8] Undefined index: kh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 142 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 146 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 147 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 148 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 149 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 153 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 154 行.
+NOTIC: [8] Undefined variable: ticket_type D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 319 行.
+NOTIC: [8] Undefined variable: ticket_status D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 320 行.
+NOTIC: [8] Undefined variable: ticket_level D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 321 行.
+NOTIC: [8] Undefined variable: ticket_owned D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 322 行.
+NOTIC: [8] Undefined variable: ticket_search D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\8a44f810a9a86bd677b1c93487ffa534.php 第 323 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.052601s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.052713s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000722s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000820s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001074s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001230s ]
+
+[ 2019-05-08T09:57:16+08:00 ] 10.0.0.224 /ticket/index.php/admin/user_manage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000572s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000634s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000752s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 106 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+SQL: SHOW COLUMNS FROM `ticket_status` [ RunTime:0.0008s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_status`  [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql_count(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 114 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1195 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1196 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( u_status='24' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( u_status='24' ) ORDER BY zl_status desc,f_date desc LIMIT 0,15   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000267s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000406s ]
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 176 行.
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 180 行.
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 211 行.
+NOTIC: [8] Undefined index: user_block04 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 214 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 215 行.
+NOTIC: [8] Undefined index: user_block03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 217 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 218 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 219 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 220 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 221 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 222 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 226 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 227 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 228 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 229 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 233 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 234 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.043716s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.043869s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001084s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001263s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000983s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001135s ]
+
+[ 2019-05-08T09:57:17+08:00 ] 10.0.0.224 /ticket/index.php/admin/role_permissions.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000637s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000823s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000970s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 20 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+SQL: SHOW COLUMNS FROM `ticket_status` [ RunTime:0.0016s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_status` WHERE ( type='3' )  [ RunTime:0.0005s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 23 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_status` WHERE ( type='2' )  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000157s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000348s ]
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 82 行.
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 86 行.
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 117 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 121 行.
+NOTIC: [8] Undefined index: user_block02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 122 行.
+NOTIC: [8] Undefined index: user_block03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 123 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 124 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 125 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 126 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 127 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 128 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 132 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 133 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 134 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 135 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 139 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\d1efb1837c84bc015a253a5d3473515a.php 第 140 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032976s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.033086s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000691s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000789s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001093s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001276s ]
+
+[ 2019-05-08T09:57:22+08:00 ] 10.0.0.224 /ticket/index.php/admin/user_manage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000541s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000861s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000978s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 106 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+SQL: SHOW COLUMNS FROM `ticket_status` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_status`  [ RunTime:0.0003s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql_count(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 114 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1195 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1196 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( u_status='24' ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( u_status='24' ) ORDER BY zl_status desc,f_date desc LIMIT 0,15   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000258s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000374s ]
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 176 行.
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 180 行.
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 211 行.
+NOTIC: [8] Undefined index: user_block04 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 214 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 215 行.
+NOTIC: [8] Undefined index: user_block03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 217 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 218 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 219 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 220 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 221 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 222 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 226 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 227 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 228 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 229 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 233 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 234 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.037009s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.037157s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000777s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000879s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001309s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001514s ]
+
+[ 2019-05-08T09:57:31+08:00 ] 10.0.0.224 /ticket/index.php/admin/user_manage/groupid/15.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000816s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000994s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001220s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 106 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+SQL: SHOW COLUMNS FROM `ticket_status` [ RunTime:0.0010s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_status`  [ RunTime:0.0005s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql_count(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 114 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1195 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0009s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1196 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( u_status='15' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( u_status='15' ) ORDER BY zl_status desc,f_date desc LIMIT 0,15   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000436s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000652s ]
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 176 行.
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 180 行.
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 211 行.
+NOTIC: [8] Undefined index: user_block04 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 214 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 215 行.
+NOTIC: [8] Undefined index: user_block03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 217 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 218 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 219 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 220 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 221 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 222 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 226 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 227 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 228 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 229 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 233 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 234 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.077526s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.081035s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001685s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001915s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002086s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002397s ]
+
+[ 2019-05-08T09:57:34+08:00 ] 10.0.0.224 /ticket/index.php/admin/user_info.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000493s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000674s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000806s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='toy6' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2019-05-08T09:59:00+08:00 ] 10.0.0.224 /ticket/index.php/admin/group_set.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000922s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001263s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001467s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `ticket_status` [ RunTime:0.0009s ]
+SQL: UPDATE `ticket_status` SET `status`='客服1组1' WHERE ( id='27' ) [ RunTime:0.0024s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001024s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001135s ]
+
+[ 2019-05-08T09:59:01+08:00 ] 10.0.0.224 /ticket/index.php/admin/user_manage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000585s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000964s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001139s ]
+NOTIC: [8] A session had already been started - ignoring session_start() D:\wampserver\www\ticket\haoidcn\Admin\Controller\CommonController.class.php 第 13 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( userid='admin' ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `ticket_work` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_work` WHERE ( (did is null or did=0) and wc_sataus<>'3' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 106 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1191 行.
+SQL: SHOW COLUMNS FROM `ticket_status` [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1192 行.
+SQL: SELECT * FROM `ticket_status`  [ RunTime:0.0003s ]
+NOTIC: [2] Missing argument 3 for Admin\Controller\AdminController::sel_sql_count(), called in D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php on line 114 and defined D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1195 行.
+SQL: SHOW COLUMNS FROM `ticket_user` [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: orders D:\wampserver\www\ticket\haoidcn\Admin\Controller\AdminController.class.php 第 1196 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `ticket_user` WHERE ( u_status='24' ) LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ticket_user` WHERE ( u_status='24' ) ORDER BY zl_status desc,f_date desc LIMIT 0,15   [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000235s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000355s ]
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 176 行.
+NOTIC: [8] Undefined index: limits D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 180 行.
+NOTIC: [8] Undefined variable: set D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 211 行.
+NOTIC: [8] Undefined index: user_block04 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 214 行.
+NOTIC: [8] Undefined index: user_block01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 215 行.
+NOTIC: [8] Undefined index: user_block03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 217 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 218 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 219 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 220 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 221 行.
+NOTIC: [8] Undefined variable: data01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 222 行.
+NOTIC: [8] Undefined index: sh_one D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 226 行.
+NOTIC: [8] Undefined index: sh_block D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 227 行.
+NOTIC: [8] Undefined index: sh_two01 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 228 行.
+NOTIC: [8] Undefined index: sh_two02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 229 行.
+NOTIC: [8] Undefined variable: data02 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 233 行.
+NOTIC: [8] Undefined variable: data03 D:\wampserver\www\ticket\haoidcn\Runtime\Cache\Admin\4b8040583aec76806e550180ce80fcbf.php 第 234 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.047930s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.048118s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000884s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001022s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001256s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001430s ]
+

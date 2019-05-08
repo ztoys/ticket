@@ -50,6 +50,14 @@
         margin-top: 20px;
         font-size: 16px;
     }    
+    .alert{
+        display: inline-block;
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-left: 0;
+        width: 270px;
+    }
 </style>
 </head>
 
@@ -62,7 +70,6 @@
                         请等待管理员验证通过
                     </p>
                 </div><?php endif; ?>
-            
             <form id="login" action="?" method="post" style="<?php if($userlaw == '-1'): ?>display: none;<?php endif; ?>">
                 <input type="hidden" name='root' id='root' value="<?php echo (C("ROOT")); ?>">
                 <input type='hidden' name='login' id='login' value="login">

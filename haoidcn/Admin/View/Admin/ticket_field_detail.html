@@ -262,7 +262,7 @@ function saveField(id) {
 		data: postData,
 		success: function(data){
 			if (data.code == 0){
-				alertSucc();
+				alertSuccess();
 			} else {
 				alert("保存失败");
 			}
@@ -270,27 +270,7 @@ function saveField(id) {
 	})
 }
 
-function alertSucc(){
-	var alertDom = jQuery("#alertSuccess");
-	alertDom.show();
-	if (window.alertTimeOut) {
-		clearTimeout(window.alertTimeOut);
-	}
-	window.alertTimeOut = setTimeout(function(){
-		alertDom.hide();
-	}, 5000);
-}
-function alertError(str){
-	var alertDom = jQuery("#alertError");
-	jQuery("#alert_error_text").text(str);
-	alertDom.show();
-	if (window.alertTimeOut) {
-		clearTimeout(window.alertTimeOut);
-	}
-	window.alertTimeOut = setTimeout(function(){
-		alertDom.hide();
-	}, 5000);
-}
+
 </script>
 </body>
 </html>

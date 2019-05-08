@@ -407,7 +407,7 @@
 <!-- 添加新成员 -->
 <div class="modal fade modal-add-user" id="modal_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{:U('Admin/user_add')}" method="post" enctype="multipart/form-data" id="form_user_add">
+        <form action="{:U('Admin/user_add')}" method="post" enctype="multipart/form-data" id="form_user_add" target="rfFrame">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -588,6 +588,18 @@
 
 <!-- 模态框 END -->
 
+<div id="alertSuccess" class="alert alert-success fadeInDown animated">
+    <a href="#" class="close">&times;</a>
+    保存成功！
+</div>
+
+<div id="alertError" class="alert alert-error fadeInDown animated">
+    <a href="#" class="close">&times;</a>
+    <span id="alert_error_text"></span>
+</div>
+
+<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
+
 </body>
 <script>
 
@@ -603,6 +615,11 @@
         jQuery(document).click(function(){
             jQuery(".rights").hide();
         })
+
+        var urlStrParam = GetURLParam();
+        if (urlStrParam.alertSuccess) {
+            alertSuccess();
+        }
     });
 
     function addUser() {
@@ -757,7 +774,6 @@
         jQuery("#rights_group_name").val(name);
         jQuery("#group_rights").show();
     }
-
     
 
 </script>

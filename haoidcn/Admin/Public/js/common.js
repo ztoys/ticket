@@ -39,3 +39,44 @@ jQuery(function(){
 function goBack(){
     window.location.href=document.referrer;
 }
+
+/**
+ * alert 弹出提示
+ */
+function alertSuccess(){
+	var alertDom = jQuery("#alertSuccess");
+	alertDom.show();
+	if (window.alertTimeOut) {
+		clearTimeout(window.alertTimeOut);
+	}
+	window.alertTimeOut = setTimeout(function(){
+		alertDom.hide();
+	}, 5000);
+}
+function alertError(str){
+	var alertDom = jQuery("#alertError");
+	jQuery("#alert_error_text").text(str);
+	alertDom.show();
+	if (window.alertTimeOut) {
+		clearTimeout(window.alertTimeOut);
+	}
+	window.alertTimeOut = setTimeout(function(){
+		alertDom.hide();
+	}, 5000);
+}
+
+/**
+ * 获取URL?后面的参数
+ */
+function GetURLParam() {  
+    var url = location.search; //获取url中"?"符后的字串  
+    var theRequest = new Object();  
+    if (url.indexOf("?") != -1) {  
+       var str = url.substr(1);  
+       strs = str.split("&");  
+       for(var i = 0; i < strs.length; i ++) {  
+          theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);  
+       }  
+    }  
+    return theRequest;  
+ }  

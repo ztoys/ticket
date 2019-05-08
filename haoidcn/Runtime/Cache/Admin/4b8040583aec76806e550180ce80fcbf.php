@@ -411,9 +411,9 @@
 </div><!--mainwrapper-->
 
 <!-- 群组右键菜单 -->
-<div class="group-menu rights" id="group-rights">
-    <input type="hidden" id="rights-group-id">
-    <input type="hidden" id="rights-group-name">
+<div class="group-menu rights" id="group_rights">
+    <input type="hidden" id="rights_group_id">
+    <input type="hidden" id="rights_group_name">
     <ul>
         <li onclick="setGroupName()">编辑</li>
         <li onclick="delGroup()">删除</li>
@@ -533,7 +533,7 @@
 <!-- 添加新成员 -->
 <div class="modal fade modal-add-user" id="modal_add_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="<?php echo U('Admin/user_add');?>" method="post" enctype="multipart/form-data" id="form_user_add">
+        <form action="<?php echo U('Admin/user_add');?>" method="post" enctype="multipart/form-data" id="form_user_add" target="rfFrame">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -712,6 +712,18 @@
 
 <!-- 模态框 END -->
 
+<div id="alertSuccess" class="alert alert-success fadeInDown animated">
+    <a href="#" class="close">&times;</a>
+    保存成功！
+</div>
+
+<div id="alertError" class="alert alert-error fadeInDown animated">
+    <a href="#" class="close">&times;</a>
+    <span id="alert_error_text"></span>
+</div>
+
+<iframe id="rfFrame" name="rfFrame" src="about:blank" style="display:none;"></iframe>
+
 </body>
 <script>
 
@@ -727,6 +739,11 @@
         jQuery(document).click(function(){
             jQuery(".rights").hide();
         })
+
+        var urlStrParam = GetURLParam();
+        if (urlStrParam.alertSuccess) {
+            alertSuccess();
+        }
     });
 
     function addUser() {
@@ -848,8 +865,8 @@
     }
 
     function setGroupName() {
-        var id = jQuery("#rights-group-id").val();
-        var oriName = jQuery("#rights-group-name").val();
+        var id = jQuery("#rights_group_id").val();
+        var oriName = jQuery("#rights_group_name").val();
         jQuery("#set_group_id").val(id);
         jQuery("#set_group_name").val(oriName);
         jQuery('#modal_set_group').modal('show');
@@ -860,8 +877,8 @@
         jQuery("#form_group_add").submit();
     }
     function delGroup() {
-        var id = jQuery("#rights-group-id").val();
-        var oriName = jQuery("#rights-group-name").val();
+        var id = jQuery("#rights_group_id").val();
+        var oriName = jQuery("#rights_group_name").val();
         jQuery("#del_group_id").val(id);
         jQuery("#group_del_name").text(name);
         jQuery('#modal_del_group').modal('show');
@@ -875,13 +892,12 @@
             t += obj.offsetTop;
             l += obj.offsetLeft;
         }
-        jQuery("#group-rights").css('top', t + 10);
-        jQuery("#group-rights").css('left', l + 10);
-        jQuery("#rights-group-id").val(id);
-        jQuery("#rights-group-name").val(name);
-        jQuery("#group-rights").show();
+        jQuery("#group_rights").css('top', t + 10);
+        jQuery("#group_rights").css('left', l + 10);
+        jQuery("#rights_group_id").val(id);
+        jQuery("#rights_group_name").val(name);
+        jQuery("#group_rights").show();
     }
-
     
 
 </script>
